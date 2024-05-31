@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Manfred Liegl (Bosch Sicherheitssysteme GmbH) -->
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Manfred Liegl
+
+Created: 10.09.2012
+
+$Revision: 1.3 $ 
+
+Last locked:   $Date: 2012/10/17 15:32:26MESZ $
+
+
+History: 
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="$Revision: 1.3 $">
+  <xs:include schemaLocation="Local-2-9-0.xsd"/>
+  <xs:include schemaLocation="LZ-Mappings-2-5-0.xsd"/>
+  <xs:include schemaLocation="Main-2-9-0.xsd"/>
+  <xs:annotation>
+    <xs:documentation source="2.9.0">initial in 2.9</xs:documentation>
+    <xs:appinfo>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:complexType name="SN_NodeType">
+    <xs:sequence>
+      <xs:element name="rsn">
+        <xs:annotation>
+          <xs:documentation source="2.0.0">Rotary switch number is unique in a network. It is not used for addressing. Each node has a physNodeID for addressing which is related 1:1 to the rsn.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="rsnType"/>
+        </xs:simpleType>
+      </xs:element>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="SN_LSN_MODULE"/>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SN_LSN_ModuleType">
+    <xs:sequence>
+      <xs:element name="slot" type="slotType" default="1">
+        <xs:annotation>
+          <xs:appinfo>doc: range 1 - 46</xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="SN_LSN_DEVICE"/>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SN_LSN_DeviceType">
+    <xs:sequence>
+      <xs:element name="physicalAddressDevice" type="physAddrType"/>
+      <xs:element name="serialNumberCurrent" type="serialNumberType"/>
+      <xs:element name="serialNumberCurrentDateTime" type="SNdateTimeType"/>
+      <xs:element name="serialNumberPrevious" type="serialNumberType"/>
+      <xs:element name="serialNumberPreviousDateTime" type="SNdateTimeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SNdateTimeType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[0-9]{10}"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:minLength value="9"/>
+          <xs:maxLength value="10"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="invalid time"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="SNlogicalAddressType">
+    <xs:annotation>
+      <xs:documentation>ShortText up to 63 bytes, to prevent schema errors 64 bytes are allowed</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="64"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SN_NODES">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="SN_NODE"/>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SN_NODE" type="SN_NodeType"/>
+  <xs:element name="SN_LSN_MODULE" type="SN_LSN_ModuleType"/>
+  <xs:element name="SN_LSN_DEVICE" type="SN_LSN_DeviceType"/>
+</xs:schema>

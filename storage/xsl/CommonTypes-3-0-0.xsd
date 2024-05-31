@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Lux (Bosch Sicherheitssysteme GmbH) -->
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Maria Lux
+
+Created: 13.01.2017
+
+$Revision: 1.6 $
+
+Last locked:   $Date: 2018/06/06 14:32:05GMT $
+
+Last change by $Author: Maria Lux (lux2ot) $
+
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1.6 $">
+	<xs:annotation>
+		<xs:documentation source="3.0.0">new version 3.0.0</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AUXPOWER_BCType">
+		<xs:annotation>
+			<xs:documentation source="1.4.0">used by BatteryController (battery backup flag)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" type="portType" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 6
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" fixed="MP_SI_AUXPOWER">
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_AUXPOWER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="batteryBackup" type="yesnoType" default="ST_YES"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="AUXPOWER_MultipleType">
+		<xs:annotation>
+			<xs:documentation source="1.4.0">used by LSN300Module, LSNI_CONV4, having two elements AUXPOWER</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" type="portType">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">LSN300Module has two AUXPOWER elements with port = 1 and port = 2
+LSNI_CONV4 has two AUSPOWER elements with port = 3 and port = 4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" fixed="MP_SI_AUXPOWER">
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_AUXPOWER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="LINE_SUPERVISION" type="LINE_SUPERVISIONType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="AUXPOWER_SingleType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">used by Conventional Module, ENOT, NACModule, having only one element AUXPOWER, hence no port is needed, model is all because of different sequence used in NAC-Module</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" fixed="MP_SI_AUXPOWER">
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_AUXPOWER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="AUXPOWER_WithLineSupervisionType">
+		<xs:annotation>
+			<xs:documentation source="1.4.0">used by New BCMB and LSN </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" type="portType" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 6
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" fixed="MP_SI_AUXPOWER">
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_AUXPOWER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="LINE_SUPERVISION" type="LINE_SUPERVISIONType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="BATTERYType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="siType" default="MP_SI_BATTERY">
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_BATTERY"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="port" type="portType" default="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>is not always present: missing in NAC_MODULE</xs:documentation>
+					<xs:appinfo>doc: range 1 - 2</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:all>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="CUSTOMER_INFOType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contractNumber" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>doc: maxLength 20 Characters</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="smtp" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>doc: maxLength 60 characters</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x400" type="x400Type"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="GROUNDType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" type="siTypeType" default="MP_SI_GROUND"/>
+			<xs:element name="siNumber" type="siNumberType" default="1"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="INPUTBaseType">
+		<xs:annotation>
+			<xs:documentation source="2.1.0">Used directly without further extensions by:
+	IO8 		port: 1 3 5 7 9 11 13 15
+	ONBOARD	port: 1 2
+	NKK100		port: 1 2 3 4 5 6 7 8
+	NTK100		port: no 'port' element at all, fixed 9
+	RLHVI		port: 3 4
+	RLHV_MODULE	port: 3 4
+	LSNI_RLE		port: 3 4 5
+Used as base type for LSNI_INPUT_Ext5BitType (5Bit thresholds):
+Used by:
+	LSNI_IN2 (FLM-420-I2 W/E)		port: 1 2
+	LSNI_IN2_D (FLM-420-I2 D)	port: 1 2
+Used as base type for LSNI_INPUT_Ext2BitType (2Bit thresholds):
+Used by:
+	LSNI_IN8R1 (FLM-420-I8R1)	port: 1 2 3 4 5 6 7 8
+	LSNI_IN1 (FLM-420-I1)	port: 1
+	LSNI_OUT8_IN2 (FLM-420-O8I1)	port: 9 10
+	LSNI_OUT1_IN1 (FLM-420-O1I1)	port: 2
+
+</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" type="inputSiTypesType" default="MP_SI_POINT"/>
+			<xs:element name="port" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">Since the type is used for all kind of INPUTs, there can be only a min-max restriction applied for port values. Detailed restrictions are documented at INPUTBaseType
+</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0"/>
+			<xs:element name="subNumber" type="siSubNumberType" default="0"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="usageType" default="MP_UT_SUPERVISORY">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_UT_SUPERVISORY"/>
+						<xs:enumeration value="MP_UT_TROUBLE"/>
+						<xs:enumeration value="MP_UT_INPUT_ON_OFF"/>
+						<xs:enumeration value="MP_UT_INPUT_NORMAL_TROUBLE"/>
+						<xs:enumeration value="MP_UT_FIRE"/>
+						<xs:enumeration value="MP_UT_FIRE_INT"/>
+						<xs:enumeration value="MP_UT_WATER"/>
+						<xs:enumeration value="MP_UT_SMOKE"/>
+						<xs:enumeration value="MP_UT_HEAT"/>
+						<xs:enumeration value="MP_UT_EVACUATION"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andDetector" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">mandatory in V 2.1.0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="andZoneNr" type="xs:unsignedShort" default="0">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">mandatory in V 2.1.0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="andLatching" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">mandatory in V 2.1.0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">mandatory in V 2.1.0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">mandatory in V 2.1.0</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LEDType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="port" type="portType" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 32</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" type="siTypeType" default="MP_SI_STATUS"/>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:all>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="BlinkingLEDType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" type="portType" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 32</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" type="siTypeType" default="MP_SI_STATUS"/>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="restPosition" type="onoffBlinkingType" default="OOBT_OFF"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="ColoredLEDType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BlinkingLEDType">
+				<xs:sequence>
+					<xs:element name="baseColor" default="LCT_YELLOW">
+						<xs:simpleType>
+							<xs:restriction base="LEDColorType">
+								<xs:enumeration value="LCT_YELLOW"/>
+								<xs:enumeration value="LCT_RED"/>
+								<xs:enumeration value="LCT_GREEN"/>
+								<xs:enumeration value="LCT_UNUSED"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LINE_SUPERVISIONType">
+		<xs:annotation>
+			<xs:documentation>EN54-13 detection of creeping short or open in connection with EOL4W-devices</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="physAddrOfEOLDevice" type="physAddrType" default="0.0.0.0">
+				<xs:annotation>
+					<xs:documentation source="2.6.0">The phys. address of an FLM-420-EOL4W on LSN-bus or an FLM-320-EOL4W connected to the primary line of a CZM, i.e. the address of the primary line itself.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="isConventional" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.6.0">The flag is ST_YES in case of an FLM-320-EOL4W is used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SUPPLIED_DEVICES" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.6.0">Up to 32 pys. addresses of LSN-4Wire devices which are supplied by the supervised AUX. In case of conventional 4W-devices, i.e. a FLM-320-EOLW4 is used and isConventional is ST_YES, no address is set because of conventional devices having a group address only, which is stored in physAddrOfEOLDevice.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="32">
+						<xs:element name="physAddr" type="physAddrType" default="0.0.0.0"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="generalAttributeGroup"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="MAINPOWERType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="siType" default="MP_SI_MAINPOWER">
+				<xs:annotation>
+					<xs:documentation>'MP_SI_MAINPOWER' only</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_MAINPOWER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="delayForTrouble" default="10">
+				<xs:annotation>
+					<xs:documentation source="2.0.3">CAVEAT: default is 0 in case of used as child of OB_POWER_INS</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="240"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="NAC_ZONEType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" default="MP_SI_NAC">
+				<xs:annotation>
+					<xs:documentation>"MP_SI_NAC" only</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_NAC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="synProtocol" type="nacSyncProtocolType" default="NAC_SP_NONE"/>
+			<xs:element name="feedbackDelay" default="240">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_CONTINOUS">
+				<xs:annotation>
+					<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_CONTINOUS">
+				<xs:annotation>
+					<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="RAILPOWERType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="siType" default="MP_SI_RAILPOWER">
+				<xs:annotation>
+					<xs:documentation>'MP_SI_RAILPOWER' only</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_RAILPOWER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:all>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="RELAYBaseType">
+		<xs:sequence>
+			<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
+			<xs:element name="port" type="xs:unsignedByte"/>
+			<xs:element name="siNumber" default="0">
+				<xs:simpleType>
+					<xs:restriction base="siNumberType">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="60000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
+			<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="supervised" type="yesnoType" default="ST_NO"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="SUPPORT_INFOType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactName" type="xs:string"/>
+			<xs:element name="smtp" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>doc: maxLength 60 Characters</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="x400" type="x400Type"/>
+			<xs:element name="oemLogoFilename" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:attributeGroup name="generalAttributeGroup">
+		<xs:annotation>
+			<xs:documentation>attributes are not used for configuration data</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="rpsDisplayName" type="xs:string" use="optional"/>
+		<xs:attribute name="Checkdate" type="dateTimeType" use="optional"/>
+	</xs:attributeGroup>
+</xs:schema>

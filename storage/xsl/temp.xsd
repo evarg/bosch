@@ -1,0 +1,69 @@
+    
+	public function colorProfileType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+<xs:simpleType name="colorProfileType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="COLOR_PROFILE_1"/>
+			<xs:enumeration value="COLOR_PROFILE_2"/>
+			<xs:enumeration value="COLOR_PROFILE_3"/>
+		</xs:restriction>
+	</xs:simpleType>    
+	public function counterIDType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+	<xs:simpleType name="counterIDType">
+		<xs:annotation>
+			<xs:documentation source="2.0.2">numeric values for user-counters enum-values for system-counters</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:unsignedShort">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="ALARM_LOCAL"/>
+					<xs:enumeration value="ALARM_SCOPE"/>
+					<xs:enumeration value="FIRE_LOCAL"/>
+					<xs:enumeration value="FIRE_SCOPE"/>
+					<xs:enumeration value="TROUBLE_LOCAL"/>
+					<xs:enumeration value="TROUBLE_SCOPE"/>
+					<xs:enumeration value="ALL_TROUBLE_LOCAL"/>
+					<xs:enumeration value="ALL_TROUBLE_SCOPE"/>
+					<xs:enumeration value="SUPERVISORY_LOCAL"/>
+					<xs:enumeration value="SUPERVISORY_SCOPE"/>
+					<xs:enumeration value="OPERATOR9_SCOPE"/>
+					<xs:enumeration value="SMOKE_LOCAL"/>
+					<xs:enumeration value="SMOKE_SCOPE"/>
+					<xs:enumeration value="HEAT_LOCAL"/>
+					<xs:enumeration value="HEAT_SCOPE"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>    
+	public function scopeType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+	<xs:simpleType name="scopeType">
+		<xs:annotation>
+			<xs:documentation source="2.0.0">exports: LOCAL, GROUP or NETWORK</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="LOCAL"/>
+			<xs:enumeration value="GROUP"/>
+			<xs:enumeration value="NETWORK"/>
+		</xs:restriction>
+	</xs:simpleType>    
+	public function triggerCounterComparatorType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+	<xs:simpleType name="triggerCounterComparatorType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="GT"/>
+			<xs:enumeration value="LT_EQ"/>
+			<xs:enumeration value="INC"/>
+			<xs:enumeration value="DEC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:group name="CHANNEL_ACTIONSGroup">

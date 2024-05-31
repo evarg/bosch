@@ -23,7 +23,7 @@ class ImportController extends Controller
         if (array_key_exists('NODE', $nodes)) {
             foreach ($nodes['NODE'] as $key => $value) {
                 print("=======================================");
-                print($key);
+                print($key, sizeof());
             }
         }
 

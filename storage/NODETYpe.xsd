@@ -1,0 +1,99 @@
+	<xs:complexType name="NODEType">
+		<xs:sequence>
+			<xs:element name="netLocalCRC" type="netCRCType" default="0">
+				<xs:annotation>
+					<xs:documentation source="2.0.5">CRC16 as decimal unsigned short</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:group ref="LogicalNetAddr"/>
+			<xs:element name="rsn">
+				<xs:annotation>
+					<xs:documentation source="2.0.0">Rotary switch number is unique in a network. It is not used for addressing. Each node has a physNodeID for addressing which is related 1:1 to the rsn.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="rsnType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nodeType" type="nodeTypeType" default="FPA5000">
+				<xs:annotation>
+					<xs:documentation source="2.0.0">The type of node, FPA5000, FPA5000_RK, OPC_SERVER</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="scope" type="scopeType" default="GROUP">
+				<xs:annotation>
+					<xs:documentation source="2.0.0">Defines the network-role of the panel can be LOCAL, GROUP or NETWORK.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES">
+				<xs:annotation>
+					<xs:documentation source="2.0.2">If set network states are displayed in the panel even if the scope is GROUP or LOCAL.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="ipAddress" type="ipAddressType"/>
+			<xs:element name="subnetMask" type="ipAddressType"/>
+			<xs:element name="gateway" type="ipAddressType"/>
+			<xs:element name="multicastAddress" type="ipAddressType">
+				<xs:annotation>
+					<xs:documentation source="2.8.1"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="portNumber" type="portNumberType">
+				<xs:annotation>
+					<xs:documentation source="2.8.1"/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="useEthernetSettings" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.8.2">new in 2.8.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="syncRequired" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.0.5">This flag is normally set to ST_NO. For panel-nodes with scope network which have an FBF configured in the local configuration the flag is ST_YES. This indicates for other nodes of scope group that they have to ask this network node for synchronization too although not in the same group and scope.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="showEthernetRxOverloadWarning" type="yesnoType" default="ST_YES" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.8.5">new in 2.9.2
+values can be ST_YES or ST_NO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="usePanelNetworkingOverIP" type="yesnoType" default="ST_YES" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.8.5">new in 2.9
+values can be ST_YES or ST_NO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="SPANNING_TREE" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.8.2">new in 2.8.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="NET_INTERFACES" minOccurs="0"/>
+			<xs:element ref="EXPORTS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.0.0">The lists of all items which will be replicated to other nodes or are special devices to be used (shared) by other nodes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="IMPORTS" minOccurs="0"/>
+			<xs:element ref="ASSIGNED_OPCSVRS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>OPC-Servers can be assigned to a node of type FPA5000 and FPA5000_RK.
+At the moment only one OPC-Server may be assigned to a node. The number of assigned servers might be increased later.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="2.5.0">Other nodes with an MTS-interfaces(UGM) can be assigned to a node. This information is needed by the node as gateway for MTS-packages. At the moment only one (MTS)-node may be assigned to a node. The number of assigned nodes might be increased later.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CONNECTABLE" minOccurs="0"/>
+			<xs:element ref="CONFIG_DATA" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contains the location of the XML-Configuration of the node and all data needed by RPS to open the local configuration data. If the element has no subelement, the node has no configuration yet and serves as placeholder.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="netGeneralAttributeGroup"/>
+	</xs:complexType>

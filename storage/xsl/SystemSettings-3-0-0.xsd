@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Landgraf Andreas (Bosch Sicherheitssysteme GmbH) -->
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Maria Lux
+
+Created: 10.Nov.2017
+
+$Revision: 1.1 $
+
+Last locked:   $Date: 2017/11/23 13:07:53GMT $
+
+Last change by $Author: Anton Engl (ena2ot) $
+
+-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" version="$Revision: 1.1 $" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:attributeGroup name="CountryAttrib">
+		<xs:attribute name="country" type="countryType" use="required"/>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="LanguageAttrib">
+		<xs:attribute default="all" name="lang" type="languageType" use="optional"/>
+	</xs:attributeGroup>
+	<xs:complexType name="AssignedElementType">
+		<xs:all>
+			<xs:element default="MP_SI_INVALID" name="siType" type="siTypeType"/>
+			<xs:element default="true" minOccurs="0" name="automaticDetector" type="xs:boolean"/>
+			<xs:element minOccurs="0" name="Context">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="name" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="elementName" type="xs:string"/>
+			<xs:element minOccurs="0" name="NacTypes">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="nacType" type="nacTypeType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="UsageTypes">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="usageType" type="usageTypeType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="EthSwitchType">
+		<xs:sequence>
+			<xs:element name="DSCPToPriorityMapping">
+				<xs:complexType>
+					<xs:sequence maxOccurs="64" minOccurs="64">
+						<xs:element name="DSCP">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="index">
+										<xs:simpleType>
+											<xs:restriction base="xs:unsignedInt">
+												<xs:maxInclusive value="63"/>
+												<xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Priority" type="xs:int"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:key name="DSCPToPriorityKey">
+					<xs:field xpath="index"/>
+					<xs:selector xpath="DSCP"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="PriorityToTrafficClassMapping">
+				<xs:complexType>
+					<xs:sequence maxOccurs="8" minOccurs="8">
+						<xs:element name="Priority">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="index">
+										<xs:simpleType>
+											<xs:restriction base="xs:unsignedInt">
+												<xs:maxInclusive value="7"/>
+												<xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="TrafficClass" type="xs:int"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:key name="PriorityToTrafficKey">
+					<xs:field xpath="index"/>
+					<xs:selector xpath="Priority"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FunctionTypeType">
+		<xs:sequence>
+			<xs:element name="Description" type="LocalizedTextType"/>
+			<xs:element name="id">
+				<xs:simpleType>
+					<xs:restriction base="functionTypeType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element ref="AssignedElements"/>
+			<xs:element ref="MCPTypeSettings"/>
+			<xs:element ref="OPCTypeSettings"/>
+			<xs:element ref="VDSId"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LLDPType">
+		<xs:sequence>
+			<xs:element default="2" name="ReinitDelay" type="xs:unsignedInt"/>
+			<xs:element default="2" name="TxDelay" type="xs:unsignedInt"/>
+			<xs:element default="30" name="TxInterval" type="xs:unsignedInt"/>
+			<xs:element default="4" name="TxHoldMultiplier" type="xs:unsignedInt"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LocalizedShortTextType">
+		<xs:annotation>
+			<xs:documentation>
+				Like LocalizedTextType but length restriction to 31 characters
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LocalizedText">
+				<xs:complexType>
+					<xs:attributeGroup ref="LanguageAttrib"/>
+					<xs:sequence>
+						<xs:element name="text">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="31"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LocalizedTextType">
+		<xs:annotation>
+			<xs:documentation>
+				This type can be used as generic type for texts in different languages. The XML-read implementation takes the text for the specified language or for 'all' if the specified language was not found. Hence a text for all must exist in any case.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LocalizedText">
+				<xs:complexType>
+					<xs:attributeGroup ref="LanguageAttrib"/>
+					<xs:sequence>
+						<xs:element name="text">
+							<xs:simpleType>
+								<xs:restriction base="xs:string"/>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MiscSettingsType">
+		<xs:attributeGroup ref="CountryAttrib"/>
+		<xs:sequence>
+			<xs:element name="dummy" type="xs:anySimpleType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MPNetCANType">
+		<xs:complexContent>
+			<xs:extension base="MPNetLinkType">
+				<xs:sequence>
+					<xs:element default="10000" name="ErrorRecoveryDelay" type="xs:unsignedLong"/>
+					<xs:element default="100" name="ErrorThresholdPercent" type="xs:unsignedByte"/>
+					<xs:element default="150" name="ReceiveQueueSizeMillis" type="xs:unsignedShort"/>
+					<xs:element default="50" name="SendQueueSizeMillis" type="xs:unsignedShort"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MPNetLinkType">
+		<xs:sequence>
+			<xs:element default="0" name="InterfaceNo" type="xs:unsignedByte"/>
+			<xs:element default="1000" name="LineHeartbeatInterval" type="xs:unsignedShort"/>
+			<xs:element default="1" name="RouteWeight" type="xs:unsignedByte"/>
+			<xs:element default="3500" name="LineCheckInterval" type="xs:unsignedShort"/>
+			<xs:element default="5" name="ErrorMonitorIntervalKByte" type="xs:unsignedShort"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MPNetMemoryType">
+		<xs:sequence>
+			<xs:element default="1000" name="MessageCount" type="xs:unsignedLong"/>
+			<xs:element default="2000" name="PayloadBlockDisplacementLevelPrio7" type="xs:unsignedLong"/>
+			<xs:element default="2400" name="PayloadBlockDisplacementLevelPrio6" type="xs:unsignedLong"/>
+			<xs:element default="2800" name="PayloadBlockDisplacementLevelPrio5" type="xs:unsignedLong"/>
+			<xs:element default="3000" name="PayloadBlockDisplacementLevelPrio4" type="xs:unsignedLong"/>
+			<xs:element default="3200" name="PayloadBlockDisplacementLevelPrio3" type="xs:unsignedLong"/>
+			<xs:element default="3400" name="PayloadBlockDisplacementLevelPrio2" type="xs:unsignedLong"/>
+			<xs:element default="3600" name="PayloadBlockDisplacementLevelPrio1" type="xs:unsignedLong"/>
+			<xs:element default="3800" name="PayloadBlockDisplacementLevelPrio0" type="xs:unsignedLong"/>
+			<xs:element default="4000" name="PayloadBlockCount" type="xs:unsignedLong"/>
+			<xs:element default="450" name="MessageDisplacementLevelPrio7" type="xs:unsignedLong"/>
+			<xs:element default="550" name="MessageDisplacementLevelPrio6" type="xs:unsignedLong"/>
+			<xs:element default="650" name="MessageDisplacementLevelPrio5" type="xs:unsignedLong"/>
+			<xs:element default="700" name="MessageDisplacementLevelPrio4" type="xs:unsignedLong"/>
+			<xs:element default="750" name="MessageDisplacementLevelPrio3" type="xs:unsignedLong"/>
+			<xs:element default="800" name="MessageDisplacementLevelPrio2" type="xs:unsignedLong"/>
+			<xs:element default="850" name="MessageDisplacementLevelPrio1" type="xs:unsignedLong"/>
+			<xs:element default="900" name="MessageDisplacementLevelPrio0" type="xs:unsignedLong"/>
+			<xs:element name="PayloadBlockSize" type="xs:unsignedLong">
+				<xs:annotation>
+					<xs:documentation>
+						default 16 for router, 32 for App
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MPNetType">
+		<xs:sequence>
+			<xs:element default="10000" name="AutoRouterStateTimeout" type="xs:unsignedLong"/>
+			<xs:element default="1000" name="AutoRouterLSUpdateStartTimeout" type="xs:unsignedLong"/>
+			<xs:element default="10" name="ConnectionKeepaliveInterval" type="xs:unsignedByte"/>
+			<xs:element default="120000" name="AutoRouterLSCheckAnswerTimeout" type="xs:unsignedLong"/>
+			<xs:element default="120000" name="AutoRouterLSDuplicateRemoved" type="xs:unsignedLong"/>
+			<xs:element default="120000" name="AutoRouterLSUpdateTimeout" type="xs:unsignedLong"/>
+			<xs:element default="120" name="ConnectionKeepaliveTimeout" type="xs:unsignedShort"/>
+			<xs:element default="120" name="MessageIDLifetime" type="xs:unsignedByte"/>
+			<xs:element default="12500" name="AutoRouterLSHelloTokenReceptionCheck" type="xs:unsignedLong"/>
+			<xs:element default="128" name="ConnectionHandles" type="xs:unsignedByte"/>
+			<xs:element default="131072" minOccurs="0" name="MemoryLimitAppReceive" type="xs:unsignedLong"/>
+			<xs:element default="15000" name="AutoRouterLSSendCheckInterval" type="xs:unsignedLong"/>
+			<xs:element default="16000" name="NodeCheckInterval" type="xs:unsignedLong"/>
+			<xs:element default="16384" name="ConnectionSendBufferPayload" type="xs:unsignedLong"/>
+			<xs:element default="196608" minOccurs="0" name="MemoryLimitAppSend" type="xs:unsignedLong"/>
+			<xs:element default="3000" name="AutoRouterLSLinkStateStartTimeout" type="xs:unsignedLong"/>
+			<xs:element default="3000" name="AutoRouterLSStartDijkstra" type="xs:unsignedLong"/>
+			<xs:element default="300" name="DNCPAddressLeaseTime" type="xs:unsignedShort"/>
+			<xs:element default="32768" name="MessageIDDuplicateFilterEntries" type="xs:unsignedLong"/>
+			<xs:element default="32" name="ConnectionSendBufferMessages" type="xs:unsignedByte"/>
+			<xs:element default="32" name="NrOfSupportedNodes" type="xs:unsignedByte"/>
+			<xs:element default="35000" name="AutoRouterLSCheckInterval" type="xs:unsignedLong"/>
+			<xs:element default="40000" name="DuplicationCheckInterval" type="xs:unsignedLong"/>
+			<xs:element default="4000" name="AutoRouterTokenDelay" type="xs:unsignedLong"/>
+			<xs:element default="4000" name="NodeHeartbeatInterval" type="xs:unsignedLong"/>
+			<xs:element default="4096" name="ConnectionWindowPayload" type="xs:unsignedLong"/>
+			<xs:element default="40" name="FlowXOffAppPercent" type="xs:unsignedByte"/>
+			<xs:element default="50003" name="KnownPortOPC" type="xs:unsignedShort"/>
+			<xs:element default="5000" name="AutoRouterLSAllowedChangeInterval" type="xs:unsignedLong"/>
+			<xs:element default="5000" name="AutoRouterLSHelloTokenInterval" type="xs:unsignedLong"/>
+			<xs:element default="500" name="FlowForwardDelayLimit" type="xs:unsignedShort"/>
+			<xs:element default="50" name="FlowXOffRouterPercent" type="xs:unsignedByte"/>
+			<xs:element default="524288" minOccurs="0" name="MemoryPoolSize" type="xs:unsignedLong"/>
+			<xs:element default="5500" name="AutoRouterLSRefreshDijkstra" type="xs:unsignedLong"/>
+			<xs:element default="5" name="ConnectionWindowMessages" type="xs:unsignedByte"/>
+			<xs:element default="5" name="DuplicationDetectionThreshold" type="xs:unsignedLong"/>
+			<xs:element default="5" name="FlowXOnPercent" type="xs:unsignedByte"/>
+			<xs:element default="6000" name="AutoRouterControlTokenInterval" type="xs:unsignedLong"/>
+			<xs:element default="64" minOccurs="0" name="PayloadBlockSize" type="xs:unsignedLong"/>
+			<xs:element default="65536" minOccurs="0" name="MemoryLimitRouter" type="xs:unsignedLong"/>
+			<xs:element default="8" name="NrOfSupportedInterfaces" type="xs:unsignedByte"/>
+			<xs:element default="90000" name="AutoRouterControlTokenReceiveTimeout" type="xs:unsignedLong"/>
+			<xs:element name="CANLinks">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="4" minOccurs="4" name="CANLink" type="MPNetCANType"/>
+						<xs:element name="DefaultCANLink" type="MPNetCANType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DefaultUDPTUN" type="MPNetUDPTUNType"/>
+			<xs:element name="MemoryAppReceive" type="MPNetMemoryType"/>
+			<xs:element name="MemoryAppSend" type="MPNetMemoryType"/>
+			<xs:element name="MemoryRouter" type="MPNetMemoryType"/>
+			<xs:element name="MPNetPriorityToDSCPMapping">
+				<xs:complexType>
+					<xs:sequence maxOccurs="8" minOccurs="8">
+						<xs:element name="MPNetPriority">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DSCP" type="xs:int"/>
+									<xs:element name="index">
+										<xs:simpleType>
+											<xs:restriction base="xs:unsignedInt">
+												<xs:maxInclusive value="7"/>
+												<xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:key name="PriorityToDSCPKey">
+					<xs:field xpath="index"/>
+					<xs:selector xpath="MPNetPriority"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="UARTLinks">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="4" minOccurs="4" name="UARTLink" type="MPNetUARTType"/>
+						<xs:element name="DefaultUARTLink" type="MPNetUARTType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="USBLinks">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="4" minOccurs="4" name="USBLink" type="MPNetUSBType"/>
+						<xs:element name="DefaultUSBLink" type="MPNetUSBType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MPNetUARTType">
+		<xs:complexContent>
+			<xs:extension base="MPNetLinkType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MPNetUDPTUNType">
+		<xs:complexContent>
+			<xs:extension base="MPNetLinkType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MPNetUSBType">
+		<xs:complexContent>
+			<xs:extension base="MPNetLinkType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MPNetXType">
+		<xs:sequence>
+			<xs:element default="128" name="MemoryPoolSize" type="xs:unsignedLong"/>
+			<xs:element default="256" name="MemoryPacketSize" type="xs:unsignedLong"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OPCCommandType">
+		<xs:sequence>
+			<xs:element name="BISTemplate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Description" type="LocalizedTextType"/>
+						<xs:element name="DisplayText" type="LocalizedTextType"/>
+						<xs:element name="Name">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="19"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:sequence minOccurs="0">
+							<xs:element name="Parameters">
+								<xs:complexType>
+									<xs:sequence maxOccurs="6">
+										<xs:element name="Parameter">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Description" type="LocalizedTextType"/>
+													<xs:element name="DisplayText" type="LocalizedTextType"/>
+													<xs:element name="Name">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="19"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Nr">
+														<xs:simpleType>
+															<xs:restriction base="xs:unsignedShort">
+																<xs:maxInclusive value="5"/>
+																<xs:minInclusive value="0"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Type">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="19"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:key name="ParameterKey">
+									<xs:field xpath="Nr"/>
+									<xs:selector xpath="Parameter"/>
+								</xs:key>
+							</xs:element>
+						</xs:sequence>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CommandNbr" type="commandNbrType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OPCTypesSettingsType">
+		<xs:sequence>
+			<xs:element name="publish" type="xs:boolean"/>
+			<xs:element name="SupportedCommands">
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded" minOccurs="0">
+						<xs:element name="CommandNbr" type="commandNbrType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ShortTextType">
+		<xs:sequence>
+			<xs:element name="LocTexts" type="LocalizedShortTextType"/>
+			<xs:element name="textKey" type="textKeyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SocketsType">
+		<xs:sequence>
+			<xs:element default="64" name="DatagramSocketReceiveBuffer" type="xs:unsignedLong"/>
+			<xs:element default="64" name="DatagramSocketsCount" type="xs:unsignedLong"/>
+			<xs:element default="64" name="DatagramSocketSendBuffer" type="xs:unsignedLong"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AssignedElements">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element name="Element" type="AssignedElementType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ColorProfiles">
+		<xs:complexType>
+			<xs:sequence maxOccurs="3">
+				<xs:element name="ColorProfile">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Name" type="colorProfileType"/>
+							<xs:element name="Schemes">
+								<xs:complexType>
+									<xs:sequence maxOccurs="255">
+										<xs:element name="Scheme">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="Color">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="[0-9A-F]{6}"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Name" type="colorSchemeNameType"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+								<xs:key name="SchemesKey">
+									<xs:field xpath="Name"/>
+									<xs:selector xpath="Scheme"/>
+								</xs:key>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:key name="ColorProfileKey">
+			<xs:field xpath="Name"/>
+			<xs:selector xpath="ColorProfile"/>
+		</xs:key>
+	</xs:element>
+	<xs:element name="EthSwitch" type="EthSwitchType"/>
+	<xs:element name="FunctionTypes">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="FunctionType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FunctionType">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="FunctionTypeType">
+					<xs:attributeGroup ref="CountryAttrib"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LLDP" type="LLDPType"/>
+	<xs:element name="MCPTypeSettings" type="OPCTypesSettingsType"/>
+	<xs:element name="MiscSettings">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MiscSettingsType">
+					<xs:sequence>
+						<xs:element minOccurs="0" ref="ColorProfiles"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MPNetLib" type="MPNetType"/>
+	<xs:element name="MPSystemSettings">
+		<xs:complexType>
+			<xs:attribute default="1.0.0" name="version" type="xs:string" use="optional"/>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="MiscSettings">
+					<xs:annotation>
+						<xs:documentation>
+							Multiple MiscSettings are possible for different countries
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" ref="ShortTexts"/>
+				<xs:element ref="FunctionTypes"/>
+				<xs:element ref="OPCCommands"/>
+				<xs:element ref="SysSettingsNet"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NetX" type="MPNetXType"/>
+	<xs:element name="OnboardModules">
+		<xs:annotation>
+			<xs:documentation>
+				ONBOARD_IFC::XMLToStream
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OPCCommands">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="OPCCommand"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OPCCommand">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="OPCCommandType">
+					<xs:attributeGroup ref="CountryAttrib"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OPCTypeSettings" type="OPCTypesSettingsType"/>
+	<xs:element name="Operators">
+		<xs:annotation>
+			<xs:documentation>
+				OPERATOR_IFC::AddDefaultConfigData
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Sets">
+		<xs:annotation>
+			<xs:documentation>
+				TransformerC::GenerateLoopSets()
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ShortTexts">
+		<xs:annotation>
+			<xs:documentation>
+				XMLToStreamC::AddDefaultShorttexts()
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="CountryAttrib"/>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="ShortText"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShortText" type="ShortTextType"/>
+	<xs:element name="Sockets" type="SocketsType"/>
+	<xs:element name="SysSettingsNet">
+		<xs:complexType>
+			<xs:attributeGroup ref="CountryAttrib"/>
+			<xs:sequence>
+				<xs:element ref="EthSwitch"/>
+				<xs:element ref="LLDP"/>
+				<xs:element ref="MPNetLib"/>
+				<xs:element ref="NetX"/>
+				<xs:element ref="Sockets"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SystemRules">
+		<xs:complexType>
+			<xs:attributeGroup ref="CountryAttrib"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transfer">
+		<xs:annotation>
+			<xs:documentation>
+				TRANSFER_IFC::AddDefaultConfigData for redundant panel connection
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="VDSId" type="xs:string"/>
+	<xs:simpleType name="colorProfileType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="COLOR_PROFILE_1"/>
+			<xs:enumeration value="COLOR_PROFILE_2"/>
+			<xs:enumeration value="COLOR_PROFILE_3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="colorSchemeNameType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="FB_ABSCHALTUNG"/>
+			<xs:enumeration value="FB_ACTIVATION_ACK"/>
+			<xs:enumeration value="FB_ACTIVATION_ACK_BK"/>
+			<xs:enumeration value="FB_ACTIVATION_NEW"/>
+			<xs:enumeration value="FB_ACTIVATION_NEW_BK"/>
+			<xs:enumeration value="FB_ALARMERKUNDUNG"/>
+			<xs:enumeration value="FB_ANSTEUERUNG_VERHINDERT"/>
+			<xs:enumeration value="FB_AUS_UNSCHARF"/>
+			<xs:enumeration value="FB_AUSLOESUNG"/>
+			<xs:enumeration value="FB_BACKGROUND"/>
+			<xs:enumeration value="FB_BITMAP_EXCLAMATION_MARK"/>
+			<xs:enumeration value="FB_BITMAP_INFO"/>
+			<xs:enumeration value="FB_BITMAP_MOON"/>
+			<xs:enumeration value="FB_BITMAP_QUESTION_MARK"/>
+			<xs:enumeration value="FB_BITMAP_SUN"/>
+			<xs:enumeration value="FB_BYPASS"/>
+			<xs:enumeration value="FB_BYPASS_BK"/>
+			<xs:enumeration value="FB_DEFAULT_COLOR"/>
+			<xs:enumeration value="FB_EDIT_FIELD"/>
+			<xs:enumeration value="FB_EDIT_FIELD_BK"/>
+			<xs:enumeration value="FB_EDIT_FIELD_BORDER"/>
+			<xs:enumeration value="FB_EDIT_FIELD_CURSER_FG"/>
+			<xs:enumeration value="FB_EDIT_FIELD_CURSOR"/>
+			<xs:enumeration value="FB_EIN_SCHARF"/>
+			<xs:enumeration value="FB_EINBRUCH_EXTERN"/>
+			<xs:enumeration value="FB_EINBRUCH_INTERN"/>
+			<xs:enumeration value="FB_FEUER_INTERN"/>
+			<xs:enumeration value="FB_FIRE_ACK"/>
+			<xs:enumeration value="FB_FIRE_ACK_BK"/>
+			<xs:enumeration value="FB_FIRE_NEW"/>
+			<xs:enumeration value="FB_FIRE_NEW_BK"/>
+			<xs:enumeration value="FB_FOREGROUND"/>
+			<xs:enumeration value="FB_FW_RUFEN"/>
+			<xs:enumeration value="FB_HEADLINE"/>
+			<xs:enumeration value="FB_HEADLINE_BK"/>
+			<xs:enumeration value="FB_INTERNALARM"/>
+			<xs:enumeration value="FB_KEY"/>
+			<xs:enumeration value="FB_KEY_BK"/>
+			<xs:enumeration value="FB_KEY_BK_PRESSED"/>
+			<xs:enumeration value="FB_KEY_BORDER"/>
+			<xs:enumeration value="FB_KEY_PRESSED"/>
+			<xs:enumeration value="FB_LIST_ELEMENT"/>
+			<xs:enumeration value="FB_LIST_ELEMENT_BK"/>
+			<xs:enumeration value="FB_LIST_ELEMENT_BK_SELECTED"/>
+			<xs:enumeration value="FB_LIST_ELEMENT_BORDER"/>
+			<xs:enumeration value="FB_LIST_ELEMENT_BORDER_SELECTED"/>
+			<xs:enumeration value="FB_LIST_ELEMENT_SELECTED"/>
+			<xs:enumeration value="FB_MBX"/>
+			<xs:enumeration value="FB_MBX_BK"/>
+			<xs:enumeration value="FB_MBX_BORDER"/>
+			<xs:enumeration value="FB_MELDUNG"/>
+			<xs:enumeration value="FB_NICHT_VERWENDET"/>
+			<xs:enumeration value="FB_REVISION"/>
+			<xs:enumeration value="FB_RUHE"/>
+			<xs:enumeration value="FB_SABOTAGE"/>
+			<xs:enumeration value="FB_SABOTAGE_EXTERN"/>
+			<xs:enumeration value="FB_SCHWARZ"/>
+			<xs:enumeration value="FB_SEPARATION_LINE"/>
+			<xs:enumeration value="FB_SPERRE"/>
+			<xs:enumeration value="FB_ST_ACTIVATION_KEY"/>
+			<xs:enumeration value="FB_ST_ACTIVATION_KEY_BK"/>
+			<xs:enumeration value="FB_ST_ACTIVATION_KEY_BK_PRESSED"/>
+			<xs:enumeration value="FB_ST_ACTIVATION_KEY_PRESSED"/>
+			<xs:enumeration value="FB_ST_BACKGROUND"/>
+			<xs:enumeration value="FB_ST_BYPASS_KEY"/>
+			<xs:enumeration value="FB_ST_BYPASS_KEY_BK"/>
+			<xs:enumeration value="FB_ST_BYPASS_KEY_BK_PRESSED"/>
+			<xs:enumeration value="FB_ST_BYPASS_KEY_PRESSED"/>
+			<xs:enumeration value="FB_ST_FIRE_KEY"/>
+			<xs:enumeration value="FB_ST_FIRE_KEY_BK"/>
+			<xs:enumeration value="FB_ST_FIRE_KEY_BK_PRESSED"/>
+			<xs:enumeration value="FB_ST_FIRE_KEY_PRESSED"/>
+			<xs:enumeration value="FB_ST_KEY"/>
+			<xs:enumeration value="FB_ST_KEY_BK"/>
+			<xs:enumeration value="FB_ST_KEY_BK_PRESSED"/>
+			<xs:enumeration value="FB_ST_KEY_BORDER"/>
+			<xs:enumeration value="FB_ST_KEY_PRESSED"/>
+			<xs:enumeration value="FB_ST_TROUBLE_KEY"/>
+			<xs:enumeration value="FB_ST_TROUBLE_KEY_BK"/>
+			<xs:enumeration value="FB_ST_TROUBLE_KEY_BK_PRESSED"/>
+			<xs:enumeration value="FB_ST_TROUBLE_KEY_PRESSED"/>
+			<xs:enumeration value="FB_STEUERUNG"/>
+			<xs:enumeration value="FB_STOER_HINWEIS"/>
+			<xs:enumeration value="FB_STOERUNG_ENERGIE"/>
+			<xs:enumeration value="FB_STOERUNG_EXTERN"/>
+			<xs:enumeration value="FB_STYLES_COUNT"/>
+			<xs:enumeration value="FB_TESTBETRIEB"/>
+			<xs:enumeration value="FB_TROUBLE_ACK"/>
+			<xs:enumeration value="FB_TROUBLE_ACK_BK"/>
+			<xs:enumeration value="FB_TROUBLE_NEW"/>
+			<xs:enumeration value="FB_TROUBLE_NEW_BK"/>
+			<xs:enumeration value="FB_UEBERFALL"/>
+			<xs:enumeration value="FB_UEBERGEHEN"/>
+			<xs:enumeration value="FB_VORALARM"/>
+			<xs:enumeration value="FB_WALKTEST_ACK"/>
+			<xs:enumeration value="FB_WALKTEST_ACK_BK"/>
+			<xs:enumeration value="FB_WALKTEST_NEW"/>
+			<xs:enumeration value="FB_WALKTEST_NEW_BK"/>
+			<xs:enumeration value="FB_WEISS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="commandNbrType">
+		<xs:restriction base="xs:unsignedShort"/>
+	</xs:simpleType>
+	<xs:simpleType name="countryType">
+		<xs:annotation>
+			<xs:documentation>
+				all supported countries
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="ANY"/>
+			<xs:enumeration value="AR"/>
+			<xs:enumeration value="AT"/>
+			<xs:enumeration value="AU"/>
+			<xs:enumeration value="BA"/>
+			<xs:enumeration value="BE"/>
+			<xs:enumeration value="BG"/>
+			<xs:enumeration value="BO"/>
+			<xs:enumeration value="BR"/>
+			<xs:enumeration value="BW"/>
+			<xs:enumeration value="BY"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CF"/>
+			<xs:enumeration value="CH"/>
+			<xs:enumeration value="CL"/>
+			<xs:enumeration value="CM"/>
+			<xs:enumeration value="CN"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="CZ"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="DK"/>
+			<xs:enumeration value="EE"/>
+			<xs:enumeration value="EG"/>
+			<xs:enumeration value="ES"/>
+			<xs:enumeration value="FI"/>
+			<xs:enumeration value="FR"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="GH"/>
+			<xs:enumeration value="GR"/>
+			<xs:enumeration value="HK"/>
+			<xs:enumeration value="HN"/>
+			<xs:enumeration value="HR"/>
+			<xs:enumeration value="HU"/>
+			<xs:enumeration value="IE"/>
+			<xs:enumeration value="IL"/>
+			<xs:enumeration value="IN"/>
+			<xs:enumeration value="IT"/>
+			<xs:enumeration value="JO"/>
+			<xs:enumeration value="JP"/>
+			<xs:enumeration value="KE"/>
+			<xs:enumeration value="LT"/>
+			<xs:enumeration value="LU"/>
+			<xs:enumeration value="LV"/>
+			<xs:enumeration value="MY"/>
+			<xs:enumeration value="NL"/>
+			<xs:enumeration value="NO"/>
+			<xs:enumeration value="PL"/>
+			<xs:enumeration value="PT"/>
+			<xs:enumeration value="RO"/>
+			<xs:enumeration value="RU"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="SI"/>
+			<xs:enumeration value="SK"/>
+			<xs:enumeration value="TD"/>
+			<xs:enumeration value="TH"/>
+			<xs:enumeration value="TR"/>
+			<xs:enumeration value="TW"/>
+			<xs:enumeration value="UA"/>
+			<xs:enumeration value="US"/>
+			<xs:enumeration value="YU"/>
+			<xs:enumeration value="ZA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="functionTypeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="MP_FT_ADDRESSCARD"/>
+			<xs:enumeration value="MP_FT_ALARMCOUNTER"/>
+			<xs:enumeration value="MP_FT_BLOCK_GROUP"/>
+			<xs:enumeration value="MP_FT_BUZZER"/>
+			<xs:enumeration value="MP_FT_BYPASS_GROUP"/>
+			<xs:enumeration value="MP_FT_CANBUS"/>
+			<xs:enumeration value="MP_FT_CITYTIE"/>
+			<xs:enumeration value="MP_FT_CITYTIE_MOD"/>
+			<xs:enumeration value="MP_FT_CONTROL"/>
+			<xs:enumeration value="MP_FT_CONTROL_MOD"/>
+			<xs:enumeration value="MP_FT_CONV_ZONE"/>
+			<xs:enumeration value="MP_FT_COUNTER"/>
+			<xs:enumeration value="MP_FT_DAMPER"/>
+			<xs:enumeration value="MP_FT_DIAGNOSTICS"/>
+			<xs:enumeration value="MP_FT_DIALER"/>
+			<xs:enumeration value="MP_FT_DISPLAY"/>
+			<xs:enumeration value="MP_FT_DOORHOLDER"/>
+			<xs:enumeration value="MP_FT_DOWNLOAD"/>
+			<xs:enumeration value="MP_FT_FAT"/>
+			<xs:enumeration value="MP_FT_FBF"/>
+			<xs:enumeration value="MP_FT_FIREEXTINGUISHER"/>
+			<xs:enumeration value="MP_FT_GENERAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_GENERAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_GROUND"/>
+			<xs:enumeration value="MP_FT_HISTORY"/>
+			<xs:enumeration value="MP_FT_INPUT"/>
+			<xs:enumeration value="MP_FT_INPUT_GROUP"/>
+			<xs:enumeration value="MP_FT_INSULATION_MOD"/>
+			<xs:enumeration value="MP_FT_IONIZATION_DETECTOR"/>
+			<xs:enumeration value="MP_FT_KEYDEPOT"/>
+			<xs:enumeration value="MP_FT_LINE"/>
+			<xs:enumeration value="MP_FT_LINE_MOD"/>
+			<xs:enumeration value="MP_FT_LOGGER_MOD"/>
+			<xs:enumeration value="MP_FT_LOOP"/>
+			<xs:enumeration value="MP_FT_LOOP_MOD"/>
+			<xs:enumeration value="MP_FT_LOOP_SET"/>
+			<xs:enumeration value="MP_FT_MAIN_POWER"/>
+			<xs:enumeration value="MP_FT_MANUALCALLPOINT"/>
+			<xs:enumeration value="MP_FT_MONITORING"/>
+			<xs:enumeration value="MP_FT_MULTISENSOR_OT_DETECTOR"/>
+			<xs:enumeration value="MP_FT_MULTISENSOR_OTC_DETECTOR"/>
+			<xs:enumeration value="MP_FT_NAC_SOUNDER"/>
+			<xs:enumeration value="MP_FT_NAC_STROBE"/>
+			<xs:enumeration value="MP_FT_NETADDRESS"/>
+			<xs:enumeration value="MP_FT_NETWORK"/>
+			<xs:enumeration value="MP_FT_NETWORK_LINE"/>
+			<xs:enumeration value="MP_FT_NETWORKNODE"/>
+			<xs:enumeration value="MP_FT_OPTICAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_OUTPUT_GROUP"/>
+			<xs:enumeration value="MP_FT_PANEL"/>
+			<xs:enumeration value="MP_FT_PANEL"/>
+			<xs:enumeration value="MP_FT_POWER"/>
+			<xs:enumeration value="MP_FT_POWER_MOD"/>
+			<xs:enumeration value="MP_FT_PRINTER"/>
+			<xs:enumeration value="MP_FT_RADIO_MOD"/>
+			<xs:enumeration value="MP_FT_RAMV"/>
+			<xs:enumeration value="MP_FT_RAS_DETECTOR"/>
+			<xs:enumeration value="MP_FT_SET"/>
+			<xs:enumeration value="MP_FT_STATUS"/>
+			<xs:enumeration value="MP_FT_STATUS_MOD"/>
+			<xs:enumeration value="MP_FT_SUPERVISION_MOD"/>
+			<xs:enumeration value="MP_FT_SYSTEMSTATUS"/>
+			<xs:enumeration value="MP_FT_TC_CHANNEL"/>
+			<xs:enumeration value="MP_FT_THERMO_DETECTOR"/>
+			<xs:enumeration value="MP_FT_THERMODIFFERENTIAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_TIME"/>
+			<xs:enumeration value="MP_FT_TOPOLOGY"/>
+			<xs:enumeration value="MP_FT_TRANSFER"/>
+			<xs:enumeration value="MP_FT_UNDEFINED"/>
+			<xs:enumeration value="MP_FT_UNDEFINED"/>
+			<xs:enumeration value="MP_FT_UNLOCKAPPLIANCE"/>
+			<xs:enumeration value="MP_FT_USER"/>
+			<xs:enumeration value="MP_FT_VAS"/>
+			<xs:enumeration value="MP_FT_WT_GROUP"/>
+			<xs:enumeration value="MP_FT_ZONE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="languageType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">
+				containing only the languages used by RPS and transformer
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="all"/>
+			<xs:enumeration value="bg"/>
+			<xs:enumeration value="cs"/>
+			<xs:enumeration value="da"/>
+			<xs:enumeration value="de"/>
+			<xs:enumeration value="el"/>
+			<xs:enumeration value="en"/>
+			<xs:enumeration value="en_US"/>
+			<xs:enumeration value="es"/>
+			<xs:enumeration value="es_XD"/>
+			<xs:enumeration value="et"/>
+			<xs:enumeration value="fr"/>
+			<xs:enumeration value="hr"/>
+			<xs:enumeration value="hu"/>
+			<xs:enumeration value="it"/>
+			<xs:enumeration value="lt"/>
+			<xs:enumeration value="lv"/>
+			<xs:enumeration value="nl"/>
+			<xs:enumeration value="nl_BE"/>
+			<xs:enumeration value="pl"/>
+			<xs:enumeration value="pt"/>
+			<xs:enumeration value="pt_BR"/>
+			<xs:enumeration value="ro"/>
+			<xs:enumeration value="ru"/>
+			<xs:enumeration value="sl"/>
+			<xs:enumeration value="sq"/>
+			<xs:enumeration value="sr"/>
+			<xs:enumeration value="sv"/>
+			<xs:enumeration value="tr"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nacTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				enum
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="NT_ACOUSTIC"/>
+			<xs:enumeration value="NT_MIXED"/>
+			<xs:enumeration value="NT_OPTIC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="siTypeType">
+		<xs:annotation>
+			<xs:documentation>
+				all SI-Types
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="MP_SI_ADDRESSCARD"/>
+			<xs:enumeration value="MP_SI_ALARMCOUNTER"/>
+			<xs:enumeration value="MP_SI_AUXPOWER"/>
+			<xs:enumeration value="MP_SI_BATTERY"/>
+			<xs:enumeration value="MP_SI_BLOCK_GROUP"/>
+			<xs:enumeration value="MP_SI_BUZZER"/>
+			<xs:enumeration value="MP_SI_BYPASS_GROUP"/>
+			<xs:enumeration value="MP_SI_CANBUS"/>
+			<xs:enumeration value="MP_SI_CITYTIE"/>
+			<xs:enumeration value="MP_SI_CONTROL"/>
+			<xs:enumeration value="MP_SI_CONV_ZONE"/>
+			<xs:enumeration value="MP_SI_COUNTER"/>
+			<xs:enumeration value="MP_SI_COUPLER"/>
+			<xs:enumeration value="MP_SI_DAMPER"/>
+			<xs:enumeration value="MP_SI_DIAGNOSTICS"/>
+			<xs:enumeration value="MP_SI_DIALER"/>
+			<xs:enumeration value="MP_SI_DISPLAY"/>
+			<xs:enumeration value="MP_SI_DOORHOLDER"/>
+			<xs:enumeration value="MP_SI_DOWNLOAD"/>
+			<xs:enumeration value="MP_SI_FAT"/>
+			<xs:enumeration value="MP_SI_FBF"/>
+			<xs:enumeration value="MP_SI_FIREEXTINGUISHER"/>
+			<xs:enumeration value="MP_SI_GROUND"/>
+			<xs:enumeration value="MP_SI_HISTORY"/>
+			<xs:enumeration value="MP_SI_HVAC"/>
+			<xs:enumeration value="MP_SI_INPUT"/>
+			<xs:enumeration value="MP_SI_INPUT_GROUP"/>
+			<xs:enumeration value="MP_SI_INVALID"/>
+			<xs:enumeration value="MP_SI_KEYDEPOT"/>
+			<xs:enumeration value="MP_SI_LOOP"/>
+			<xs:enumeration value="MP_SI_LOOP_SET"/>
+			<xs:enumeration value="MP_SI_MAINPOWER"/>
+			<xs:enumeration value="MP_SI_MODULE"/>
+			<xs:enumeration value="MP_SI_MONITORING"/>
+			<xs:enumeration value="MP_SI_NAC"/>
+			<xs:enumeration value="MP_SI_NETADDRESS"/>
+			<xs:enumeration value="MP_SI_NETWORK"/>
+			<xs:enumeration value="MP_SI_NETWORK_LINE"/>
+			<xs:enumeration value="MP_SI_NETWORKNODE"/>
+			<xs:enumeration value="MP_SI_OUTPUT_GROUP"/>
+			<xs:enumeration value="MP_SI_PANEL"/>
+			<xs:enumeration value="MP_SI_POINT"/>
+			<xs:enumeration value="MP_SI_PRINTER"/>
+			<xs:enumeration value="MP_SI_RAILPOWER"/>
+			<xs:enumeration value="MP_SI_RAMV"/>
+			<xs:enumeration value="MP_SI_REDUNDANT_TRANSFER"/>
+			<xs:enumeration value="MP_SI_SET"/>
+			<xs:enumeration value="MP_SI_SOUNDER"/>
+			<xs:enumeration value="MP_SI_STATUS"/>
+			<xs:enumeration value="MP_SI_STROBE"/>
+			<xs:enumeration value="MP_SI_TC_CHANNEL"/>
+			<xs:enumeration value="MP_SI_TIMER"/>
+			<xs:enumeration value="MP_SI_TOPOLOGY"/>
+			<xs:enumeration value="MP_SI_TRANSFER"/>
+			<xs:enumeration value="MP_SI_USER"/>
+			<xs:enumeration value="MP_SI_VAS"/>
+			<xs:enumeration value="MP_SI_WT_GROUP"/>
+			<xs:enumeration value="MP_SI_ZONE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="textKeyType">
+		<xs:annotation>
+			<xs:documentation>
+				may be a LocalLogAddress for ShortTExts or a TXT_ key for other texts
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="MP_SI_[A-Z_]+\.[0-9]{1,5}\.[0-9]{1,3}"/>
+			<xs:pattern value="TXT_[A-Z_0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="usageTypeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="MP_UT_INPUT_ON_OFF"/>
+			<xs:enumeration value="MP_UT_INPUT_NORMAL_TROUBLE"/>
+			<xs:enumeration value="MP_UT_FIRE"/>
+			<xs:enumeration value="MP_UT_FIRE_INT"/>
+			<xs:enumeration value="MP_UT_HEAT"/>
+			<xs:enumeration value="MP_UT_SMOKE"/>
+			<xs:enumeration value="MP_UT_SUPERVISORY"/>
+			<xs:enumeration value="MP_UT_TROUBLE"/>
+			<xs:enumeration value="MP_UT_WATER"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

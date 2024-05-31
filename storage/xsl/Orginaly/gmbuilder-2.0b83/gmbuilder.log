@@ -1,0 +1,4 @@
+0    [main] INFO  edu.lmu.xmlpipedb.gmbuilder.GenMAPPBuilder  - ***** GenMAPP Builder started at: 15:23:57 CEST
+64471 [AWT-EventQueue-0] WARN  net.sf.ehcache.config.Configurator  - No configuration found. Configuring ehcache from ehcache-failsafe.xml found in the classpath: jar:file:/C:/xampp/htdocs/bosch/storage/xsl/Orginaly/gmbuilder-2.0b83/lib/ehcache-1.1.jar!/ehcache-failsafe.xml
+67002 [AWT-EventQueue-0] ERROR org.hibernate.util.JDBCExceptionReporter  - Po³¹czenie odrzucone. SprawdŸ, czy prawid³owo ustawi³eœ nazwê hosta oraz port i upewnij siê, czy postmaster przyjmuje po³¹czenia TCP/IP.
+67007 [AWT-EventQueue-0] ERROR edu.lmu.xmlpipedb.gmbuilder.GenMAPPBuilder  - org.hibernate.exception.JDBCConnectionException: Cannot open connection

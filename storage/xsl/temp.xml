@@ -1,0 +1,33 @@
+	<xs:complexType name="NODEType">
+		<xs:sequence>
+			<xs:element name="netLocalCRC" type="netCRCType" default="0"/>
+			<xs:group ref="LogicalNetAddr"/>
+			<xs:element name="rsn">
+				<xs:simpleType>
+					<xs:restriction base="rsnType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nodeType" type="nodeTypeType" default="FPA5000"/>
+			<xs:element name="scope" type="scopeType" default="GROUP"/>
+			<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="ipAddress" type="ipAddressType"/>
+			<xs:element name="subnetMask" type="ipAddressType"/>
+			<xs:element name="gateway" type="ipAddressType"/>
+			<xs:element name="multicastAddress" type="ipAddressType"/>
+			<xs:element name="portNumber" type="portNumberType"/>
+			<xs:element name="useEthernetSettings" type="yesnoType" default="ST_NO"/>
+			<xs:element name="syncRequired" type="yesnoType" default="ST_NO"/>
+			<xs:element name="showEthernetRxOverloadWarning" type="yesnoType" default="ST_YES" minOccurs="0"/>
+			<xs:element name="usePanelNetworkingOverIP" type="yesnoType" default="ST_YES" minOccurs="0"/>
+			<xs:element ref="SPANNING_TREE" minOccurs="0"/>
+			<xs:element ref="NET_INTERFACES" minOccurs="0"/>
+			<xs:element ref="EXPORTS" minOccurs="0"/>
+			<xs:element ref="IMPORTS" minOccurs="0"/>
+			<xs:element ref="ASSIGNED_OPCSVRS" minOccurs="0"/>
+			<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0"/>
+			<xs:element ref="CONNECTABLE" minOccurs="0"/>
+			<xs:element ref="CONFIG_DATA" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="netGeneralAttributeGroup"/>
+	</xs:complexType>

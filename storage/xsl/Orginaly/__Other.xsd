@@ -1,0 +1,258 @@
+// LOCAL
+
+	<xs:group name="CHANNEL_ACTIONSGroup">
+		<xs:annotation>
+			<xs:documentation>all actions which can be triggered by a channel</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="ADMINISTRATION"/>
+			<xs:element ref="BUZZER_ACTION"/>
+			<xs:element ref="CITYTIE_ACTION"/>
+			<xs:element ref="CONTROL_ACTION"/>
+			<xs:element ref="DIALER_ACTION"/>
+			<xs:element ref="DOORHOLDER_ACTION"/>
+			<xs:element ref="FAT_ACTION"/>
+			<xs:element ref="FIRE_ACTION"/>
+			<xs:element ref="HVAC_ACTION"/>
+			<xs:element ref="KEYDEPOT_ACTION"/>
+			<xs:element ref="NAC_ACTION"/>
+			<xs:element ref="PRINTER_ACTION"/>
+			<xs:element ref="SET_ACTION"/>
+			<xs:element ref="STATUS_ACTION"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="CONDITIONGroup">
+		<xs:choice>
+			<xs:element ref="CONDITION_COUNTER"/>
+			<xs:element ref="CONDITION_STATE"/>
+			<xs:element ref="CONDITION_ELAPSE"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="COUNTERGroup">
+		<xs:choice>
+			<xs:element ref="COUNTER"/>
+			<xs:element ref="SUMCOUNTER"/>
+			<xs:element ref="REMOTE_COUNTER"/>
+			<xs:element ref="ADMINSTATE_COUNTER"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="DAYSGroup">
+		<xs:choice>
+			<xs:element name="HOLIDAY" type="HOLIDAYType"/>
+			<xs:element name="WEEKDAY" type="WEEKDAYType"/>
+			<xs:element name="SPECIALDAY" type="SPECIALDAYType"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="MODULESGroup">
+		<xs:choice>
+			<xs:element ref="BATTERY_CONTR_MODULE"/>
+			<xs:element ref="CITYTIE_MODULE"/>
+			<xs:element ref="CONVENTIONAL_MODULE"/>
+			<xs:element ref="ENOT_MODULE"/>
+			<xs:element ref="IO_8_MODULE"/>
+			<xs:element ref="IO_S20_MODULE"/>
+			<xs:element ref="IO2_S20_MODULE"/>
+			<xs:element ref="IO_SERIAL_MODULE"/>
+			<xs:element ref="LEDINT_MODULE"/>
+			<xs:element ref="LSN300_MODULE"/>
+			<xs:element ref="LSN1500_MODULE"/>
+			<xs:element ref="NAC_MODULE"/>
+			<xs:element ref="RLHV_MODULE"/>
+			<xs:element ref="RLLV_MODULE"/>
+			<xs:element ref="BCMB_MODULE"/>
+			<xs:element ref="VAS_INTERFACE"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="RULE_ACTIONGroup">
+		<xs:annotation>
+			<xs:documentation>all possible Actions under RULE and RULE_STATE</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="ADMINISTRATION"/>
+			<xs:element ref="BUZZER_ACTION"/>
+			<xs:element ref="CITYTIE_ACTION"/>
+			<xs:element ref="CONTROL_ACTION"/>
+			<xs:element ref="DIALER_ACTION"/>
+			<xs:element ref="DOORHOLDER_ACTION"/>
+			<xs:element ref="FAT_ACTION"/>
+			<xs:element ref="FBF_ACTION"/>
+			<xs:element ref="FIRE_ACTION"/>
+			<xs:element ref="HVAC_ACTION"/>
+			<xs:element ref="KEYDEPOT_ACTION"/>
+			<xs:element ref="NAC_ACTION"/>
+			<xs:element ref="PRINTER_ACTION"/>
+			<xs:element ref="SET_ACTION"/>
+			<xs:element ref="STATUS_ACTION"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="RULE_TRIGGERGroup">
+		<xs:choice>
+			<xs:element ref="TRIGGER_ADMIN"/>
+			<xs:element ref="TRIGGER_COUNTER"/>
+			<xs:element ref="TRIGGER_DOWNLOAD"/>
+			<xs:element ref="TRIGGER_STATE"/>
+			<xs:element ref="TRIGGER_USER"/>
+			<xs:element ref="TRIGGER_ELAPSE"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="RULEGroup">
+		<xs:choice>
+			<xs:element ref="RULE"/>
+			<xs:element ref="RULE_STATE_BLOCK"/>
+			<xs:element ref="RULE_STATE" minOccurs="2" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="TIME_CONTROLGroup">
+		<xs:choice>
+			<xs:element name="CHANNELS" type="CHANNELSType"/>
+			<xs:element name="DAYS" type="DAYSType"/>
+			<xs:element name="PROGRAMS" type="PROGRAMSType"/>
+		</xs:choice>
+	</xs:group>
+
+// LSN TYPES
+
+	<xs:group name="LSNAllGroup">
+		<xs:choice>
+			<xs:group ref="LSNIGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="LSNClassicGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="LSNClassicGroup">
+		<xs:annotation>
+			<xs:documentation>containing Classics without NAK100 and without DM210</xs:documentation>
+			<xs:documentation source="1.2.0">DM210 moved from LSNClassicGroup to LSNAllGroup. It now has two variants a classic and a LSNi version. Configuration data are identical for both types.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="NBM110"/>
+			<xs:element ref="NSB100"/>
+			<xs:element ref="ATX100"/>
+			<xs:element ref="MSS400"/>
+			<xs:element ref="MSS401"/>
+			<xs:element ref="NBK100"/>
+			<xs:element ref="NEV300"/>
+			<xs:element ref="NIM100"/>
+			<xs:element ref="NKK100"/>
+			<xs:element ref="NOM100"/>
+			<xs:element ref="NTK100"/>
+			<xs:element ref="NTM100"/>
+			<xs:element ref="O410"/>
+			<xs:element ref="O500"/>
+			<xs:element ref="OM200"/>
+			<xs:element ref="OT200"/>
+			<xs:element ref="OT410"/>
+			<xs:element ref="OTC410"/>
+			<xs:element ref="T410"/>
+			<xs:element ref="TM200"/>
+			<xs:element ref="FK100"/>
+			<xs:element ref="FBF100"/>
+			<xs:element ref="OC410"/>
+			<xs:element ref="OC500"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="LSNIGroup">
+		<xs:annotation>
+			<xs:documentation>containing only LSNI, t-tappable</xs:documentation>
+			<xs:documentation source="1.2.0">New elements added: LSNI_OUT2, LSNI_RELAY1, RAS_TPS1, RAS_TPS2, RAS_TTS1, RAS_TTS2, RAS_TMS, CONV4_LSNI</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="DM210"/>
+			<xs:element ref="PULLSTATION"/>
+			<xs:element ref="T220IUS"/>
+			<xs:element ref="T410I"/>
+			<xs:element ref="O220IUS"/>
+			<xs:element ref="OT220IUS"/>
+			<xs:element ref="OTC220IUS"/>
+			<xs:element ref="O500IUS"/>
+			<xs:element ref="OC500IUS"/>
+			<xs:element ref="O500I"/>
+			<xs:element ref="O410I"/>
+			<xs:element ref="OC410I"/>
+			<xs:element ref="OT410I"/>
+			<xs:element ref="OTC410I"/>
+			<xs:element ref="O110I"/>
+			<xs:element ref="OT110I"/>
+			<xs:element ref="LSN_NAC"/>
+			<xs:element ref="RLHVI"/>
+			<xs:element ref="OC500I"/>
+			<xs:element ref="ISOLATOR"/>
+			<xs:element ref="LSNI_OUT2"/>
+			<xs:element ref="LSNI_OUT2_D"/>
+			<xs:element ref="LSNI_IN2"/>
+			<xs:element ref="LSNI_IN2_D"/>
+			<xs:element ref="LSNI_RELAY1"/>
+			<xs:element ref="LSNI_RELAY1_D"/>
+			<xs:element ref="RAS_TPS1"/>
+			<xs:element ref="RAS_TPS2"/>
+			<xs:element ref="RAS_TTS1"/>
+			<xs:element ref="RAS_TTS2"/>
+			<xs:element ref="RAS_TMS"/>
+			<xs:element ref="RAS_TMS_NOFAN"/>
+			<xs:element ref="RAS_TMS_RB"/>
+			<xs:element ref="LSNI_CONV4"/>
+			<xs:element ref="LSNTESTELEMENT"/>
+			<xs:element ref="LSNI_RELAY8"/>
+			<xs:element ref="LSNI_BEACON"/>
+			<xs:element ref="LSNI_IN8R1"/>
+			<xs:element ref="LSNI_OUT8_IN2"/>
+			<xs:element ref="LSNI_IN1">
+				<xs:annotation>
+					<xs:documentation>FLM-420-IN1 new in 1.3.0 (PCtrl 1.3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="LSNI_OUT1_IN1"/>
+			<xs:element ref="LSNI_RLE"/>
+			<xs:element ref="FULLEON_BASE"/>
+			<xs:element ref="FULLEON_BASE_U"/>
+			<xs:element ref="FULLEON_STANDALONE"/>
+			<xs:element ref="FULLEON_STANDALONE_U"/>
+			<xs:element ref="FULLEON_STANDALONE_V">
+				<xs:annotation>
+					<xs:documentation>FLM-420V new in 2.8 </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="KD55_KD200"/>
+			<xs:element ref="LSNI_EOL_2W"/>
+			<xs:element ref="LSNI_EOL_4W"/>
+			<xs:element ref="DO410I"/>
+			<xs:element ref="DOT410I"/>
+			<xs:element ref="DOTC410I"/>
+			<xs:element ref="LSNI_TI13"/>
+			<xs:element ref="ATB420"/>
+			<xs:element ref="ATG420"/>
+			<xs:element ref="FWI270"/>
+			<xs:element ref="FNX425U"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="RLHVIrelayInputGroup">
+		<xs:sequence>
+			<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType"/>
+			<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="FWI270ElementsGroup">
+		<xs:annotation>
+			<xs:documentation>containing elements for the radio gateway FWI-270</xs:documentation>
+			<xs:documentation source="3.0.0"/>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="FDOOT271_O"/>
+			<xs:element ref="FDM275_O"/>
+			<xs:element ref="FDM273_O"/>
+		</xs:choice>
+	</xs:group>
+
+// MAIN
+
+// zrobione
+<xs:group name="LogicalNetAddr">
+	<xs:sequence>
+		<xs:element name="netGroup" type="xs:unsignedByte" /> 
+		<xs:element name="netNode" type="xs:unsignedByte" /> 
+	</xs:sequence>
+</xs:group>
+
+-<xs:attributeGroup name="netGeneralAttributeGroup">
+	<xs:attribute name="rpsDisplayName" type="xs:string" use="optional" /> 
+	<xs:attribute name="Checkdate" type="xs:string" use="optional" /> 
+</xs:attributeGroup>
