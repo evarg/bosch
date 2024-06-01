@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Maria Lux
+
+Created: 13.01.2017
+
+$Revision: 1.13 $
+
+Last locked:   $Date: 2018/07/26 13:46:23GMT $
+
+Last change by $Author: Maria Lux (lux2ot) $
+
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="$Revision: 1.13 $">
+</xs:schema>

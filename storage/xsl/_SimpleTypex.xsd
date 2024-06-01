@@ -1,36 +1,23 @@
 // COMMON
-
-	<xs:simpleType name="actionDurationType">
-		<xs:annotation>
-			<xs:documentation>seconds, 0 is steady</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_actionDurationType">
 		<xs:restriction base="xs:unsignedShort">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="64800"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="activityTextType">
-		<xs:annotation>
-			<xs:documentation>0-64 characters, may contain whitechars</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_activityTextType">
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
 			<xs:maxLength value="64"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="addrTansmitType">
-		<xs:annotation>
-			<xs:documentation source="2.0.4">different types are used for OffsetTables and Transmission Tables to reflect default values properly</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_addrTansmitType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="ST_YES"/>
 			<xs:enumeration value="ST_NO"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="adminActionType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_adminActionType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_CMD_WALKTEST"/>
 			<xs:enumeration value="MP_CMD_WALKTEST_SIMULTANEOUS"/>
@@ -50,10 +37,7 @@
 			<xs:enumeration value="MP_CMD_ACK"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="operatorActionType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_operatorActionType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OPM_ACT_NONE"/>
 			<xs:enumeration value="OPM_ACT_CONTINUOUS"/>
@@ -70,10 +54,7 @@
 			<xs:enumeration value="OPM_ACT_VIEW_HISTORY"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="operatorDirectionType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_operatorDirectionType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ACT_INVALID"/>
 			<xs:enumeration value="MP_ACT_SWITCHON"/>
@@ -81,37 +62,25 @@
 			<xs:enumeration value="MP_ACT_AUTOMATIC"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="avDelayType">
-		<xs:annotation>
-			<xs:documentation>seconds, </xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_avDelayType">
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="90"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="comAddrType">
-		<xs:annotation>
-			<xs:documentation>1-254</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="254"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="comparatorEQ_NEQType">
-		<xs:annotation>
-			<xs:documentation>EQ NEQ</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="EQ"/>
 			<xs:enumeration value="NEQ"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="comparatorGT_LT_EQType">
-		<xs:annotation>
-			<xs:documentation>GT LT_EQ</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="GT"/>
 			<xs:enumeration value="LT_EQ"/>
@@ -132,10 +101,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="compoundStateType">
-		<xs:annotation>
-			<xs:documentation source="2.0.4">New compoundstates for Network</xs:documentation>
-			<xs:documentation source="1.1.0">new logical state MP_ET_FIRE_INT added</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ET_NORMAL"/>
 			<xs:enumeration value="MP_ET_TROUBLE"/>
@@ -181,9 +146,6 @@
 			<xs:enumeration value="MP_ET_WARNING_SMOKE"/>
 			<xs:enumeration value="MP_ET_WARNING_CHEMICAL"/>
 			<xs:enumeration value="MP_ET_NORMAL_WALKTEST">
-				<xs:annotation>
-					<xs:documentation source="2.5.1">first compoundstate</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="MP_ET_TROUBLE_WALKTEST"/>
 			<xs:enumeration value="MP_ET_ACTIVATION_WALKTEST"/>
@@ -217,9 +179,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="compoundStateWithWildcardType">
-		<xs:annotation>
-			<xs:documentation>compoundstate and asterisk</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="compoundStateType">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -229,9 +188,6 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="countryType">
-		<xs:annotation>
-			<xs:documentation>all supported countries</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="DE"/>
 			<xs:enumeration value="AT"/>
@@ -309,36 +265,24 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="crcType">
-		<xs:annotation>
-			<xs:documentation>all supported CRC settings</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CRC_16"/>
 			<xs:enumeration value="CRC_NONE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ctieActivationTimeType">
-		<xs:annotation>
-			<xs:documentation>seconds</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="180"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ctieActivationTypeType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CTIE_CFG_REVERSE_POLARITY"/>
 			<xs:enumeration value="CTIE_CFG_LOCAL_ENERGY"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ctieTypeType">
-		<xs:annotation>
-			<xs:documentation>will be extended in future when other devices are supported</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CTT_UEE"/>
 			<xs:enumeration value="CTT_CITYTIE"/>
@@ -346,18 +290,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ctieUeeResistanceType">
-		<xs:annotation>
-			<xs:documentation>RPS allows 100 to 1000 </xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedShort">
 			<xs:minInclusive value="100"/>
 			<xs:maxInclusive value="1000"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ctieUeeType">
-		<xs:annotation>
-			<xs:documentation>ctie under ENOT possibly connected devices</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="UET_GUE101B"/>
 			<xs:enumeration value="UET_BGUE20"/>
@@ -376,10 +314,7 @@
 			<xs:enumeration value="UET_AT5000"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="dateTimeType">
-		<xs:annotation>
-			<xs:documentation>pattern or empty string or 'invalid time' used by transformer</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_dateTimeType">
 		<xs:union>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -399,10 +334,7 @@
 			</xs:simpleType>
 		</xs:union>
 	</xs:simpleType>
-	<xs:simpleType name="defaultActionType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_defaultActionType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ACT_SWITCHON"/>
 			<xs:enumeration value="MP_ACT_SWITCHOFF"/>
@@ -410,18 +342,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="dialerAccountNumberType">
-		<xs:annotation>
-			<xs:documentation>has facet</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
 			<xs:maxLength value="10"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="dialerDialingMethodType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="DM_TONE"/>
 			<xs:enumeration value="DM_PULSE"/>
@@ -429,9 +355,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="dialerFormatType">
-		<xs:annotation>
-			<xs:documentation>for relase 1 only FMT_MODE4 is valid</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="FMT_SIA110"/>
 			<xs:enumeration value="FMT_SIA300"/>
@@ -442,9 +365,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="dialerPhoneNumberType">
-		<xs:annotation>
-			<xs:documentation>may contain digits and *#,wW</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
 			<xs:maxLength value="20"/>
@@ -452,9 +372,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="encodingType">
-		<xs:annotation>
-			<xs:documentation>for character encoding used in panel</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="ISO-8859-1"/>
 			<xs:enumeration value="ISO-8859-2"/>
@@ -468,18 +385,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="feedbackDelayType">
-		<xs:annotation>
-			<xs:documentation source="2.0.2">values 0-240</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="240"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="feedbackEOLType">
-		<xs:annotation>
-			<xs:documentation>values: 0, 2200-4700</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="xs:unsignedShort">
 			<xs:simpleType>
 				<xs:restriction base="xs:unsignedShort">
@@ -489,81 +400,36 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="feedBackVariantType">
-		<xs:annotation>
-			<xs:documentation>enum for RLHVI and LSNI_RLE</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="F0">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">no feedback</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F1">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">680/open</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F2">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">3k3||680/3k3</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F3">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">3k9||680/3k9</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F4">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">short/open</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F5">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">short/3k3</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F6">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">short/3k9</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F7">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">open/680</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F8">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">3k3/3k3||680</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F9">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">3k9/3k9||680</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F10">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">open/short</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F11">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">3k3/short</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="F12">
-				<xs:annotation>
-					<xs:documentation source="2.1.0">3k9/short</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="fullSINumberType">
-		<xs:annotation>
-			<xs:documentation>full logical address pattern or empty</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="full__siNumberType">
 		<xs:union>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -578,41 +444,26 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="fullSIQueryType">
-		<xs:annotation>
-			<xs:documentation source="1.1.0">full logical address, siNumber and subNumber may contain wildcard as asterisk</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[A-Z_*]+\.[0-9*]{1,5}\.[0-9*]{1,3}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="hexByte">
-		<xs:annotation>
-			<xs:documentation>hexvalue in 0x notation</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="0[xX][0-9,a-f,A-F]{1,2}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="hexLong">
-		<xs:annotation>
-			<xs:documentation>hexvalue in 0x notation</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="0[xX][0-9,a-f,A-F]{1,8}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="hexLongPlain">
-		<xs:annotation>
-			<xs:documentation>hexvalue NOT 0x notation, empty element allowed</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9,a-f,A-F]{0,8}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="holiDayType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="TCU_NEW_YEARS_DAY"/>
 			<xs:enumeration value="TCU_CHRISMAS_EVE"/>
@@ -656,38 +507,26 @@
 			<xs:enumeration value="TCU_LATE_SUMMER_HOLIDAY"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="inputSiTypesType">
-		<xs:annotation>
-			<xs:documentation>SiTypes allowed for an INPUT</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_inputSiTypesType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_SI_POINT"/>
 			<xs:enumeration value="MP_SI_INPUT"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="keydepotActionType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ACT_SWITCHON"/>
 			<xs:enumeration value="MP_ACT_SWITCHOFF"/>
 			<xs:enumeration value="MP_ACT_TEST"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="labelTextType">
-		<xs:annotation>
-			<xs:documentation>ShortText up to 31 bytes, to prevent schema errors 32 bytes are allowed due to bug in RPS, transformer truncates to 31 anyhow</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_labelTextType">
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
 			<xs:maxLength value="32"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="languageType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">containing only the languages used by RPS and transformer</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="en"/>
 			<xs:enumeration value="de"/>
@@ -722,17 +561,11 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="logActionType">
-		<xs:annotation>
-			<xs:documentation>only enum MP_ACT_LOG</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ACT_LOG"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="lsnModeType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="LSN_CLASSIC"/>
 			<xs:enumeration value="LSN_EXTENDED"/>
@@ -740,26 +573,17 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="lsnTopologyType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="TOPOT_LOOP"/>
 			<xs:enumeration value="TOPOT_STUB"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="maxPointsType">
-		<xs:annotation>
-			<xs:documentation>has pattern</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:normalizedString">
 			<xs:pattern value="[0-9]{1,4}.[0-9]{1,4}.[0-9]{1,4}.[0-9]{1,4}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="modemTypeType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MT_AT2000ISDN"/>
 			<xs:enumeration value="MT_AT3000ISDN"/>
@@ -769,15 +593,9 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="nacElectricEnviroType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN"/>
 	</xs:simpleType>
 	<xs:simpleType name="nacFollowupPatternType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ACM_NONE"/>
 			<xs:enumeration value="MP_ACM_MARCHTIME_60"/>
@@ -785,9 +603,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="nacPatternType">
-		<xs:annotation>
-			<xs:documentation source="2.1.1">enum extended for DIGISOUND</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_ACM_NONE"/>
 			<xs:enumeration value="MP_ACM_CONTINOUS"/>
@@ -877,18 +692,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="nacSyncOptionType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="SO_UK"/>
 			<xs:enumeration value="SO_US"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="nacSyncProtocolType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="NAC_SP_NONE"/>
 			<xs:enumeration value="NAC_SP_WHEELLOCK"/>
@@ -896,9 +705,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="nacType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="NT_ACOUSTIC"/>
 			<xs:enumeration value="NT_OPTIC"/>
@@ -906,27 +712,18 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="netIDType">
-		<xs:annotation>
-			<xs:documentation>future net id value</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="255"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="noteType">
-		<xs:annotation>
-			<xs:documentation>for notes</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
 			<xs:maxLength value="160"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="offsetEntryType">
-		<xs:annotation>
-			<xs:documentation source="2.0.4">different types are used for OffsetTables and Transmission Tables to reflect default values properly</xs:documentation>
-		</xs:annotation>
 		<xs:union>
 			<xs:simpleType>
 				<xs:restriction base="xs:unsignedShort">
@@ -942,18 +739,12 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="onoffType">
-		<xs:annotation>
-			<xs:documentation>OOT_ON and OOT_OFF</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OOT_ON"/>
 			<xs:enumeration value="OOT_OFF"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="onoffBlinkingType">
-		<xs:annotation>
-			<xs:documentation>OOBT_ON, OOBT_OFF, and OOBT_BLINKING</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OOBT_ON"/>
 			<xs:enumeration value="OOBT_OFF"/>
@@ -961,9 +752,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="LEDColorType">
-		<xs:annotation>
-			<xs:documentation>color of a LED</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="LCT_YELLOW"/>
 			<xs:enumeration value="LCT_RED"/>
@@ -973,9 +761,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="opmActionType">
-		<xs:annotation>
-			<xs:documentation>enum operator manager actions</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OPM_ACT_CONFIGURE"/>
 			<xs:enumeration value="OPM_ACT_CONTINUOUS"/>
@@ -1006,9 +791,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="opmCmdType">
-		<xs:annotation>
-			<xs:documentation>enum operator manager commands</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OPM_CDT_NONE"/>
 			<xs:enumeration value="OPM_CDT_ADMIN"/>
@@ -1025,10 +807,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="opmTargetType">
-		<xs:annotation>
-			<xs:documentation>enum operator manager targets</xs:documentation>
-			<xs:documentation source="2.0.2">Two new opmTargetTypes</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OPM_SI_NONE"/>
 			<xs:enumeration value="OPM_SI_PANEL"/>
@@ -1087,35 +865,23 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="panelIDType">
-		<xs:annotation>
-			<xs:documentation>future panel id value</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="255"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="phoneNbrType">
-		<xs:annotation>
-			<xs:documentation>todo pattern if needed</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:normalizedString"/>
 	</xs:simpleType>
-	<xs:simpleType name="physAddrType">
-		<xs:annotation>
-			<xs:documentation>has pattern</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_physAddrType">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="portType">
-		<xs:annotation>
-			<xs:documentation>unsigned byte</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte"/>
 	</xs:simpleType>
-	<xs:simpleType name="portNumberType">
+	<xs:simpleType name="_portNumberType">
 		<xs:union memberTypes="xs:unsignedShort">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -1124,10 +890,7 @@
 			</xs:simpleType>
 		</xs:union>
 	</xs:simpleType>
-	<xs:simpleType name="printerTypeType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_printerTypeType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="PT_DR2020"/>
 			<xs:enumeration value="PT_XON_XOF"/>
@@ -1135,33 +898,21 @@
 			<xs:enumeration value="PT_NET_PRINTER"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="priorityType">
-		<xs:annotation>
-			<xs:documentation>priorities in prioritytable 0-10</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_priorityType">
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="10"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="pwdType">
-		<xs:annotation>
-			<xs:documentation>todo pattern if needed</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_pwdType">
 		<xs:restriction base="xs:normalizedString"/>
 	</xs:simpleType>
-	<xs:simpleType name="quietLineType">
-		<xs:annotation>
-			<xs:documentation>text up to 30 bytes</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_quietLineType">
 		<xs:restriction base="xs:string">
 			<xs:maxLength value="30"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="relaySiTypesType">
-		<xs:annotation>
-			<xs:documentation>SiTypes allowed for a RELAY</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_relaySiTypesType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_SI_INVALID"/>
 			<xs:enumeration value="MP_SI_STATUS"/>
@@ -1172,33 +923,21 @@
 			<xs:enumeration value="MP_SI_HVAC"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="resetModeType">
-		<xs:annotation>
-			<xs:documentation>possible reset enums</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_resetModeType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="RM_PANEL_RESET"/>
 			<xs:enumeration value="RM_USAGE_TYPE"/>
 			<xs:enumeration value="RM_MENU"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="serialNumberType">
-		<xs:annotation>
-			<xs:documentation>todo pattern if needed</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_serialNumberType">
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
-	<xs:simpleType name="siNumberType">
-		<xs:annotation>
-			<xs:documentation>unsigned short</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="__siNumberType">
 		<xs:restriction base="xs:unsignedShort"/>
 	</xs:simpleType>
-	<xs:simpleType name="siNumberWithWildcardType">
-		<xs:annotation>
-			<xs:documentation>unsigned short and asterisk</xs:documentation>
-		</xs:annotation>
-		<xs:union memberTypes="siNumberType">
+	<xs:simpleType name="_siNumberWithWildcardType">
+		<xs:union memberTypes="__siNumberType">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="*"/>
@@ -1206,17 +945,11 @@
 			</xs:simpleType>
 		</xs:union>
 	</xs:simpleType>
-	<xs:simpleType name="siSubNumberType">
-		<xs:annotation>
-			<xs:documentation>unsigned char</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_siSubNumberType">
 		<xs:restriction base="xs:unsignedByte"/>
 	</xs:simpleType>
-	<xs:simpleType name="siSubNumberWithWildcardType">
-		<xs:annotation>
-			<xs:documentation>unsigned char and asterisk</xs:documentation>
-		</xs:annotation>
-		<xs:union memberTypes="siSubNumberType">
+	<xs:simpleType name="_siSubNumberWithWildcardType">
+		<xs:union memberTypes="_siSubNumberType">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
 					<xs:enumeration value="*"/>
@@ -1225,9 +958,6 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="siTypeType">
-		<xs:annotation>
-			<xs:documentation source="2.0.4">all SI-Types, extended by network related types</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_SI_INVALID"/>
 			<xs:enumeration value="MP_SI_PANEL"/>
@@ -1289,26 +1019,17 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="slotType">
-		<xs:annotation>
-			<xs:documentation>unsigned char</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="46"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="specialDayDateType">
-		<xs:annotation>
-			<xs:documentation>has pattern</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9]{1,2}.[0-9]{1,2}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="statusActionType">
-		<xs:annotation>
-			<xs:documentation>for MP_SI_STATUS and MP_SI_OUTPUTGROUP</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="SDL_AT_ON"/>
 			<xs:enumeration value="SDL_AT_OFF"/>
@@ -1318,9 +1039,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="subjectSITypeType">
-		<xs:annotation>
-			<xs:documentation>siTypeType plus MP_SI_ANY</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="siTypeType">
 			<xs:simpleType>
 				<xs:restriction base="xs:NMTOKEN">
@@ -1330,9 +1048,6 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="subTypeType">
-		<xs:annotation>
-			<xs:documentation>used in Relay of NSB100</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="MP_ST_DIBT"/>
 			<xs:enumeration value="MP_ST_FIREEX_VDS"/>
@@ -1342,24 +1057,15 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="sumcounterCounterType">
-		<xs:annotation>
-			<xs:documentation>todo pattern if needed</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 	<xs:simpleType name="supplyVoltageType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="SVT_24V"/>
 			<xs:enumeration value="SVT_12V"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="timePairType">
-		<xs:annotation>
-			<xs:documentation>has pattern SHOULD_CHANGE leading and trailing whitespaces</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="\s{0,2}[0-9]{1,2}:[0-9]{1,2}/[0-9]{1,2}:[0-9]{1,2}\s{0,2}"/>
 			<xs:pattern value="\s{0,2}[0-9]{2,2}:[0-9]{2,2}/\s{0,2}"/>
@@ -1367,18 +1073,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="timeZoneType">
-		<xs:annotation>
-			<xs:documentation>has pattern</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:length value="6"/>
 			<xs:pattern value="[+-][01][0-9]:[03]0"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="triggerAdminCmdType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_CMD_RESET"/>
 			<xs:enumeration value="MP_CMD_ALTER_SENSITIVITY"/>
@@ -1396,18 +1096,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="triggerNumberType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedShort">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="60000"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="uartFrameType">
-		<xs:annotation>
-			<xs:documentation>all possible frame settings</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="7E1"/>
 			<xs:enumeration value="7O1"/>
@@ -1424,9 +1118,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="uartSpeedType">
-		<xs:annotation>
-			<xs:documentation>all possible UART speeds</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="300"/>
 			<xs:enumeration value="600"/>
@@ -1441,9 +1132,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="usageTypeType">
-		<xs:annotation>
-			<xs:documentation source="1.1.0">new usage type MP_UT_FIRE_INT added</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_UT_FIRE"/>
 			<xs:enumeration value="MP_UT_HEAT"/>
@@ -1458,10 +1146,7 @@
 			<xs:enumeration value="MP_UT_EVACUATION"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="ipAddressType">
-		<xs:annotation>
-			<xs:documentation>may be empty string or numeric ip-address e.g. 127.0.0.0</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_ipAddressType">
 		<xs:union>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -1476,9 +1161,6 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="usageTypeTypeRestricted">
-		<xs:annotation>
-			<xs:documentation>baseType MP_UT... only</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_UT_SUPERVISORY"/>
 			<xs:enumeration value="MP_UT_TROUBLE"/>
@@ -1487,9 +1169,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="usageTypeTypeRestritWithFire">
-		<xs:annotation>
-			<xs:documentation>baseType MP_UT... only</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_UT_SUPERVISORY"/>
 			<xs:enumeration value="MP_UT_TROUBLE"/>
@@ -1499,9 +1178,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="usageTypeENOT">
-		<xs:annotation>
-			<xs:documentation>usage type for ENOT module</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_UT_FIRE"/>
 			<xs:enumeration value="MP_UT_FIRE_INT"/>
@@ -1513,15 +1189,9 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="userIDType">
-		<xs:annotation>
-			<xs:documentation>has facet</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:unsignedShort"/>
 	</xs:simpleType>
 	<xs:simpleType name="userIDWithWildcardType">
-		<xs:annotation>
-			<xs:documentation>unsigned short and asterik</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="userIDType">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -1531,9 +1201,6 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="vasSITypeType">
-		<xs:annotation>
-			<xs:documentation source="2.5.1"/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MP_SI_STATUS"/>
 			<xs:enumeration value="MP_SI_CONTROL"/>
@@ -1541,9 +1208,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="weekDayType">
-		<xs:annotation>
-			<xs:documentation>enum</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="WD_MONDAY"/>
 			<xs:enumeration value="WD_TUESDAY"/>
@@ -1555,42 +1219,28 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="x400Type">
-		<xs:annotation>
-			<xs:documentation>todo patern if needed</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 	<xs:simpleType name="flashRateType">
-		<xs:annotation>
-			<xs:documentation>0.5 and 1.0</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="0.5"/>
 			<xs:enumeration value="1.0"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="intensityLevelType">
-		<xs:annotation>
-			<xs:documentation>1, 2 or 3 - Low, Medium or High</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="1"/>
 			<xs:enumeration value="2"/>
 			<xs:enumeration value="3"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="yesnoType">
-		<xs:annotation>
-			<xs:documentation>ST_YES and ST_NO</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_yesnoType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="ST_YES"/>
 			<xs:enumeration value="ST_NO"/>
 		</xs:restriction>
 	</xs:simpleType>
-
 // LOCAL
-
 	<xs:simpleType name="colorProfileType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="COLOR_PROFILE_1"/>
@@ -1599,9 +1249,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="counterIDType">
-		<xs:annotation>
-			<xs:documentation source="2.0.2">numeric values for user-counters enum-values for system-counters</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="xs:unsignedShort">
 			<xs:simpleType>
 				<xs:restriction base="xs:NMTOKEN">
@@ -1624,10 +1271,7 @@
 			</xs:simpleType>
 		</xs:union>
 	</xs:simpleType>
-	<xs:simpleType name="scopeType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">exports: LOCAL, GROUP or NETWORK</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_scopeType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="LOCAL"/>
 			<xs:enumeration value="GROUP"/>
@@ -1642,7 +1286,6 @@
 			<xs:enumeration value="DEC"/>
 		</xs:restriction>
 	</xs:simpleType>
-
 // LSNTYPES
 	<xs:simpleType name="branchType">
 		<xs:union memberTypes="xs:unsignedByte">
@@ -1654,203 +1297,86 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="inputLSNi2BitThresholdType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">threshold values (voltage) for Inputs 4 of 4</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="VOLTAGE_0">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">0 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">0,87V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">1,73 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_3">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">2,6 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="inputLSNi5BitThresholdType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">threshold values (voltage) for Inputs 4 of 32</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="VOLTAGE_0">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">0 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">0,87V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">1,73 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_3">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">2,6 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_4">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">3,47 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_5">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">4,33 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_6">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">5,2 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_7">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">6,06 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_8">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">6,93 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_9">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">7,8 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_10">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">8,66 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_11">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">9,53 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_12">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">10,40 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_13">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">11,26 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_14">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">12,13 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_15">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">12,99 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_16">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">13,86 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_17">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">14,73 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_18">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">15,59 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_19">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">16,46 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_20">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">17,33 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_21">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">18,19 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_22">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">19,06 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_23">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">19,92 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_24">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">20,79 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_25">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">21,66 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_26">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">22,52 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_27">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">23,39 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_28">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">24,26 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_29">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">25,12 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_30">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">25,99 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="VOLTAGE_31">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">26,85 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="LEDpresentLSNIType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="LP_NONE"/>
 			<xs:enumeration value="LP_BLINK"/>
@@ -1858,18 +1384,12 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="LEDpresentType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
-		<xs:restriction base="yesnoType"/>
+		<xs:restriction base="_yesnoType"/>
 	</xs:simpleType>
 	<xs:simpleType name="lsnSubTypeType">
 		<xs:union memberTypes="hexByte xs:string"/>
 	</xs:simpleType>
 	<xs:simpleType name="magicSensBaseSetType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="MSEN_THEATRE"/>
 			<xs:enumeration value="MSEN_WAREHOUSE"/>
@@ -1886,15 +1406,9 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="magicSensOTCType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:union memberTypes="magicSensOTType xs:NMTOKEN"/>
 	</xs:simpleType>
 	<xs:simpleType name="magicSensOTType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:union memberTypes="magicSensBaseSetType">
 			<xs:simpleType>
 				<xs:restriction base="xs:NMTOKEN">
@@ -1906,140 +1420,68 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="microSensAirFlowFaultDelayType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus MicroSens fault delay</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_30S">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0  = 30 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_100S">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1  = 100 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_15M">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2  = 15 min</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_PROGRAMMABLE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="microSensAlarmDelayType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus MicroSens alarm delay</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="ALARM_DELAY_10">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0 = 10 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ALARM_DELAY_30">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1 = 30 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ALARM_DELAY_60">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2 = 60 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ALARM_DELAY_PROGRAMMABLE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="microSensFanVoltageType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus MicroSens fan voltage</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="FAN_VOLTAGE_9">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0 = 9 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="FAN_VOLTAGE_10_5">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1 = 10,5 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="FAN_VOLTAGE_12">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2 = 12 V</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="FAN_VOLTAGE_PROGRAMMABLE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="microSensSensitivityType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus MicroSens sensitivities</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CELLTYPE4_SENS1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE3  (name = Cell 0.1): level 1 = 0,1 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE4_SENS2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE3  (name = Cell 0.1): level 2 = 0,2 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE4_SENS3">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE3  (name = Cell 0.1): level 3 = 0,3 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE4_PROGRAMMABLE"/>
 			<xs:enumeration value="CELLTYPE5_SENS1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE4 (name = Cell 0.5) : level 5 = 0,5 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE5_SENS2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE4 (name = Cell 0.5): level 6 = 1 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE5_SENS3">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE4 (name = Cell 0.5): level 7 = 2 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE5_PROGRAMMABLE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="microSensThresholdAirFlowType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus MicroSens air flow threshold</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="THRESHOLD_20">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0 = 20%</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="THRESHOLD_30">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1 = 30%</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="THRESHOLD_50">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2 = 50%</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="THRESHOLD_PROGRAMMABLE"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="optDisSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OSEN_1"/>
 			<xs:enumeration value="OSEN_2"/>
@@ -2050,9 +1492,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="optSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="OSEN_1"/>
 			<xs:enumeration value="OSEN_2"/>
@@ -2062,9 +1501,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="simpleSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="SSEN_LOW"/>
 			<xs:enumeration value="SSEN_MEDIUM"/>
@@ -2072,9 +1508,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="tempSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="TSEN_A2R"/>
 			<xs:enumeration value="TSEN_A2S"/>
@@ -2085,194 +1518,86 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="radioSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="DOOT_ROBUST">
-				<xs:annotation>
-					<xs:documentation>Dual-optical with temperature, Robust</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DOOT_SUPPRESSION">
-				<xs:annotation>
-					<xs:documentation>Dual-optical with temperature, Suppression</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DOOT_FAST_RESPONSE">
-				<xs:annotation>
-					<xs:documentation>Dual-optical with temperature, Fast response</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="T_60_RATE_OF_RISE">
-				<xs:annotation>
-					<xs:documentation>Temperature sensor, 60 degree C rate of rise</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="T_60_MAXIMUM">
-				<xs:annotation>
-					<xs:documentation>Temperature sensor, 60 degree C maximum</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DOO_UNIVERSAL">
-				<xs:annotation>
-					<xs:documentation>Dual-optical, Universal</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DOO_ROBUST">
-				<xs:annotation>
-					<xs:documentation>Dual-optical, Robust</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="DOO_SENSITIVE">
-				<xs:annotation>
-					<xs:documentation>Dual-optical, Sensitive</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="topProAirFlowFaultDelayType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens air flow fault delay</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_30S">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0 = 30 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_2M">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1 = 2 min</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_15M">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2 = 15 min</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_60M">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 3 = 60 min</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="topProAlarmDelayType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens alarm delay</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="ALARM_DELAY_0">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0 = 0 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ALARM_DELAY_10">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1 = 10 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ALARM_DELAY_30">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2 = 30 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="ALARM_DELAY_60">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 3 = 60 s</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="topProSensitivityType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens sensitivity, there can be three types of cells mounted with different senstivities. The enumeration values always apply to a distinct celltype.</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CELLTYPE1_SENS1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE1 (name = Cell 0.05): level 1 = 0,05 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE1_SENS2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE1  (name = Cell 0.05): level 2 = 0,1 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE1_SENS3">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE1  (name = Cell 0.05): level 3 = 0,2 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE1_SENS4">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE1  (name = Cell 0.05): level 4 = 0,4 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE2_SENS1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25) : level 5 = 0,25 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE2_SENS2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25): level 6 = 0,5 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE2_SENS3">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25): level 7 = 1 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE2_SENS4">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25): level 8 = 2 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE3_SENS1">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE3 (name = Cell 0.8): level 9 = 0,8 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="CELLTYPE3_SENS2">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">CELLTYPE3 (name = Cell 0.8): level 10 = 1,6 %/m</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="topProThresholdAirFlowType">
-		<xs:annotation>
-			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens air flow threshold</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="THRESHOLD_SMALL">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 0 = 20%</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="THRESHOLD_MEDIUM">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 1 = 30%</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="THRESHOLD_LARGE">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 2 = 50%</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="THRESHOLD_VERYLARGE">
-				<xs:annotation>
-					<xs:documentation source="1.2.0">level 3 = programmable</xs:documentation>
-				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="usTempDisSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="USTSEN_135F"/>
 			<xs:enumeration value="USTSEN_135FROR"/>
@@ -2292,9 +1617,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="usTempSensType">
-		<xs:annotation>
-			<xs:documentation/>
-		</xs:annotation>
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="USTSEN_135F"/>
 			<xs:enumeration value="USTSEN_135FROR"/>
@@ -2312,16 +1634,14 @@
 			<xs:enumeration value="USTSEN_195FROR"/>
 		</xs:restriction>
 	</xs:simpleType>
-
 // MAIN
-
 	<xs:simpleType name="ethernetLineType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CONNECTED_TO_LINK"/>
 			<xs:enumeration value="CONNECTED_TO_NETWORK"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="flowControlType">
+	<xs:simpleType name="_flowControlType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="Auto"/>
 			<xs:enumeration value="Disabled"/>
@@ -2345,17 +1665,11 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="globalSIIDType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">composed like 'netGroup.netNode.SI_Type.number.subnumber' e.g. 1.2.MP_SI_POINT.100.1</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9]{1,3}\.[0-9]{1,3}\.MP_SI_[A-Z_]+\.[0-9]{1,5}\.[0-9]{1,3}"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="interfaceNbrType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">0 -255, 0 = unused</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_interfaceNbrType">
 		<xs:restriction base="xs:unsignedByte">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="255"/>
@@ -2365,35 +1679,20 @@
 		<xs:restriction base="xs:unsignedShort"/>
 	</xs:simpleType>
 	<xs:simpleType name="localSIIDType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">composed like SI_Type.number.subnumber' e.g. MP_SI_POINT.100.1</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="MP_SI_[A-Z_]+\.[0-9]{1,5}\.[0-9]{1,3}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="logicalNodeIDListType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">list of logicalNodeIDs</xs:documentation>
-		</xs:annotation>
 		<xs:list itemType="logicalNodeIDType"/>
 	</xs:simpleType>
 	<xs:simpleType name="logicalNodeIDType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">composed of 1-3 digits for netGroup a dot and 1-3 digits for netNode (e.g. 3.40)</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 	<xs:simpleType name="messageFilterType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">not yet defined</xs:documentation>
-		</xs:annotation>
 		<xs:restriction base="xs:string"/>
 	</xs:simpleType>
 	<xs:simpleType name="netCRCType">
-		<xs:annotation>
-			<xs:documentation>CRC as decimal unsigned short</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="xs:unsignedShort">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -2403,9 +1702,6 @@
 		</xs:union>
 	</xs:simpleType>
 	<xs:simpleType name="netIdentType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">may contain netSIIDType or empty string if not yet resolved</xs:documentation>
-		</xs:annotation>
 		<xs:union memberTypes="globalSIIDType">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -2414,22 +1710,16 @@
 			</xs:simpleType>
 		</xs:union>
 	</xs:simpleType>
-	<xs:simpleType name="netLineNumberType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">unsigned short, 0 = unused</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_netLineNumberType">
 		<xs:restriction base="xs:unsignedShort"/>
 	</xs:simpleType>
-	<xs:simpleType name="netLineTypeType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">CAN or ETHERNET</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_netLineTypeType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="CAN"/>
 			<xs:enumeration value="ETHERNET"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="nodeTypeType">
+	<xs:simpleType name="_nodeTypeType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="FPA5000"/>
 			<xs:enumeration value="FPA5000_RK"/>
@@ -2447,16 +1737,13 @@
 			<xs:enumeration value="FMR_8000"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="rsnType">
-		<xs:annotation>
-			<xs:documentation source="2.0.0">unsigned short, not yet defined if values > 255 are allowed</xs:documentation>
-		</xs:annotation>
+	<xs:simpleType name="_rsnType">
 		<xs:restriction base="xs:unsignedShort">
 			<xs:minInclusive value="0"/>
 			<xs:maxInclusive value="999"/>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="speedAndDuplexType">
+	<xs:simpleType name="_speedAndDuplexType">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="Auto"/>
 			<xs:enumeration value="10MbFull"/>
