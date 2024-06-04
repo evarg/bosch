@@ -4,9 +4,146 @@ namespace App\Traits;
 
 use Illuminate\Database\Schema\Blueprint;
 
-trait BoschTypesCommon
+trait BoschSimpleTypes
 {
 
+    public function netGeneralAttributeGroup(Blueprint $table)
+    {
+        $table->string('rpsDisplayName')->nullable();
+        $table->string('Checkdate')->nullable();
+    }
+
+    public function xsNMTOKEN(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+
+    public function xsunsignedShort(Blueprint $table, string $name)
+    {
+        $table->unsignedSmallInteger($name)->nullable();
+    }
+
+    public function xsstring(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+
+    public function xsunsignedByte(Blueprint $table, string $name)
+    {
+        $table->unsignedTinyInteger($name)->nullable();
+    }
+
+    public function xsnormalizedString(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+
+    public function branchType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function compoundStateWithWildcardType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function counterIDType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function dateTimeType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function feedbackEOLType(Blueprint $table, string $name)
+    {
+        $table->unsignedSmallInteger($name)->nullable();
+    }
+    
+    public function fullSINumberType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function globalCounterIDType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function ipAddressType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function logicalNodeIDListType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function lsnSubTypeType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function lzType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function magicSensOTCType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function magicSensOTType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function netCRCType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function netIdentType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function offsetEntryType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function portNumberType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }   
+    
+    public function siNumberWithWildcardType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function siSubNumberWithWildcardType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function subjectSITypeType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    public function userIDWithWildcardType(Blueprint $table, string $name)
+    {
+        $table->string($name)->nullable();
+    }
+    
+    // bez unii    
 
     public function inputLSNi2BitThresholdType(Blueprint $table, string $name)
     {

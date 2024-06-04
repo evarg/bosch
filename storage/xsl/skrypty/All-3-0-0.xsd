@@ -245,10 +245,8 @@
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="comAdr" type="comAddrType"/>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
@@ -265,8 +263,7 @@
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-				<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-				</xs:element>
+				<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
@@ -680,8 +677,7 @@
 <xs:complexType name="LSN_BUSType">
 	<xs:sequence>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_LOOP"/>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="siNumber" default="1">
 			<xs:simpleType>
@@ -1534,12 +1530,9 @@
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_RELAYFeedbackType" minOccurs="8" maxOccurs="8"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1952,8 +1945,7 @@
 				<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
