@@ -22,6 +22,12 @@ class ImportController extends Controller
         print(gettype($nodes));
         print(sizeof($nodes));
 
+        if (array_key_exists('NODE', $nodes)) {
+            foreach ($nodes['NODE'] as $key => $value) {
+                print("=======================================");
+                print($key);
+            }
+        }
 
         //var_dump($nodes);
         // die();

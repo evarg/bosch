@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Lux (Bosch Sicherheitssysteme GmbH) -->
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Maria Lux
+
+Created: 13.01.2017
+
+$Revision: 1.6 $
+
+Last locked:   $Date: 2018/06/06 14:32:05GMT $
+
+Last change by $Author: Maria Lux (lux2ot) $
+
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1.6 $">
+</xs:schema>

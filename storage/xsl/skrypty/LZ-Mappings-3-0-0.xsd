@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by Endler (Bosch Sicherheitssysteme GmbH) -->
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Anton Engl
+
+Created: 2017/11/23
+
+$Revision: 1.1 $ 
+
+Last locked:   $Date: 2017/11/23 14:36:13CET $
+
+Last change by $Author: Anton Engl (ena2ot) $
+
+History: 
+$Log: LZ-Mappings-3-0-0.xsd  $
+Revision 1.1 2017/11/23 14:36:13CET Anton Engl (ena2ot) 
+Initial revision
+Member added to project f:/MKS_Repository/Fire/MagicPanel/Source/PCTools/RPSTools/Definitions/LZMappings/LZMappings.pj
+
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1.1 $">
+</xs:schema>

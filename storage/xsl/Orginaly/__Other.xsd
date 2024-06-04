@@ -1,9 +1,5 @@
 // LOCAL
-
 	<xs:group name="CHANNEL_ACTIONSGroup">
-		<xs:annotation>
-			<xs:documentation>all actions which can be triggered by a channel</xs:documentation>
-		</xs:annotation>
 		<xs:choice>
 			<xs:element ref="ADMINISTRATION"/>
 			<xs:element ref="BUZZER_ACTION"/>
@@ -64,9 +60,6 @@
 		</xs:choice>
 	</xs:group>
 	<xs:group name="RULE_ACTIONGroup">
-		<xs:annotation>
-			<xs:documentation>all possible Actions under RULE and RULE_STATE</xs:documentation>
-		</xs:annotation>
 		<xs:choice>
 			<xs:element ref="ADMINISTRATION"/>
 			<xs:element ref="BUZZER_ACTION"/>
@@ -109,9 +102,7 @@
 			<xs:element name="PROGRAMS" type="PROGRAMSType"/>
 		</xs:choice>
 	</xs:group>
-
 // LSN TYPES
-
 	<xs:group name="LSNAllGroup">
 		<xs:choice>
 			<xs:group ref="LSNIGroup" minOccurs="0" maxOccurs="unbounded"/>
@@ -119,10 +110,6 @@
 		</xs:choice>
 	</xs:group>
 	<xs:group name="LSNClassicGroup">
-		<xs:annotation>
-			<xs:documentation>containing Classics without NAK100 and without DM210</xs:documentation>
-			<xs:documentation source="1.2.0">DM210 moved from LSNClassicGroup to LSNAllGroup. It now has two variants a classic and a LSNi version. Configuration data are identical for both types.</xs:documentation>
-		</xs:annotation>
 		<xs:choice>
 			<xs:element ref="NBM110"/>
 			<xs:element ref="NSB100"/>
@@ -151,10 +138,6 @@
 		</xs:choice>
 	</xs:group>
 	<xs:group name="LSNIGroup">
-		<xs:annotation>
-			<xs:documentation>containing only LSNI, t-tappable</xs:documentation>
-			<xs:documentation source="1.2.0">New elements added: LSNI_OUT2, LSNI_RELAY1, RAS_TPS1, RAS_TPS2, RAS_TTS1, RAS_TTS2, RAS_TMS, CONV4_LSNI</xs:documentation>
-		</xs:annotation>
 		<xs:choice>
 			<xs:element ref="DM210"/>
 			<xs:element ref="PULLSTATION"/>
@@ -196,9 +179,6 @@
 			<xs:element ref="LSNI_IN8R1"/>
 			<xs:element ref="LSNI_OUT8_IN2"/>
 			<xs:element ref="LSNI_IN1">
-				<xs:annotation>
-					<xs:documentation>FLM-420-IN1 new in 1.3.0 (PCtrl 1.3)</xs:documentation>
-				</xs:annotation>
 			</xs:element>
 			<xs:element ref="LSNI_OUT1_IN1"/>
 			<xs:element ref="LSNI_RLE"/>
@@ -207,9 +187,6 @@
 			<xs:element ref="FULLEON_STANDALONE"/>
 			<xs:element ref="FULLEON_STANDALONE_U"/>
 			<xs:element ref="FULLEON_STANDALONE_V">
-				<xs:annotation>
-					<xs:documentation>FLM-420V new in 2.8 </xs:documentation>
-				</xs:annotation>
 			</xs:element>
 			<xs:element ref="KD55_KD200"/>
 			<xs:element ref="LSNI_EOL_2W"/>
@@ -231,19 +208,13 @@
 		</xs:sequence>
 	</xs:group>
 	<xs:group name="FWI270ElementsGroup">
-		<xs:annotation>
-			<xs:documentation>containing elements for the radio gateway FWI-270</xs:documentation>
-			<xs:documentation source="3.0.0"/>
-		</xs:annotation>
 		<xs:choice>
 			<xs:element ref="FDOOT271_O"/>
 			<xs:element ref="FDM275_O"/>
 			<xs:element ref="FDM273_O"/>
 		</xs:choice>
 	</xs:group>
-
 // MAIN
-
 // zrobione
 <xs:group name="LogicalNetAddr">
 	<xs:sequence>
@@ -251,7 +222,6 @@
 		<xs:element name="netNode" type="xs:unsignedByte" /> 
 	</xs:sequence>
 </xs:group>
-
 -<xs:attributeGroup name="netGeneralAttributeGroup">
 	<xs:attribute name="rpsDisplayName" type="xs:string" use="optional" /> 
 	<xs:attribute name="Checkdate" type="xs:string" use="optional" /> 
