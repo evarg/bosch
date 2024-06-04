@@ -21,4 +21,9 @@ class ConfigNetwork extends Model
         return $this->hasOne(NetworkInfo::class);
     }
 
+    public function Nodes(): HasMany
+    {
+        return $this->hasMany(Node::class);
+    }
+
 }

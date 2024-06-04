@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Node extends Model
+class LSNI_DetectorRELAY extends Model
 {
     use HasFactory;
 
-    public function ConfigNetwork(): BelongsTo
-    {
-        return $this->belongsTo(ConfigNetwork::class);
-    }
+    protected $table = 'LSNI_DetectorRELAY';
+
 }

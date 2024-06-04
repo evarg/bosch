@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ConfigNetwork;
 use App\Models\Header;
 use App\Models\NetworkInfo;
+use App\Models\Node;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Saloon\XmlWrangler\XmlReader;
@@ -20,20 +22,25 @@ class ImportController extends Controller
         print(gettype($nodes));
         print(sizeof($nodes));
 
-        if (array_key_exists('NODE', $nodes)) {
-            foreach ($nodes['NODE'] as $key => $value) {
-                print("=======================================");
-                print($key, sizeof());
-            }
-        }
 
         //var_dump($nodes);
-        die();
+        // die();
 
         $config_network = new ConfigNetwork();
         $config_network->save();
 
         $config_network->Header()->save(new Header($reader->value('HEADER')->sole()));
         $config_network->NetworkInfo()->save(new NetworkInfo($reader->value('NETWORK_INFO')->sole()));
+
+        if (array_key_exists('NODE', $nodes)) {
+            foreach ($nodes['NODE'] as $key => $value) {
+                // $node = new Node($key);
+                // $config_network->Nodes()->save($value);
+                var_dump($value);
+            }
+        }
+
+
+
     }
 }
