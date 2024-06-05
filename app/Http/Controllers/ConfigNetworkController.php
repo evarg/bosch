@@ -13,7 +13,7 @@ class ConfigNetworkController extends Controller
      */
     public function index()
     {
-        //
+        $cn = ConfigNetwork::getAll();
     }
 
     /**

@@ -25,3 +25,5 @@ Route::get('/', function () {
 
 
 Route::get('/history/xml', [HistoryController::class, 'index']);
+
+Route::resource('config_network', ConfigNetworkController::class);
