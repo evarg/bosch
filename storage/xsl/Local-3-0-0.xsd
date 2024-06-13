@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2024 rel. 2 (x64) (https://www.altova.com) by grave (evarg) -->
 <!--
 BOSCH Security Systems (Ottobrunn)
 
@@ -799,7 +800,7 @@ mainPowerOutput        = false;
 		<xs:sequence>
 			<xs:element name="elapseTime" type="xs:unsignedLong"/>
 			<xs:element name="comparator" type="comparatorGT_LT_EQType"/>
-			<xs:element name="restart" type="yesnoType"/>
+			<xs:element name="restart" type="xs:normalizedString"/>
 			<xs:group ref="RULE_TRIGGERGroup"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -2677,7 +2678,7 @@ There is no longer a dependency to the existence of a MTS_ADMIN</xs:documentatio
 					<xs:documentation source="2.8.3">is not modified by RPS. Fixed value is COLOR_PROFILE_1</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-            <xs:element name="fastFaultIndicationLSN" type="yesnoType" default="ST_NO" minOccurs="0"/>
+			<xs:element name="fastFaultIndicationLSN" type="yesnoType" default="ST_NO" minOccurs="0"/>
 			<xs:element name="debugInfo" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation source="1.2.0">Is not supported by RPS, only for Panel debugging</xs:documentation>

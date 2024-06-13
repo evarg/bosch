@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CONFIG_NETWORK;
 use App\Models\ConfigNetwork;
 use App\Models\Header;
 use App\Models\NetworkInfo;
@@ -32,11 +33,11 @@ class ImportController extends Controller
         //var_dump($nodes);
         // die();
 
-        $config_network = new ConfigNetwork();
+        $config_network = new CONFIG_NETWORK();
         $config_network->save();
 
-        $config_network->Header()->save(new Header($reader->value('HEADER')->sole()));
-        $config_network->NetworkInfo()->save(new NetworkInfo($reader->value('NETWORK_INFO')->sole()));
+        $config_network->HEADER()->save(new Header($reader->value('HEADER')->sole()));
+        // $config_network->NetworkInfo()->save(new NetworkInfo($reader->value('NETWORK_INFO')->sole()));
 
         if (array_key_exists('NODE', $nodes)) {
             foreach ($nodes['NODE'] as $key => $value) {

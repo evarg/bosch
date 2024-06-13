@@ -4580,38 +4580,30 @@
 <xs:element name="DOORHOLDER_ADMIN" type="DOORHOLDER_ADMINType"/>
 <xs:element name="ENOT_MODULE" type="ENOT_MODULEType"/>
 <xs:element name="FAT_ACTION" type="FAT_ACTIONType"/>
-<xs:element name="FAT_LEDORBUTTON" type="FAT_LEDORBUTTONType">
-</xs:element>
+<xs:element name="FAT_LEDORBUTTON" type="FAT_LEDORBUTTONType"/>
 <xs:element name="FBF_ACTION" type="FBF_ACTIONType"/>
-<xs:element name="FBF_ADMIN" type="FBF_ADMIN_type">
-</xs:element>
+<xs:element name="FBF_ADMIN" type="FBF_ADMIN_type"/>
 <xs:element name="FIRE_ACTION" type="FIRE_ACTIONType"/>
 <xs:element name="FIRE_ADMIN" type="FIRE_ADMINType"/>
-<xs:element name="GLOBAL_OFFSET_TABLE" type="ADDROFFSET_TABLEType">
-</xs:element>
+<xs:element name="GLOBAL_OFFSET_TABLE" type="ADDROFFSET_TABLEType"/>
 <xs:element name="GLTZONE" type="GLTZONEType"/>
 <xs:element name="GROUP_ADMIN" type="GROUP_ADMINType"/>
-<xs:element name="HEADER" type="HEADERType">
-</xs:element>
+<xs:element name="HEADER" type="HEADERType"/>
 <xs:element name="HVAC_ACTION" type="HVAC_ACTIONType"/>
 <xs:element name="HVAC_ADMIN" type="HVAC_ADMINType"/>
 <xs:element name="IO_8_MODULE" type="IO_8_MODULEType"/>
 <xs:element name="IO_S20_MODULE" type="IO_S20_MODULEType"/>
 <xs:element name="IO_SERIAL_MODULE" type="IO_SERIAL_MODULEType"/>
-<xs:element name="IO2_S20_MODULE" type="IO2_S20_MODULEType">
-</xs:element>
+<xs:element name="IO2_S20_MODULE" type="IO2_S20_MODULEType"/>
 <xs:element name="KEYDEPOT_ACTION" type="KEYDEPOT_ACTIONType"/>
 <xs:element name="KEYDEPOT_ADMIN" type="KEYDEPOT_ADMINType"/>
 <xs:element name="LEDINT_MODULE" type="LEDINT_MODULEType"/>
 <xs:element name="LOGICAL_GROUPING" type="LOGICAL_GROUPINGType"/>
 <xs:element name="LSN_BUS" type="LSN_BUSType"/>
-<xs:element name="LSN1500_MODULE" type="LSN1500_MODULEType">
-</xs:element>
+<xs:element name="LSN1500_MODULE" type="LSN1500_MODULEType"/>
 <xs:element name="LSN300_MODULE" type="LSN300_MODULEType"/>
-<xs:element name="MTS" type="MTSType">
-</xs:element>
-<xs:element name="MTS_ADMIN" type="MTS_ADMINType">
-</xs:element>
+<xs:element name="MTS" type="MTSType"/>
+<xs:element name="MTS_ADMIN" type="MTS_ADMINType"/>
 <xs:element name="MTS_CONNECTION" type="MTS_CONNECTIONType"/>
 <xs:element name="NAC_ACTION" type="NAC_ACTIONType"/>
 <xs:element name="NAC_ADMIN" type="NAC_ADMINType"/>
@@ -4625,17 +4617,13 @@
 <xs:element name="PANEL_ADMINISTRATION" type="PANEL_ADMINISTRATIONType"/>
 <xs:element name="PANEL_CLUSTER" type="PANEL_CLUSTERType"/>
 <xs:element name="PANEL_COMMUNICATION" type="PANEL_COMMUNICATIONType"/>
-<xs:element name="PRAESIDEO_SETTINGS" type="PRAESIDEO_SETTINGSType">
-</xs:element>
+<xs:element name="PRAESIDEO_SETTINGS" type="PRAESIDEO_SETTINGSType"/>
 <xs:element name="PRINTER" type="PRINTERType"/>
 <xs:element name="PRINTER_ACTION" type="PRINTER_ACTIONType"/>
 <xs:element name="PRINTER_ADMIN" type="PRINTER_ADMINType"/>
 <xs:element name="PRIORITIES" type="PRIORITIESType"/>
-<xs:element name="PROTOCOL_4A" type="PROTOCOL_4AType">
-</xs:element>
-<xs:element name="PROTOCOL_TRANSPARENT">
-	<xs:complexType/>
-</xs:element>
+<xs:element name="PROTOCOL_4A" type="PROTOCOL_4AType"/>
+<xs:element name="PROTOCOL_TRANSPARENT"/>
 <xs:element name="REMOTE_COUNTER" type="REMOTE_COUNTERType"/>
 <xs:element name="RIGHT_MANAGEMENT" type="RIGHT_MANAGEMENTType"/>
 <xs:element name="RLHV_MODULE" type="RLHV_MODULEType"/>
@@ -5513,21 +5501,14 @@
 <xs:complexType name="HEADERType">
 	<xs:sequence>
 		<xs:element name="filename" type="xs:string"/>
-		<xs:element name="revNumber" type="xs:string" default="0">
-		</xs:element>
+		<xs:element name="revNumber" type="xs:string" default="0"/>
 		<xs:element name="lastModified" type="xs:string"/>
-		<xs:element name="dataVersion" type="xs:string">
-		</xs:element>
-		<xs:element name="converted" type="dateTimeType">
-		</xs:element>
-		<xs:element name="convertedFrom" type="xs:string">
-		</xs:element>
-		<xs:element name="xmlValidation" type="xs:string">
-		</xs:element>
-		<xs:element name="mismatchConfirmed" type="xs:string">
-		</xs:element>
-		<xs:element name="adapted" type="dateTimeType" minOccurs="0" maxOccurs="unbounded">
-		</xs:element>
+		<xs:element name="dataVersion" type="xs:string"/>
+		<xs:element name="converted" type="dateTimeType"/>
+		<xs:element name="convertedFrom" type="xs:string"/>
+		<xs:element name="xmlValidation" type="xs:string">/>
+		<xs:element name="mismatchConfirmed" type="xs:string"/>
+		<xs:element name="adapted" type="dateTimeType" minOccurs="0" maxOccurs="unbounded"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 	<xs:attribute name="rpsLanguage"/>
@@ -7680,18 +7661,13 @@
 <xs:element name="CONFIG_NETWORK">
 	<xs:complexType>
 		<xs:sequence>
-			<xs:element ref="HEADER">
-			</xs:element>
-			<xs:element ref="NETWORK_INFO">
-			</xs:element>
+			<xs:element ref="HEADER"/>
+			<xs:element ref="NETWORK_INFO"/>
 			<xs:element ref="CUSTOMER_INFO"/>
 			<xs:element ref="SUPPORT_INFO"/>
-			<xs:element ref="REMOTE_SERVICES_NETWORK_DATA" minOccurs="0">
-			</xs:element>
-			<xs:element ref="LZ_STATE_MAPPING" minOccurs="0">
-			</xs:element>
-			<xs:element ref="NODES">
-			</xs:element>
+			<xs:element ref="REMOTE_SERVICES_NETWORK_DATA" minOccurs="0"/>
+			<xs:element ref="LZ_STATE_MAPPING" minOccurs="0"/>
+			<xs:element ref="NODES"/>
 			<xs:element ref="SWITCHES" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="netGeneralAttributeGroup"/>
