@@ -17,9 +17,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>CUSTOMER_INFO</th>
-                            <th>SUPPORT_INFO</th>
-                            <th>Liczba węzłów</th>
+                            <th>filename</th>
+                            <th>revNumber</th>
+                            <th>lastModified</th>
                             <th>STATUS</th>
                             <th>Actions</th>
                         </tr>
@@ -28,9 +28,9 @@
                         @foreach ($cns as $cn)
                             <tr>
                                 <td>{{ $cn->id }}</td>
-                                <td>{{ $cn->CUSTOMER_INFO }}</td>
-                                <td>{{ $cn->SUPPORT_INFO }}</td>
-                                <td> </td>
+                                <td>{{ $cn->filename }}</td>
+                                <td>{{ $cn->revNumber }}</td>
+                                <td>{{ $cn->lastModified }}</td>
                                 <td><span class="badge rounded-pill bg-label-primary me-1">Aktywny</span></td>
                                 <td>
                                     <div class="dropdown">

@@ -8085,20 +8085,16 @@
 </xs:complexType>
 <xs:complexType name="NODEType">
 	<xs:sequence>
-		<xs:element name="netLocalCRC" type="netCRCType" default="0">
-		</xs:element>
+		<xs:element name="netLocalCRC" type="netCRCType" default="0"/>
 		<xs:group ref="LogicalNetAddr"/>
 		<xs:element name="rsn">
 			<xs:simpleType>
 				<xs:restriction base="rsnType"/>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="nodeType" type="nodeTypeType" default="FPA5000">
-		</xs:element>
-		<xs:element name="scope" type="scopeType" default="GROUP">
-		</xs:element>
-		<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="nodeType" type="nodeTypeType" default="FPA5000"/>
+		<xs:element name="scope" type="scopeType" default="GROUP"/>
+		<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="ipAddress" type="ipAddressType"/>
 		<xs:element name="subnetMask" type="ipAddressType"/>

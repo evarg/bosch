@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\dateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\dateTime;
+use App\Models\CONFIG_NETWORK;
 
 class HEADER extends Model
 {
@@ -27,4 +29,10 @@ class HEADER extends Model
     {
         return $this->hasMany(dateTime::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(CONFIG_NETWORK::class);
+    }
+
 }

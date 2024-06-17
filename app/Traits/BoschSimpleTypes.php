@@ -7,6 +7,12 @@ use Illuminate\Database\Schema\Blueprint;
 trait BoschSimpleTypes
 {
 
+    public function LogicalNetAddr(Blueprint $table)
+    {
+		$table->xsunsignedByte('netGroup')->nullable();
+		$table->xsunsignedByte('netNode')->nullable();
+    }
+
     public function netGeneralAttributeGroup(Blueprint $table)
     {
         $table->string('rpsDisplayName')->nullable();

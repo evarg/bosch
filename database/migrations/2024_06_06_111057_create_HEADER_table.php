@@ -15,16 +15,18 @@ return new class extends Migration
         Schema::create('HEADER', function (Blueprint $table) {
             $table->id();
 
-                $this->xsstring($table, 'filename');
-                $this->xsstring($table, 'revNumber');
-                $this->xsstring($table, 'lastModified');
-                $this->xsstring($table, 'dataVersion');
-                $this->dateTimeType($table, 'converted');
-                $this->xsstring($table, 'convertedFrom');
-                $this->xsstring($table, 'xmlValidation');
-                $this->xsstring($table, 'mismatchConfirmed');
+            $this->xsstring($table, 'filename');
+            $this->xsstring($table, 'revNumber');
+            $this->xsstring($table, 'lastModified');
+            $this->xsstring($table, 'dataVersion');
+            $this->dateTimeType($table, 'converted');
+            $this->xsstring($table, 'convertedFrom');
+            $this->xsstring($table, 'xmlValidation');
+            $this->xsstring($table, 'mismatchConfirmed');
 
-                $this->generalAttributeGroup($table);
+            $this->generalAttributeGroup($table);
+
+            $table->bigInteger('CONFIG_NETWORK')->nullable();
 
             $table->timestamps();
         });

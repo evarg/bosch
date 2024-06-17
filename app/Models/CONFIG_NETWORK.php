@@ -24,7 +24,7 @@ class CONFIG_NETWORK extends Model
 
     public function HEADER()
     {
-        return $this->hasOne(HEADER::class);
+        return $this->hasOne(HEADER::class, 'CONFIG_NETWORK');
     }
 
 }
