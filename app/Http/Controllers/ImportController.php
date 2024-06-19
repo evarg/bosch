@@ -7,7 +7,7 @@ use App\Models\ConfigNetwork;
 use App\Models\Header;
 use App\Models\NetworkInfo;
 use App\Models\Node;
-
+use App\Models\PANEL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Saloon\XmlWrangler\XmlReader;
@@ -18,32 +18,33 @@ class ImportController extends Controller
     {
         $reader = XmlReader::fromFile(storage_path('B5.xml'));
 
-        $nodes = $reader->value('NODES')->sole();
-
-        print(gettype($nodes));
-        print(sizeof($nodes));
-
-        if (array_key_exists('NODE', $nodes)) {
-            foreach ($nodes['NODE'] as $key => $value) {
-                print("=======================================");
-                print($key);
-            }
-        }
-
-        //var_dump($nodes);
-        // die();
-
         $config_network = new CONFIG_NETWORK();
         $config_network->save();
 
         $config_network->HEADER()->save(new Header($reader->value('HEADER')->sole()));
+
         // $config_network->NetworkInfo()->save(new NetworkInfo($reader->value('NETWORK_INFO')->sole()));
 
+        $nodes = $reader->value('NODES')->sole();
         if (array_key_exists('NODE', $nodes)) {
-            foreach ($nodes['NODE'] as $key => $value) {
-                // $node = new Node($key);
-                // $config_network->Nodes()->save($value);
-                var_dump($value);
+            foreach ($nodes['NODE'] as $key => $xNODE) {
+                $node = new Node($xNODE);
+
+                if (array_key_exists('CONFIG_DATA', $xNODE)) {
+                    if (array_key_exists('LOCAL_CONFIGURATION', $xNODE['CONFIG_DATA'])) {
+                        $xPANEL = $xNODE['CONFIG_DATA']['LOCAL_CONFIGURATION']['PANEL'];
+                        $panel = new PANEL($xPANEL);
+                        $panel->save();
+                        // var_dump($xPANEL);
+                    }
+                    // foreach ($nodes['NODE'] as $key => $value) {
+                    //     $node = new Node($value);
+                    //     $config_network->NODES()->save($node);
+                    //     //var_dump($value);
+                    // }
+                }
+
+                $config_network->NODES()->save($node);
             }
         }
 

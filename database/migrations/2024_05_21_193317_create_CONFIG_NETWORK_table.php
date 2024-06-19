@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('SUPPORT_INFO')->nullable();
             $table->string('REMOTE_SERVICES_NETWORK_DATA')->nullable();
             $table->string('LZ_STATE_MAPPING')->nullable();
-            $table->string('NODES')->nullable();
+
+            $table->bigInteger('NODES')->nullable();
+
             $table->string('SWITCHES')->nullable();
 
             $table->timestamps();

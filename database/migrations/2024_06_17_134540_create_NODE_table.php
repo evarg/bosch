@@ -32,7 +32,6 @@ return new class extends Migration
             $this->yesnoType($table, 'showEthernetRxOverloadWarning');
             $this->yesnoType($table, 'usePanelNetworkingOverIP');
 
-
 // 		<xs:element ref="SPANNING_TREE" minOccurs="0"/>
 // 		<xs:element ref="NET_INTERFACES" minOccurs="0"/>
 // 		<xs:element ref="EXPORTS" minOccurs="0"/>
@@ -41,6 +40,8 @@ return new class extends Migration
 // 		<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0"/>
 // 		<xs:element ref="CONNECTABLE" minOccurs="0"/>
 // 		<xs:element ref="CONFIG_DATA" minOccurs="0">
+
+            $table->bigInteger('CONFIG_NETWORK');
 // 		</xs:element>
 // 	</xs:sequence>
 // 	<xs:attributeGroup ref="netGeneralAttributeGroup"/>

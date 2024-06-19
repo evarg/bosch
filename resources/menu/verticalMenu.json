@@ -74,6 +74,12 @@
             "icon": "menu-icon tf-icons mdi mdi-file-document-box",
             "slug": "cards-basic",
             "url": "/HEADER"
+        },
+        {
+            "name": "NODE",
+            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
+            "slug": "cards-basic",
+            "url": "/NODE"
         }
     ]
 }

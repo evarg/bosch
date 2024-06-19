@@ -6251,10 +6251,10 @@
 		</xs:element>
 	</xs:sequence>
 </xs:complexType>
+
 <xs:complexType name="PANELType">
 	<xs:sequence>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_PANEL"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="country" type="countryType" default="DE"/>
@@ -6267,59 +6267,27 @@
 		<xs:element name="quiet1" type="quietLineType"/>
 		<xs:element name="quiet2" type="quietLineType"/>
 		<xs:element name="quiet3" type="quietLineType"/>
-		<xs:element name="andDelay" default="90">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="30"/>
-					<xs:maxInclusive value="600"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="PASacknowledge" default="60">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="5"/>
-					<xs:maxInclusive value="255"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="andDelay" type="xs:unsignedShort" default="90"/>
+		<xs:element name="PASacknowledge" type="xs:unsignedShort" default="60"/>
 		<xs:element name="logicalViewMMI" type="yesnoType" default="ST_YES"/>
 		<xs:element name="PASResetEnableDelay" type="xs:unsignedShort" default="10"/>
-		<xs:element name="note">
-			<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:minLength value="0"/>
-					<xs:maxLength value="160"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="note" type="xs:string"/>
 		<xs:element name="resetMode" type="resetModeType" default="RM_PANEL_RESET"/>
-		<xs:element name="troubleCausesAlarm" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="colorProfileUsed" type="colorProfileType" default="COLOR_PROFILE_1">
-		</xs:element>
+		<xs:element name="troubleCausesAlarm" type="yesnoType" default="ST_NO"/>
+		<xs:element name="colorProfileUsed" type="colorProfileType" default="COLOR_PROFILE_1"/>
 		<xs:element name="fastFaultIndicationLSN" type="yesnoType" default="ST_NO" minOccurs="0"/>
-		<xs:element name="debugInfo" minOccurs="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:minLength value="0"/>
-					<xs:maxLength value="159"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="idOfAccesspointToHangUp" type="xs:unsignedShort" minOccurs="0">
-		</xs:element>
-		<xs:element name="mAddressCardTimeDivider" type="xs:unsignedShort" minOccurs="0">
-		</xs:element>
+		<xs:element name="debugInfo" minOccurs="0" type="xs:string"/>
+		<xs:element name="idOfAccesspointToHangUp" type="xs:unsignedShort" minOccurs="0"/>
+		<xs:element name="mAddressCardTimeDivider" type="xs:unsignedShort" minOccurs="0"/>
 		<xs:element ref="CONFIG_INFO"/>
-		<xs:element name="LICENCING_V303" type="LicencingType" minOccurs="0">
-		</xs:element>
+		<xs:element name="LICENCING_V303" type="LicencingType" minOccurs="0"/>
 		<xs:element ref="ONBOARD"/>
 		<xs:group ref="MODULESGroup" minOccurs="0" maxOccurs="48"/>
 		<xs:element ref="LOGICAL_GROUPING"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="PAS_CONFIRMATIONType">
 	<xs:all>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_POINT"/>
@@ -7649,8 +7617,7 @@
 	<xs:complexType>
 		<xs:sequence>
 			<xs:choice minOccurs="0">
-				<xs:element name="xmlLocation" type="xs:string">
-				</xs:element>
+				<xs:element name="xmlLocation" type="xs:string"/>
 				<xs:element ref="LOCAL_CONFIGURATION"/>
 			</xs:choice>
 			<xs:element ref="RK_DATA" minOccurs="0"/>
@@ -8087,11 +8054,7 @@
 	<xs:sequence>
 		<xs:element name="netLocalCRC" type="netCRCType" default="0"/>
 		<xs:group ref="LogicalNetAddr"/>
-		<xs:element name="rsn">
-			<xs:simpleType>
-				<xs:restriction base="rsnType"/>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="rsn" type="rsnType"/>
 		<xs:element name="nodeType" type="nodeTypeType" default="FPA5000"/>
 		<xs:element name="scope" type="scopeType" default="GROUP"/>
 		<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES"/>
@@ -8099,28 +8062,18 @@
 		<xs:element name="ipAddress" type="ipAddressType"/>
 		<xs:element name="subnetMask" type="ipAddressType"/>
 		<xs:element name="gateway" type="ipAddressType"/>
-		<xs:element name="multicastAddress" type="ipAddressType">
-		</xs:element>
-		<xs:element name="portNumber" type="portNumberType">
-		</xs:element>
-		<xs:element name="useEthernetSettings" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="syncRequired" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="showEthernetRxOverloadWarning" type="yesnoType" default="ST_YES" minOccurs="0">
-		</xs:element>
-		<xs:element name="usePanelNetworkingOverIP" type="yesnoType" default="ST_YES" minOccurs="0">
-		</xs:element>
-		<xs:element ref="SPANNING_TREE" minOccurs="0">
-		</xs:element>
+		<xs:element name="multicastAddress" type="ipAddressType"/>
+		<xs:element name="portNumber" type="portNumberType"/>
+		<xs:element name="useEthernetSettings" type="yesnoType" default="ST_NO"/>
+		<xs:element name="syncRequired" type="yesnoType" default="ST_NO"/>
+		<xs:element name="showEthernetRxOverloadWarning" type="yesnoType" default="ST_YES" minOccurs="0"/>
+		<xs:element name="usePanelNetworkingOverIP" type="yesnoType" default="ST_YES" minOccurs="0"/>
+		<xs:element ref="SPANNING_TREE" minOccurs="0"/>
 		<xs:element ref="NET_INTERFACES" minOccurs="0"/>
-		<xs:element ref="EXPORTS" minOccurs="0">
-		</xs:element>
+		<xs:element ref="EXPORTS" minOccurs="0"/>
 		<xs:element ref="IMPORTS" minOccurs="0"/>
-		<xs:element ref="ASSIGNED_OPCSVRS" minOccurs="0">
-		</xs:element>
-		<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0">
-		</xs:element>
+		<xs:element ref="ASSIGNED_OPCSVRS" minOccurs="0"/>
+		<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0"/>
 		<xs:element ref="CONNECTABLE" minOccurs="0"/>
 		<xs:element ref="CONFIG_DATA" minOccurs="0">
 		</xs:element>

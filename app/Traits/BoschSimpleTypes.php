@@ -9,8 +9,8 @@ trait BoschSimpleTypes
 
     public function LogicalNetAddr(Blueprint $table)
     {
-		$table->xsunsignedByte('netGroup')->nullable();
-		$table->xsunsignedByte('netNode')->nullable();
+		$table->unsignedTinyInteger('netGroup')->nullable();
+		$table->unsignedTinyInteger('netNode')->nullable();
     }
 
     public function netGeneralAttributeGroup(Blueprint $table)
