@@ -15,22 +15,32 @@ use Saloon\XmlWrangler\XmlReader;
 
 class ImportController extends Controller
 {
+
+    public $cn;
+    public $reader;
+
     public function config()
     {
-        $reader = XmlReader::fromFile(storage_path('B5.xml'));
+        $this->reader = XmlReader::fromFile(storage_path('B6.xml'));
+        print("-------------------\n");
+        var_dump($this->reader->elements() );
+        print("-------------------\n");
+        var_dump($this->reader->values() );
+        die();
 
-        $config_network = new CONFIG_NETWORK();
-        $config_network->save();
 
-        $config_network->HEADER()->save(new Header($reader->value('HEADER')->sole()));
+        $this->cn = new CONFIG_NETWORK();
+        $this->cn->save();
+
+        $this->cn->HEADER()->save(new Header($this->reader->value('HEADER')->sole()));
 
         // $config_network->NetworkInfo()->save(new NetworkInfo($reader->value('NETWORK_INFO')->sole()));
 
-        $nodes = $reader->value('NODES')->sole();
+        $nodes = $this->reader->value('NODES')->sole();
         if (array_key_exists('NODE', $nodes)) {
             foreach ($nodes['NODE'] as $key => $xNODE) {
                 $node = new Node($xNODE);
-                $config_network->NODES()->save($node);
+                $this->cn->NODES()->save($node);
 
                 if (array_key_exists('CONFIG_DATA', $xNODE)) {
                     if (array_key_exists('LOCAL_CONFIGURATION', $xNODE['CONFIG_DATA'])) {
@@ -38,15 +48,7 @@ class ImportController extends Controller
                         $panel = new PANEL($xPANEL);
                         $node->PANEL()->save($panel);
 
-                        if (array_key_exists('LSN300_MODULE', $xPANEL)) {
-                            foreach ($xPANEL['LSN300_MODULE'] as $key => $xLSN300_MODULE){
-                                $lsn300 = new MODULE($xLSN300_MODULE);
-                                $panel->MODULES()->save($lsn300);
-                            }
-                        }
-                        if (array_key_exists('LSN1500_MODULE', $xPANEL)) {
-                            print("jest 1500");
-                        }
+                        $this->importMODULES($panel, $xPANEL);
 
                         // var_dump($xPANEL);
                     }
@@ -58,8 +60,109 @@ class ImportController extends Controller
                 }
             }
         }
+    }
 
+    public function importMODULES($panel, $xPANEL){
+        if (array_key_exists('LSN300_MODULE', $xPANEL)) {
+            foreach ($xPANEL['LSN300_MODULE'] as $key => $xMODULE){
+                print('LSN300_MODULE' . gettype($xMODULE));
+                $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
 
+        if (array_key_exists('LSN1500_MODULE', $xPANEL)) {
+            foreach ($xPANEL['LSN1500_MODULE'] as $key => $xMODULE){
+                print('LSN1500_MODULE' . gettype($xMODULE));
+                $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('BATTERY_CONTR_MODULE', $xPANEL)) {
+            foreach ($xPANEL['BATTERY_CONTR_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('CITYTIE_MODULE', $xPANEL)) {
+            foreach ($xPANEL['CITYTIE_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('CONVENTIONAL_MODULE', $xPANEL)) {
+            foreach ($xPANEL['CONVENTIONAL_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('ENOT_MODULE', $xPANEL)) {
+            foreach ($xPANEL['ENOT_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('IO_8_MODULE', $xPANEL)) {
+            foreach ($xPANEL['IO_8_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('IO_S20_MODULE', $xPANEL)) {
+            foreach ($xPANEL['IO_S20_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('IO2_S20_MODULE', $xPANEL)) {
+            foreach ($xPANEL['IO2_S20_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('IO_SERIAL_MODULE', $xPANEL)) {
+            foreach ($xPANEL['IO_SERIAL_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('LEDINT_MODULE', $xPANEL)) {
+            foreach ($xPANEL['LEDINT_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('NAC_MODULE', $xPANEL)) {
+            foreach ($xPANEL['NAC_MODULE'] as $key => $xMODULE){
+                print('NAC_MODULE' . gettype($xMODULE));
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('RLHV_MODULE', $xPANEL)) {
+            foreach ($xPANEL['RLHV_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('RLLV_MODULE', $xPANEL)) {
+            foreach ($xPANEL['RLLV_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('BCMB_MODULE', $xPANEL)) {
+            foreach ($xPANEL['BCMB_MODULE'] as $key => $xMODULE){
+                // $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
+
+        if (array_key_exists('VAS_INTERFACE', $xPANEL)) {
+            foreach ($xPANEL['VAS_INTERFACE'] as $key => $xMODULE){
+                $module = $panel->MODULES()->save(new MODULE($xMODULE));
+            }
+        }
 
     }
+
+
 }

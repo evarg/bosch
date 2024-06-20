@@ -1,0 +1,15 @@
+php artisan make:migration --create=BATTERY_CONTR_MODULE BATTERY_CONTR_MODULE
+php artisan make:migration --create=CITYTIE_MODULE CITYTIE_MODULE
+php artisan make:migration --create=CONVENTIONAL_MODULE CONVENTIONAL_MODULE
+php artisan make:migration --create=ENOT_MODULE ENOT_MODULE
+php artisan make:migration --create=IO_8_MODULE IO_8_MODULE
+php artisan make:migration --create=IO_S20_MODULE IO_S20_MODULE
+php artisan make:migration --create=IO2_S20_MODULE IO2_S20_MODULE
+php artisan make:migration --create=IO_SERIAL_MODULE IO_SERIAL_MODULE
+php artisan make:migration --create=LEDINT_MODULE LEDINT_MODULE
+php artisan make:migration --create=LSN1500_MODULE LSN1500_MODULE
+php artisan make:migration --create=NAC_MODULE NAC_MODULE
+php artisan make:migration --create=RLHV_MODULE RLHV_MODULE
+php artisan make:migration --create=RLLV_MODULE RLLV_MODULE
+php artisan make:migration --create=BCMB_MODULE BCMB_MODULE
+php artisan make:migration --create=VAS_INTERFACE VAS_INTERFACE

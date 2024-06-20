@@ -6109,13 +6109,7 @@
 
 <xs:complexType name="PANEL_MODULES_BaseType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_MODULE">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_MODULE"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_MODULE" base="siTypeType"/>
 		<xs:element name="slot" type="slotType" default="1"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="serialNumber" type="serialNumberType"/>
@@ -6882,13 +6876,7 @@
 </xs:complexType>
 <xs:complexType name="VAS_INTERFACEType">
 	<xs:sequence>
-		<xs:element name="siType" fixed="MP_SI_MODULE">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_MODULE"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siType" fixed="MP_SI_MODULE" base="siTypeType"/>
 		<xs:element name="siNumber" type="siNumberType" default="1"/>
 		<xs:element name="slot" type="xs:unsignedByte" default="201"/>
 		<xs:element name="label" type="labelTextType"/>

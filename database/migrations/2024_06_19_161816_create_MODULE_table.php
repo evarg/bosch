@@ -23,6 +23,8 @@ return new class extends Migration
             $this->generalAttributeGroup($table);
 
             $table->bigInteger('PANEL');
+
+            $table->nullableMorphs('MODULEABLE');
         });
     }
 

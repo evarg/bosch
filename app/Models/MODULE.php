@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class MODULE extends Model
 {
@@ -24,6 +25,11 @@ class MODULE extends Model
     public function PANEL(): BelongsTo
     {
         return $this->belongsTo(PANEL::class);
+    }
+
+    public function MODULEABLE(): MorphTo
+    {
+        return $this->morphTo();
     }
 
 }
