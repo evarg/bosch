@@ -6,6 +6,14 @@ use Illuminate\Database\Schema\Blueprint;
 
 trait BoschSimpleTypes
 {
+    public function LSNDeviceBaseType(Blueprint $table)
+    {
+		$table->hexByte('lsnTypeID')->nullable();
+		$table->lsnSubTypeType('lsnSubtype')->nullable();
+		$table->xsunsignedByte('backPointer')->nullable();
+        $table->string('rpsDisplayName')->nullable();
+        $table->string('Checkdate')->nullable();
+    }
 
     public function LogicalNetAddr(Blueprint $table)
     {
@@ -43,6 +51,11 @@ trait BoschSimpleTypes
     public function xsunsignedByte(Blueprint $table, string $name)
     {
         $table->unsignedTinyInteger($name)->nullable();
+    }
+
+    public function xsunsignedInt(Blueprint $table, string $name)
+    {
+        $table->unsignedInteger($name)->nullable();
     }
 
     public function xsnormalizedString(Blueprint $table, string $name)

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\NODE;
+use App\Models\PANEL;
 use App\Traits\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -41,13 +43,13 @@ return new class extends Migration
             $this->xsunsignedShort($table, 'idOfAccesspointToHangUp');
             $this->xsunsignedShort($table, 'mAddressCardTimeDivider');
 
-        // 		<xs:element ref="CONFIG_INFO"/>
-        // 		<xs:element name="LICENCING_V303" type="LicencingType" minOccurs="0"/>
-        // 		<xs:element ref="ONBOARD"/>
-        // 		<xs:group ref="MODULESGroup" minOccurs="0" maxOccurs="48"/>
-        // 		<xs:element ref="LOGICAL_GROUPING"/>
-        // 	    <xs:attributeGroup ref="generalAttributeGroup"/>
-
+            // 		<xs:element ref="CONFIG_INFO"/>
+            // 		<xs:element name="LICENCING_V303" type="LicencingType" minOccurs="0"/>
+            // 		<xs:element ref="ONBOARD"/>
+            // 		<xs:group ref="MODULESGroup" minOccurs="0" maxOccurs="48"/>
+            // 		<xs:element ref="LOGICAL_GROUPING"/>
+            // 	    <xs:attributeGroup ref="generalAttributeGroup"/>
+            $table->bigInteger('NODE')->nullable();
 
         });
     }

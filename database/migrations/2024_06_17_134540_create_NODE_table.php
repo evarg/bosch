@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PANEL;
 use App\Traits\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -47,7 +48,6 @@ return new class extends Migration
 // 	<xs:attributeGroup ref="netGeneralAttributeGroup"/>
 // </xs:complexType>
 
-
             $table->timestamps();
         });
     }
@@ -57,7 +57,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('n_o_d_e_s');
+        Schema::dropIfExists('NODE');
     }
 };
 

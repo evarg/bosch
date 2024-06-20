@@ -40,9 +40,15 @@ class PANEL extends Model
         'mAddressCardTimeDivider',
     ];
 
-    public function NODE(): BelongsTo
+    public function NODE()
     {
-        return $this->belongsTo(NODE::class);
+        return $this->belongsTo(NODE::class, 'NODE');
     }
+
+    public function MODULES()
+    {
+        return $this->hasMany(MODULE::class, 'PANEL');
+    }
+
 
 }

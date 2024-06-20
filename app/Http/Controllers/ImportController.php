@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CONFIG_NETWORK;
 use App\Models\ConfigNetwork;
 use App\Models\Header;
+use App\Models\MODULE;
 use App\Models\NetworkInfo;
 use App\Models\Node;
 use App\Models\PANEL;
@@ -29,12 +30,24 @@ class ImportController extends Controller
         if (array_key_exists('NODE', $nodes)) {
             foreach ($nodes['NODE'] as $key => $xNODE) {
                 $node = new Node($xNODE);
+                $config_network->NODES()->save($node);
 
                 if (array_key_exists('CONFIG_DATA', $xNODE)) {
                     if (array_key_exists('LOCAL_CONFIGURATION', $xNODE['CONFIG_DATA'])) {
                         $xPANEL = $xNODE['CONFIG_DATA']['LOCAL_CONFIGURATION']['PANEL'];
                         $panel = new PANEL($xPANEL);
-                        $panel->save();
+                        $node->PANEL()->save($panel);
+
+                        if (array_key_exists('LSN300_MODULE', $xPANEL)) {
+                            foreach ($xPANEL['LSN300_MODULE'] as $key => $xLSN300_MODULE){
+                                $lsn300 = new MODULE($xLSN300_MODULE);
+                                $panel->MODULES()->save($lsn300);
+                            }
+                        }
+                        if (array_key_exists('LSN1500_MODULE', $xPANEL)) {
+                            print("jest 1500");
+                        }
+
                         // var_dump($xPANEL);
                     }
                     // foreach ($nodes['NODE'] as $key => $value) {
@@ -43,8 +56,6 @@ class ImportController extends Controller
                     //     //var_dump($value);
                     // }
                 }
-
-                $config_network->NODES()->save($node);
             }
         }
 

@@ -36,10 +36,10 @@ class NODE extends Model
     {
         return $this->belongsTo(CONFIG_NETWORK::class);
     }
-
+    
     public function PANEL()
     {
-        return $this->hasOne(PANEL::class, 'PANEL');
+        return $this->hasOne(PANEL::class, 'NODE');
     }
 
 }

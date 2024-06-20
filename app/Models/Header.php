@@ -30,7 +30,7 @@ class HEADER extends Model
         return $this->hasMany(dateTime::class);
     }
 
-    public function user()
+    public function CONFIG_NETWORK()
     {
         return $this->belongsTo(CONFIG_NETWORK::class);
     }
