@@ -9,9 +9,11 @@ use App\Models\MODULE;
 use App\Models\NetworkInfo;
 use App\Models\Node;
 use App\Models\PANEL;
+use App\Services\CONFIG_NETWORK_Element;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Saloon\XmlWrangler\XmlReader;
+use SimpleXMLElement;
 
 class ImportController extends Controller
 {
@@ -21,11 +23,8 @@ class ImportController extends Controller
 
     public function config()
     {
-        $this->reader = XmlReader::fromFile(storage_path('B6.xml'));
-        print("-------------------\n");
-        var_dump($this->reader->elements() );
-        print("-------------------\n");
-        var_dump($this->reader->values() );
+        $xmlElement = new SimpleXMLElement(file_get_contents(storage_path('B5.xml')));
+        $cn = new CONFIG_NETWORK_Element($xmlElement);
         die();
 
 
@@ -62,107 +61,105 @@ class ImportController extends Controller
         }
     }
 
-    public function importMODULES($panel, $xPANEL){
+    public function importMODULES($panel, $xPANEL)
+    {
         if (array_key_exists('LSN300_MODULE', $xPANEL)) {
-            foreach ($xPANEL['LSN300_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['LSN300_MODULE'] as $key => $xMODULE) {
                 print('LSN300_MODULE' . gettype($xMODULE));
                 $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('LSN1500_MODULE', $xPANEL)) {
-            foreach ($xPANEL['LSN1500_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['LSN1500_MODULE'] as $key => $xMODULE) {
                 print('LSN1500_MODULE' . gettype($xMODULE));
                 $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('BATTERY_CONTR_MODULE', $xPANEL)) {
-            foreach ($xPANEL['BATTERY_CONTR_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['BATTERY_CONTR_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('CITYTIE_MODULE', $xPANEL)) {
-            foreach ($xPANEL['CITYTIE_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['CITYTIE_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('CONVENTIONAL_MODULE', $xPANEL)) {
-            foreach ($xPANEL['CONVENTIONAL_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['CONVENTIONAL_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('ENOT_MODULE', $xPANEL)) {
-            foreach ($xPANEL['ENOT_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['ENOT_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('IO_8_MODULE', $xPANEL)) {
-            foreach ($xPANEL['IO_8_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['IO_8_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('IO_S20_MODULE', $xPANEL)) {
-            foreach ($xPANEL['IO_S20_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['IO_S20_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('IO2_S20_MODULE', $xPANEL)) {
-            foreach ($xPANEL['IO2_S20_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['IO2_S20_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('IO_SERIAL_MODULE', $xPANEL)) {
-            foreach ($xPANEL['IO_SERIAL_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['IO_SERIAL_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('LEDINT_MODULE', $xPANEL)) {
-            foreach ($xPANEL['LEDINT_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['LEDINT_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('NAC_MODULE', $xPANEL)) {
-            foreach ($xPANEL['NAC_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['NAC_MODULE'] as $key => $xMODULE) {
                 print('NAC_MODULE' . gettype($xMODULE));
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('RLHV_MODULE', $xPANEL)) {
-            foreach ($xPANEL['RLHV_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['RLHV_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('RLLV_MODULE', $xPANEL)) {
-            foreach ($xPANEL['RLLV_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['RLLV_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('BCMB_MODULE', $xPANEL)) {
-            foreach ($xPANEL['BCMB_MODULE'] as $key => $xMODULE){
+            foreach ($xPANEL['BCMB_MODULE'] as $key => $xMODULE) {
                 // $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
 
         if (array_key_exists('VAS_INTERFACE', $xPANEL)) {
-            foreach ($xPANEL['VAS_INTERFACE'] as $key => $xMODULE){
+            foreach ($xPANEL['VAS_INTERFACE'] as $key => $xMODULE) {
                 $module = $panel->MODULES()->save(new MODULE($xMODULE));
             }
         }
-
     }
-
-
 }
