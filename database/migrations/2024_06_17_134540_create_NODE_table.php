@@ -42,7 +42,7 @@ return new class extends Migration
 // 		<xs:element ref="CONNECTABLE" minOccurs="0"/>
 // 		<xs:element ref="CONFIG_DATA" minOccurs="0">
 
-            $table->bigInteger('CONFIG_NETWORK');
+            $table->bigInteger('CONFIG_NETWORK')->nullable();
 // 		</xs:element>
 // 	</xs:sequence>
 // 	<xs:attributeGroup ref="netGeneralAttributeGroup"/>

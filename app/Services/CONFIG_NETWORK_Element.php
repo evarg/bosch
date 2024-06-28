@@ -41,7 +41,13 @@ class CONFIG_NETWORK_Element
             }
 
             if($x->current()->getName() == "NODES") {
-                new NODES_Element($x->current());
+                $x1 = $x->current();
+                for ($x1->rewind(); $x1->valid(); $x1->next()) {
+                    if($x1->current()->getName() == "NODE") {
+                        $node = new NODE_Element($x1->current());
+                        $this->config_network->NODES()->save($node->getNODE());
+                    }
+                }
             }
 
             if($x->current()->getName() == "SWITCHES") {
