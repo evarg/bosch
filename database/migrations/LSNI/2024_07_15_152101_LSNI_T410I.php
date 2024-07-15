@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('RLLV_MODULE', function (Blueprint $table) {
+        Schema::create('LSNI_T410I', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,16 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('RLLV_MODULE');
+        Schema::dropIfExists('LSNI_T410I');
     }
 };
-
-// <xs:complexType name="RLLV_MODULEType">
-// 	<xs:complexContent>
-// 		<xs:extension base="PANEL_MODULES_BaseType">
-// 			<xs:sequence>
-// 				<xs:element name="RELAY" type="RELAY_RLLVType" minOccurs="8" maxOccurs="8"/>
-// 			</xs:sequence>
-// 		</xs:extension>
-// 	</xs:complexContent>
-// </xs:complexType>

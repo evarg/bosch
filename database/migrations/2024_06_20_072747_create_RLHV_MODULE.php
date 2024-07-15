@@ -25,3 +25,17 @@ return new class extends Migration
         Schema::dropIfExists('RLHV_MODULE');
     }
 };
+
+
+// <xs:complexType name="RLHV_MODULEType">
+// 	<xs:complexContent>
+// 		<xs:extension base="PANEL_MODULES_BaseType">
+// 			<xs:sequence>
+// 				<xs:element name="RELAY" type="RELAY_RLHVType"/>
+// 				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+// 				<xs:element name="RELAY" type="RELAY_RLHVType"/>
+// 				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+// 			</xs:sequence>
+// 		</xs:extension>
+// 	</xs:complexContent>
+// </xs:complexType>

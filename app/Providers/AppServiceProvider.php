@@ -19,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $paths = [
+            database_path('migrations'),
+            database_path('migrations') . DIRECTORY_SEPARATOR . 'module',
+            database_path('migrations') . DIRECTORY_SEPARATOR . 'LSNI',
+        ];
+
+        $this->loadMigrationsFrom($paths);
     }
 }

@@ -5,12 +5,12 @@ namespace App\Services;
 use App\Models\LSN;
 use App\Models\LSN_BUS;
 use App\Models\MODULE;
+use App\Services\LSNI\DM210_Element;
 use Illuminate\Support\Facades\Log;
 use SimpleXMLElement;
 
 class LSN_BUS_Element
 {
-    private LSN $LSN;
     protected LSN_BUS $lsnBus;
 
     public function __construct(SimpleXMLElement $x)
@@ -20,8 +20,12 @@ class LSN_BUS_Element
         $this->lsnBus = new LSN_BUS((array)$x);
         $this->lsnBus->save();
 
-        // $this->LSN = new LSN((array)$x);
-        // $this->LSN->save();
+        for ($x->rewind(); $x->valid(); $x->next()) {
+            if ($x->current()->getName() == "DM210") {
+                new DM210_Element($x->current());
+            }
+        }
+
         Log::info('Create model: LSN_BUS');
 
         Log::info('Leave: ' . get_class());
