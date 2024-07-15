@@ -6,19 +6,18 @@ use SimpleXMLElement;
 
 class LOCAL_CONFIGURATION_Element
 {
-    protected $panel;
+    public $PANEL;
 
-    public function __construct(SimpleXMLElement $x)
+    public function __construct(SimpleXMLElement $x, $parent)
     {
-        // $this->config_network = new CONFIG_NETWORK();
-        // $this->config_network->save();
-
         for ($x->rewind(); $x->valid(); $x->next()) {
             if($x->current()->getName() == "PANEL") {
-                $this->panel = new PANEL_Element($x->current());
+                $panelElement = new PANEL_Element($x->current(), $parent);
+                $this->PANEL = $panelElement->getPANEL();
             }
         }
     }
+
 }
 
 // <xs:complexType name="LOCAL_CONFIGURATIONType">

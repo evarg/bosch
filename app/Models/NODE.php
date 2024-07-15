@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use App\Models\PANEL;
+
 class NODE extends Model
 {
     use HasFactory;
@@ -36,7 +38,7 @@ class NODE extends Model
     {
         return $this->belongsTo(CONFIG_NETWORK::class);
     }
-    
+
     public function PANEL()
     {
         return $this->hasOne(PANEL::class, 'NODE');

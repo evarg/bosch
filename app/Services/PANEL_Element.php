@@ -7,24 +7,61 @@ use SimpleXMLElement;
 
 class PANEL_Element
 {
-    protected PANEL $panel;
+    public PANEL $PANEL;
 
-    public function __construct(SimpleXMLElement $x)
+    protected $parent;
+
+    public function __construct(SimpleXMLElement $x, $parent)
     {
-        $this->panel = new PANEL((array)$x);
-        $this->panel->save();
+        print("Start: PANEL<br/>");
+
+        $this->parent = $parent;
+
+        $this->PANEL = new PANEL((array)$x);
+        $this->PANEL->save();
 
         for ($x->rewind(); $x->valid(); $x->next()) {
             if ($x->current()->getName() == "CONFIG_INFO") {
-
             }
+
+            if ($x->current()->getName() == "LSN300_MODULE") {
+                $moduleElement = new LSN300_MODULE_Element($x->current());
+                $this->PANEL->MODULES()->save($moduleElement->getModule());
+            }
+
+            if ($x->current()->getName() == "LSN1500_MODULE") {
+                $moduleElement = new LSN300_MODULE_Element($x->current());
+                $this->PANEL->MODULES()->save($moduleElement->getModule());
+            }
+
+            if ($x->current()->getName() == "NAC_MODULE") {
+                $moduleElement = new NAC_MODULE_Element($x->current(), $parent);
+                $this->PANEL->MODULES()->save($moduleElement->getModule());
+            }
+
+            if ($x->current()->getName() == "RLHV_MODULE") {
+                $moduleElement = new RLHV_MODULE_Element($x->current(), $parent);
+                $this->PANEL->MODULES()->save($moduleElement->getModule());
+            }
+
+            if ($x->current()->getName() == "RLLV_MODULE") {
+                $moduleElement = new RLLV_MODULE_Element($x->current(), $parent);
+                $this->PANEL->MODULES()->save($moduleElement->getModule());
+            }
+
+            if ($x->current()->getName() == "BCMB_MODULE") {
+                $moduleElement = new BCMB_MODULE_Element($x->current(), $parent);
+                $this->PANEL->MODULES()->save($moduleElement->getModule());
+            }
+
         }
 
-        $this->panel->save();
+        $this->PANEL->save();
+        print("Finish: PANEL<br/>");
     }
 
-    public function getObject(): PANEL{
-        return $this->panel;
+    public function getPANEL(): PANEL{
+        return $this->PANEL;
     }
 }
 

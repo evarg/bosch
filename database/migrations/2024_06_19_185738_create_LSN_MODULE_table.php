@@ -11,11 +11,10 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('LSN', function (Blueprint $table) {
+        Schema::create('LSN_MODULE', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            // <xs:element name="nrOfElements" default="0" type="xs:unsignedByte"/>
             $this->xsunsignedByte($table, 'nrOfElements');
             // <xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED"/>
             $this->lsnModeType($table, 'mode');
@@ -53,7 +52,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSN');
+        Schema::dropIfExists('LSN_MODULE');
     }
 };
 

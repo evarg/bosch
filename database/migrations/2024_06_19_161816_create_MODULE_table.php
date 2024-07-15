@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('MODULE', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
 
             $this->siTypeType($table, 'siType');
             $this->slotType($table, 'slot');
@@ -22,9 +21,11 @@ return new class extends Migration
 
             $this->generalAttributeGroup($table);
 
-            $table->bigInteger('PANEL');
+            $table->bigInteger('PANEL')->nullable();
 
             $table->nullableMorphs('MODULEABLE');
+
+            $table->timestamps();
         });
     }
 

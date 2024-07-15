@@ -6,6 +6,14 @@ use Illuminate\Database\Schema\Blueprint;
 
 trait BoschSimpleTypes
 {
+    public function PANEL_MODULES_BaseType(Blueprint $table)
+    {
+        $table->siTypeType('siType')->nullable();
+		$table->slotType('slot')->nullable();
+		$table->labelTextType('label')->nullable();
+        $table->serialNumberType('serialNumber')->nullable();
+    }
+
     public function LSNDeviceBaseType(Blueprint $table)
     {
 		$table->hexByte('lsnTypeID')->nullable();

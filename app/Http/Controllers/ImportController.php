@@ -25,7 +25,7 @@ class ImportController extends Controller
     {
         $xmlElement = new SimpleXMLElement(file_get_contents(storage_path('B5.xml')));
         $cn = new CONFIG_NETWORK_Element($xmlElement);
-        die();
+        return view('IMPORT_CONFIG.index');
 
 
         $this->cn = new CONFIG_NETWORK();

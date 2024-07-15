@@ -2973,24 +2973,18 @@
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="AUXPOWER_WithLineSupervisionType">
 	<xs:sequence>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_AUXPOWER">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_AUXPOWER"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
+		<xs:element name="siType" fixed="MP_SI_AUXPOWER"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="LINE_SUPERVISION" type="LINE_SUPERVISIONType" minOccurs="0"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="BATTERYType">
 	<xs:all>
 		<xs:element name="siType" default="MP_SI_BATTERY">
@@ -4796,52 +4790,24 @@
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10">
-				</xs:element>
-				<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900">
-				</xs:element>
-				<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000">
-				</xs:element>
-				<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30300">
-				</xs:element>
-				<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000">
-				</xs:element>
-				<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000">
-				</xs:element>
-				<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20400">
-				</xs:element>
-				<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="430">
-				</xs:element>
-				<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800">
-				</xs:element>
-				<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800">
-				</xs:element>
-				<xs:element name="pOut1CreepI_max" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="2800"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="pOut2CreepI_max" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="2800"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10"/>
+				<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900"/>
+				<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000"/>
+				<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30300"/>
+				<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000"/>
+				<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000"/>
+				<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20400"/>
+				<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="430"/>
+				<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+				<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+				<xs:element name="pOut1CreepI_max" default="0" base="xs:unsignedShort"/>
+				<xs:element name="pOut2CreepI_max" default="0" base="xs:unsignedShort"/>
 				<xs:element name="pOut1_BatteryBuffered" type="yesnoType" default="ST_YES"/>
 				<xs:element name="pOut2_BatteryBuffered" type="yesnoType" default="ST_YES"/>
-				<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
-				</xs:element>
-				<xs:element name="MAINPOWER" type="MAINPOWERType">
-				</xs:element>
-				<xs:element name="RAILPOWER" type="RAILPOWERType">
-				</xs:element>
-				<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2">
-				</xs:element>
+				<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2"/>
+				<xs:element name="MAINPOWER" type="MAINPOWERType"/>
+				<xs:element name="RAILPOWER" type="RAILPOWERType"/>
+				<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -5863,14 +5829,7 @@
 				<xs:element name="electricEnvironment" type="nacElectricEnviroType" default="EVT_NORMAL"/>
 				<xs:element name="useRail" type="yesnoType" default="ST_NO"/>
 				<xs:element name="synOptions" type="nacSyncOptionType" default="SO_UK"/>
-				<xs:element name="masterSlot" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="48"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="masterSlot" default="0" base="xs:unsignedByte"/>
 				<xs:element name="ismaster" type="yesnoType" default="ST_NO"/>
 				<xs:element name="NAC_ZONE" type="NAC_ZONEType" minOccurs="2" maxOccurs="2"/>
 				<xs:element name="BATTERY" type="BATTERYType"/>
@@ -6449,14 +6408,10 @@
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="RELAY" type="RELAY_RLHVType">
-				</xs:element>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
-				</xs:element>
-				<xs:element name="RELAY" type="RELAY_RLHVType">
-				</xs:element>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
-				</xs:element>
+				<xs:element name="RELAY" type="RELAY_RLHVType"/>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+				<xs:element name="RELAY" type="RELAY_RLHVType"/>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
