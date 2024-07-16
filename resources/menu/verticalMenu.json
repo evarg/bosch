@@ -1,0 +1,85 @@
+{
+    "menu": [
+        {
+            "url": "/",
+            "name": "Dashboards",
+            "icon": "menu-icon tf-icons mdi mdi-home-outline",
+            "slug": "dashboard",
+            "badge": ["danger", "5"]
+        },
+        {
+            "url": "https://bosch.lh/czujki",
+            "name": "Sieci",
+            "icon": "menu-icon tf-icons mdi mdi-account-network",
+            "slug": "app-email",
+            "target": "_blank"
+        },
+        {
+            "url": "https://bosch.lh/czujki",
+            "name": "Panele",
+            "icon": "menu-icon tf-icons mdi mdi-keyboard-close",
+            "slug": "app-email",
+            "target": "_blank"
+        },
+        {
+            "menuHeader": "Detekcja"
+        },
+        {
+            "url": "https://bosch.lh/czujki",
+            "name": "Czujki optyczne",
+            "icon": "menu-icon tf-icons mdi mdi-weather-hail",
+            "slug": "app-email",
+            "target": "_blank"
+        },
+        {
+            "url": "https://bosch.lh/czujki",
+            "name": "Czujki termiczne",
+            "icon": "menu-icon tf-icons mdi mdi-weather-snowy",
+            "slug": "app-chat",
+            "target": "_blank"
+        },
+        {
+            "url": "https://bosch.lh/ropy",
+            "name": "ROPy",
+            "icon": "menu-icon tf-icons mdi mdi-calendar-blank-outline",
+            "slug": "app-calendar",
+            "target": "_blank"
+        },
+        {
+            "menuHeader": "Logika"
+        },
+        {
+            "name": "Wejścia",
+            "icon": "menu-icon tf-icons mdi mdi-chevron-double-left",
+            "slug": "cards-basic",
+            "url": "cards/basic"
+        },
+        {
+            "name": "Wyjścia",
+            "icon": "menu-icon tf-icons mdi mdi-chevron-double-right",
+            "slug": "cards-basic",
+            "url": "cards/basic"
+        },
+        {
+            "menuHeader": "RAW data"
+        },
+        {
+            "name": "CONFIG_NETWORK",
+            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
+            "slug": "cards-basic",
+            "url": "/CONFIG_NETWORK"
+        },
+        {
+            "name": "HEADER",
+            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
+            "slug": "cards-basic",
+            "url": "/HEADER"
+        },
+        {
+            "name": "NODE",
+            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
+            "slug": "cards-basic",
+            "url": "/NODE"
+        }
+    ]
+}

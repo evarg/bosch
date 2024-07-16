@@ -29,13 +29,7 @@
 <xs:element name="LSN_NAC" type="LSN_NACType"></xs:element>
 <xs:element name="LSNI_BEACON" type="LSNI_BEACONType"></xs:element>
 <xs:element name="LSNI_CONV4" type="LSNI_CONV4Type"></xs:element>
-<xs:element name="LSNI_EOL_2W">
-	<xs:complexType>
-		<xs:complexContent>
-			<xs:extension base="LSNI_EOL_2WType"/>
-		</xs:complexContent>
-	</xs:complexType>
-</xs:element>
+<xs:element name="LSNI_EOL_2W" type="LSNI_EOL_2WType"/>
 <xs:element name="LSNI_EOL_4W" type="LSNI_EOL_4WType"></xs:element>
 <xs:element name="LSNI_IN1" type="LSNI_IN1Type"></xs:element>
 <xs:element name="LSNI_IN2" type="LSNI_IN2Type"></xs:element>
@@ -186,22 +180,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="buzzerActivity" type="yesnoType" default="ST_NO"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -237,13 +223,7 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_POINT">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_POINT"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="subNumber" type="siSubNumberType" default="0"/>
@@ -254,14 +234,7 @@
 				<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
 				<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 				<xs:element name="av" type="yesnoType" default="ST_NO"/>
-				<xs:element name="avDelay" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="90"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="avDelay" default="0" base="xs:unsignedByte"/>
 				<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
 				<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -291,17 +264,9 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="comAdr" type="comAddrType">
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_COUPLER" base="xs:NMTOKEN"/>
+				<xs:element name="comAdr" type="comAddrType"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="operator" type="xs:unsignedInt" default="10002"/>
@@ -317,19 +282,12 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBranchBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="numberOfDOW1171" type="xs:unsignedShort" default="0">
-				</xs:element>
+				<xs:element name="numberOfDOW1171" type="xs:unsignedShort" default="0"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 				<xs:element ref="LSN_BUS_FK100"/>
@@ -341,19 +299,12 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="hexLongPlain"/>
-				<xs:element name="numberOfSubelements" type="xs:unsignedShort" default="0" minOccurs="0" maxOccurs="1">
-				</xs:element>
+				<xs:element name="numberOfSubelements" type="xs:unsignedShort" default="0" minOccurs="0" maxOccurs="1"/>
 				<xs:element name="FWI270_BUS" type="FWI270BusType"/>
 			</xs:sequence>
 		</xs:extension>
@@ -367,66 +318,24 @@
 </xs:complexType>
 <xs:complexType name="FWI270DetBaseType">
 	<xs:sequence>
-		<xs:element name="radioType" default="0x1a">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="0x1a">
-					</xs:enumeration>
-					<xs:enumeration value="0x57">
-					</xs:enumeration>
-					<xs:enumeration value="0x58">
-					</xs:enumeration>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="radioType" default="0x1a" base="xs:NMTOKEN"/>
 		<xs:element name="radioId" type="hexLongPlain" default=""/>
 		<xs:element name="siType" type="inputSiTypesType" default="MP_SI_POINT"/>
-		<xs:element name="port">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="30"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="port" base="xs:unsignedByte"/>
 		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
-		<xs:element name="usageType" default="MP_UT_FIRE">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_UT_SUPERVISORY"/>
-					<xs:enumeration value="MP_UT_TROUBLE"/>
-					<xs:enumeration value="MP_UT_INPUT_ON_OFF"/>
-					<xs:enumeration value="MP_UT_INPUT_NORMAL_TROUBLE"/>
-					<xs:enumeration value="MP_UT_FIRE"/>
-					<xs:enumeration value="MP_UT_FIRE_INT"/>
-					<xs:enumeration value="MP_UT_WATER"/>
-					<xs:enumeration value="MP_UT_SMOKE"/>
-					<xs:enumeration value="MP_UT_HEAT"/>
-					<xs:enumeration value="MP_UT_EVACUATION"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="usageType" default="MP_UT_FIRE" base="xs:NMTOKEN"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
-		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0">
-		</xs:element>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
-		<xs:element name="avDelay" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="90"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="avDelay" default="0" base="xs:unsignedByte"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -448,40 +357,21 @@
 </xs:complexType>
 <xs:complexType name="GLTZONE_LSNI_CONV4Type">
 	<xs:sequence>
-		<xs:element name="port" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="4"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" default="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-					<xs:enumeration value="MP_SI_INPUT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" default="1" base="xs:unsignedByte"/>
+		<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
-		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="siNumberType" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
 		<xs:element name="avDelay" type="avDelayType" default="0"/>
 		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
-		<xs:element name="pulsingLED" type="yesnoType" default="ST_NO">
-		</xs:element>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
+		<xs:element name="pulsingLED" type="yesnoType" default="ST_NO"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
@@ -489,114 +379,57 @@
 		<xs:element name="cleanMe" type="yesnoType" default="ST_NO"/>
 		<xs:element name="resetByAuxpower" type="yesnoType" default="ST_NO"/>
 		<xs:element name="eolModuleUsed" type="yesnoType" default="ST_NO"/>
-		<xs:element name="detectorClass" type="xs:unsignedByte" default="0">
-		</xs:element>
-		<xs:element name="alarmResistance" default="800">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="300"/>
-					<xs:maxInclusive value="1350"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="detectorStandByCurrent" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedInt"/>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="calibrationValue" type="xs:unsignedByte">
-		</xs:element>
-		<xs:element name="nrOfDetectors" type="xs:unsignedByte" default="5">
-		</xs:element>
-		<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO">
-		</xs:element>
+		<xs:element name="detectorClass" type="xs:unsignedByte" default="0"/>
+		<xs:element name="alarmResistance" default="800" base="xs:unsignedShort"/>
+		<xs:element name="detectorStandByCurrent" default="0" base="xs:unsignedInt"/>
+		<xs:element name="calibrationValue" type="xs:unsignedByte"/>
+		<xs:element name="nrOfDetectors" type="xs:unsignedByte" default="5"/>
+		<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
-<xs:complexType name="GLTZONEKDType">
+<xs:complexType name="GLTZONEKDType0">
 	<xs:sequence>
-		<xs:element name="port">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="2"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" default="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-					<xs:enumeration value="MP_SI_INPUT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" base="xs:unsignedByte"/>
+		<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
 		<xs:element name="avDelay" type="avDelayType" default="0"/>
 		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="usageType" type="usageTypeType" default="MP_UT_SUPERVISORY"/>
-		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
 <xs:complexType name="GLTZONENBKType">
 	<xs:sequence>
-		<xs:element name="port" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="2"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" default="1" base="xs:unsignedByte"/>
+		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN">
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
 		<xs:element name="avDelay" type="avDelayType" default="0"/>
 		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
-		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
-		<xs:element name="detectionMethod" default="DM_CURRENT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="DM_CURRENT"/>
-					<xs:enumeration value="DM_VOLTAGE"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="detectionMethod" default="DM_CURRENT" base="xs:NMTOKEN"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -604,21 +437,13 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -627,21 +452,13 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element ref="GLTZONEKD" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
@@ -649,15 +466,8 @@
 </xs:complexType>
 <xs:complexType name="LSN_BATTERYType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_BATTERY">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_BATTERY"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_BATTERY" base="xs:NMTOKEN"/
+>		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -674,19 +484,13 @@
 	</xs:choice>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="LSN_BUSType">
 	<xs:sequence>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_LOOP"/>
 		<xs:element name="port" type="portType" default="1"/>
 		<xs:element name="label" type="labelTextType"/>
-		<xs:element name="siNumber" default="1">
-			<xs:simpleType>
-				<xs:restriction base="siNumberType">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="54999"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siNumber" default="1" base="siNumberType"/>
 		<xs:choice minOccurs="0" maxOccurs="unbounded">
 			<xs:group ref="LSNAllGroup"/>
 			<xs:element ref="NAK100"/>
@@ -694,21 +498,14 @@
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="LSN_FulleonSounderType">
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_NAC">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_NAC"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_NAC"  base="xs:NMTOKEN"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default=""/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -717,33 +514,12 @@
 				<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
-				<xs:element name="volume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="volume" base="xs:unsignedByte"/>
 				<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
 				<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
-				<xs:element name="drillVolume" default="5">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="drillVolume" default="5"  base="xs:unsignedByte"/>
 				<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
-				<xs:element name="testActivationVolume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="testActivationVolume" default="1" base="xs:unsignedByte"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -752,17 +528,9 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_NAC">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_NAC"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_NAC"  base="xs:NMTOKEN"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default=""/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -771,33 +539,12 @@
 				<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
-				<xs:element name="volume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="volume" base="xs:unsignedByte"/>
 				<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
 				<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
-				<xs:element name="drillVolume" default="5">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="drillVolume" default="5"  base="xs:unsignedByte"/>
 				<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
-				<xs:element name="testActivationVolume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="testActivationVolume" default="1" base="xs:unsignedByte"/>
 				<xs:element name="batteryUsed" type="yesnoType" default="ST_YES">
 				</xs:element>
 			</xs:sequence>
@@ -808,17 +555,9 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_NAC">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_NAC"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_NAC"  base="xs:NMTOKEN"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default=""/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -827,33 +566,12 @@
 				<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
-				<xs:element name="volume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="volume" base="xs:unsignedByte"/>
 				<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
 				<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_SIGNAL01"/>
-				<xs:element name="drillVolume" default="5">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="drillVolume" default="5"  base="xs:unsignedByte"/>
 				<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_SIGNAL01"/>
-				<xs:element name="testActivationVolume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="5"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="testActivationVolume" default="1" base="xs:unsignedByte"/>
 				<xs:element name="batteryUsed" type="yesnoType" default="ST_YES">
 				</xs:element>
 			</xs:sequence>
@@ -864,17 +582,9 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_NAC">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_NAC"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_NAC"  base="xs:NMTOKEN"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default=""/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -883,33 +593,12 @@
 				<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
-				<xs:element name="volume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="4"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="volume" default="1" base="xs:unsignedByte"/>
 				<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
 				<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DE_DIN"/>
-				<xs:element name="drillVolume" default="4">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="4"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="drillVolume" default="4" base="xs:unsignedByte"/>
 				<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DE_DIN"/>
-				<xs:element name="testActivationVolume" default="1">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="1"/>
-							<xs:maxInclusive value="4"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="testActivationVolume" default="1" base="xs:unsignedByte"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -918,24 +607,15 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_YES"/>
-				<xs:element name="actualCurrent" type="xs:float" default="0">
-				</xs:element>
+				<xs:element name="actualCurrent" type="xs:float" default="0"/>
 				<xs:choice>
 					<xs:element name="NAC_ZONE" type="NAC_ZONEType"/>
 					<xs:element name="RELAY" type="LSNI_RELAYFeedbackType"/>
@@ -961,97 +641,36 @@
 </xs:complexType>
 <xs:complexType name="FNX425U_SOUNDERType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_NAC">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_NAC"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
-		<xs:element name="port" fixed="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte"/>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/
+>		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
+		<xs:element name="port" fixed="1" base="xs:unsignedByte"/>
 		<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="label" type="labelTextType"/>
-		<xs:element name="volume" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="5"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="volume" default="1" base="xs:unsignedByte"/>
 		<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
 		<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
-		<xs:element name="drillVolume" default="4">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="4"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="drillVolume" default="4" base="xs:unsignedByte"/>
 		<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
-		<xs:element name="testActivationVolume" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="4"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="dampenVolume" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="3"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="minimumVolume" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="3"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="testActivationVolume" default="1" base="xs:unsignedByte"/>
+		<xs:element name="dampenVolume" default="0" base="xs:unsignedByte"/>
+		<xs:element name="minimumVolume" default="1" base="xs:unsignedByte"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
 <xs:complexType name="FNX425U_STROBEType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_NAC">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_NAC"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/
+>		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
-		<xs:element name="flashRate" type="flashRateType" default="0.5">
-		</xs:element>
-		<xs:element name="intensityLevel" type="intensityLevelType" default="3">
-		</xs:element>
-		<xs:element name="port" fixed="2">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte"/>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="flashRate" type="flashRateType" default="0.5"/>
+		<xs:element name="intensityLevel" type="intensityLevelType" default="3"/>
+		<xs:element name="port" fixed="2" base="xs:unsignedByte"/>
 		<xs:element name="nacType" type="nacType" default="NT_OPTIC"/>
 		<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -1082,17 +701,9 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_NAC">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_NAC"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
@@ -1100,11 +711,7 @@
 				<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="label" type="labelTextType"/>
-				<xs:element name="nacType" fixed="NT_OPTIC">
-					<xs:simpleType>
-						<xs:restriction base="nacType"/>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="nacType" fixed="NT_OPTIC" base="nacType"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType"/>
 				<xs:element name="feedbackDelay" type="feedbackDelayType" default="60"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
@@ -1116,37 +723,18 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="enableCalibration" type="yesnoType" default="ST_NO"/>
 				<xs:element name="classAWiring" type="yesnoType" default="ST_NO"/>
-				<xs:element name="eolResistor" default="RESISTANCE_2">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="RESISTANCE_1"/>
-							<xs:enumeration value="RESISTANCE_2"/>
-							<xs:enumeration value="RESISTANCE_3"/>
-							<xs:enumeration value="NOT_USED"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="AUXPOWER" type="AUXPOWER_MultipleType" minOccurs="2" maxOccurs="2">
-				</xs:element>
+				<xs:element name="eolResistor" default="RESISTANCE_2" base="xs:NMTOKEN"/>
+				<xs:element name="AUXPOWER" type="AUXPOWER_MultipleType" minOccurs="2" maxOccurs="2"/>
 				<xs:element ref="GLTZONE_LSNI_CONV4" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1184,12 +772,9 @@
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="maxResistance" type="xs:float" default="0">
-				</xs:element>
-				<xs:element name="minVoltage" type="xs:float" default="0">
-				</xs:element>
-				<xs:element name="sumPower" type="xs:float" default="0">
-				</xs:element>
+				<xs:element name="maxResistance" type="xs:float" default="0"/>
+				<xs:element name="minVoltage" type="xs:float" default="0"/>
+				<xs:element name="sumPower" type="xs:float" default="0"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -1198,23 +783,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1224,23 +800,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="INPUT" type="LSNI_INPUT_Ext5BitType" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1250,27 +817,16 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="8" maxOccurs="8">
-				</xs:element>
-				<xs:element name="RELAY" type="LSNI_RELAYFeedbackType">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
+				<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="8" maxOccurs="8"/>
+				<xs:element name="RELAY" type="LSNI_RELAYFeedbackType"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -1279,22 +835,11 @@
 	<xs:complexContent>
 		<xs:extension base="INPUTBaseType">
 			<xs:sequence>
-				<xs:element name="operatingMode" default="RESISTANCE">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="RESISTANCE"/>
-							<xs:enumeration value="VOLTAGE"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="invertActivation" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="thresholdHigh" type="inputLSNi2BitThresholdType" default="VOLTAGE_3">
-				</xs:element>
-				<xs:element name="thresholdLow" type="inputLSNi2BitThresholdType" default="VOLTAGE_1">
-				</xs:element>
-				<xs:element name="usesEOLResistor" type="yesnoType">
-				</xs:element>
+				<xs:element name="operatingMode" default="RESISTANCE" base="xs:NMTOKEN"/>
+				<xs:element name="invertActivation" type="yesnoType" default="ST_NO"/>
+				<xs:element name="thresholdHigh" type="inputLSNi2BitThresholdType" default="VOLTAGE_3"/>
+				<xs:element name="thresholdLow" type="inputLSNi2BitThresholdType" default="VOLTAGE_1"/>
+				<xs:element name="usesEOLResistor" type="yesnoType"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -1303,22 +848,11 @@
 	<xs:complexContent>
 		<xs:extension base="INPUTBaseType">
 			<xs:sequence>
-				<xs:element name="operatingMode" default="RESISTANCE">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="RESISTANCE"/>
-							<xs:enumeration value="VOLTAGE"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="invertActivation" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="thresholdHigh" type="inputLSNi5BitThresholdType" default="VOLTAGE_31">
-				</xs:element>
-				<xs:element name="thresholdLow" type="inputLSNi5BitThresholdType" default="VOLTAGE_1">
-				</xs:element>
-				<xs:element name="usesEOLResistor" type="yesnoType">
-				</xs:element>
+				<xs:element name="operatingMode" default="RESISTANCE" base="xs:NMTOKEN"/>
+				<xs:element name="invertActivation" type="yesnoType" default="ST_NO"/>
+				<xs:element name="thresholdHigh" type="inputLSNi5BitThresholdType" default="VOLTAGE_31"/>
+				<xs:element name="thresholdLow" type="inputLSNi5BitThresholdType" default="VOLTAGE_1"/>
+				<xs:element name="usesEOLResistor" type="yesnoType"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -1327,25 +861,15 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="OUTPUT" type="LSNI_OUT1IN1_OUTPUTType">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
+				<xs:element name="OUTPUT" type="LSNI_OUT1IN1_OUTPUTType"/>
 				<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType">
 				</xs:element>
 			</xs:sequence>
@@ -1354,25 +878,10 @@
 </xs:complexType>
 <xs:complexType name="LSNI_OUT1IN1_OUTPUTType">
 	<xs:sequence>
-		<xs:element name="port" fixed="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte"/>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" default="MP_SI_INVALID">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_STATUS"/>
-					<xs:enumeration value="MP_SI_CONTROL"/>
-					<xs:enumeration value="MP_SI_DOORHOLDER"/>
-					<xs:enumeration value="MP_SI_INVALID"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" fixed="1" base="xs:unsignedByte"/>
+		<xs:element name="siType" default="MP_SI_INVALID" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -1380,28 +889,10 @@
 </xs:complexType>
 <xs:complexType name="LSNI_OUT2_OUTPUTType">
 	<xs:sequence>
-		<xs:element name="port">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="2"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" default="MP_SI_INVALID">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_STATUS"/>
-					<xs:enumeration value="MP_SI_CONTROL"/>
-					<xs:enumeration value="MP_SI_DOORHOLDER"/>
-					<xs:enumeration value="MP_SI_INVALID"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" base="xs:unsignedByte"/>
+		<xs:element name="siType" default="MP_SI_INVALID" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -1411,23 +902,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="OUTPUT" type="LSNI_OUT2_OUTPUTType" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1437,23 +919,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="OUTPUT" type="LSNI_OUT8IN2_OUTPUTType" minOccurs="8" maxOccurs="8"/>
 				<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
@@ -1470,20 +943,9 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siType" default="MP_SI_INVALID">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_STATUS"/>
-					<xs:enumeration value="MP_SI_CONTROL"/>
-					<xs:enumeration value="MP_SI_DOORHOLDER"/>
-					<xs:enumeration value="MP_SI_INVALID"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_INVALID" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -1493,23 +955,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_RELAYFeedbackType"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1519,13 +972,7 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
@@ -1542,14 +989,7 @@
 	<xs:sequence>
 		<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
 		<xs:element name="port" type="xs:unsignedByte"/>
-		<xs:element name="siNumber" default="0">
-			<xs:simpleType>
-				<xs:restriction base="siNumberType">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="60000"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siNumber" default="0" base="siNumberType"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
@@ -1563,10 +1003,8 @@
 		<xs:element name="feedbackDelay" type="xs:unsignedByte" default="20"/>
 		<xs:element name="feedbackVariant1" type="feedBackVariantType" default="F1"/>
 		<xs:element name="feedbackVariant2" type="feedBackVariantType" default="F1"/>
-		<xs:element name="independentInput" type="yesnoType" default="ST_YES">
-		</xs:element>
-		<xs:element name="independentInput2" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="independentInput" type="yesnoType" default="ST_YES"/>
+		<xs:element name="independentInput2" type="yesnoType" default="ST_YES"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -1574,14 +1012,7 @@
 	<xs:sequence>
 		<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
 		<xs:element name="port" type="xs:unsignedByte"/>
-		<xs:element name="siNumber" default="0">
-			<xs:simpleType>
-				<xs:restriction base="siNumberType">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="60000"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siNumber" default="0" base="siNumberType"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
@@ -1594,8 +1025,7 @@
 		<xs:element name="supervised" type="yesnoType" default="ST_YES"/>
 		<xs:element name="feedbackVariant" type="feedBackVariantType" default="F1"/>
 		<xs:element name="feedbackDelay" type="xs:unsignedByte" default="20"/>
-		<xs:element name="independentInput" type="yesnoType" default="ST_NO">
-		</xs:element>
+		<xs:element name="independentInput" type="yesnoType" default="ST_NO"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -1613,24 +1043,15 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="RELAY" type="LSNI_RELAYFeedbackRLEType"/>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0" maxOccurs="2">
-				</xs:element>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -1649,23 +1070,15 @@
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
+
 <xs:complexType name="ManuDetBaseType">
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" default="MP_SI_POINT">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_POINT"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="comAdr" type="comAddrType">
-				</xs:element>
-				<xs:element name="siNumber" type="siNumberType" default="0">
-				</xs:element>
-				<xs:element name="subNumber" type="siSubNumberType" default="0">
-				</xs:element>
+				<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
+				<xs:element name="comAdr" type="comAddrType"/>
+				<xs:element name="siNumber" type="siNumberType" default="0"/>
+				<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
@@ -1673,37 +1086,23 @@
 				<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 				<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
 				<xs:element name="av" type="yesnoType" default="ST_NO"/>
-				<xs:element name="avDelay" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="90"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="avDelay" default="0" base="xs:unsignedByte"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
+
 <xs:complexType name="NAK100Type">
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBranchBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="LSN_BUS_NAK100" type="LSN_BUS_NAK100Type"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1713,22 +1112,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="buzzerActivity" type="yesnoType" default="ST_NO"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element ref="GLTZONENBK" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1741,25 +1132,10 @@
 </xs:complexType>
 <xs:complexType name="NEV300_OUTPUTType">
 	<xs:sequence>
-		<xs:element name="port">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="3"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_STATUS">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_STATUS"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" base="xs:unsignedByte"/>
+		<xs:element name="siType" fixed="MP_SI_STATUS" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -1769,21 +1145,13 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="BATTERY" type="LSN_BATTERYType"/>
 				<xs:element name="AUXPOWER" type="AUXPOWER_SingleType"/>
 				<xs:element name="OUTPUT" type="NEV300_OUTPUTType" minOccurs="3" maxOccurs="3"/>
@@ -1804,22 +1172,14 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
 				<xs:element name="buzzerActivity" type="yesnoType" default="ST_NO"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="8" maxOccurs="8"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1838,51 +1198,26 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="buzzerActivity" type="yesnoType" default="ST_NO"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="RELAY" type="RELAY_NSB100Type" minOccurs="2" maxOccurs="2">
-				</xs:element>
-				<xs:element name="RAS" type="RAS_NSB100Type" minOccurs="0">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="RELAY" type="RELAY_NSB100Type" minOccurs="2" maxOccurs="2"/>
+				<xs:element name="RAS" type="RAS_NSB100Type" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="NTK100_OUTPUTType">
 	<xs:sequence>
-		<xs:element name="port">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="8"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_STATUS">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_STATUS"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" base="xs:unsignedByte"/>
+		<xs:element name="siType" fixed="MP_SI_STATUS" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -1892,23 +1227,15 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="lamptestWithE1" type="yesnoType" default="ST_YES"/>
 				<xs:element name="buzzerActivity" type="yesnoType" default="ST_NO"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="OUTPUT" type="NTK100_OUTPUTType" minOccurs="8" maxOccurs="8"/>
 				<xs:element name="INPUT" type="INPUTBaseType"/>
 			</xs:sequence>
@@ -1931,8 +1258,7 @@
 				<xs:element name="sensitivity1" type="optSensType" default="OSEN_1"/>
 				<xs:element name="sensitivity2" type="optSensType" default="OSEN_1"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1969,8 +1295,7 @@
 				<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -1983,8 +1308,7 @@
 				<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2008,8 +1332,7 @@
 				<xs:element name="sensitivity1" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="sensitivity2" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2033,8 +1356,7 @@
 				<xs:element name="sensitivity1" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="sensitivity2" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2047,8 +1369,7 @@
 				<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2094,8 +1415,7 @@
 				<xs:element name="thermalSensitivity2" type="usTempDisSensType" default="USTSEN_135F"/>
 				<xs:element name="opticalSensitivity2" type="optDisSensType" default="OSEN_1"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2108,8 +1428,7 @@
 				<xs:element name="sensitivity1" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="sensitivity2" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2135,8 +1454,7 @@
 				<xs:element name="thermalSensitivity2" type="usTempDisSensType" default="USTSEN_135F"/>
 				<xs:element name="opticalSensitivity2" type="optDisSensType" default="OSEN_1"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2149,8 +1467,7 @@
 				<xs:element name="sensitivity1" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="sensitivity2" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2178,13 +1495,7 @@
 </xs:complexType>
 <xs:complexType name="RAS_NSB100Type">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
 		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
@@ -2207,14 +1518,7 @@
 		<xs:extension base="RELAYBaseType">
 			<xs:sequence>
 				<xs:element name="feedback" type="yesnoType" default="ST_NO"/>
-				<xs:element name="feedbackDelay" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="60"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="feedbackDelay" default="0" base="xs:unsignedByte"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -2223,30 +1527,18 @@
 	<xs:complexContent>
 		<xs:extension base="LSNDeviceBaseType">
 			<xs:sequence>
-				<xs:element name="siType" fixed="MP_SI_COUPLER">
-					<xs:simpleType>
-						<xs:restriction base="xs:NMTOKEN">
-							<xs:enumeration value="MP_SI_COUPLER"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="siType" fixed="MP_SI_COUPLER" base="xs:NMTOKEN"/>
 				<xs:element name="comAdr" type="comAddrType"/>
 				<xs:element name="siNumber" type="siNumberType" default="0"/>
 				<xs:element name="label" type="labelTextType"/>
 				<xs:element name="serialNumber" type="serialNumberType"/>
-				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
-				<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
-				</xs:element>
+				<xs:element name="bypassable" type="yesnoType" fixed="ST_YES"/>
+				<xs:element name="blockable" type="yesnoType" fixed="ST_YES"/>
 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_YES"/>
-				<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType">
-				</xs:element>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
-				</xs:element>
-				<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType">
-				</xs:element>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
-				</xs:element>
+				<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType"/>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+				<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType"/>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -2258,8 +1550,7 @@
 				<xs:element name="sensitivity1" type="usTempSensType" default="USTSEN_135F"/>
 				<xs:element name="sensitivity2" type="usTempSensType" default="USTSEN_135F"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2272,8 +1563,7 @@
 				<xs:element name="sensitivity1" type="tempSensType" default="TSEN_A2R"/>
 				<xs:element name="sensitivity2" type="tempSensType" default="TSEN_A2R"/>
 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-				</xs:element>
+				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
@@ -2292,51 +1582,24 @@
 </xs:complexType>
 <xs:complexType name="TI13_BCMBType">
 	<xs:sequence>
-		<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10">
-		</xs:element>
-		<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900">
-		</xs:element>
-		<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000">
-		</xs:element>
-		<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30500">
-		</xs:element>
-		<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000">
-		</xs:element>
-		<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000">
-		</xs:element>
-		<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20500">
-		</xs:element>
-		<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="400">
-		</xs:element>
-		<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800">
-		</xs:element>
-		<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800">
-		</xs:element>
-		<xs:element name="pOut1CreepI_max" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="2800"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="pOut2CreepI_max" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="2800"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10"/>
+		<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900"/>
+		<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000"/>
+		<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30500"/>
+		<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000"/>
+		<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000"/>
+		<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20500"/>
+		<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="400"/>
+		<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+		<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+		<xs:element name="pOut1CreepI_max" default="0" base="xs:unsignedShort"/>
+		<xs:element name="pOut2CreepI_max" default="0" base="xs:unsignedShort"/>
 		<xs:element name="pOut1_BatteryBuffered" type="yesnoType" default="ST_YES"/>
 		<xs:element name="pOut2_BatteryBuffered" type="yesnoType" default="ST_YES"/>
 		<xs:element name="GROUND" type="GROUNDType"/>
-		<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
-		</xs:element>
-		<xs:element name="MAINPOWER" type="MAINPOWERType">
-		</xs:element>
-		<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2">
-		</xs:element>
+		<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2"/>
+		<xs:element name="MAINPOWER" type="MAINPOWERType"/>
+		<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -2344,34 +1607,18 @@
 	<xs:sequence>
 		<xs:element name="port" type="portType">
 		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN">
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
-		<xs:element name="avDelay" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="90"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="avDelay" default="0" base="xs:unsignedByte"/>
 		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
@@ -2388,44 +1635,24 @@
 <xs:complexType name="TITANUS_TOP_PROSensorType">
 	<xs:sequence>
 		<xs:element name="port" type="portType"/>
-		<xs:element name="siType" fixed="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN">
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
-		<xs:element name="avDelay" default="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="90"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="avDelay" default="0" base="xs:unsignedByte"/>
 		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
 		<xs:element name="sensitivity1" type="topProSensitivityType"/>
 		<xs:element name="sensitivity2" type="topProSensitivityType"/>
-		<xs:element name="thresholdAirFlow" default="THRESHOLD_VERYLARGE">
-			<xs:simpleType>
-				<xs:restriction base="topProThresholdAirFlowType"/>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="thresholdAirFlow" default="THRESHOLD_VERYLARGE"  base="topProThresholdAirFlowType"/>
 		<xs:element name="alarmDelay" type="topProAlarmDelayType" default="ALARM_DELAY_10"/>
 		<xs:element name="airFlowFaultDelay" type="topProAirFlowFaultDelayType" default="AIR_FLOW_FAULT_DELAY_2M"/>
 		<xs:element name="logicSens" type="onoffType" default="OOT_ON"/>
@@ -2450,122 +1677,19 @@
 		</xs:simpleType>
 	</xs:union>
 </xs:simpleType>
-<xs:simpleType name="inputLSNi2BitThresholdType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="VOLTAGE_0">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_1">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_2">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_3">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="inputLSNi5BitThresholdType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="VOLTAGE_0">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_1">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_2">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_3">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_4">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_5">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_6">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_7">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_8">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_9">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_10">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_11">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_12">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_13">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_14">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_15">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_16">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_17">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_18">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_19">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_20">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_21">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_22">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_23">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_24">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_25">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_26">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_27">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_28">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_29">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_30">
-		</xs:enumeration>
-		<xs:enumeration value="VOLTAGE_31">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="LEDpresentLSNIType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="LP_NONE"/>
-		<xs:enumeration value="LP_BLINK"/>
-		<xs:enumeration value="LP_STEADY"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="LEDpresentType">
-	<xs:restriction base="yesnoType"/>
-</xs:simpleType>
+<xs:simpleType name="inputLSNi2BitThresholdType" base="xs:NMTOKEN"/>
+<xs:simpleType name="inputLSNi5BitThresholdType" base="xs:NMTOKEN"/>
+<xs:simpleType name="LEDpresentLSNIType" base="xs:NMTOKEN"/>
+<xs:simpleType name="LEDpresentType" base="yesnoType"/>
 <xs:simpleType name="lsnSubTypeType">
 	<xs:union memberTypes="hexByte xs:string"/>
 </xs:simpleType>
-<xs:simpleType name="magicSensBaseSetType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="MSEN_THEATRE"/>
-		<xs:enumeration value="MSEN_WAREHOUSE"/>
-		<xs:enumeration value="MSEN_OFFICE_SMOKER"/>
-		<xs:enumeration value="MSEN_CONFERNCE_HALL"/>
-		<xs:enumeration value="MSEN_OFFICE_AFTER"/>
-		<xs:enumeration value="MSEN_SCHOOL"/>
-		<xs:enumeration value="MSEN_GARAGES"/>
-		<xs:enumeration value="MSEN_KITCHEN_ACTIVE"/>
-		<xs:enumeration value="MSEN_PRODUCTION"/>
-		<xs:enumeration value="MSEN_EDP"/>
-		<xs:enumeration value="MSEN_HIGH_STORAGE"/>
-		<xs:enumeration value="MSEN_OFFICE_DAYMODE"/>
-	</xs:restriction>
-</xs:simpleType>
+<xs:simpleType name="magicSensBaseSetType" base="xs:NMTOKEN"/>
 <xs:simpleType name="magicSensOTCType">
 	<xs:union memberTypes="magicSensOTType xs:NMTOKEN"/>
 </xs:simpleType>
 <xs:simpleType name="magicSensOTType">
-	<xs:union memberTypes="magicSensBaseSetType">
-		<xs:simpleType>
-			<xs:restriction base="xs:NMTOKEN">
+	<xs:union memberTypes="magicSensBaseSetType" base="xs:NMTOKEN">
 				<xs:enumeration value="MSEN_OPTICAL_ONLY"/>
 				<xs:enumeration value="MSEN_TDIFF_ONLY"/>
 				<xs:enumeration value="MSEN_TMAX_ONLY"/>
@@ -2573,225 +1697,25 @@
 		</xs:simpleType>
 	</xs:union>
 </xs:simpleType>
-<xs:simpleType name="microSensAirFlowFaultDelayType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_30S">
-		</xs:enumeration>
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_100S">
-		</xs:enumeration>
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_15M">
-		</xs:enumeration>
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_PROGRAMMABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="microSensAlarmDelayType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="ALARM_DELAY_10">
-		</xs:enumeration>
-		<xs:enumeration value="ALARM_DELAY_30">
-		</xs:enumeration>
-		<xs:enumeration value="ALARM_DELAY_60">
-		</xs:enumeration>
-		<xs:enumeration value="ALARM_DELAY_PROGRAMMABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="microSensFanVoltageType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="FAN_VOLTAGE_9">
-		</xs:enumeration>
-		<xs:enumeration value="FAN_VOLTAGE_10_5">
-		</xs:enumeration>
-		<xs:enumeration value="FAN_VOLTAGE_12">
-		</xs:enumeration>
-		<xs:enumeration value="FAN_VOLTAGE_PROGRAMMABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="microSensSensitivityType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="CELLTYPE4_SENS1">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE4_SENS2">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE4_SENS3">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE4_PROGRAMMABLE"/>
-		<xs:enumeration value="CELLTYPE5_SENS1">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE5_SENS2">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE5_SENS3">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE5_PROGRAMMABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="microSensThresholdAirFlowType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="THRESHOLD_20">
-		</xs:enumeration>
-		<xs:enumeration value="THRESHOLD_30">
-		</xs:enumeration>
-		<xs:enumeration value="THRESHOLD_50">
-		</xs:enumeration>
-		<xs:enumeration value="THRESHOLD_PROGRAMMABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="optDisSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="OSEN_1"/>
-		<xs:enumeration value="OSEN_2"/>
-		<xs:enumeration value="OSEN_3"/>
-		<xs:enumeration value="OSEN_4"/>
-		<xs:enumeration value="OSEN_5"/>
-		<xs:enumeration value="OSEN_DISABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="optSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="OSEN_1"/>
-		<xs:enumeration value="OSEN_2"/>
-		<xs:enumeration value="OSEN_3"/>
-		<xs:enumeration value="OSEN_4"/>
-		<xs:enumeration value="OSEN_5"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="simpleSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="SSEN_LOW"/>
-		<xs:enumeration value="SSEN_MEDIUM"/>
-		<xs:enumeration value="SSEN_HIGH"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="tempSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="TSEN_A2R"/>
-		<xs:enumeration value="TSEN_A2S"/>
-		<xs:enumeration value="TSEN_BR"/>
-		<xs:enumeration value="TSEN_BS"/>
-		<xs:enumeration value="TSEN_A1R"/>
-		<xs:enumeration value="TSEN_A1"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="radioSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="DOOT_ROBUST">
-		</xs:enumeration>
-		<xs:enumeration value="DOOT_SUPPRESSION">
-		</xs:enumeration>
-		<xs:enumeration value="DOOT_FAST_RESPONSE">
-		</xs:enumeration>
-		<xs:enumeration value="T_60_RATE_OF_RISE">
-		</xs:enumeration>
-		<xs:enumeration value="T_60_MAXIMUM">
-		</xs:enumeration>
-		<xs:enumeration value="DOO_UNIVERSAL">
-		</xs:enumeration>
-		<xs:enumeration value="DOO_ROBUST">
-		</xs:enumeration>
-		<xs:enumeration value="DOO_SENSITIVE">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="topProAirFlowFaultDelayType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_30S">
-		</xs:enumeration>
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_2M">
-		</xs:enumeration>
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_15M">
-		</xs:enumeration>
-		<xs:enumeration value="AIR_FLOW_FAULT_DELAY_60M">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="topProAlarmDelayType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="ALARM_DELAY_0">
-		</xs:enumeration>
-		<xs:enumeration value="ALARM_DELAY_10">
-		</xs:enumeration>
-		<xs:enumeration value="ALARM_DELAY_30">
-		</xs:enumeration>
-		<xs:enumeration value="ALARM_DELAY_60">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="topProSensitivityType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="CELLTYPE1_SENS1">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE1_SENS2">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE1_SENS3">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE1_SENS4">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE2_SENS1">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE2_SENS2">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE2_SENS3">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE2_SENS4">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE3_SENS1">
-		</xs:enumeration>
-		<xs:enumeration value="CELLTYPE3_SENS2">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="topProThresholdAirFlowType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="THRESHOLD_SMALL">
-		</xs:enumeration>
-		<xs:enumeration value="THRESHOLD_MEDIUM">
-		</xs:enumeration>
-		<xs:enumeration value="THRESHOLD_LARGE">
-		</xs:enumeration>
-		<xs:enumeration value="THRESHOLD_VERYLARGE">
-		</xs:enumeration>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="usTempDisSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="USTSEN_135F"/>
-		<xs:enumeration value="USTSEN_135FROR"/>
-		<xs:enumeration value="USTSEN_145F"/>
-		<xs:enumeration value="USTSEN_145FROR"/>
-		<xs:enumeration value="USTSEN_155F"/>
-		<xs:enumeration value="USTSEN_155FROR"/>
-		<xs:enumeration value="USTSEN_165F"/>
-		<xs:enumeration value="USTSEN_165FROR"/>
-		<xs:enumeration value="USTSEN_175F"/>
-		<xs:enumeration value="USTSEN_175FROR"/>
-		<xs:enumeration value="USTSEN_185F"/>
-		<xs:enumeration value="USTSEN_185FROR"/>
-		<xs:enumeration value="USTSEN_195F"/>
-		<xs:enumeration value="USTSEN_195FROR"/>
-		<xs:enumeration value="USTSEN_DISABLE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="usTempSensType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="USTSEN_135F"/>
-		<xs:enumeration value="USTSEN_135FROR"/>
-		<xs:enumeration value="USTSEN_145F"/>
-		<xs:enumeration value="USTSEN_145FROR"/>
-		<xs:enumeration value="USTSEN_155F"/>
-		<xs:enumeration value="USTSEN_155FROR"/>
-		<xs:enumeration value="USTSEN_165F"/>
-		<xs:enumeration value="USTSEN_165FROR"/>
-		<xs:enumeration value="USTSEN_175F"/>
-		<xs:enumeration value="USTSEN_175FROR"/>
-		<xs:enumeration value="USTSEN_185F"/>
-		<xs:enumeration value="USTSEN_185FROR"/>
-		<xs:enumeration value="USTSEN_195F"/>
-		<xs:enumeration value="USTSEN_195FROR"/>
-	</xs:restriction>
-</xs:simpleType>
+<xs:simpleType name="microSensAirFlowFaultDelayType" base="xs:NMTOKEN"/>
+<xs:simpleType name="microSensAlarmDelayType" base="xs:NMTOKEN"/>
+<xs:simpleType name="microSensFanVoltageType" base="xs:NMTOKEN"/>
+<xs:simpleType name="microSensSensitivityType" base="xs:NMTOKEN"/>
+<xs:simpleType name="microSensThresholdAirFlowType" base="xs:NMTOKEN"/>
+<xs:simpleType name="optDisSensType" base="xs:NMTOKEN"/>
+<xs:simpleType name="optSensType" base="xs:NMTOKEN"/>
+<xs:simpleType name="simpleSensType" base="xs:NMTOKEN"/>
+<xs:simpleType name="tempSensType" base="xs:NMTOKEN"/>
+<xs:simpleType name="radioSensType" base="xs:NMTOKEN"/>
+<xs:simpleType name="topProAirFlowFaultDelayType" base="xs:NMTOKEN"/>
+<xs:simpleType name="topProAlarmDelayType" base="xs:NMTOKEN"/>
+<xs:simpleType name="topProSensitivityType" base="xs:NMTOKEN"/>
+<xs:simpleType name="topProThresholdAirFlowType"/>
+<xs:simpleType name="usTempDisSensType"/>
+<xs:simpleType name="usTempSensType" base="xs:NMTOKEN"/>
 <xs:group name="LSNAllGroup">
 	<xs:choice>
-		<xs:group ref="LSNIGroup" minOccurs="0" maxOccurs="unbounded">
-		</xs:group>
+		<xs:group ref="LSNIGroup" minOccurs="0" maxOccurs="unbounded"/>
 		<xs:group ref="LSNClassicGroup" minOccurs="0" maxOccurs="unbounded"/>
 	</xs:choice>
 </xs:group>
@@ -2864,16 +1788,14 @@
 		<xs:element ref="LSNI_BEACON"/>
 		<xs:element ref="LSNI_IN8R1"/>
 		<xs:element ref="LSNI_OUT8_IN2"/>
-		<xs:element ref="LSNI_IN1">
-		</xs:element>
+		<xs:element ref="LSNI_IN1"/>
 		<xs:element ref="LSNI_OUT1_IN1"/>
 		<xs:element ref="LSNI_RLE"/>
 		<xs:element ref="FULLEON_BASE"/>
 		<xs:element ref="FULLEON_BASE_U"/>
 		<xs:element ref="FULLEON_STANDALONE"/>
 		<xs:element ref="FULLEON_STANDALONE_U"/>
-		<xs:element ref="FULLEON_STANDALONE_V">
-		</xs:element>
+		<xs:element ref="FULLEON_STANDALONE_V"/>
 		<xs:element ref="KD55_KD200"/>
 		<xs:element ref="LSNI_EOL_2W"/>
 		<xs:element ref="LSNI_EOL_4W"/>
@@ -2916,13 +1838,7 @@
 	<xs:complexType>
 	  <xs:sequence>
 		<xs:element name="signal" type="nacPatternType"/>
-		<xs:element name="language">
-		  <xs:simpleType>
-			<xs:restriction base="xs:string">
-			  <xs:maxLength value="20"/>
-			</xs:restriction>
-		  </xs:simpleType>
-		</xs:element>
+		<xs:element name="language" base="xs:string"/>
 		<xs:element ref="SIGNAL_PART" minOccurs="2" maxOccurs="2"/>
 	  </xs:sequence>
 	  <xs:attribute name="rpsDisplayName" type="xs:string" use="optional"/>
@@ -2936,23 +1852,9 @@
 </xs:complexType>
 <xs:complexType name="SIGNAL_PARTType">
 <xs:sequence>
-  <xs:element name="part">
-	<xs:simpleType>
-	  <xs:restriction base="xs:unsignedByte">
-		<xs:minInclusive value="1"/>
-		<xs:maxInclusive value="2"/>
-	  </xs:restriction>
-	</xs:simpleType>
-  </xs:element>
+  <xs:element name="part" base="xs:unsignedByte"/>
   <xs:element name="tonePattern" type="nacPatternType"/>
-  <xs:element name="text">
-	<xs:simpleType>
-	  <xs:restriction base="xs:string">
-		<xs:maxLength value="200"/>
-		<xs:minLength value="0"/>
-	  </xs:restriction>
-	</xs:simpleType>
-  </xs:element>
+  <xs:element name="text" base="xs:string"/>
 </xs:sequence>
 </xs:complexType>
 <xs:element name="SIGNAL_PART">
@@ -2966,17 +1868,9 @@
 </xs:element>
 <xs:complexType name="AUXPOWER_BCType">
 	<xs:sequence>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_AUXPOWER">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_AUXPOWER"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
+		<xs:element name="siType" fixed="MP_SI_AUXPOWER" base="siTypeType"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="batteryBackup" type="yesnoType" default="ST_YES"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -2984,17 +1878,9 @@
 </xs:complexType>
 <xs:complexType name="AUXPOWER_MultipleType">
 	<xs:sequence>
-		<xs:element name="port" type="portType">
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_AUXPOWER">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_AUXPOWER"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" type="portType"/>
+		<xs:element name="siType" fixed="MP_SI_AUXPOWER" base="siTypeType"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="LINE_SUPERVISION" type="LINE_SUPERVISIONType" minOccurs="0"/>
 	</xs:sequence>
@@ -3002,37 +1888,24 @@
 </xs:complexType>
 <xs:complexType name="AUXPOWER_SingleType">
 	<xs:sequence>
-		<xs:element name="siType" fixed="MP_SI_AUXPOWER">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_AUXPOWER"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" fixed="MP_SI_AUXPOWER" base="siTypeType"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="AUXPOWER_WithLineSupervisionType">
 	<xs:sequence>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_AUXPOWER">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_AUXPOWER"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
+		<xs:element name="siType" fixed="MP_SI_AUXPOWER"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="LINE_SUPERVISION" type="LINE_SUPERVISIONType" minOccurs="0"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="BATTERYType">
 	<xs:all>
 		<xs:element name="siType" default="MP_SI_BATTERY">
@@ -3042,8 +1915,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="port" type="portType" default="1" minOccurs="0">
 		</xs:element>
@@ -3084,45 +1956,22 @@
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
-		<xs:element name="usageType" default="MP_UT_SUPERVISORY">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_UT_SUPERVISORY"/>
-					<xs:enumeration value="MP_UT_TROUBLE"/>
-					<xs:enumeration value="MP_UT_INPUT_ON_OFF"/>
-					<xs:enumeration value="MP_UT_INPUT_NORMAL_TROUBLE"/>
-					<xs:enumeration value="MP_UT_FIRE"/>
-					<xs:enumeration value="MP_UT_FIRE_INT"/>
-					<xs:enumeration value="MP_UT_WATER"/>
-					<xs:enumeration value="MP_UT_SMOKE"/>
-					<xs:enumeration value="MP_UT_HEAT"/>
-					<xs:enumeration value="MP_UT_EVACUATION"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="usageType" default="MP_UT_SUPERVISORY" base="xs:NMTOKEN"/>
 		<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
-		<xs:element name="andDetector" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0">
-		</xs:element>
-		<xs:element name="andLatching" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0">
-		</xs:element>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+		<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
+		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
 <xs:complexType name="LEDType">
 	<xs:all>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_STATUS"/>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:all>
@@ -3130,13 +1979,10 @@
 </xs:complexType>
 <xs:complexType name="BlinkingLEDType">
 	<xs:sequence>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_STATUS"/>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffBlinkingType" default="OOBT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -3146,26 +1992,15 @@
 	<xs:complexContent>
 		<xs:extension base="BlinkingLEDType">
 			<xs:sequence>
-				<xs:element name="baseColor" default="LCT_YELLOW">
-					<xs:simpleType>
-						<xs:restriction base="LEDColorType">
-							<xs:enumeration value="LCT_YELLOW"/>
-							<xs:enumeration value="LCT_RED"/>
-							<xs:enumeration value="LCT_GREEN"/>
-							<xs:enumeration value="LCT_UNUSED"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="baseColor" default="LCT_YELLOW" base="LEDColorType"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
 <xs:complexType name="LINE_SUPERVISIONType">
 	<xs:sequence>
-		<xs:element name="physAddrOfEOLDevice" type="physAddrType" default="0.0.0.0">
-		</xs:element>
-		<xs:element name="isConventional" type="yesnoType" default="ST_NO">
-		</xs:element>
+		<xs:element name="physAddrOfEOLDevice" type="physAddrType" default="0.0.0.0"/>
+		<xs:element name="isConventional" type="yesnoType" default="ST_NO"/>
 		<xs:element name="SUPPLIED_DEVICES" minOccurs="0">
 			<xs:complexType>
 				<xs:sequence maxOccurs="32">
@@ -3186,71 +2021,35 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
-		<xs:element name="delayForTrouble" default="10">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="240"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="delayForTrouble" default="10" base="xs:unsignedByte"/>
 	</xs:all>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
 <xs:complexType name="NAC_ZONEType">
 	<xs:sequence>
-		<xs:element name="port" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="2"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="xs:unsignedByte" default="0">
-		</xs:element>
-		<xs:element name="siType" default="MP_SI_NAC">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_NAC"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+		<xs:element name="port" default="1" base="xs:unsignedByte"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="xs:unsignedByte" default="0"/>
+		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/
+>		<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="synProtocol" type="nacSyncProtocolType" default="NAC_SP_NONE"/>
-		<xs:element name="feedbackDelay" default="240">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte"/>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_CONTINOUS">
-		</xs:element>
-		<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_CONTINOUS">
-		</xs:element>
+		<xs:element name="feedbackDelay" default="240" base="xs:unsignedByte"/>
+		<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_CONTINOUS"/>
+		<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_CONTINOUS"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
 <xs:complexType name="RAILPOWERType">
 	<xs:all>
-		<xs:element name="siType" default="MP_SI_RAILPOWER">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_RAILPOWER"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_RAILPOWER" base="siTypeType"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:all>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -3259,14 +2058,7 @@
 	<xs:sequence>
 		<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
 		<xs:element name="port" type="xs:unsignedByte"/>
-		<xs:element name="siNumber" default="0">
-			<xs:simpleType>
-				<xs:restriction base="siNumberType">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="60000"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siNumber" default="0" base="siNumberType"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
@@ -3283,192 +2075,24 @@
 <xs:complexType name="SUPPORT_INFOType">
 	<xs:sequence>
 		<xs:element name="contactName" type="xs:string"/>
-		<xs:element name="smtp" type="xs:string">
-		</xs:element>
+		<xs:element name="smtp" type="xs:string"/>
 		<xs:element name="x400" type="x400Type"/>
 		<xs:element name="oemLogoFilename" type="xs:string" minOccurs="0" maxOccurs="1"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
-<xs:simpleType name="actionDurationType">
-	<xs:restriction base="xs:unsignedShort">
-		<xs:minInclusive value="0"/>
-		<xs:maxInclusive value="64800"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="activityTextType">
-	<xs:restriction base="xs:string">
-		<xs:minLength value="0"/>
-		<xs:maxLength value="64"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="addrTansmitType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="ST_YES"/>
-		<xs:enumeration value="ST_NO"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="adminActionType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="MP_CMD_WALKTEST"/>
-		<xs:enumeration value="MP_CMD_WALKTEST_SIMULTANEOUS"/>
-		<xs:enumeration value="MP_CMD_BYPASS"/>
-		<xs:enumeration value="MP_CMD_BYPASS_BY_FBF"/>
-		<xs:enumeration value="MP_CMD_BLOCKED"/>
-		<xs:enumeration value="MP_CMD_ALTER_SENSITIVITY"/>
-		<xs:enumeration value="MP_CMD_DAYMODE"/>
-		<xs:enumeration value="MP_CMD_SILENCE"/>
-		<xs:enumeration value="MP_CMD_MUTING"/>
-		<xs:enumeration value="MP_CMD_DRILL"/>
-		<xs:enumeration value="MP_CMD_BUTTON_CTRL"/>
-		<xs:enumeration value="MP_CMD_RESET"/>
-		<xs:enumeration value="MP_CMD_RESET_SCOPE"/>
-		<xs:enumeration value="MP_CMD_LOGIN"/>
-		<xs:enumeration value="MP_CMD_LOGOFF"/>
-		<xs:enumeration value="MP_CMD_ACK"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="operatorActionType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="OPM_ACT_NONE"/>
-		<xs:enumeration value="OPM_ACT_CONTINUOUS"/>
-		<xs:enumeration value="OPM_ACT_BYPASS"/>
-		<xs:enumeration value="OPM_ACT_BLOCKED"/>
-		<xs:enumeration value="OPM_ACT_WALKTEST"/>
-		<xs:enumeration value="OPM_ACT_DAYMODE"/>
-		<xs:enumeration value="OPM_ACT_ALTER_SENSITIVITY"/>
-		<xs:enumeration value="OPM_ACT_SILENCE"/>
-		<xs:enumeration value="OPM_ACT_DRILL"/>
-		<xs:enumeration value="OPM_ACT_RESET_LOCAL"/>
-		<xs:enumeration value="OPM_ACT_RESET_SCOPE"/>
-		<xs:enumeration value="OPM_ACT_WALKTEST_SIMULTANEOUS"/>
-		<xs:enumeration value="OPM_ACT_VIEW_HISTORY"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="operatorDirectionType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="MP_ACT_INVALID"/>
-		<xs:enumeration value="MP_ACT_SWITCHON"/>
-		<xs:enumeration value="MP_ACT_SWITCHOFF"/>
-		<xs:enumeration value="MP_ACT_AUTOMATIC"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="avDelayType">
-	<xs:restriction base="xs:unsignedByte">
-		<xs:minInclusive value="0"/>
-		<xs:maxInclusive value="90"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="comAddrType">
-	<xs:restriction base="xs:unsignedByte">
-		<xs:minInclusive value="1"/>
-		<xs:maxInclusive value="254"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="comparatorEQ_NEQType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="EQ"/>
-		<xs:enumeration value="NEQ"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="comparatorGT_LT_EQType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="GT"/>
-		<xs:enumeration value="LT_EQ"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="adminStateType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="c_BYPASS"/>
-		<xs:enumeration value="c_BLOCKED"/>
-		<xs:enumeration value="c_WALKTEST"/>
-		<xs:enumeration value="c_WALKTEST_SIMULTANEOUS"/>
-		<xs:enumeration value="c_DAYMODE"/>
-		<xs:enumeration value="c_ALTER_SENSITIVITY"/>
-		<xs:enumeration value="c_SILENCE"/>
-		<xs:enumeration value="c_DRILL"/>
-		<xs:enumeration value="c_CONTROLLED_BY_BUTTON"/>
-		<xs:enumeration value="c_LED_BLINKING"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="compoundStateType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="MP_ET_NORMAL"/>
-		<xs:enumeration value="MP_ET_TROUBLE"/>
-		<xs:enumeration value="MP_ET_FIRE"/>
-		<xs:enumeration value="MP_ET_FIRE_PRE"/>
-		<xs:enumeration value="MP_ET_VERIFY_FIRE"/>
-		<xs:enumeration value="MP_ET_HEAT"/>
-		<xs:enumeration value="MP_ET_SUPERVISORY"/>
-		<xs:enumeration value="MP_ET_SMOKE"/>
-		<xs:enumeration value="MP_ET_ACTIVATION"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_FAILED"/>
-		<xs:enumeration value="MP_ET_TAMPER"/>
-		<xs:enumeration value="MP_ET_COVER_OPEN"/>
-		<xs:enumeration value="MP_ET_PAPER_OUT"/>
-		<xs:enumeration value="MP_ET_WARNING"/>
-		<xs:enumeration value="MP_ET_TROUBLE_LIGHT"/>
-		<xs:enumeration value="MP_ET_WATCHDOGRESTART"/>
-		<xs:enumeration value="MP_ET_ON"/>
-		<xs:enumeration value="MP_ET_OFF"/>
-		<xs:enumeration value="MP_ET_POLLUTION"/>
-		<xs:enumeration value="MP_ET_POLLUTION_LIGHT"/>
-		<xs:enumeration value="MP_ET_MONITOR"/>
-		<xs:enumeration value="MP_ET_WATER"/>
-		<xs:enumeration value="MP_ET_POWERFAIL"/>
-		<xs:enumeration value="MP_ET_MANUAL_ALARM"/>
-		<xs:enumeration value="MP_ET_PAS_WAIT_FOR_ACK"/>
-		<xs:enumeration value="MP_ET_PAS_INVESTIGATE"/>
-		<xs:enumeration value="MP_ET_AC_CHANGED"/>
-		<xs:enumeration value="MP_ET_AC_COUNTDOWN_STARTED"/>
-		<xs:enumeration value="MP_ET_AC_TAMPER"/>
-		<xs:enumeration value="MP_ET_FIRE_INT"/>
-		<xs:enumeration value="MP_ET_ERROR"/>
-		<xs:enumeration value="MP_ET_UNKNOWN"/>
-		<xs:enumeration value="MP_ET_MATCHALL"/>
-		<xs:enumeration value="MP_ET_NET_CONFIG_MISMATCH"/>
-		<xs:enumeration value="MP_ET_UNKNOWN_ITEM"/>
-		<xs:enumeration value="MP_ET_MISSING_ITEM"/>
-		<xs:enumeration value="MP_ET_INCOMPATIBLE_SOFTWARE"/>
-		<xs:enumeration value="MP_ET_INCOMPATIBLE_NET_PROTOCOL"/>
-		<xs:enumeration value="MP_ET_INFO_ALARM"/>
-		<xs:enumeration value="MP_ET_CHEMICAL"/>
-		<xs:enumeration value="MP_ET_WARNING_HEAT"/>
-		<xs:enumeration value="MP_ET_WARNING_SMOKE"/>
-		<xs:enumeration value="MP_ET_WARNING_CHEMICAL"/>
-		<xs:enumeration value="MP_ET_NORMAL_WALKTEST">
-		</xs:enumeration>
-		<xs:enumeration value="MP_ET_TROUBLE_WALKTEST"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_WALKTEST"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_FAILED_WALKTEST"/>
-		<xs:enumeration value="MP_ET_ON_WALKTEST"/>
-		<xs:enumeration value="MP_ET_OFF_WALKTEST"/>
-		<xs:enumeration value="MP_ET_SUPERVISORY_WALKTEST"/>
-		<xs:enumeration value="MP_ET_WATER_WALKTEST"/>
-		<xs:enumeration value="MP_ET_HEAT_WALKTEST"/>
-		<xs:enumeration value="MP_ET_SMOKE_WALKTEST"/>
-		<xs:enumeration value="MP_ET_CHEMICAL_WALKTEST"/>
-		<xs:enumeration value="MP_ET_FIRE_WALKTEST"/>
-		<xs:enumeration value="MP_ET_ALARM_WALKTEST"/>
-		<xs:enumeration value="MP_ET_NORMAL_BYPASS"/>
-		<xs:enumeration value="MP_ET_TROUBLE_BYPASS"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_BYPASS"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_FAILED_BYPASS"/>
-		<xs:enumeration value="MP_ET_ALARM_BYPASS"/>
-		<xs:enumeration value="MP_ET_NORMAL_BLOCKED"/>
-		<xs:enumeration value="MP_ET_TROUBLE_BLOCKED"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_BLOCKED"/>
-		<xs:enumeration value="MP_ET_ACTIVATION_FAILED_BLOCKED"/>
-		<xs:enumeration value="MP_ET_ALARM_BLOCKED"/>
-		<xs:enumeration value="MP_ET_NORMAL_DAY"/>
-		<xs:enumeration value="MP_ET_TROUBLE_DAY"/>
-		<xs:enumeration value="MP_ET_WATER_DAY"/>
-		<xs:enumeration value="MP_ET_HEAT_DAY"/>
-		<xs:enumeration value="MP_ET_SMOKE_DAY"/>
-		<xs:enumeration value="MP_ET_FIRE_DAY"/>
-		<xs:enumeration value="MP_ET_ALARM_DAY"/>
-	</xs:restriction>
-</xs:simpleType>
+<xs:simpleType name="actionDurationType" base="xs:unsignedShort"/>
+<xs:simpleType name="activityTextType" base="xs:string"/>
+<xs:simpleType name="addrTansmitType" base="xs:NMTOKEN"/>
+<xs:simpleType name="adminActionType" base="xs:NMTOKEN"/>
+<xs:simpleType name="operatorActionType" base="xs:NMTOKEN"/>
+<xs:simpleType name="operatorDirectionType" base="xs:NMTOKEN"/>
+<xs:simpleType name="avDelayType" base="xs:unsignedByte"/>
+<xs:simpleType name="comAddrType" base="xs:unsignedByte"/>
+<xs:simpleType name="comparatorEQ_NEQType" base="xs:NMTOKEN"/>
+<xs:simpleType name="comparatorGT_LT_EQType" base="xs:NMTOKEN"/>
+<xs:simpleType name="adminStateType" base="xs:NMTOKEN"/>
+<xs:simpleType name="compoundStateType" base="xs:NMTOKEN"/>
 <xs:simpleType name="compoundStateWithWildcardType">
 	<xs:union memberTypes="compoundStateType">
 		<xs:simpleType>
@@ -3478,101 +2102,10 @@
 		</xs:simpleType>
 	</xs:union>
 </xs:simpleType>
-<xs:simpleType name="countryType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="DE"/>
-		<xs:enumeration value="AT"/>
-		<xs:enumeration value="CH"/>
-		<xs:enumeration value="GB"/>
-		<xs:enumeration value="US"/>
-		<xs:enumeration value="CA"/>
-		<xs:enumeration value="AU"/>
-		<xs:enumeration value="FR"/>
-		<xs:enumeration value="BE"/>
-		<xs:enumeration value="ES"/>
-		<xs:enumeration value="HU"/>
-		<xs:enumeration value="DK"/>
-		<xs:enumeration value="PL"/>
-		<xs:enumeration value="CZ"/>
-		<xs:enumeration value="TR"/>
-		<xs:enumeration value="IT"/>
-		<xs:enumeration value="AL"/>
-		<xs:enumeration value="BG"/>
-		<xs:enumeration value="BR"/>
-		<xs:enumeration value="EE"/>
-		<xs:enumeration value="GR"/>
-		<xs:enumeration value="HR"/>
-		<xs:enumeration value="IE"/>
-		<xs:enumeration value="LU"/>
-		<xs:enumeration value="LT"/>
-		<xs:enumeration value="LV"/>
-		<xs:enumeration value="NL"/>
-		<xs:enumeration value="PT"/>
-		<xs:enumeration value="RO"/>
-		<xs:enumeration value="RU"/>
-		<xs:enumeration value="SE"/>
-		<xs:enumeration value="SI"/>
-		<xs:enumeration value="UA"/>
-		<xs:enumeration value="YU"/>
-		<xs:enumeration value="ZA"/>
-		<xs:enumeration value="AR"/>
-		<xs:enumeration value="BY"/>
-		<xs:enumeration value="BO"/>
-		<xs:enumeration value="BA"/>
-		<xs:enumeration value="BW"/>
-		<xs:enumeration value="CM"/>
-		<xs:enumeration value="CF"/>
-		<xs:enumeration value="TD"/>
-		<xs:enumeration value="CL"/>
-		<xs:enumeration value="CN"/>
-		<xs:enumeration value="CO"/>
-		<xs:enumeration value="EG"/>
-		<xs:enumeration value="FI"/>
-		<xs:enumeration value="GH"/>
-		<xs:enumeration value="HN"/>
-		<xs:enumeration value="HK"/>
-		<xs:enumeration value="IN"/>
-		<xs:enumeration value="IL"/>
-		<xs:enumeration value="JP"/>
-		<xs:enumeration value="JO"/>
-		<xs:enumeration value="KE"/>
-		<xs:enumeration value="MY"/>
-		<xs:enumeration value="NO"/>
-		<xs:enumeration value="SK"/>
-		<xs:enumeration value="TW"/>
-		<xs:enumeration value="TH"/>
-		<xs:enumeration value="PH"/>
-		<xs:enumeration value="MV"/>
-		<xs:enumeration value="SG"/>
-		<xs:enumeration value="VN"/>
-		<xs:enumeration value="LA"/>
-		<xs:enumeration value="KH"/>
-		<xs:enumeration value="MN"/>
-		<xs:enumeration value="MM"/>
-		<xs:enumeration value="ID"/>
-		<xs:enumeration value="LK"/>
-		<xs:enumeration value="RS"/>
-		<xs:enumeration value="MX"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="crcType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="CRC_16"/>
-		<xs:enumeration value="CRC_NONE"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="ctieActivationTimeType">
-	<xs:restriction base="xs:unsignedByte">
-		<xs:minInclusive value="0"/>
-		<xs:maxInclusive value="180"/>
-	</xs:restriction>
-</xs:simpleType>
-<xs:simpleType name="ctieActivationTypeType">
-	<xs:restriction base="xs:NMTOKEN">
-		<xs:enumeration value="CTIE_CFG_REVERSE_POLARITY"/>
-		<xs:enumeration value="CTIE_CFG_LOCAL_ENERGY"/>
-	</xs:restriction>
-</xs:simpleType>
+<xs:simpleType name="countryType" base="xs:NMTOKEN"/>
+<xs:simpleType name="crcType" base="xs:NMTOKEN"/>
+<xs:simpleType name="ctieActivationTimeType" base="xs:unsignedByte"/>
+<xs:simpleType name="ctieActivationTypeType" base="xs:NMTOKEN"/>
 <xs:simpleType name="ctieTypeType">
 	<xs:restriction base="xs:NMTOKEN">
 		<xs:enumeration value="CTT_UEE"/>
@@ -4546,18 +3079,15 @@
 <xs:element name="ADMINSTATE_COUNTER" type="ADMINSTATE_COUNTERType"/>
 <xs:element name="ADMINISTRATION" type="ADMINISTRATIONType"/>
 <xs:element name="BATTERY_CONTR_MODULE" type="BATTERY_CONTR_MODULEType"/>
-<xs:element name="BCMB_MODULE" type="BCMB_MODULEType">
-</xs:element>
+<xs:element name="BCMB_MODULE" type="BCMB_MODULEType"/>
 <xs:element name="BUZZER_ACTION" type="BUZZER_ACTIONType"/>
 <xs:element name="CITYTIE_ACTION" type="CITYTIE_ACTIONType"/>
 <xs:element name="CITYTIE_ADMIN" type="CITYTIE_ADMINType"/>
 <xs:element name="CITYTIE_MODULE" type="CITYTIE_MODULEType"/>
 <xs:element name="COMMUNICATION_DEVICES" type="COMMUNICATION_DEVICESType"/>
-<xs:element name="CONDITION_COUNTER" type="CONDITION_COUNTERType">
-</xs:element>
+<xs:element name="CONDITION_COUNTER" type="CONDITION_COUNTERType"/>
 <xs:element name="CONDITION_ELAPSE" type="CONDITION_ELAPSEType"/>
-<xs:element name="CONDITION_STATE" type="CONDITION_STATEType">
-</xs:element>
+<xs:element name="CONDITION_STATE" type="CONDITION_STATEType"/>
 <xs:element name="CONFIG_INFO" type="CONFIG_INFOType"/>
 <xs:element name="CONFIGURATION">
 	<xs:complexType>
@@ -4580,38 +3110,30 @@
 <xs:element name="DOORHOLDER_ADMIN" type="DOORHOLDER_ADMINType"/>
 <xs:element name="ENOT_MODULE" type="ENOT_MODULEType"/>
 <xs:element name="FAT_ACTION" type="FAT_ACTIONType"/>
-<xs:element name="FAT_LEDORBUTTON" type="FAT_LEDORBUTTONType">
-</xs:element>
+<xs:element name="FAT_LEDORBUTTON" type="FAT_LEDORBUTTONType"/>
 <xs:element name="FBF_ACTION" type="FBF_ACTIONType"/>
-<xs:element name="FBF_ADMIN" type="FBF_ADMIN_type">
-</xs:element>
+<xs:element name="FBF_ADMIN" type="FBF_ADMIN_type"/>
 <xs:element name="FIRE_ACTION" type="FIRE_ACTIONType"/>
 <xs:element name="FIRE_ADMIN" type="FIRE_ADMINType"/>
-<xs:element name="GLOBAL_OFFSET_TABLE" type="ADDROFFSET_TABLEType">
-</xs:element>
+<xs:element name="GLOBAL_OFFSET_TABLE" type="ADDROFFSET_TABLEType"/>
 <xs:element name="GLTZONE" type="GLTZONEType"/>
 <xs:element name="GROUP_ADMIN" type="GROUP_ADMINType"/>
-<xs:element name="HEADER" type="HEADERType">
-</xs:element>
+<xs:element name="HEADER" type="HEADERType"/>
 <xs:element name="HVAC_ACTION" type="HVAC_ACTIONType"/>
 <xs:element name="HVAC_ADMIN" type="HVAC_ADMINType"/>
 <xs:element name="IO_8_MODULE" type="IO_8_MODULEType"/>
 <xs:element name="IO_S20_MODULE" type="IO_S20_MODULEType"/>
 <xs:element name="IO_SERIAL_MODULE" type="IO_SERIAL_MODULEType"/>
-<xs:element name="IO2_S20_MODULE" type="IO2_S20_MODULEType">
-</xs:element>
+<xs:element name="IO2_S20_MODULE" type="IO2_S20_MODULEType"/>
 <xs:element name="KEYDEPOT_ACTION" type="KEYDEPOT_ACTIONType"/>
 <xs:element name="KEYDEPOT_ADMIN" type="KEYDEPOT_ADMINType"/>
 <xs:element name="LEDINT_MODULE" type="LEDINT_MODULEType"/>
 <xs:element name="LOGICAL_GROUPING" type="LOGICAL_GROUPINGType"/>
 <xs:element name="LSN_BUS" type="LSN_BUSType"/>
-<xs:element name="LSN1500_MODULE" type="LSN1500_MODULEType">
-</xs:element>
+<xs:element name="LSN1500_MODULE" type="LSN1500_MODULEType"/>
 <xs:element name="LSN300_MODULE" type="LSN300_MODULEType"/>
-<xs:element name="MTS" type="MTSType">
-</xs:element>
-<xs:element name="MTS_ADMIN" type="MTS_ADMINType">
-</xs:element>
+<xs:element name="MTS" type="MTSType"/>
+<xs:element name="MTS_ADMIN" type="MTS_ADMINType"/>
 <xs:element name="MTS_CONNECTION" type="MTS_CONNECTIONType"/>
 <xs:element name="NAC_ACTION" type="NAC_ACTIONType"/>
 <xs:element name="NAC_ADMIN" type="NAC_ADMINType"/>
@@ -4625,17 +3147,13 @@
 <xs:element name="PANEL_ADMINISTRATION" type="PANEL_ADMINISTRATIONType"/>
 <xs:element name="PANEL_CLUSTER" type="PANEL_CLUSTERType"/>
 <xs:element name="PANEL_COMMUNICATION" type="PANEL_COMMUNICATIONType"/>
-<xs:element name="PRAESIDEO_SETTINGS" type="PRAESIDEO_SETTINGSType">
-</xs:element>
+<xs:element name="PRAESIDEO_SETTINGS" type="PRAESIDEO_SETTINGSType"/>
 <xs:element name="PRINTER" type="PRINTERType"/>
 <xs:element name="PRINTER_ACTION" type="PRINTER_ACTIONType"/>
 <xs:element name="PRINTER_ADMIN" type="PRINTER_ADMINType"/>
 <xs:element name="PRIORITIES" type="PRIORITIESType"/>
-<xs:element name="PROTOCOL_4A" type="PROTOCOL_4AType">
-</xs:element>
-<xs:element name="PROTOCOL_TRANSPARENT">
-	<xs:complexType/>
-</xs:element>
+<xs:element name="PROTOCOL_4A" type="PROTOCOL_4AType"/>
+<xs:element name="PROTOCOL_TRANSPARENT"/>
 <xs:element name="REMOTE_COUNTER" type="REMOTE_COUNTERType"/>
 <xs:element name="RIGHT_MANAGEMENT" type="RIGHT_MANAGEMENTType"/>
 <xs:element name="RLHV_MODULE" type="RLHV_MODULEType"/>
@@ -4658,17 +3176,14 @@
 <xs:element name="TIME_CONTROL" type="TIME_CONTROLType"/>
 <xs:element name="TRANSMISSION_TABLE" type="TRANSMISSION_TABLEType"/>
 <xs:element name="TRIGGER_ADMIN" type="TRIGGER_ADMINType"/>
-<xs:element name="TRIGGER_COUNTER" type="TRIGGER_COUNTERType">
-</xs:element>
+<xs:element name="TRIGGER_COUNTER" type="TRIGGER_COUNTERType"/>
 <xs:element name="TRIGGER_DOWNLOAD" type="TRIGGER_DOWNLOADType"/>
 <xs:element name="TRIGGER_ELAPSE" type="TRIGGER_ELAPSEType"/>
-<xs:element name="TRIGGER_STATE" type="TRIGGER_STATEType">
-</xs:element>
+<xs:element name="TRIGGER_STATE" type="TRIGGER_STATEType"/>
 <xs:element name="TRIGGER_USER" type="TRIGGER_USERType"/>
 <xs:element name="UART" type="UARTType"/>
 <xs:element name="VAS_INTERFACE" type="VAS_INTERFACEType"/>
-<xs:element name="VAS_TRIGGER" type="VAS_TRIGGERType">
-</xs:element>
+<xs:element name="VAS_TRIGGER" type="VAS_TRIGGERType"/>
 <xs:element name="VAS_TRIGGERS">
 	<xs:complexType>
 		<xs:sequence minOccurs="0" maxOccurs="244">
@@ -4697,8 +3212,7 @@
 		<xs:element name="off" type="ActivityTextWithAttribType"/>
 		<xs:element name="normal" type="ActivityTextWithAttribType"/>
 		<xs:element name="invalid" type="ActivityTextWithAttribType"/>
-		<xs:element name="info_alarm" type="ActivityTextWithAttribType">
-		</xs:element>
+		<xs:element name="info_alarm" type="ActivityTextWithAttribType"/>
 	</xs:all>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -4711,20 +3225,8 @@
 </xs:complexType>
 <xs:complexType name="ACTIVITYType">
 	<xs:sequence>
-		<xs:element name="channel" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="program" default="1">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="channel" default="1" base="xs:unsignedByte"/>
+		<xs:element name="program" default="1" base="xs:unsignedByte"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -4737,69 +3239,45 @@
 <xs:complexType name="ADDROFFSET_TABLEType">
 	<xs:sequence>
 		<xs:element name="panel" type="offsetEntryType"/>
-		<xs:element name="point" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="module" type="offsetEntryType">
-		</xs:element>
+		<xs:element name="point" type="offsetEntryType"/>
+		<xs:element name="module" type="offsetEntryType"/>
 		<xs:element name="coupler" type="offsetEntryType"/>
-		<xs:element name="control" type="offsetEntryType">
-		</xs:element>
+		<xs:element name="control" type="offsetEntryType"/>
 		<xs:element name="input" type="offsetEntryType"/>
-		<xs:element name="citytie" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="fireextinguisher" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="nac" type="offsetEntryType">
-		</xs:element>
+		<xs:element name="citytie" type="offsetEntryType"/>
+		<xs:element name="fireextinguisher" type="offsetEntryType"/>
+		<xs:element name="nac" type="offsetEntryType"/>
 		<xs:element name="buzzer" type="offsetEntryType"/>
 		<xs:element name="hvac" type="offsetEntryType"/>
-		<xs:element name="doorholder" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="keydepot" type="offsetEntryType">
-		</xs:element>
+		<xs:element name="doorholder" type="offsetEntryType"/>
+		<xs:element name="keydepot" type="offsetEntryType"/>
 		<xs:element name="status" type="offsetEntryType"/>
 		<xs:element name="dialer" type="offsetEntryType"/>
-		<xs:element name="printer" type="offsetEntryType">
-		</xs:element>
+		<xs:element name="printer" type="offsetEntryType"/>
 		<xs:element name="fat" type="offsetEntryType"/>
 		<xs:element name="fbf" type="offsetEntryType"/>
 		<xs:element name="set" type="offsetEntryType"/>
-		<xs:element name="auxpower" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="battery" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="mainpower" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="railpower" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="ground" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="loop" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="monitoring" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="canbus" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="network" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="networknode" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="network_line" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="topology" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="netaddress" type="offsetEntryType">
-		</xs:element>
-		<xs:element name="vas" type="offsetEntryType">
-		</xs:element>
+		<xs:element name="auxpower" type="offsetEntryType"/>
+		<xs:element name="battery" type="offsetEntryType"/>
+		<xs:element name="mainpower" type="offsetEntryType"/>
+		<xs:element name="railpower" type="offsetEntryType"/>
+		<xs:element name="ground" type="offsetEntryType"/>
+		<xs:element name="loop" type="offsetEntryType"/>
+		<xs:element name="monitoring" type="offsetEntryType"/>
+		<xs:element name="canbus" type="offsetEntryType"/>
+		<xs:element name="network" type="offsetEntryType"/>
+		<xs:element name="networknode" type="offsetEntryType"/>
+		<xs:element name="network_line" type="offsetEntryType"/>
+		<xs:element name="topology" type="offsetEntryType"/>
+		<xs:element name="netaddress" type="offsetEntryType"/>
+		<xs:element name="vas" type="offsetEntryType"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
 <xs:complexType name="ADMINISTRATIONType">
 	<xs:sequence>
 		<xs:element name="action" type="adminActionType" default="MP_CMD_BYPASS"/>
-		<xs:element name="direction">
-		</xs:element>
+		<xs:element name="direction" type="xs:string"/>
 		<xs:element name="DELAY" type="DELAYType" minOccurs="0"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -4807,20 +3285,13 @@
 <xs:complexType name="ATMODEMType">
 	<xs:sequence>
 		<xs:element name="modemType" type="modemTypeType" default="MT_AT2000ISDN"/>
-		<xs:element name="init" type="xs:string">
-		</xs:element>
-		<xs:element name="disconnect" type="xs:string">
-		</xs:element>
-		<xs:element name="dial" type="xs:string">
-		</xs:element>
-		<xs:element name="answer" type="xs:string">
-		</xs:element>
-		<xs:element name="answerOff" type="xs:string">
-		</xs:element>
-		<xs:element name="onlineMode" type="xs:string">
-		</xs:element>
-		<xs:element name="escape" type="xs:string">
-		</xs:element>
+		<xs:element name="init" type="xs:string"/>
+		<xs:element name="disconnect" type="xs:string"/>
+		<xs:element name="dial" type="xs:string"/>
+		<xs:element name="answer" type="xs:string"/>
+		<xs:element name="answerOff" type="xs:string"/>
+		<xs:element name="onlineMode" type="xs:string"/>
+		<xs:element name="escape" type="xs:string"/>
 		<xs:element name="wait" type="xs:string"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -4840,14 +3311,10 @@
 				<xs:element name="batteryTrouble" type="xs:unsignedShort" default="22000"/>
 				<xs:element name="startPanelAtPowerFailMin" type="xs:unsignedShort" default="20700"/>
 				<xs:element name="battStartChargeMin" type="xs:unsignedShort" default="18000"/>
-				<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
-				</xs:element>
-				<xs:element name="MAINPOWER" type="MAINPOWERType">
-				</xs:element>
-				<xs:element name="RAILPOWER" type="RAILPOWERType">
-				</xs:element>
-				<xs:element name="AUXPOWER" type="AUXPOWER_BCType" minOccurs="6" maxOccurs="6">
-				</xs:element>
+				<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2"/>
+				<xs:element name="MAINPOWER" type="MAINPOWERType"/>
+				<xs:element name="RAILPOWER" type="RAILPOWERType"/>
+				<xs:element name="AUXPOWER" type="AUXPOWER_BCType" minOccurs="6" maxOccurs="6"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -4856,52 +3323,24 @@
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10">
-				</xs:element>
-				<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900">
-				</xs:element>
-				<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000">
-				</xs:element>
-				<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30300">
-				</xs:element>
-				<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000">
-				</xs:element>
-				<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000">
-				</xs:element>
-				<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20400">
-				</xs:element>
-				<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="430">
-				</xs:element>
-				<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800">
-				</xs:element>
-				<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800">
-				</xs:element>
-				<xs:element name="pOut1CreepI_max" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="2800"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="pOut2CreepI_max" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="2800"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10"/>
+				<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900"/>
+				<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000"/>
+				<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30300"/>
+				<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000"/>
+				<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000"/>
+				<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20400"/>
+				<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="430"/>
+				<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+				<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+				<xs:element name="pOut1CreepI_max" default="0" base="xs:unsignedShort"/>
+				<xs:element name="pOut2CreepI_max" default="0" base="xs:unsignedShort"/>
 				<xs:element name="pOut1_BatteryBuffered" type="yesnoType" default="ST_YES"/>
 				<xs:element name="pOut2_BatteryBuffered" type="yesnoType" default="ST_YES"/>
-				<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
-				</xs:element>
-				<xs:element name="MAINPOWER" type="MAINPOWERType">
-				</xs:element>
-				<xs:element name="RAILPOWER" type="RAILPOWERType">
-				</xs:element>
-				<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2">
-				</xs:element>
+				<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2"/>
+				<xs:element name="MAINPOWER" type="MAINPOWERType"/>
+				<xs:element name="RAILPOWER" type="RAILPOWERType"/>
+				<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -4940,14 +3379,7 @@
 </xs:complexType>
 <xs:complexType name="CHANNELType">
 	<xs:sequence>
-		<xs:element name="id">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="20"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="id" base="xs:unsignedByte"/>
 		<xs:element name="target" type="fullSINumberType"/>
 		<xs:element name="ON_ACTION" type="ON_ACTIONType"/>
 		<xs:element name="OFF_ACTION" type="OFF_ACTIONType"/>
@@ -5030,12 +3462,9 @@
 		<xs:element name="sizeInFlashUsed" type="xs:string"/>
 		<xs:element name="sizeInFlashRemaining" type="xs:string"/>
 		<xs:element name="cfgDataGenerator" type="xs:string"/>
-		<xs:element name="guid" type="xs:string" minOccurs="0">
-		</xs:element>
-		<xs:element name="rpsTimeStamp" type="xs:string" minOccurs="0">
-		</xs:element>
-		<xs:element name="xmlCRC" type="xs:unsignedLong" minOccurs="0">
-		</xs:element>
+		<xs:element name="guid" type="xs:string" minOccurs="0"/>
+		<xs:element name="rpsTimeStamp" type="xs:string" minOccurs="0"/>
+		<xs:element name="xmlCRC" type="xs:unsignedLong" minOccurs="0"/>
 	</xs:all>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
@@ -5133,8 +3562,7 @@
 </xs:complexType>
 <xs:complexType name="CTIE_ENOTType">
 	<xs:sequence>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="siType" default="MP_SI_CITYTIE">
 			<xs:simpleType>
 				<xs:restriction base="xs:NMTOKEN">
@@ -5159,14 +3587,7 @@
 </xs:complexType>
 <xs:complexType name="CTIEType">
 	<xs:sequence>
-		<xs:element name="port">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedByte">
-					<xs:minInclusive value="1"/>
-					<xs:maxInclusive value="2"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="port" base="xs:unsignedByte"/>
 		<xs:element name="siType" default="MP_SI_CITYTIE">
 			<xs:simpleType>
 				<xs:restriction base="xs:NMTOKEN">
@@ -5174,8 +3595,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="activationType" type="ctieActivationTypeType" default="CTIE_CFG_REVERSE_POLARITY"/>
 		<xs:element name="activationTime" type="ctieActivationTimeType" default="0"/>
@@ -5209,8 +3629,7 @@
 </xs:complexType>
 <xs:complexType name="DIALERType">
 	<xs:sequence>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="connectedWith" type="physAddrType" default="0.0.0.0"/>
 		<xs:element name="supervisionInterval" type="xs:unsignedByte" default="10">
@@ -5413,30 +3832,19 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siType" default="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-					<xs:enumeration value="MP_SI_INPUT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
-		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
 		<xs:element name="andZoneNr" type="siNumberType" default="0"/>
 		<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
 		<xs:element name="av" type="yesnoType" default="ST_NO"/>
 		<xs:element name="avDelay" type="avDelayType" default="0"/>
 		<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
-		<xs:element name="resetTime" type="xs:unsignedByte" default="0">
-		</xs:element>
+		<xs:element name="resetTime" type="xs:unsignedByte" default="0"/>
 		<xs:element name="pulsingLED" type="yesnoType" default="ST_NO"/>
 		<xs:element name="indicateAlarmOnShort" type="yesnoType" default="ST_NO"/>
 		<xs:element name="cleanMe" type="yesnoType" default="ST_NO"/>
@@ -5513,21 +3921,14 @@
 <xs:complexType name="HEADERType">
 	<xs:sequence>
 		<xs:element name="filename" type="xs:string"/>
-		<xs:element name="revNumber" type="xs:string" default="0">
-		</xs:element>
+		<xs:element name="revNumber" type="xs:string" default="0"/>
 		<xs:element name="lastModified" type="xs:string"/>
-		<xs:element name="dataVersion" type="xs:string">
-		</xs:element>
-		<xs:element name="converted" type="dateTimeType">
-		</xs:element>
-		<xs:element name="convertedFrom" type="xs:string">
-		</xs:element>
-		<xs:element name="xmlValidation" type="xs:string">
-		</xs:element>
-		<xs:element name="mismatchConfirmed" type="xs:string">
-		</xs:element>
-		<xs:element name="adapted" type="dateTimeType" minOccurs="0" maxOccurs="unbounded">
-		</xs:element>
+		<xs:element name="dataVersion" type="xs:string"/>
+		<xs:element name="converted" type="dateTimeType"/>
+		<xs:element name="convertedFrom" type="xs:string"/>
+		<xs:element name="xmlValidation" type="xs:string">/>
+		<xs:element name="mismatchConfirmed" type="xs:string"/>
+		<xs:element name="adapted" type="dateTimeType" minOccurs="0" maxOccurs="unbounded"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 	<xs:attribute name="rpsLanguage"/>
@@ -5606,8 +4007,7 @@
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="S20" type="S20Type" minOccurs="2" maxOccurs="2">
-				</xs:element>
+				<xs:element name="S20" type="S20Type" minOccurs="2" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -5629,8 +4029,7 @@
 <xs:complexType name="KEYDEPOT_ENOTType">
 	<xs:sequence>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_KEYDEPOT"/>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="wallLight" type="yesnoType" default="ST_YES"/>
 	</xs:sequence>
@@ -5686,11 +4085,9 @@
 </xs:complexType>
 <xs:complexType name="LEDOnboardType">
 	<xs:all>
-		<xs:element name="port" type="portType" default="1">
-		</xs:element>
+		<xs:element name="port" type="portType" default="1"/>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_STATUS"/>
-		<xs:element name="siNumber" type="siNumberType" default="60001">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="60001"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 		<xs:element name="label" type="labelTextType"/>
@@ -5699,8 +4096,7 @@
 </xs:complexType>
 <xs:complexType name="LEVELType">
 	<xs:sequence>
-		<xs:element name="id" type="xs:unsignedShort">
-		</xs:element>
+		<xs:element name="id" type="xs:unsignedShort"/>
 		<xs:element name="RIGHT" type="RIGHTType" minOccurs="0" maxOccurs="unbounded"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -5722,8 +4118,7 @@
 		<xs:element ref="PRINTER_ADMIN" minOccurs="0"/>
 		<xs:element ref="FBF_ADMIN" minOccurs="0"/>
 		<xs:element ref="COMMUNICATION_DEVICES" minOccurs="0"/>
-		<xs:element ref="ADDRESS_MANAGEMENT" minOccurs="0">
-		</xs:element>
+		<xs:element ref="ADDRESS_MANAGEMENT" minOccurs="0"/>
 		<xs:element ref="COUNTER_ADMIN"/>
 		<xs:element ref="COUNTER_ADMIN_LIFE_TIME" minOccurs="0"/>
 		<xs:element ref="OPERATOR_ADMIN"/>
@@ -5736,57 +4131,24 @@
 	</xs:all>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="LSN1500_MODULEType">
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="nrOfElements" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="254"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED">
-				</xs:element>
-				<xs:element name="redundantModule" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="48"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="nrOfElements" default="0" type="xs:unsignedByte"/>
+				<xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED"/>
+				<xs:element name="redundantModule" default="0" type="xs:unsignedByte"/>
 				<xs:element name="currentConsumption" type="xs:unsignedInt"/>
 				<xs:element name="topology" type="lsnTopologyType" default="TOPOT_LOOP"/>
-				<xs:element name="lastElement" default="255">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte"/>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="lastElement" default="255" base="xs:unsignedByte"/>
 				<xs:element name="ert" type="yesnoType" default="ST_NO"/>
 				<xs:element name="shortCircuit" type="xs:unsignedInt"/>
 				<xs:element name="creepingShortDetectionOff" type="yesnoType" default="ST_NO"/>
 				<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO"/>
-				<xs:element name="detect4wShort" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="aux1CreepI_max" default="500">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:maxInclusive value="500"/>
-							<xs:minInclusive value="0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="aux2CreepI_max" default="500">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="500"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="detect4wShort" type="yesnoType" default="ST_NO"/>
+				<xs:element name="aux1CreepI_max" default="500" base="xs:unsignedShort"/>
+				<xs:element name="aux2CreepI_max" default="500" base="xs:unsignedShort"/>
 				<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="0" maxOccurs="2"/>
 				<xs:element name="GROUND" type="GROUND_LSN1500Type" minOccurs="0" maxOccurs="2"/>
 				<xs:element ref="LSN_BUS" minOccurs="0" maxOccurs="2"/>
@@ -5794,63 +4156,31 @@
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
+
 <xs:complexType name="LSN300_MODULEType">
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="nrOfElements" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="254"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED">
-				</xs:element>
-				<xs:element name="redundantModule" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="48"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="nrOfElements" default="0" type="xs:unsignedByte"/>
+				<xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED"/>
+				<xs:element name="redundantModule" default="0" type="xs:unsignedByte"/>
 				<xs:element name="currentConsumption" type="xs:unsignedInt"/>
 				<xs:element name="topology" type="lsnTopologyType" default="TOPOT_LOOP"/>
-				<xs:element name="lastElement" default="255">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte"/>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="lastElement" default="255" type="xs:unsignedByte"/>
 				<xs:element name="ert" type="yesnoType" default="ST_NO"/>
 				<xs:element name="shortCircuit" type="xs:unsignedInt"/>
 				<xs:element name="creepingShortDetectionOff" type="yesnoType" default="ST_NO"/>
 				<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO"/>
-				<xs:element name="detect4wShort" type="yesnoType" default="ST_NO">
-				</xs:element>
-				<xs:element name="aux1CreepI_max" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:maxInclusive value="500"/>
-							<xs:minInclusive value="0"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
-				<xs:element name="aux2CreepI_max" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedShort">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="500"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="detect4wShort" type="yesnoType" default="ST_NO"/>
+				<xs:element name="aux1CreepI_max" default="0" type="xs:unsignedShort"/>
+				<xs:element name="aux2CreepI_max" default="0" type="xs:unsignedShort"/>
 				<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="0" maxOccurs="2"/>
 				<xs:element ref="LSN_BUS" minOccurs="0" maxOccurs="2"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
 </xs:complexType>
+
 <xs:complexType name="MTS_ADMINType">
 	<xs:sequence minOccurs="0" maxOccurs="unbounded">
 		<xs:element ref="MTS"/>
@@ -5881,8 +4211,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="redundantSiNumber" type="siNumberType" default="0">
 		</xs:element>
@@ -6000,14 +4329,7 @@
 				<xs:element name="electricEnvironment" type="nacElectricEnviroType" default="EVT_NORMAL"/>
 				<xs:element name="useRail" type="yesnoType" default="ST_NO"/>
 				<xs:element name="synOptions" type="nacSyncOptionType" default="SO_UK"/>
-				<xs:element name="masterSlot" default="0">
-					<xs:simpleType>
-						<xs:restriction base="xs:unsignedByte">
-							<xs:minInclusive value="0"/>
-							<xs:maxInclusive value="48"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:element>
+				<xs:element name="masterSlot" default="0" base="xs:unsignedByte"/>
 				<xs:element name="ismaster" type="yesnoType" default="ST_NO"/>
 				<xs:element name="NAC_ZONE" type="NAC_ZONEType" minOccurs="2" maxOccurs="2"/>
 				<xs:element name="BATTERY" type="BATTERYType"/>
@@ -6025,8 +4347,7 @@
 </xs:complexType>
 <xs:complexType name="NETWORKType">
 	<xs:all>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="supervised" type="yesnoType" default="ST_NO"/>
 		<xs:element ref="PANEL"/>
@@ -6063,14 +4384,7 @@
 </xs:complexType>
 <xs:complexType name="ONBOARD_INPUTType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-					<xs:enumeration value="MP_SI_INPUT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
 		<xs:element name="port">
 			<xs:simpleType>
 				<xs:restriction base="xs:unsignedByte">
@@ -6079,10 +4393,8 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
 		<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
@@ -6215,11 +4527,9 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
@@ -6243,22 +4553,17 @@
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="PANEL_MODULES_BaseType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_MODULE">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_MODULE"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="slot" type="slotType" default="1">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_MODULE" base="siTypeType"/>
+		<xs:element name="slot" type="slotType" default="1"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="serialNumber" type="serialNumberType"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="LicenseBundleType">
 	<xs:sequence>
 		<xs:element name="premiumBundle" type="yesnoType" default="ST_YES"/>
@@ -6270,10 +4575,10 @@
 		</xs:element>
 	</xs:sequence>
 </xs:complexType>
+
 <xs:complexType name="PANELType">
 	<xs:sequence>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_PANEL"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="country" type="countryType" default="DE"/>
@@ -6286,59 +4591,27 @@
 		<xs:element name="quiet1" type="quietLineType"/>
 		<xs:element name="quiet2" type="quietLineType"/>
 		<xs:element name="quiet3" type="quietLineType"/>
-		<xs:element name="andDelay" default="90">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="30"/>
-					<xs:maxInclusive value="600"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="PASacknowledge" default="60">
-			<xs:simpleType>
-				<xs:restriction base="xs:unsignedShort">
-					<xs:minInclusive value="5"/>
-					<xs:maxInclusive value="255"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="andDelay" type="xs:unsignedShort" default="90"/>
+		<xs:element name="PASacknowledge" type="xs:unsignedShort" default="60"/>
 		<xs:element name="logicalViewMMI" type="yesnoType" default="ST_YES"/>
 		<xs:element name="PASResetEnableDelay" type="xs:unsignedShort" default="10"/>
-		<xs:element name="note">
-			<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:minLength value="0"/>
-					<xs:maxLength value="160"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="note" type="xs:string"/>
 		<xs:element name="resetMode" type="resetModeType" default="RM_PANEL_RESET"/>
-		<xs:element name="troubleCausesAlarm" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="colorProfileUsed" type="colorProfileType" default="COLOR_PROFILE_1">
-		</xs:element>
+		<xs:element name="troubleCausesAlarm" type="yesnoType" default="ST_NO"/>
+		<xs:element name="colorProfileUsed" type="colorProfileType" default="COLOR_PROFILE_1"/>
 		<xs:element name="fastFaultIndicationLSN" type="yesnoType" default="ST_NO" minOccurs="0"/>
-		<xs:element name="debugInfo" minOccurs="0">
-			<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:minLength value="0"/>
-					<xs:maxLength value="159"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="idOfAccesspointToHangUp" type="xs:unsignedShort" minOccurs="0">
-		</xs:element>
-		<xs:element name="mAddressCardTimeDivider" type="xs:unsignedShort" minOccurs="0">
-		</xs:element>
+		<xs:element name="debugInfo" minOccurs="0" type="xs:string"/>
+		<xs:element name="idOfAccesspointToHangUp" type="xs:unsignedShort" minOccurs="0"/>
+		<xs:element name="mAddressCardTimeDivider" type="xs:unsignedShort" minOccurs="0"/>
 		<xs:element ref="CONFIG_INFO"/>
-		<xs:element name="LICENCING_V303" type="LicencingType" minOccurs="0">
-		</xs:element>
+		<xs:element name="LICENCING_V303" type="LicencingType" minOccurs="0"/>
 		<xs:element ref="ONBOARD"/>
 		<xs:group ref="MODULESGroup" minOccurs="0" maxOccurs="48"/>
 		<xs:element ref="LOGICAL_GROUPING"/>
 	</xs:sequence>
 	<xs:attributeGroup ref="generalAttributeGroup"/>
 </xs:complexType>
+
 <xs:complexType name="PAS_CONFIRMATIONType">
 	<xs:all>
 		<xs:element name="siType" type="siTypeType" default="MP_SI_POINT"/>
@@ -6400,8 +4673,7 @@
 </xs:complexType>
 <xs:complexType name="PRINTERType">
 	<xs:sequence>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType">
 		</xs:element>
 		<xs:element name="printerType" type="printerTypeType" default="PT_DR2020">
@@ -6548,14 +4820,7 @@
 	<xs:sequence>
 		<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
 		<xs:element name="port" type="xs:unsignedByte"/>
-		<xs:element name="siNumber" default="0">
-			<xs:simpleType>
-				<xs:restriction base="siNumberType">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="60000"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
+		<xs:element name="siNumber" default="0" base="siNumberType"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
@@ -6623,14 +4888,10 @@
 	<xs:complexContent>
 		<xs:extension base="PANEL_MODULES_BaseType">
 			<xs:sequence>
-				<xs:element name="RELAY" type="RELAY_RLHVType">
-				</xs:element>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
-				</xs:element>
-				<xs:element name="RELAY" type="RELAY_RLHVType">
-				</xs:element>
-				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
-				</xs:element>
+				<xs:element name="RELAY" type="RELAY_RLHVType"/>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+				<xs:element name="RELAY" type="RELAY_RLHVType"/>
+				<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
 			</xs:sequence>
 		</xs:extension>
 	</xs:complexContent>
@@ -7018,19 +5279,10 @@
 </xs:complexType>
 <xs:complexType name="UNLOCKAPPLIANCEType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_POINT">
-			<xs:simpleType>
-				<xs:restriction base="xs:NMTOKEN">
-					<xs:enumeration value="MP_SI_POINT"/>
-					<xs:enumeration value="MP_SI_INPUT"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="0">
-		</xs:element>
+		<xs:element name="siType" default="MP_SI_POINT" base="xs:NMTOKEN"/>
+		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
-		<xs:element name="subNumber" type="siSubNumberType" default="0">
-		</xs:element>
+		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="usageType" default="MP_UT_FIRE">
 			<xs:simpleType>
 				<xs:restriction base="usageTypeENOT">
@@ -7052,22 +5304,13 @@
 </xs:complexType>
 <xs:complexType name="VAS_INTERFACEType">
 	<xs:sequence>
-		<xs:element name="siType" fixed="MP_SI_MODULE">
-			<xs:simpleType>
-				<xs:restriction base="siTypeType">
-					<xs:enumeration value="MP_SI_MODULE"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="siNumber" type="siNumberType" default="1">
-		</xs:element>
-		<xs:element name="slot" type="xs:unsignedByte" default="201">
-		</xs:element>
+		<xs:element name="siType" fixed="MP_SI_MODULE" base="siTypeType"/>
+		<xs:element name="siNumber" type="siNumberType" default="1"/>
+		<xs:element name="slot" type="xs:unsignedByte" default="201"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="connectedWith" type="physAddrType"/>
 		<xs:element name="supervised" type="yesnoType"/>
-		<xs:element name="vasSupervisionTime" type="xs:unsignedByte" default="10">
-		</xs:element>
+		<xs:element name="vasSupervisionTime" type="xs:unsignedByte" default="10"/>
 		<xs:element ref="UART" minOccurs="0"/>
 		<xs:element ref="PRAESIDEO_SETTINGS" minOccurs="0"/>
 		<xs:element ref="VAS_TRIGGERS" minOccurs="0"/>
@@ -7668,8 +5911,7 @@
 	<xs:complexType>
 		<xs:sequence>
 			<xs:choice minOccurs="0">
-				<xs:element name="xmlLocation" type="xs:string">
-				</xs:element>
+				<xs:element name="xmlLocation" type="xs:string"/>
 				<xs:element ref="LOCAL_CONFIGURATION"/>
 			</xs:choice>
 			<xs:element ref="RK_DATA" minOccurs="0"/>
@@ -7680,18 +5922,13 @@
 <xs:element name="CONFIG_NETWORK">
 	<xs:complexType>
 		<xs:sequence>
-			<xs:element ref="HEADER">
-			</xs:element>
-			<xs:element ref="NETWORK_INFO">
-			</xs:element>
+			<xs:element ref="HEADER"/>
+			<xs:element ref="NETWORK_INFO"/>
 			<xs:element ref="CUSTOMER_INFO"/>
 			<xs:element ref="SUPPORT_INFO"/>
-			<xs:element ref="REMOTE_SERVICES_NETWORK_DATA" minOccurs="0">
-			</xs:element>
-			<xs:element ref="LZ_STATE_MAPPING" minOccurs="0">
-			</xs:element>
-			<xs:element ref="NODES">
-			</xs:element>
+			<xs:element ref="REMOTE_SERVICES_NETWORK_DATA" minOccurs="0"/>
+			<xs:element ref="LZ_STATE_MAPPING" minOccurs="0"/>
+			<xs:element ref="NODES"/>
 			<xs:element ref="SWITCHES" minOccurs="0"/>
 		</xs:sequence>
 		<xs:attributeGroup ref="netGeneralAttributeGroup"/>
@@ -8109,46 +6346,28 @@
 </xs:complexType>
 <xs:complexType name="NODEType">
 	<xs:sequence>
-		<xs:element name="netLocalCRC" type="netCRCType" default="0">
-		</xs:element>
+		<xs:element name="netLocalCRC" type="netCRCType" default="0"/>
 		<xs:group ref="LogicalNetAddr"/>
-		<xs:element name="rsn">
-			<xs:simpleType>
-				<xs:restriction base="rsnType"/>
-			</xs:simpleType>
-		</xs:element>
-		<xs:element name="nodeType" type="nodeTypeType" default="FPA5000">
-		</xs:element>
-		<xs:element name="scope" type="scopeType" default="GROUP">
-		</xs:element>
-		<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES">
-		</xs:element>
+		<xs:element name="rsn" type="rsnType"/>
+		<xs:element name="nodeType" type="nodeTypeType" default="FPA5000"/>
+		<xs:element name="scope" type="scopeType" default="GROUP"/>
+		<xs:element name="displayNetworkStates" type="yesnoType" default="ST_YES"/>
 		<xs:element name="label" type="labelTextType"/>
 		<xs:element name="ipAddress" type="ipAddressType"/>
 		<xs:element name="subnetMask" type="ipAddressType"/>
 		<xs:element name="gateway" type="ipAddressType"/>
-		<xs:element name="multicastAddress" type="ipAddressType">
-		</xs:element>
-		<xs:element name="portNumber" type="portNumberType">
-		</xs:element>
-		<xs:element name="useEthernetSettings" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="syncRequired" type="yesnoType" default="ST_NO">
-		</xs:element>
-		<xs:element name="showEthernetRxOverloadWarning" type="yesnoType" default="ST_YES" minOccurs="0">
-		</xs:element>
-		<xs:element name="usePanelNetworkingOverIP" type="yesnoType" default="ST_YES" minOccurs="0">
-		</xs:element>
-		<xs:element ref="SPANNING_TREE" minOccurs="0">
-		</xs:element>
+		<xs:element name="multicastAddress" type="ipAddressType"/>
+		<xs:element name="portNumber" type="portNumberType"/>
+		<xs:element name="useEthernetSettings" type="yesnoType" default="ST_NO"/>
+		<xs:element name="syncRequired" type="yesnoType" default="ST_NO"/>
+		<xs:element name="showEthernetRxOverloadWarning" type="yesnoType" default="ST_YES" minOccurs="0"/>
+		<xs:element name="usePanelNetworkingOverIP" type="yesnoType" default="ST_YES" minOccurs="0"/>
+		<xs:element ref="SPANNING_TREE" minOccurs="0"/>
 		<xs:element ref="NET_INTERFACES" minOccurs="0"/>
-		<xs:element ref="EXPORTS" minOccurs="0">
-		</xs:element>
+		<xs:element ref="EXPORTS" minOccurs="0"/>
 		<xs:element ref="IMPORTS" minOccurs="0"/>
-		<xs:element ref="ASSIGNED_OPCSVRS" minOccurs="0">
-		</xs:element>
-		<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0">
-		</xs:element>
+		<xs:element ref="ASSIGNED_OPCSVRS" minOccurs="0"/>
+		<xs:element ref="ASSIGNED_MTS_NODES" minOccurs="0"/>
 		<xs:element ref="CONNECTABLE" minOccurs="0"/>
 		<xs:element ref="CONFIG_DATA" minOccurs="0">
 		</xs:element>

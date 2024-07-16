@@ -6,6 +6,17 @@ use Illuminate\Database\Schema\Blueprint;
 
 trait BoschTypesCommon
 {
+    public function xsunsignedByte(Blueprint $table, string $name)
+    {
+        $table->unsignedTinyInteger($name)->nullable();
+    }
+
+    public function LogicalNetAddr(Blueprint $table)
+    {
+        $table->unsignedTinyInteger('netGroup')->nullable();
+        $table->unsignedTinyInteger('netNode')->nullable();
+    }
+
     public function netCRCType(Blueprint $table, string $name)
     {
         $table->string($name)->nullable();

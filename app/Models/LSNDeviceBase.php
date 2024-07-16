@@ -4,15 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class LSNDeviceBase extends AutoDetBase
+class LSNDeviceBase extends Model
 {
     use HasFactory;
 
-    public function base(): MorphOne
+    protected $table = 'LSN_Device_Base';
+
+    protected $fillable = [
+        'lsnTypeID',
+    	'lsnSubtype',
+    	'backPointer',
+    ];
+
+    public function DET_TYPE(): MorphTo
     {
-        return $this->morphOne(AutoDetBase::class, 'imageable');
+        return $this->morphTo();
+    }
+
+    public function LSN_BUS()
+    {
+        return $this->belongsTo(LSN_BUS::class, 'LSN_BUS_id');
     }
 
 }

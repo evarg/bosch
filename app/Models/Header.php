@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Header extends Model
+use App\Models\dateTime;
+use App\Models\CONFIG_NETWORK;
+
+class HEADER extends Model
 {
     use HasFactory;
+
+    protected $table = 'HEADER';
 
     protected $fillable = [
         'filename',
@@ -19,12 +22,17 @@ class Header extends Model
         'converted',
         'convertedFrom',
         'xmlValidation',
-        'mismatchConfirmed',
-        'adapted'
+        'mismatchConfirmed'
     ];
 
-    public function ConfigNetwork(): BelongsTo
+    public function adapted()
     {
-        return $this->belongsTo(ConfigNetwork::class);
+        return $this->hasMany(dateTime::class);
     }
+
+    public function CONFIG_NETWORK()
+    {
+        return $this->belongsTo(CONFIG_NETWORK::class);
+    }
+
 }
