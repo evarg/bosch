@@ -7,7 +7,7 @@ use SimpleXMLElement;
 
 class ManuDetBase_Element extends LSNDeviceBase_Element
 {
-    protected $manuDetBase;
+    public $manuDetBase;
 
     public function __construct(SimpleXMLElement $x)
     {

@@ -9,7 +9,7 @@ use SimpleXMLElement;
 class LSNDeviceBase_Element
 {
 
-    protected $baseElement;
+    public $baseElement;
 
     public function __construct(SimpleXMLElement $x)
     {

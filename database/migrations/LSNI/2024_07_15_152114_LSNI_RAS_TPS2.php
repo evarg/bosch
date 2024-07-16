@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    use \App\Traits\BoschSimpleTypes;
+
     public function up(): void
     {
         Schema::create('LSNI_RAS_TPS2', function (Blueprint $table) {
@@ -25,3 +24,17 @@ return new class extends Migration
         Schema::dropIfExists('LSNI_RAS_TPS2');
     }
 };
+
+// <xs:element name="RAS_TPS2">
+// 	<xs:complexType>
+// 		<xs:complexContent>
+// 			<xs:extension base="LSNDeviceBaseType">
+// 				<xs:sequence>
+// 					<xs:element name="comAdr" type="comAddrType"/>
+// 					<xs:element name="serialNumber" type="serialNumberType"/>
+// 					<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType" maxOccurs="2"/>
+// 				</xs:sequence>
+// 			</xs:extension>
+// 		</xs:complexContent>
+// 	</xs:complexType>
+// </xs:element>

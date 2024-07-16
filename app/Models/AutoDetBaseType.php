@@ -10,7 +10,7 @@ class AutoDetBaseType extends Model
 {
     use HasFactory;
 
-    protected $table = 'manu_det_base_types';
+    protected $table = 'auto_det_base_types';
 
     protected $fillable = [
         'siType',

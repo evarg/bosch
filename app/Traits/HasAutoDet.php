@@ -2,13 +2,13 @@
 
 namespace App\Traits;
 
-use App\Models\ManuDetBase;
+use App\Models\AutoDetBaseType;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasAutoDet
 {
-    public function MANU_DET(): MorphOne
+    public function AUTO_DET(): MorphOne
     {
-        return $this->morphOne(ManuDetBase::class, 'MANU_DET');
+        return $this->morphOne(AutoDetBaseType::class, 'AUTO_DET');
     }
 }

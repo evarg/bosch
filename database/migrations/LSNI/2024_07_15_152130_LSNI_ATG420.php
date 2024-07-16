@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    use \App\Traits\BoschSimpleTypes;
+
     public function up(): void
     {
         Schema::create('LSNI_ATG420', function (Blueprint $table) {
@@ -25,3 +24,13 @@ return new class extends Migration
         Schema::dropIfExists('LSNI_ATG420');
     }
 };
+
+// <xs:complexType name="ATG420Type">
+// 	<xs:complexContent>
+// 		<xs:extension base="ATXBaseType">
+// 			<xs:sequence>
+// 				<xs:element name="LED" type="ColoredLEDType" minOccurs="32" maxOccurs="32"/>
+// 			</xs:sequence>
+// 		</xs:extension>
+// 	</xs:complexContent>
+// </xs:complexType>

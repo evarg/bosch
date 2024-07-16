@@ -35,22 +35,22 @@ class PANEL_Element
             }
 
             if ($x->current()->getName() == "NAC_MODULE") {
-                $moduleElement = new NAC_MODULE_Element($x->current(), $parent);
+                $moduleElement = new NAC_MODULE_Element($x->current());
                 $this->PANEL->MODULES()->save($moduleElement->getModule());
             }
 
             if ($x->current()->getName() == "RLHV_MODULE") {
-                $moduleElement = new RLHV_MODULE_Element($x->current(), $parent);
+                $moduleElement = new RLHV_MODULE_Element($x->current());
                 $this->PANEL->MODULES()->save($moduleElement->getModule());
             }
 
             if ($x->current()->getName() == "RLLV_MODULE") {
-                $moduleElement = new RLLV_MODULE_Element($x->current(), $parent);
+                $moduleElement = new RLLV_MODULE_Element($x->current());
                 $this->PANEL->MODULES()->save($moduleElement->getModule());
             }
 
             if ($x->current()->getName() == "BCMB_MODULE") {
-                $moduleElement = new BCMB_MODULE_Element($x->current(), $parent);
+                $moduleElement = new BCMB_MODULE_Element($x->current());
                 $this->PANEL->MODULES()->save($moduleElement->getModule());
             }
 

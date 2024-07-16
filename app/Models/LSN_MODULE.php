@@ -33,6 +33,7 @@ class LSN_MODULE extends Model
         return $this->morphOne(MODULE::class, 'moduleable');
     }
 
+
 }
 
 

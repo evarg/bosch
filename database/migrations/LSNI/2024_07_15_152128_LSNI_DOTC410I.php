@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    use \App\Traits\BoschSimpleTypes;
+
     public function up(): void
     {
         Schema::create('LSNI_DOTC410I', function (Blueprint $table) {
@@ -25,3 +24,17 @@ return new class extends Migration
         Schema::dropIfExists('LSNI_DOTC410I');
     }
 };
+
+// <xs:complexType name="OTC410IType">
+// 	<xs:complexContent>
+// 		<xs:extension base="AutoDetBaseType">
+// 			<xs:sequence>
+// 				<xs:element name="sensitivity1" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
+// 				<xs:element name="sensitivity2" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
+// 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+// 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
+// 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+// 			</xs:sequence>
+// 		</xs:extension>
+// 	</xs:complexContent>
+// </xs:complexType>

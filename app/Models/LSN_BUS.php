@@ -19,6 +19,12 @@ class LSN_BUS extends Model
         'rpsDisplayName',
         'Checkdate',
     ];
+
+    public function DEVICES()
+    {
+        return $this->hasMany(LSNDeviceBase::class, 'LSN_BUS_id');
+    }
+
 }
 
 // <xs:complexType name="LSN_BUSType">

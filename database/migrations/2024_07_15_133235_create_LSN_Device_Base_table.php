@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LSN_BUS;
 use App\Traits\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,6 +20,7 @@ return new class extends Migration
             $this->lsnSubTypeType($table, 'lsnSubtype');
             $this->xsunsignedByte($table, 'backPointer');
 
+            $table->foreignIdFor(LSN_BUS::class, 'LSN_BUS_id')->nullable();
             $table->nullableMorphs('DET_TYPE');
 
             $table->timestamps();

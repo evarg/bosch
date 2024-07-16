@@ -23,4 +23,9 @@ class LSNDeviceBase extends Model
         return $this->morphTo();
     }
 
+    public function LSN_BUS()
+    {
+        return $this->belongsTo(LSN_BUS::class, 'LSN_BUS_id');
+    }
+
 }

@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    use \App\Traits\BoschSimpleTypes;
+
     public function up(): void
     {
         Schema::create('LSNI_DM210', function (Blueprint $table) {
@@ -25,3 +24,4 @@ return new class extends Migration
         Schema::dropIfExists('LSNI_DM210');
     }
 };
+
