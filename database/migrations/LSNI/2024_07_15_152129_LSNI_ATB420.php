@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('LSNI_ATB420', function (Blueprint $table) {
             $table->id();
+
             $table->timestamps();
         });
     }

@@ -3,65 +3,106 @@
 namespace App\Services;
 
 use App\Models\PANEL;
+use App\Services\MODULE\BATTERY_CONTR_MODULE_Element;
+use App\Services\MODULE\BCMB_MODULE_Element;
+use App\Services\MODULE\CITYTIE_MODULE_Element;
+use App\Services\MODULE\CONVENTIONAL_MODULE_Element;
+use App\Services\MODULE\ENOT_MODULE_Element;
+use App\Services\MODULE\IO2_S20_MODULE_Element;
+use App\Services\MODULE\IO_8_MODULE_Element;
+use App\Services\MODULE\IO_S20_MODULE_Element;
+use App\Services\MODULE\IO_SERIAL_MODULE_Element;
+use App\Services\MODULE\LEDINT_MODULE_Element;
+use App\Services\MODULE\LSNxxx_MODULE_Element;
+use App\Services\MODULE\NAC_MODULE_Element;
+use App\Services\MODULE\RLHV_MODULE_Element;
+use App\Services\MODULE\RLLV_MODULE_Element;
+use App\Services\MODULE\VAS_INTERFACE_MODULE_Element;
 use SimpleXMLElement;
 
 class PANEL_Element
 {
-    public PANEL $PANEL;
+    public PANEL $panel;
 
     protected $parent;
 
     public function __construct(SimpleXMLElement $x, $parent)
     {
-        print("Start: PANEL<br/>");
-
-        $this->parent = $parent;
-
-        $this->PANEL = new PANEL((array)$x);
-        $this->PANEL->save();
+        $this->panel = new PANEL((array)$x);
+        $this->panel->save();
 
         for ($x->rewind(); $x->valid(); $x->next()) {
-            if ($x->current()->getName() == "CONFIG_INFO") {
+            switch ($x->current()->getName()) {
+                case 'BATTERY_CONTR_MODULE':
+                    $moduleElement = new BATTERY_CONTR_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'CITYTIE_MODULE':
+                    $moduleElement = new CITYTIE_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'CONVENTIONAL_MODULE':
+                    $moduleElement = new CONVENTIONAL_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'ENOT_MODULE':
+                    $moduleElement = new ENOT_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'IO_8_MODULE':
+                    $moduleElement = new IO_8_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'IO_S20_MODULE':
+                    $moduleElement = new IO_S20_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'IO2_S20_MODULE':
+                    $moduleElement = new IO2_S20_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'IO_SERIAL_MODULE':
+                    $moduleElement = new IO_SERIAL_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'LEDINT_MODULE':
+                    $moduleElement = new LEDINT_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'LSN300_MODULE':
+                    $moduleElement = new LSNxxx_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'LSN1500_MODULE':
+                    $moduleElement = new LSNxxx_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'NAC_MODULE':
+                    $moduleElement = new NAC_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'RLHV_MODULE':
+                    $moduleElement = new RLHV_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'RLLV_MODULE':
+                    $moduleElement = new RLLV_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'BCMB_MODULE':
+                    $moduleElement = new BCMB_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
+                case 'VAS_INTERFACE':
+                    $moduleElement = new VAS_INTERFACE_MODULE_Element($x->current());
+                    $this->panel->MODULES()->save($moduleElement->panelBaseModule);
+                    break;
             }
-
-            if ($x->current()->getName() == "LSN300_MODULE") {
-                $moduleElement = new LSN300_MODULE_Element($x->current());
-                $this->PANEL->MODULES()->save($moduleElement->getModule());
-            }
-
-            if ($x->current()->getName() == "LSN1500_MODULE") {
-                $moduleElement = new LSN300_MODULE_Element($x->current());
-                $this->PANEL->MODULES()->save($moduleElement->getModule());
-            }
-
-            if ($x->current()->getName() == "NAC_MODULE") {
-                $moduleElement = new NAC_MODULE_Element($x->current());
-                $this->PANEL->MODULES()->save($moduleElement->getModule());
-            }
-
-            if ($x->current()->getName() == "RLHV_MODULE") {
-                $moduleElement = new RLHV_MODULE_Element($x->current());
-                $this->PANEL->MODULES()->save($moduleElement->getModule());
-            }
-
-            if ($x->current()->getName() == "RLLV_MODULE") {
-                $moduleElement = new RLLV_MODULE_Element($x->current());
-                $this->PANEL->MODULES()->save($moduleElement->getModule());
-            }
-
-            if ($x->current()->getName() == "BCMB_MODULE") {
-                $moduleElement = new BCMB_MODULE_Element($x->current());
-                $this->PANEL->MODULES()->save($moduleElement->getModule());
-            }
-
         }
-
-        $this->PANEL->save();
-        print("Finish: PANEL<br/>");
     }
 
     public function getPANEL(): PANEL{
-        return $this->PANEL;
+        return $this->panel;
     }
 }
 

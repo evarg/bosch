@@ -12,6 +12,9 @@ return new class extends Migration
     {
         Schema::create('LSNI_LSNI_TI13', function (Blueprint $table) {
             $table->id();
+
+            $this->usTempSensType($table, 'sensitivity1');
+
             $table->timestamps();
         });
     }

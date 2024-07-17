@@ -18,9 +18,9 @@ class LSNDeviceBase extends Model
     	'backPointer',
     ];
 
-    public function DET_TYPE(): MorphTo
+    public function BASE(): MorphTo
     {
-        return $this->morphTo();
+        return $this->morphTo('BASEABLE');
     }
 
     public function LSN_BUS()

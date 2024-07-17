@@ -3,12 +3,13 @@
 namespace App\Traits;
 
 use App\Models\AutoDetBaseType;
+use App\Models\BaseAutoDet;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasAutoDet
 {
-    public function AUTO_DET(): MorphOne
+    public function BASE_TYPE(): MorphOne
     {
-        return $this->morphOne(AutoDetBaseType::class, 'AUTO_DET');
+        return $this->morphOne(BaseAutoDet::class, 'BASEABLE');
     }
 }

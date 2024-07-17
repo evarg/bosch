@@ -48,7 +48,7 @@ class PANEL extends Model
 
     public function MODULES()
     {
-        return $this->hasMany(MODULE::class, 'PANEL');
+        return $this->hasMany(PANEL_MODULES_Base::class, 'PANEL');
     }
 
 

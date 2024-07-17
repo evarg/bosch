@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\ManuDetBase;
+use App\Models\BaseManuDet;
 use SimpleXMLElement;
 
 class ManuDetBase_Element extends LSNDeviceBase_Element
@@ -13,7 +13,7 @@ class ManuDetBase_Element extends LSNDeviceBase_Element
     {
         parent::__construct($x);
 
-        $this->manuDetBase = new ManuDetBase((array)$x);
+        $this->manuDetBase = new BaseManuDet((array)$x);
         $this->manuDetBase->save();
 
         $this->manuDetBase->BASE()->save($this->baseElement);

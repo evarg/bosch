@@ -3,10 +3,10 @@
 namespace App\Services\LSNI;
 
 use App\Models\LSNI\Unknown;
-use App\Services\ManuDetBase_Element;
+use App\Services\OtherBase_Element;
 use SimpleXMLElement;
 
-class LSNTESTELEMENT_Element extends ManuDetBase_Element
+class LSNTESTELEMENT_Element extends OtherBase_Element
 {
     protected Unknown $lsni;
 
@@ -16,6 +16,6 @@ class LSNTESTELEMENT_Element extends ManuDetBase_Element
 
         $this->lsni = new Unknown();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->manuDetBase);
+        $this->lsni->MANU_DET()->save($this->baseOther);
     }
 }

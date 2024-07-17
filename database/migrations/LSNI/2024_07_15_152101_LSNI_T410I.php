@@ -12,6 +12,10 @@ return new class extends Migration
     {
         Schema::create('LSNI_T410I', function (Blueprint $table) {
             $table->id();
+// 				<xs:element name="sensitivity1" type="tempSensType" default="TSEN_A2R"/>
+// 				<xs:element name="sensitivity2" type="tempSensType" default="TSEN_A2R"/>
+// 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+// 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
             $table->timestamps();
         });
     }
@@ -32,8 +36,7 @@ return new class extends Migration
 // 				<xs:element name="sensitivity1" type="tempSensType" default="TSEN_A2R"/>
 // 				<xs:element name="sensitivity2" type="tempSensType" default="TSEN_A2R"/>
 // 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
-// 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
-// 				</xs:element>
+// 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
 // 				<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
 // 			</xs:sequence>
 // 		</xs:extension>

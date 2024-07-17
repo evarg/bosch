@@ -7,7 +7,7 @@ use SimpleXMLElement;
 
 class NODE_Element
 {
-    protected NODE $node;
+    public NODE $node;
 
     public $CONFIG_DATA;
 
@@ -22,10 +22,6 @@ class NODE_Element
                 $this->node->PANEL()->save($this->CONFIG_DATA->LOCAL_CONFIGURATION->PANEL);
             }
         }
-    }
-
-    public function getNODE(){
-        return $this->node;
     }
 
 }

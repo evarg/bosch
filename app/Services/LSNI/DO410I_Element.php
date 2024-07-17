@@ -3,10 +3,10 @@
 namespace App\Services\LSNI;
 
 use App\Models\LSNI\Unknown;
-use App\Services\AutoDetBaseType_Element;
+use App\Services\AutoDetBase_Element;
 use SimpleXMLElement;
 
-class DO410I_Element extends AutoDetBaseType_Element
+class DO410I_Element extends AutoDetBase_Element
 {
     protected Unknown $lsni;
 

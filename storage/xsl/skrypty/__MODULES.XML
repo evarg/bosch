@@ -1,0 +1,329 @@
+	<xs:complexType name="BATTERY_CONTR_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="powerSupplyMax" type="xs:unsignedShort" default="31000"/>
+					<xs:element name="MinMainPowerOK" type="xs:unsignedShort" default="21000"/>
+					<xs:element name="normalLoadDuration" type="xs:unsignedShort" default="800"/>
+					<xs:element name="manualLoadDuration" type="xs:unsignedShort" default="900"/>
+					<xs:element name="testDuration" type="xs:unsignedShort" default="10"/>
+					<xs:element name="minCharge" type="xs:unsignedShort" default="22000"/>
+					<xs:element name="stopDischarge" type="xs:unsignedShort" default="20400"/>
+					<xs:element name="useNewBattery" type="xs:unsignedShort" default="22000"/>
+					<xs:element name="batteryTrouble" type="xs:unsignedShort" default="22000"/>
+					<xs:element name="startPanelAtPowerFailMin" type="xs:unsignedShort" default="20700"/>
+					<xs:element name="battStartChargeMin" type="xs:unsignedShort" default="18000"/>
+					<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="MAINPOWER" type="MAINPOWERType"/>
+					<xs:element name="RAILPOWER" type="RAILPOWERType"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_BCType" minOccurs="6" maxOccurs="6"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CITYTIE_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="CTIE" type="CTIEType" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CONVENTIONAL_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="AUXPOWER" type="AUXPOWER_SingleType"/>
+					<xs:element ref="GLTZONE" minOccurs="4" maxOccurs="4"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ENOT_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="KEYDEPOT_ENOT" type="KEYDEPOT_ENOTType"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_SingleType"/>
+					<xs:element name="UNLOCKAPPLIANCE" type="UNLOCKAPPLIANCEType"/>
+					<xs:element ref="CTIE"/>
+					<xs:element name="RELAY" type="RELAY_ENOTType" minOccurs="4" maxOccurs="4"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IO_8_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="INPUT" minOccurs="8" maxOccurs="8">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="INPUTBaseType">
+									<xs:sequence>
+										<xs:element name="activeIfClosed" type="yesnoType" default="ST_YES" minOccurs="0"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="OUTPUT" type="OUTPUTType" minOccurs="8" maxOccurs="8"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IO_S20_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="S20" type="S20Type"/>
+					<xs:element name="RS232" type="RS232Type"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IO_SERIAL_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="RS232" type="RS232Type" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IO2_S20_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="S20" type="S20Type" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LEDINT_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="LED" type="LEDType" maxOccurs="32"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSN1500_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="nrOfElements" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="254"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED"/>
+					<xs:element name="redundantModule" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="48"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="currentConsumption" type="xs:unsignedInt"/>
+					<xs:element name="topology" type="lsnTopologyType" default="TOPOT_LOOP"/>
+					<xs:element name="lastElement" default="255">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="ert" type="yesnoType" default="ST_NO"/>
+					<xs:element name="shortCircuit" type="xs:unsignedInt"/>
+					<xs:element name="creepingShortDetectionOff" type="yesnoType" default="ST_NO"/>
+					<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO"/>
+					<xs:element name="detect4wShort" type="yesnoType" default="ST_NO"/>
+					<xs:element name="aux1CreepI_max" default="500">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedShort">
+								<xs:maxInclusive value="500"/>
+								<xs:minInclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="aux2CreepI_max" default="500">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedShort">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="500"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="0" maxOccurs="2"/>
+					<xs:element name="GROUND" type="GROUND_LSN1500Type" minOccurs="0" maxOccurs="2"/>
+					<xs:element ref="LSN_BUS" minOccurs="0" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSN300_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="nrOfElements" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="254"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="mode" type="lsnModeType" default="LSN_EXTENDED"/>
+					<xs:element name="redundantModule" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="48"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="currentConsumption" type="xs:unsignedInt"/>
+					<xs:element name="topology" type="lsnTopologyType" default="TOPOT_LOOP"/>
+					<xs:element name="lastElement" default="255">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="ert" type="yesnoType" default="ST_NO"/>
+					<xs:element name="shortCircuit" type="xs:unsignedInt"/>
+					<xs:element name="creepingShortDetectionOff" type="yesnoType" default="ST_NO"/>
+					<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO"/>
+					<xs:element name="detect4wShort" type="yesnoType" default="ST_NO"/>
+					<xs:element name="aux1CreepI_max" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedShort">
+								<xs:maxInclusive value="500"/>
+								<xs:minInclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="aux2CreepI_max" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedShort">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="500"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="0" maxOccurs="2"/>
+					<xs:element ref="LSN_BUS" minOccurs="0" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="NAC_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="electricEnvironment" type="nacElectricEnviroType" default="EVT_NORMAL"/>
+					<xs:element name="useRail" type="yesnoType" default="ST_NO"/>
+					<xs:element name="synOptions" type="nacSyncOptionType" default="SO_UK"/>
+					<xs:element name="masterSlot" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="48"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="ismaster" type="yesnoType" default="ST_NO"/>
+					<xs:element name="NAC_ZONE" type="NAC_ZONEType" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="BATTERY" type="BATTERYType"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_SingleType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RLHV_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="RELAY" type="RELAY_RLHVType"/>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+					<xs:element name="RELAY" type="RELAY_RLHVType"/>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RLLV_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="RELAY" type="RELAY_RLLVType" minOccurs="8" maxOccurs="8"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BCMB_MODULEType">
+		<xs:complexContent>
+			<xs:extension base="PANEL_MODULES_BaseType">
+				<xs:sequence>
+					<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10"/>
+					<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900"/>
+					<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000"/>
+					<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30300"/>
+					<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000"/>
+					<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000"/>
+					<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20400"/>
+					<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="430"/>
+					<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+					<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800"/>
+					<xs:element name="pOut1CreepI_max" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedShort">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="2800"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="pOut2CreepI_max" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedShort">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="2800"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="pOut1_BatteryBuffered" type="yesnoType" default="ST_YES"/>
+					<xs:element name="pOut2_BatteryBuffered" type="yesnoType" default="ST_YES"/>
+					<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="MAINPOWER" type="MAINPOWERType"/>
+					<xs:element name="RAILPOWER" type="RAILPOWERType"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="VAS_INTERFACEType">
+		<xs:sequence>
+			<xs:element name="siType" fixed="MP_SI_MODULE">
+				<xs:simpleType>
+					<xs:restriction base="siTypeType">
+						<xs:enumeration value="MP_SI_MODULE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="1"/>
+			<xs:element name="slot" type="xs:unsignedByte" default="201"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="connectedWith" type="physAddrType"/>
+			<xs:element name="supervised" type="yesnoType"/>
+			<xs:element name="vasSupervisionTime" type="xs:unsignedByte" default="10"/>
+			<xs:element ref="UART" minOccurs="0"/>
+			<xs:element ref="PRAESIDEO_SETTINGS" minOccurs="0"/>
+			<xs:element ref="VAS_TRIGGERS" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>

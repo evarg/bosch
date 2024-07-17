@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class LSNI_RELAY1_D extends Model
 {
     use HasFactory;
-    use \App\Traits\HasManuDet;
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_LSNI_RELAY1_D';
 
     protected $fillable = [];
+
+
 }

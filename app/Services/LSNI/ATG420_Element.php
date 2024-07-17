@@ -3,10 +3,11 @@
 namespace App\Services\LSNI;
 
 use App\Models\LSNI\Unknown;
+use App\Services\ATXBaseType_Element;
 use App\Services\ManuDetBase_Element;
 use SimpleXMLElement;
 
-class ATG420_Element extends ManuDetBase_Element
+class ATG420_Element extends ATXBaseType_Element
 {
     protected Unknown $lsni;
 
@@ -16,6 +17,6 @@ class ATG420_Element extends ManuDetBase_Element
 
         $this->lsni = new Unknown();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->manuDetBase);
+        $this->lsni->MANU_DET()->save($this->baseATX);
     }
 }

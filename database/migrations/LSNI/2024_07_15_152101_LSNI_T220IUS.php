@@ -13,13 +13,9 @@ return new class extends Migration
         Schema::create('LSNI_T220IUS', function (Blueprint $table) {
             $table->id();
 
-            // 				<xs:element name="sensitivity1" type="usTempSensType" default="USTSEN_135F"/>
             $this->usTempSensType($table, 'sensitivity1');
-            // 				<xs:element name="sensitivity2" type="usTempSensType" default="USTSEN_135F"/>
             $this->usTempSensType($table, 'sensitivity2');
-            // 				<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
             $this->LEDpresentLSNIType($table, 'LEDpresent');
-            // 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
             $this->yesnoType($table, 'standbyLEDblinking');
             $table->timestamps();
         });

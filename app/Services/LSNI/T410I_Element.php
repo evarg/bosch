@@ -3,10 +3,10 @@
 namespace App\Services\LSNI;
 
 use App\Models\LSNI\Unknown;
-use App\Services\ManuDetBase_Element;
+use App\Services\AutoDetBase_Element;
 use SimpleXMLElement;
 
-class T410I_Element extends ManuDetBase_Element
+class T410I_Element extends AutoDetBase_Element
 {
     protected Unknown $lsni;
 
@@ -16,6 +16,20 @@ class T410I_Element extends ManuDetBase_Element
 
         $this->lsni = new Unknown();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->manuDetBase);
+        $this->lsni->MANU_DET()->save($this->autoDetBase);
     }
 }
+
+// <xs:complexType name="OT410IType">
+// <xs:complexContent>
+//     <xs:extension base="AutoDetBaseType">
+//         <xs:sequence>
+//             <xs:element name="sensitivity1" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+//             <xs:element name="sensitivity2" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+//             <xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+//             <xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
+//             <xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+//         </xs:sequence>
+//     </xs:extension>
+// </xs:complexContent>
+// </xs:complexType>

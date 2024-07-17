@@ -2,13 +2,13 @@
 
 namespace App\Traits;
 
-use App\Models\ManuDetBase;
+use App\Models\BaseManuDet;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasManuDet
 {
-    public function MANU_DET(): MorphOne
+    public function BASE(): MorphOne
     {
-        return $this->morphOne(ManuDetBase::class, 'MANU_DET');
+        return $this->morphOne(BaseManuDet::class, 'BASEABLE');
     }
 }
