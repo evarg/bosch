@@ -4,12 +4,13 @@ namespace App\Traits;
 
 use App\Models\AutoDetBaseType;
 use App\Models\BaseAutoDet;
+use App\Models\LSNDeviceBase;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasAutoDet
 {
-    public function BASE_TYPE(): MorphOne
+    public function BASE(): MorphOne
     {
-        return $this->morphOne(BaseAutoDet::class, 'BASEABLE');
+        return $this->morphOne(LSNDeviceBase::class, 'LSNI');
     }
 }

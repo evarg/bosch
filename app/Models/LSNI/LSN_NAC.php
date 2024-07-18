@@ -9,7 +9,6 @@ class LSN_NAC extends Model
 {
     use HasFactory;
     use \App\Traits\HasManuDet;
-    use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_LSN_NAC';
 

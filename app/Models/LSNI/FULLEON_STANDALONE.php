@@ -9,7 +9,6 @@ class FULLEON_STANDALONE extends Model
 {
     use HasFactory;
     use \App\Traits\HasManuDet;
-    use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_FULLEON_STANDALONE';
 

@@ -2,6 +2,7 @@
 
 namespace App\Services\LSNI;
 
+use App\Models\LSNI\LSNI_OUT8_IN2;
 use App\Models\LSNI\Unknown;
 use App\Services\ManuDetBase_Element;
 use App\Services\OtherBase_Element;
@@ -9,15 +10,15 @@ use SimpleXMLElement;
 
 class LSNI_OUT8_IN2_Element extends OtherBase_Element
 {
-    protected Unknown $lsni;
+    protected LSNI_OUT8_IN2 $lsni;
 
     public function __construct(SimpleXMLElement $x)
     {
         parent::__construct($x);
 
-        $this->lsni = new Unknown();
+        $this->lsni = new LSNI_OUT8_IN2();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->baseOther);
+        $this->lsni->BASE()->save($this->baseElement);
     }
 }
 

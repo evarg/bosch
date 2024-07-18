@@ -49,8 +49,6 @@ return new class extends Migration
             // <xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
             $this->yesnoType($table, 'dayNightMode');
 
-            $table->nullableMorphs('AUTO_DET');
-
             $table->timestamps();
         });
     }

@@ -9,7 +9,6 @@ class LSNI_RELAY8 extends Model
 {
     use HasFactory;
     use \App\Traits\HasManuDet;
-    use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_LSNI_RELAY8';
 

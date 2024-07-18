@@ -23,7 +23,7 @@ return new class extends Migration
             //     <xs:element name="subNumber" type="siSubNumberType" default="0"/>
             $this->siSubNumberType($table, 'subNumber');
             //     <xs:element name="label" type="labelTextType"/>
-            $this->labelTextType($table, 'lalabelbel');
+            $this->labelTextType($table, 'label');
             //     <xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
             $this->subTypeType($table, 'subType');
             //     <xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>

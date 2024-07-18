@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DOTC410I extends Model
 {
     use HasFactory;
-    use \App\Traits\HasManuDet;
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_DOTC410I';

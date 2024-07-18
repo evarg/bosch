@@ -9,7 +9,6 @@ class LSNI_IN1 extends Model
 {
     use HasFactory;
     use \App\Traits\HasManuDet;
-    use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_LSNI_IN1';
 

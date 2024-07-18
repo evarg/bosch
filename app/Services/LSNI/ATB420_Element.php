@@ -2,22 +2,22 @@
 
 namespace App\Services\LSNI;
 
+use App\Models\LSNI\ATB420;
 use App\Models\LSNI\Unknown;
 use App\Services\ATXBaseType_Element;
-use App\Services\ManuDetBase_Element;
 use SimpleXMLElement;
 
 class ATB420_Element extends ATXBaseType_Element
 {
-    protected Unknown $lsni;
+    protected ATB420 $lsni;
 
     public function __construct(SimpleXMLElement $x)
     {
         parent::__construct($x);
 
-        $this->lsni = new Unknown();
+        $this->lsni = new ATB420();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->baseATX);
+        $this->lsni->BASE()->save($this->baseElement);
     }
 }
 

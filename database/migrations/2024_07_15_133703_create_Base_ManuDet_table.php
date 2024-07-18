@@ -39,8 +39,6 @@ return new class extends Migration
             // <xs:element name="avDelay" default="0" base="xs:unsignedByte"/>
             $this->xsunsignedByte($table, 'avDelay');
 
-            $table->nullableMorphs('MANU_DET');
-
             $table->timestamps();
         });
     }

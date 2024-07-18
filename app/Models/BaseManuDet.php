@@ -29,7 +29,7 @@ class BaseManuDet extends Model
 
     public function BASE(): MorphOne
     {
-        return $this->morphOne(LSNDeviceBase::class, 'BASEABLE');
+        return $this->morphOne(LSNDeviceBase::class, 'SUBBASE');
     }
 
 }

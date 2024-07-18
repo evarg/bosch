@@ -21,7 +21,8 @@ return new class extends Migration
             $this->xsunsignedByte($table, 'backPointer');
 
             $table->foreignIdFor(LSN_BUS::class, 'LSN_BUS_id')->nullable();
-            $table->nullableMorphs('BASEABLE');
+            $table->nullableMorphs('SUBBASE');
+            $table->nullableMorphs('LSNI');
 
             $table->timestamps();
         });

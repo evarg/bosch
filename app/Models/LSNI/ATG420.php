@@ -9,7 +9,6 @@ class ATG420 extends Model
 {
     use HasFactory;
     use \App\Traits\HasManuDet;
-    use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_ATG420';
 

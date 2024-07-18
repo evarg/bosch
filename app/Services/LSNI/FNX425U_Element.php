@@ -9,15 +9,15 @@ use SimpleXMLElement;
 
 class FNX425U_Element extends OtherBase_Element
 {
-    protected Unknown $lsni;
+    protected FNX425U $lsni;
 
     public function __construct(SimpleXMLElement $x)
     {
         parent::__construct($x);
 
-        $this->lsni = new Unknown();
+        $this->lsni = new FNX425U();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->baseOther);
+        $this->lsni->BASE()->save($this->baseElement);
     }
 }
 

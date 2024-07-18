@@ -9,7 +9,6 @@ class RAS_TTS2 extends Model
 {
     use HasFactory;
     use \App\Traits\HasManuDet;
-    use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_RAS_TTS2';
 

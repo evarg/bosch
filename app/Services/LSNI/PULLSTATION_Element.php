@@ -16,6 +16,6 @@ class PULLSTATION_Element extends ManuDetBase_Element
 
         $this->lsni = new DM210();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->manuDetBase);
+        $this->lsni->BASE()->save($this->manuDetBase);
     }
 }

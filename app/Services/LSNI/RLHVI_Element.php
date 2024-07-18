@@ -2,21 +2,22 @@
 
 namespace App\Services\LSNI;
 
+use App\Models\LSNI\RLHVI;
 use App\Models\LSNI\Unknown;
 use App\Services\OtherBase_Element;
 use SimpleXMLElement;
 
 class RLHVI_Element extends OtherBase_Element
 {
-    protected Unknown $lsni;
+    protected RLHVI $lsni;
 
     public function __construct(SimpleXMLElement $x)
     {
         parent::__construct($x);
 
-        $this->lsni = new Unknown();
+        $this->lsni = new RLHVI();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->baseOther);
+        $this->lsni->BASE()->save($this->baseElement);
     }
 }
 

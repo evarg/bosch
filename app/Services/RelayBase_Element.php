@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\BaseAutoDet;
+use App\Models\BaseRelay;
 use SimpleXMLElement;
 
 class RelayBase_Element extends LSNDeviceBase_Element
@@ -13,7 +14,7 @@ class RelayBase_Element extends LSNDeviceBase_Element
     {
         parent::__construct($x);
 
-        $this->relayBase = new BaseAutoDet((array)$x);
+        $this->relayBase = new BaseRelay((array)$x);
         $this->relayBase->save();
 
         $this->relayBase->BASE()->save($this->baseElement);

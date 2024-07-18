@@ -34,7 +34,7 @@ class BaseATX extends Model
 
     public function BASE(): MorphOne
     {
-        return $this->morphOne(LSNDeviceBase::class, 'DET_TYPE');
+        return $this->morphOne(LSNDeviceBase::class, 'SUBBASE');
     }
 
 }

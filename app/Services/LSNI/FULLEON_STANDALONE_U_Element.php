@@ -2,6 +2,7 @@
 
 namespace App\Services\LSNI;
 
+use App\Models\LSNI\FULLEON_STANDALONE_U;
 use App\Models\LSNI\Unknown;
 use App\Services\ManuDetBase_Element;
 use App\Services\OtherBase_Element;
@@ -9,15 +10,15 @@ use SimpleXMLElement;
 
 class FULLEON_STANDALONE_U_Element extends OtherBase_Element
 {
-    protected Unknown $lsni;
+    protected FULLEON_STANDALONE_U $lsni;
 
     public function __construct(SimpleXMLElement $x)
     {
         parent::__construct($x);
 
-        $this->lsni = new Unknown();
+        $this->lsni = new FULLEON_STANDALONE_U();
         $this->lsni->save();
-        $this->lsni->MANU_DET()->save($this->baseOther);
+        $this->lsni->BASE()->save($this->baseElement);
     }
 }
 

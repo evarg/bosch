@@ -10,14 +10,14 @@ class BaseOther extends Model
 {
     use HasFactory;
 
-    protected $table = 'Base_Relay';
+    protected $table = 'Base_Other';
 
     protected $fillable = [
     ];
 
     public function BASE(): MorphOne
     {
-        return $this->morphOne(LSNDeviceBase::class, 'BASEABLE');
+        return $this->morphOne(LSNDeviceBase::class, 'SUBBASE');
     }
 
 }

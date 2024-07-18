@@ -13,11 +13,24 @@ class BaseRelay extends Model
     protected $table = 'Base_Relay';
 
     protected $fillable = [
+        'siType',
+        'port',
+        'siNumber',
+        'subNumber',
+        'label',
+        'subType',
+        'nacType',
+        'bypassable',
+        'blockable',
+        'silenceable',
+        'drillable',
+        'restPosition',
+        'supervised',
     ];
 
     public function BASE(): MorphOne
     {
-        return $this->morphOne(LSNDeviceBase::class, 'BASEABLE');
+        return $this->morphOne(LSNDeviceBase::class, 'SUBBASE');
     }
 
 }

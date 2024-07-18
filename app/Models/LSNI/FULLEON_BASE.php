@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FULLEON_BASE extends Model
 {
     use HasFactory;
-    use \App\Traits\HasManuDet;
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_FULLEON_BASE';
