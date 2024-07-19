@@ -15,7 +15,7 @@ class O410I_Element extends AutoDetBase_Element
     {
         parent::__construct($x);
 
-        $this->lsni = new O410I();
+        $this->lsni = new O410I((array)$x);
         $this->lsni->save();
         $this->lsni->BASE()->save($this->baseElement);
     }

@@ -15,7 +15,7 @@ class LSNI_RELAY8_Element extends RelayBase_Element
     {
         parent::__construct($x);
 
-        $this->lsni = new LSNI_RELAY8();
+        $this->lsni = new LSNI_RELAY8((array)$x);
         $this->lsni->save();
         $this->lsni->BASE()->save($this->baseElement);
     }
