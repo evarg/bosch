@@ -413,7 +413,7 @@
 <xs:complexType name="GLTZONENBKType">
 	<xs:sequence>
 		<xs:element name="port" default="1" base="xs:unsignedByte"/>
-		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN">
+		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN"/>
 		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
@@ -466,7 +466,7 @@
 </xs:complexType>
 <xs:complexType name="LSN_BATTERYType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_BATTERY" base="xs:NMTOKEN"/
+		<xs:element name="siType" default="MP_SI_BATTERY" base="xs:NMTOKEN"/>
 >		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
 	</xs:sequence>
@@ -641,7 +641,7 @@
 </xs:complexType>
 <xs:complexType name="FNX425U_SOUNDERType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/
+		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/>
 >		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="port" fixed="1" base="xs:unsignedByte"/>
@@ -664,7 +664,7 @@
 </xs:complexType>
 <xs:complexType name="FNX425U_STROBEType">
 	<xs:sequence>
-		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/
+		<xs:element name="siType" default="MP_SI_NAC" base="xs:NMTOKEN"/>
 >		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
@@ -1605,9 +1605,8 @@
 </xs:complexType>
 <xs:complexType name="TITANUS_MICROSensorType">
 	<xs:sequence>
-		<xs:element name="port" type="portType">
-		</xs:element>
-		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN">
+		<xs:element name="port" type="portType"/>
+		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN"/>
 		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
@@ -1635,7 +1634,7 @@
 <xs:complexType name="TITANUS_TOP_PROSensorType">
 	<xs:sequence>
 		<xs:element name="port" type="portType"/>
-		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN">
+		<xs:element name="siType" fixed="MP_SI_POINT" base="xs:NMTOKEN"/>
 		<xs:element name="siNumber" type="siNumberType" default="0"/>
 		<xs:element name="subNumber" type="siSubNumberType" default="0"/>
 		<xs:element name="label" type="labelTextType"/>
@@ -1689,12 +1688,10 @@
 	<xs:union memberTypes="magicSensOTType xs:NMTOKEN"/>
 </xs:simpleType>
 <xs:simpleType name="magicSensOTType">
-	<xs:union memberTypes="magicSensBaseSetType" base="xs:NMTOKEN">
+	<xs:union memberTypes="magicSensBaseSetType" base="xs:NMTOKEN"/>
 				<xs:enumeration value="MSEN_OPTICAL_ONLY"/>
 				<xs:enumeration value="MSEN_TDIFF_ONLY"/>
 				<xs:enumeration value="MSEN_TMAX_ONLY"/>
-			</xs:restriction>
-		</xs:simpleType>
 	</xs:union>
 </xs:simpleType>
 <xs:simpleType name="microSensAirFlowFaultDelayType" base="xs:NMTOKEN"/>

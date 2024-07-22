@@ -3,11 +3,10 @@
 namespace App\Services\LSNI;
 
 use App\Models\LSNI\LSNI_RELAY8;
-use App\Models\LSNI\Unknown;
-use App\Services\RelayBase_Element;
+use App\Services\OtherBase_Element;
 use SimpleXMLElement;
 
-class LSNI_RELAY8_Element extends RelayBase_Element
+class LSNI_RELAY8_Element extends OtherBase_Element
 {
     protected LSNI_RELAY8 $lsni;
 

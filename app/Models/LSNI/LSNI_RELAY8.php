@@ -12,7 +12,8 @@ class LSNI_RELAY8 extends Model
 
     protected $table = 'LSNI_LSNI_RELAY8';
 
-    protected $fillable = [];
+    protected $fillable = ['*'];
 
     protected $guarded = ['*'];
+
 }

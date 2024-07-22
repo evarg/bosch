@@ -14,7 +14,7 @@ class DM210_Element extends ManuDetBase_Element
     {
         parent::__construct($x);
 
-        $this->lsni = new DM210();
+        $this->lsni = new DM210((array)$x);
         $this->lsni->save();
 
         $this->lsni->BASE()->save($this->baseElement);

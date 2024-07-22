@@ -14,6 +14,8 @@ class RelayBase_Element extends LSNDeviceBase_Element
     {
         parent::__construct($x);
 
+        var_dump((array)$x);
+
         $this->relayBase = new BaseRelay((array)$x);
         $this->relayBase->save();
 

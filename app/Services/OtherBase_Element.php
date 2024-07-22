@@ -15,7 +15,7 @@ class OtherBase_Element extends LSNDeviceBase_Element
     {
         parent::__construct($x);
 
-        $this->baseOther = new BaseOther(/*(array)$x*/);
+        $this->baseOther = new BaseOther((array)$x);
         $this->baseOther->save();
 
         $this->baseOther->BASE()->save($this->baseElement);

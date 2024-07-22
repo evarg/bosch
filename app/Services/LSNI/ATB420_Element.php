@@ -15,7 +15,7 @@ class ATB420_Element extends ATXBaseType_Element
     {
         parent::__construct($x);
 
-        $this->lsni = new ATB420();
+        $this->lsni = new ATB420((array)$x);
         $this->lsni->save();
         $this->lsni->BASE()->save($this->baseElement);
     }

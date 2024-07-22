@@ -12,7 +12,7 @@ class DM210 extends Model
 
     protected $table = 'LSNI_DM210';
 
-    protected $fillable = [];
+    protected $fillable = ['*'];
 
-    protected $guarded = [];
+    protected $guarded = ['*'];
 }
