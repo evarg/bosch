@@ -11,6 +11,6 @@ class LSNI_TI13 extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_LSNI_TI13';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

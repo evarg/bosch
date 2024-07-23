@@ -11,6 +11,6 @@ class O110I extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_O110I';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

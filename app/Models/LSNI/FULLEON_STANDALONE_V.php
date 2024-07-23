@@ -11,6 +11,6 @@ class FULLEON_STANDALONE_V extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_FULLEON_STANDALONE_V';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

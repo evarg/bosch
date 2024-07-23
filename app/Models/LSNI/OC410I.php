@@ -11,7 +11,7 @@ class OC410I extends Model
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_OC410I';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
     ];
 }

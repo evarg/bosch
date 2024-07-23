@@ -11,6 +11,6 @@ class DOT410I extends Model
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_DOT410I';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

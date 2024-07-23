@@ -11,6 +11,6 @@ class LSNI_RELAY1 extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_LSNI_RELAY1';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

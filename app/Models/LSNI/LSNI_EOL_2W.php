@@ -11,6 +11,6 @@ class LSNI_EOL_2W extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_LSNI_EOL_2W';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

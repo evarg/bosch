@@ -11,6 +11,7 @@ class ATG420 extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_ATG420';
+    protected $connection = 'mysql_BoschFPA5000';
 
     protected $fillable = [];
 }

@@ -11,6 +11,6 @@ class RAS_TPS2 extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_RAS_TPS2';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

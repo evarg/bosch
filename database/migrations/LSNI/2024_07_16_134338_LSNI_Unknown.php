@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('LSNI_Unknown', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSNI_Unknown', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSNI_Unknown');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSNI_Unknown');
     }
 };

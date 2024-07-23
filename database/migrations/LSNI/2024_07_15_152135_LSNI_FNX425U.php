@@ -10,7 +10,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('LSNI_FNX425U', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSNI_FNX425U', function (Blueprint $table) {
             $table->id();
             // <xs:element name="siNumber" type="siNumberType" default="0"/>
             $this->siNumberType($table, 'siNumber');
@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSNI_FNX425U');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSNI_FNX425U');
     }
 };
 

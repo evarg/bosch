@@ -11,7 +11,7 @@ class O410I extends Model
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_O410I';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'sensitivity1',
         'sensitivity2',

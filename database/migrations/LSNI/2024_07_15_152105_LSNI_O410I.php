@@ -10,7 +10,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('LSNI_O410I', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSNI_O410I', function (Blueprint $table) {
             $table->id();
 
 
@@ -34,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSNI_O410I');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSNI_O410I');
     }
 };
 

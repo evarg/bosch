@@ -10,7 +10,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('LSNI_LSN_NAC', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSNI_LSN_NAC', function (Blueprint $table) {
             $table->id();
 
             $this->usTempSensType($table, 'sensitivity1');
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSNI_LSN_NAC');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSNI_LSN_NAC');
     }
 };
 

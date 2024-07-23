@@ -11,6 +11,6 @@ class RLHVI extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_RLHVI';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

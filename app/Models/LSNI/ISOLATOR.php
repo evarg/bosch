@@ -11,6 +11,6 @@ class ISOLATOR extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_ISOLATOR';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

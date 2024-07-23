@@ -11,6 +11,6 @@ class RAS_TMS_NOFAN extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_RAS_TMS_NOFAN';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

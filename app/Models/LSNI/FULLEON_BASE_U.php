@@ -11,6 +11,6 @@ class FULLEON_BASE_U extends Model
     use \App\Traits\HasAutoDet;
 
     protected $table = 'LSNI_FULLEON_BASE_U';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

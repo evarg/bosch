@@ -11,6 +11,6 @@ class FWI270 extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_FWI270';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }

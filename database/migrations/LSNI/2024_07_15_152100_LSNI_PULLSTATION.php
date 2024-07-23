@@ -10,7 +10,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('LSNI_PULLSTATION', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSNI_PULLSTATION', function (Blueprint $table) {
             $table->id();
 // 				<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
             $this->yesnoType($table, 'avDestandbyLEDblinkinglay');
@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSNI_PULLSTATION');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSNI_PULLSTATION');
     }
 };
 

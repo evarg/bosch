@@ -11,6 +11,6 @@ class PULLSTATION extends Model
     use \App\Traits\HasManuDet;
 
     protected $table = 'LSNI_PULLSTATION';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [];
 }
