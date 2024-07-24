@@ -11,7 +11,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('MODULE_BCMB', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('MODULE_BCMB', function (Blueprint $table) {
             $table->id();
 
             // <xs:element name="measurementPeriod" type="xs:unsignedShort" default="10"/>
@@ -52,7 +52,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('MODULE_BCMB');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('MODULE_BCMB');
     }
 };
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('MODULE_IO_8', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('MODULE_IO_8', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('MODULE_IO_8');
+        Schema::connection('mysql_BoschFPA5000')->sdropIfExists('MODULE_IO_8');
     }
 };

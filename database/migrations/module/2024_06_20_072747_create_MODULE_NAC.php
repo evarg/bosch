@@ -12,7 +12,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('MODULE_NAC', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('MODULE_NAC', function (Blueprint $table) {
             $table->id();
 
             // <xs:element name="electricEnvironment" type="nacElectricEnviroType" default="EVT_NORMAL"/>
@@ -35,7 +35,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('MODULE_NAC');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('MODULE_NAC');
     }
 };
 
