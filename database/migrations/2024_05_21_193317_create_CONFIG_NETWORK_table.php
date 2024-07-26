@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('CONFIG_NETWORK', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('CONFIG_NETWORK', function (Blueprint $table) {
             $table->id();
 
             $table->string('CUSTOMER_INFO')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('CONFIG_NETWORK');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('CONFIG_NETWORK');
     }
 };

@@ -1,6 +1,6 @@
 <?php
 
-use App\Traits\BoschSimpleTypes;
+use App\Traits\Import\BoschFPA5000\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,7 +11,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('Base_Other', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('Base_Other', function (Blueprint $table) {
             $table->id();
 
             $this->xsNMTOKEN($table, 'siType');
@@ -29,7 +29,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('Base_Other');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('Base_Other');
     }
 };
 

@@ -11,7 +11,7 @@ class BaseATX extends Model
     use HasFactory;
 
     protected $table = 'Base_ATX';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'siType',
         'comAdr',

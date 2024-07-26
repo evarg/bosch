@@ -10,6 +10,7 @@ class HEADER extends Model
     use HasFactory;
 
     protected $table = 'HEADER';
+    protected $connection = 'mysql_BoschFPA5000';
 
     protected $fillable = [
         'filename',
@@ -21,11 +22,6 @@ class HEADER extends Model
         'xmlValidation',
         'mismatchConfirmed'
     ];
-
-    public function adapted()
-    {
-        return $this->hasMany(dateTime::class);
-    }
 
     public function CONFIG_NETWORK()
     {

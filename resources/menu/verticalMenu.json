@@ -61,25 +61,19 @@
             "url": "cards/basic"
         },
         {
-            "menuHeader": "RAW data"
+            "menuHeader": "BOSCH FPA5000"
         },
         {
             "name": "CONFIG_NETWORK",
             "icon": "menu-icon tf-icons mdi mdi-file-document-box",
             "slug": "cards-basic",
-            "url": "/CONFIG_NETWORK"
-        },
-        {
-            "name": "HEADER",
-            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
-            "slug": "cards-basic",
-            "url": "/HEADER"
+            "url": "/Bosch_FPA5000/CONFIG_NETWORK"
         },
         {
             "name": "NODE",
             "icon": "menu-icon tf-icons mdi mdi-file-document-box",
             "slug": "cards-basic",
-            "url": "/NODE"
+            "url": "/Bosch_FPA5000/NODE"
         }
     ]
 }

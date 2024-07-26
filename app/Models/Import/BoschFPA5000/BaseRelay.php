@@ -11,7 +11,7 @@ class BaseRelay extends Model
     use HasFactory;
 
     protected $table = 'Base_Relay';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'siType',
         'port',

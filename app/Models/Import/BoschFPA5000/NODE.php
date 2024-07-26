@@ -11,7 +11,7 @@ class NODE extends Model
     use HasFactory;
 
     protected $table = 'NODE';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
        'netLocalCRC',
        'netGroup',

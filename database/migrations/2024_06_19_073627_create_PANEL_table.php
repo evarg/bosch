@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\NODE;
-use App\Models\PANEL;
-use App\Traits\BoschSimpleTypes;
+use App\Traits\Import\BoschFPA5000\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +11,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('PANEL', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('PANEL', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
@@ -59,7 +57,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('PANEL');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('PANEL');
     }
 };
 

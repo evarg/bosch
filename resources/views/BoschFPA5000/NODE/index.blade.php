@@ -3,7 +3,11 @@
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">RAW Data /</span> CONFIG_NETWORK
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">
+            RAW Data /
+        </span>
+        {{ $breadCrumps }}
     </h4>
 
     <!-- Basic Bootstrap Table -->
@@ -16,21 +20,23 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>CUSTOMER_INFO</th>
-                            <th>SUPPORT_INFO</th>
-                            <th>Liczba węzłów</th>
-                            <th>STATUS</th>
-                            <th>Actions</th>
+                            <th width="6%">ID</th>
+                            <th width="6%">Typ</th>
+                            <th width="6%">netGroup</th>
+                            <th width="6%">netNode</th>
+                            <th>Etykieta</th>
+                            <th width="6%">STATUS</th>
+                            <th width="6%">Akcje</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($cns as $cn)
+                        @foreach ($nodes as $node)
                             <tr>
-                                <td>{{ $cn->id }}</td>
-                                <td>{{ $cn->CUSTOMER_INFO }}</td>
-                                <td>{{ $cn->SUPPORT_INFO }}</td>
-                                <td> </td>
+                                <td>{{ $node->id }}</td>
+                                <td>{{ $node->nodeType }}</td>
+                                <td>{{ $node->netGroup }}</td>
+                                <td>{{ $node->netNode }}</td>
+                                <td>{{ $node->label }}</td>
                                 <td><span class="badge rounded-pill bg-label-primary me-1">Aktywny</span></td>
                                 <td>
                                     <div class="dropdown">
@@ -50,11 +56,13 @@
                     <tfoot class="table-border-bottom-0">
                         <tr>
                             <th>ID</th>
-                            <th>CUSTOMER_INFO</th>
-                            <th>SUPPORT_INFO</th>
-                            <th>Liczba węzłów</th>
+                            <th>Typ</th>
+                            <th>netGroup</th>
+                            <th>netNode</th>
+                            <th>Etykieta</th>
                             <th>STATUS</th>
-                            <th>Actions</th>
+                            <th>Akcje</th>
+
                         </tr>
                     </tfoot>
                 </table>

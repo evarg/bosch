@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Modules\LSNxxx_MODULE;
-use App\Traits\BoschSimpleTypes;
+use App\Models\Import\BoschFPA5000\Modules\LSNxxx_MODULE;
+use App\Traits\Import\BoschFPA5000\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +12,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('LSN_BUS', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSN_BUS', function (Blueprint $table) {
             $table->id();
 
             // <xs:element name="siType" type="siTypeType" default="MP_SI_LOOP"/>
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSN_BUS');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSN_BUS');
     }
 };

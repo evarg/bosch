@@ -10,7 +10,7 @@ class PANEL extends Model
     use HasFactory;
 
     protected $table = 'PANEL';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'siNumber',
         'siType',

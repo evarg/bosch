@@ -11,7 +11,7 @@ class BaseAutoDet extends Model
     use HasFactory;
 
     protected $table = 'Base_AutoDet';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'siType',
         'comAdr',

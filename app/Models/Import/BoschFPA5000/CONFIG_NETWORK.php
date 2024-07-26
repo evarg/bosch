@@ -11,6 +11,7 @@ class CONFIG_NETWORK extends Model
     use HasFactory;
 
     protected $table = 'CONFIG_NETWORK';
+    protected $connection = 'mysql_BoschFPA5000';
 
     public function HEADER()
     {

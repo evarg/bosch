@@ -11,7 +11,7 @@ class LSNDeviceBase extends Model
     use HasFactory;
 
     protected $table = 'LSN_Device_Base';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'lsnTypeID',
     	'lsnSubtype',

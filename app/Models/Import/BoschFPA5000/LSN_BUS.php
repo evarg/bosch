@@ -10,7 +10,7 @@ class LSN_BUS extends Model
     use HasFactory;
 
     protected $table = 'LSN_BUS';
-
+    protected $connection = 'mysql_BoschFPA5000';
     protected $fillable = [
         'siType',
         'port',

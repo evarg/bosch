@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->sdropIfExists('MODULE_IO_8');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('MODULE_IO_8');
     }
 };

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    use \App\Traits\BoschSimpleTypes;
+    use \App\Traits\Import\BoschFPA5000\BoschSimpleTypes;
 
     public function up(): void
     {
