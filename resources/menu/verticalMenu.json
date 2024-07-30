@@ -74,6 +74,12 @@
             "icon": "menu-icon tf-icons mdi mdi-file-document-box",
             "slug": "cards-basic",
             "url": "/Bosch_FPA5000/NODE"
+        },
+        {
+            "name": "MODULE",
+            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
+            "slug": "cards-basic",
+            "url": "/Bosch_FPA5000/MODULE"
         }
     ]
 }

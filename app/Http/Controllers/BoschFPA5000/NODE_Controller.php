@@ -12,9 +12,9 @@ class NODE_Controller extends Controller
     public function index(Request $request)
     {
         if($request->has('config_network')) {
-            $cn = CONFIG_NETWORK::with('HEADER')->find($request->config_network);
+            $cn = CONFIG_NETWORK::with('HEADER')->with('NETWORK_NODES')->find($request->config_network);
             $breadCrumps = 'NODES of ' . $cn->HEADER->filename;
-            $nodes = $cn->NODES();
+            $nodes = $cn->NETWORK_NODES;
         }
         else {
             $breadCrumps = 'All NODES';

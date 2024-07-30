@@ -10,7 +10,7 @@ class CONFIG_NETWORK_Controller extends Controller
     public function index()
     {
         //Category::where('parent_id', 0)->withCount('articles')->get();
-        $cns = CONFIG_NETWORK::withCount('NODES as numberOfNodes')->with('HEADER')->get();
+        $cns = CONFIG_NETWORK::withCount('NETWORK_NODES as numberOfNodes')->with('HEADER')->get();
 
         // var_dump($cns); die();
         return view('BoschFPA5000\CONFIG_NETWORK.index', compact('cns'));

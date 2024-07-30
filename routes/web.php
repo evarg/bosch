@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\xsdController;
 
 use App\Http\Controllers\BoschFPA5000\CONFIG_NETWORK_Controller;
+use App\Http\Controllers\BoschFPA5000\MODULE_Controller;
 use App\Http\Controllers\BoschFPA5000\NODE_Controller;
 
 Route::get('/import/config', [ImportController::class, 'config']);
@@ -18,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('Bosch_FPA5000/CONFIG_NETWORK', [CONFIG_NETWORK_Controller::class, 'index'])->name('CONFIG_NETWORK.index');
 Route::get('Bosch_FPA5000/NODE', [NODE_Controller::class, 'index'])->name('NODE.index');
+Route::get('Bosch_FPA5000/MODULE', [MODULE_Controller::class, 'index'])->name('MODULE.index');

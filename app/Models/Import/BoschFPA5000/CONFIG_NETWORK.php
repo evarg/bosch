@@ -18,8 +18,14 @@ class CONFIG_NETWORK extends Model
         return $this->hasOne(HEADER::class, 'CONFIG_NETWORK');
     }
 
-    public function NODES()
+    // public function NODES()
+    // {
+    //     return $this->hasMany(NODE::class, 'CONFIG_NETWOR');
+    // }
+
+    public function NETWORK_NODES()
     {
+        // return 'ddd';
         return $this->hasMany(NODE::class, 'CONFIG_NETWORK');
     }
 

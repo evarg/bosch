@@ -34,7 +34,7 @@ class NODE extends Model
 
     public function CONFIG_NETWORK(): BelongsTo
     {
-        return $this->belongsTo(CONFIG_NETWORK::class);
+        return $this->belongsTo(CONFIG_NETWORK::class, 'CONFIG_NETWORK');
     }
 
     public function PANEL()

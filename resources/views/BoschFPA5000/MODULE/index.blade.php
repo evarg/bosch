@@ -25,20 +25,17 @@
                             <th width="6%">netGroup</th>
                             <th width="6%">netNode</th>
                             <th>Etykieta</th>
-                            <th width="6%">Typ panelu</th>
                             <th width="6%">STATUS</th>
                             <th width="6%">Akcje</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($nodes as $node)
+                        @foreach ($modules as $module)
                             <tr>
-                                <td>{{ $node->id }}</td>
-                                <td>{{ $node->nodeType }}</td>
-                                <td>{{ $node->netGroup }}</td>
-                                <td>{{ $node->netNode }}</td>
-                                <td>{{ $node->label }}</td>
-                                <td>{{ $node->nodeType }}</td>
+                                <td>{{ $module->id }}</td>
+                                <td>{{ $module->slot }}</td>
+                                <td>{{ $module->label }}</td>
+                                <td>{{ $module->MODULEABLE_type }}</td>
                                 <td><span class="badge rounded-pill bg-label-primary me-1">Aktywny</span></td>
                                 <td>
                                     <div class="dropdown">
@@ -62,7 +59,6 @@
                             <th>netGroup</th>
                             <th>netNode</th>
                             <th>Etykieta</th>
-                            <th>Typ panelu</th>
                             <th>STATUS</th>
                             <th>Akcje</th>
 
