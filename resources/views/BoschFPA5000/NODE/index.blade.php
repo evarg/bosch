@@ -1,11 +1,11 @@
-@extends('layouts/contentNavbarLayout')
+@extends('layout_default/content')
 
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">
-            RAW Data /
+            RAW Data / BoschFPA5000 / 
         </span>
         {{ $breadCrumps }}
     </h4>
