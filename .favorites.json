@@ -1,0 +1,115 @@
+[
+    {
+        "type": "Group",
+        "name": "BOSCH",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "w6PHz8pBgjTfG5cy"
+    },
+    {
+        "type": "Group",
+        "name": "CONFIG_NETWORK",
+        "parent_id": "w6PHz8pBgjTfG5cy",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Yvg7GjaLVelDSFu3"
+    },
+    {
+        "type": "Group",
+        "name": "NODE",
+        "parent_id": "w6PHz8pBgjTfG5cy",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "Hhp5BtZvOiG9FTug"
+    },
+    {
+        "type": "Group",
+        "name": "MODULE",
+        "parent_id": "w6PHz8pBgjTfG5cy",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "3QG4WY9FzfZl1K5L"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Http\\Controllers\\BoschFPA5000\\CONFIG_NETWORK_Controller.php",
+        "parent_id": "Yvg7GjaLVelDSFu3",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Http\\Controllers\\BoschFPA5000\\CONFIG_NETWORK_Controller.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "ImkeKCLJTxPfYsDZ"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Http\\Controllers\\BoschFPA5000\\MODULE_Controller.php",
+        "parent_id": "3QG4WY9FzfZl1K5L",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Http\\Controllers\\BoschFPA5000\\MODULE_Controller.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "KUEC1zsh8q5gATix"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Http\\Controllers\\BoschFPA5000\\NODE_Controller.php",
+        "parent_id": "Hhp5BtZvOiG9FTug",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Http\\Controllers\\BoschFPA5000\\NODE_Controller.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "fUG0NjrZ9LBaKtW3"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Models\\Import\\BoschFPA5000\\CONFIG_NETWORK.php",
+        "parent_id": "Yvg7GjaLVelDSFu3",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Models\\Import\\BoschFPA5000\\CONFIG_NETWORK.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "i6OGtekqbNwMxhzW"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Models\\Import\\BoschFPA5000\\NODE.php",
+        "parent_id": "Hhp5BtZvOiG9FTug",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Models\\Import\\BoschFPA5000\\NODE.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "v4GMWcqyZmjo7rIY"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Models\\Import\\BoschFPA5000\\PANEL_MODULES_Base.php",
+        "parent_id": "3QG4WY9FzfZl1K5L",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Models\\Import\\BoschFPA5000\\PANEL_MODULES_Base.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "uJpASNzxXRv6Ogbt"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Services\\Import\\BoschFPA5000\\CONFIG_NETWORK_Element.php",
+        "parent_id": "Yvg7GjaLVelDSFu3",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Services\\Import\\BoschFPA5000\\CONFIG_NETWORK_Element.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "r9FeqSYfR4nJOG8t"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Services\\Import\\BoschFPA5000\\NODE_Element.php",
+        "parent_id": "Hhp5BtZvOiG9FTug",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Services\\Import\\BoschFPA5000\\NODE_Element.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "LJh8FwxVidQ7er6D"
+    },
+    {
+        "type": "File",
+        "name": "c:\\xampp\\htdocs\\bosch\\app\\Services\\Import\\BoschFPA5000\\PANEL_MODULES_Base_Element.php",
+        "parent_id": "3QG4WY9FzfZl1K5L",
+        "fsPath": "c:\\xampp\\htdocs\\bosch\\app\\Services\\Import\\BoschFPA5000\\PANEL_MODULES_Base_Element.php",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "GCrxXHUF9WBdbvVj"
+    }
+]

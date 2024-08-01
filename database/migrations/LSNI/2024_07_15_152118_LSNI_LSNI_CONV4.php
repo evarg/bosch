@@ -6,12 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    use \App\Traits\BoschSimpleTypes;
+    use \App\Traits\Import\BoschFPA5000\BoschSimpleTypes;
 
     public function up(): void
     {
-        Schema::create('LSNI_LSNI_CONV4', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSNI_LSNI_CONV4', function (Blueprint $table) {
             $table->id();
+
+            $this->usTempSensType($table, 'sensitivity1');
+
             $table->timestamps();
         });
     }
@@ -21,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('LSNI_LSNI_CONV4');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSNI_LSNI_CONV4');
     }
 };
 

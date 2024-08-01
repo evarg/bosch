@@ -8,18 +8,16 @@
             "badge": ["danger", "5"]
         },
         {
-            "url": "https://bosch.lh/czujki",
+            "url": "/czujki",
             "name": "Sieci",
             "icon": "menu-icon tf-icons mdi mdi-account-network",
-            "slug": "app-email",
-            "target": "_blank"
+            "slug": "app-email"
         },
         {
-            "url": "https://bosch.lh/czujki",
-            "name": "Panele",
+            "url": "/configuration",
+            "name": "Konfiguracje",
             "icon": "menu-icon tf-icons mdi mdi-keyboard-close",
-            "slug": "app-email",
-            "target": "_blank"
+            "slug": "app-email"
         },
         {
             "menuHeader": "Detekcja"
@@ -61,25 +59,25 @@
             "url": "cards/basic"
         },
         {
-            "menuHeader": "RAW data"
+            "menuHeader": "BOSCH FPA5000"
         },
         {
             "name": "CONFIG_NETWORK",
             "icon": "menu-icon tf-icons mdi mdi-file-document-box",
             "slug": "cards-basic",
-            "url": "/CONFIG_NETWORK"
-        },
-        {
-            "name": "HEADER",
-            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
-            "slug": "cards-basic",
-            "url": "/HEADER"
+            "url": "/Bosch_FPA5000/CONFIG_NETWORK"
         },
         {
             "name": "NODE",
             "icon": "menu-icon tf-icons mdi mdi-file-document-box",
             "slug": "cards-basic",
-            "url": "/NODE"
+            "url": "/Bosch_FPA5000/NODE"
+        },
+        {
+            "name": "MODULE",
+            "icon": "menu-icon tf-icons mdi mdi-file-document-box",
+            "slug": "cards-basic",
+            "url": "/Bosch_FPA5000/MODULE"
         }
     ]
 }

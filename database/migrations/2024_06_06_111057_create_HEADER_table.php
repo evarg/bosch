@@ -1,10 +1,10 @@
 <?php
 
+use App\Traits\Import\BoschFPA5000\BoschSimpleTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use App\Traits\BoschSimpleTypes;
 
 return new class extends Migration
 {
@@ -12,7 +12,7 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('HEADER', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('HEADER', function (Blueprint $table) {
             $table->id();
 
             $this->xsstring($table, 'filename');
@@ -37,7 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('HEADER');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('HEADER');
     }
 };
 

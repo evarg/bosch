@@ -4,19 +4,18 @@ use App\Http\Controllers\ImportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\xsdController;
 
-use App\Http\Controllers\CONFIG_NETWORK_Controller;
-use App\Http\Controllers\HEADER_Controller;
-use App\Http\Controllers\NODE_Controller;
+use App\Http\Controllers\BoschFPA5000\CONFIG_NETWORK_Controller;
+use App\Http\Controllers\BoschFPA5000\MODULE_Controller;
+use App\Http\Controllers\BoschFPA5000\NODE_Controller;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/import/config', [ImportController::class, 'config']);
 Route::get('/import/xsd', [xsdController::class, 'index']);
 
-Route::get('/', function () {
-    return view('content.dashboard.dashboards-analytics');
-});
-
 //Route::get('/history/xml', [HistoryController::class, 'index'])->name('CONFIG_NETWORK.index');
 
-Route::get('/CONFIG_NETWORK', [CONFIG_NETWORK_Controller::class, 'index'])->name('CONFIG_NETWORK.index');
-Route::get('/HEADER', [HEADER_Controller::class, 'index'])->name('HEADER.index');
-Route::get('/NODE', [NODE_Controller::class, 'index'])->name('NODE.index');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('Bosch_FPA5000/CONFIG_NETWORK', [CONFIG_NETWORK_Controller::class, 'index'])->name('BoschFPA5000.CONFIG_NETWORK.index');
+Route::get('Bosch_FPA5000/NODE', [NODE_Controller::class, 'index'])->name('BoschFPA5000.NODE.index');
+Route::get('Bosch_FPA5000/MODULE', [MODULE_Controller::class, 'index'])->name('BoschFPA5000.MODULE.index');
