@@ -1,11 +1,11 @@
 @extends('layout_default/content')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'RAW Data / BoschFPA5000 / NODES')
 
 @section('content')
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">
-            RAW Data / BoschFPA5000 / 
+            RAW Data / BoschFPA5000 /
         </span>
         {{ $breadCrumps }}
     </h4>

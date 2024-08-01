@@ -8,11 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Instalation extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'name', 'description'
-    ];
-
-    public $timestamps = true;
-
 }
