@@ -17,7 +17,8 @@ class InstalationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->sentence(fake()->numberBetween(1, 5), false),
+            'desc' => fake()->sentence(fake()->numberBetween(0, 10), true),
         ];
     }
 }

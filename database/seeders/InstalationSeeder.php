@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Instalation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,8 @@ class InstalationSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-    }
+        Instalation::factory()
+            ->count(50)
+            ->create();
+        }
 }
