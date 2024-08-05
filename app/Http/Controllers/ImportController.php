@@ -12,7 +12,6 @@ use SimpleXMLElement;
 
 class ImportController extends Controller
 {
-
     public $cn;
     public $reader;
 

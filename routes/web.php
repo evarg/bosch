@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ImportController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\xsdController;
 
 use App\Http\Controllers\BoschFPA5000\CONFIG_NETWORK_Controller;
 use App\Http\Controllers\BoschFPA5000\MODULE_Controller;
@@ -12,7 +11,6 @@ use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\InstalationController;
 
 Route::get('/import/config', [ImportController::class, 'config']);
-Route::get('/import/xsd', [xsdController::class, 'index']);
 
 //Route::get('/history/xml', [HistoryController::class, 'index'])->name('CONFIG_NETWORK.index');
 
