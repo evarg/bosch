@@ -3,64 +3,20 @@
 @section('title', 'RAW Data / BoschFPA5000 / CONFIG_NETWORK')
 
 @section('content')
-<h4 class="py-3 mb-4">
-    <span class="text-muted fw-light">
-        Dashboard /
-    </span>
-    Instalacje
-</h4>
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">
+            Dashboard /
+        </span>
+        Instalacje
+    </h4>
 
-<!-- Basic Bootstrap Table -->
-<div class="row">
-    <div class="col-md-12">
-        <ul class="nav nav-pills flex-column flex-md-row mb-4 gap-2 gap-lg-0">
-            <li class="nav-item"><a class="nav-link" href="{{ route('instalation.create') }}"><i class="mdi mdi-note-plus-outline mdi-20px me-1"></i>DODAJ</a></li>
-        </ul>
-    </div>
-    <div class="card">
-        <div class="table-responsive text-nowrap">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th width="4%">ID</th>
-                        <th>Nazwa</th>
-                        <th width="6%">Status</th>
-                        <th width="6%">Data utworzenia</th>
-                        <th width="6%">Akcje</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($instalations as $i)
-                    <tr>
-                        <td>{{ $i->id }}</td>
-                        <td><a href="{{ route('instalation.show', ['instalation' => $i->id]) }}">{{ $i->name }}</a></td>
-                        <td><span class="badge rounded-pill bg-label-primary me-1">Aktywny</span></td>
-                        <td><span>{{ $i->updated_at->format('Y, F d') }}</span>
-                            <span class="note" style="display: block; color: #828d9f;font-size: .75rem">{{ $i->updated_at->format('H:i') }}</span>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('instalation.edit', ['instalation' => $i->id]) }}"><i class="mdi mdi-pencil-outline me-1"></i> Edycja </a>
-                                    <a class="dropdown-item" href="{{ route('instalation.destroy', ['instalation' => $i->id]) }}"><i class="mdi mdi-delete me-1"></i> Usuń </a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                <tfoot class="table-border-bottom-0">
-                    <tr>
-                        <th width="4%">ID</th>
-                        <th>Nazwa</th>
-                        <th width="6%">Status</th>
-                        <th width="6%">Data utworzenia</th>
-                        <th width="6%">Akcje</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
-</div>
+    <div class="card-datatable table-responsive">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"><div class="card-header d-block d-md-flex rounded-0 flex-wrap pb-md-0 py-0"><div class="me-5 ms-n2 mb-n5 mb-md-0"><div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_0"></label></div></div><div class="d-flex justify-content-center justify-content-md-end align-items-baseline"><div class="dt-action-buttons d-flex align-items-center justify-content-sm-center gap-4"><div class="dataTables_length" id="DataTables_Table_0_length"><label><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-select form-select-sm"><option value="7">7</option><option value="10">10</option><option value="20">20</option><option value="50">50</option><option value="70">70</option><option value="100">100</option></select></label></div><div class="dt-buttons btn-group flex-wrap"> <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle btn-outline-secondary me-4 waves-effect waves-light" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false"><span><i class="ri-upload-2-line ri-16px me-2"></i><span class="d-none d-sm-inline-block">Export </span></span></button></div> <button class="btn btn-secondary add-new btn-primary waves-effect waves-light" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><span><i class="ri-add-line ri-16px me-0 me-sm-2 align-baseline"></i><span class="d-none d-sm-inline-block">Add New User</span></span></button> </div></div></div></div><table class="datatables-users table dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1044px;">
+          <thead>
+            <tr><th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=""></th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 48px;" aria-label="Id">Id</th><th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 205px;" aria-sort="descending" aria-label="User: activate to sort column ascending">User</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 248px;" aria-label="Email: activate to sort column ascending">Email</th><th class="text-center sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 126px;" aria-label="Verified: activate to sort column ascending">Verified</th><th class="sorting_disabled" rowspan="1" colspan="1" style="width: 203px;" aria-label="Actions">Actions</th></tr>
+          </thead><tbody><tr class="odd"><td class="  control" tabindex="0" style="display: none;"></td><td><span>1</span></td><td class="sorting_1"><div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar avatar-sm me-3"><span class="avatar-initial rounded-circle bg-label-dark">T</span></div></div><div class="d-flex flex-column"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="text-truncate text-heading"><span class="fw-medium">Test</span></a></div></div></td><td><span class="user-email">test@gmail.co</span></td><td class="  text-center"><i class="ri-shield-line ri-24px text-danger"></i></td><td><div class="d-flex align-items-center gap-50"><button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="115" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ri-edit-box-line ri-20px"></i></button><button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="115"><i class="ri-delete-bin-7-line ri-20px"></i></button><button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ri-more-2-line ri-20px"></i></button><div class="dropdown-menu dropdown-menu-end m-0"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="dropdown-item">View</a><a href="javascript:;" class="dropdown-item">Suspend</a></div></div></td></tr><tr class="even"><td class="  control" tabindex="0" style="display: none;"></td><td><span>2</span></td><td class="sorting_1"><div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar avatar-sm me-3"><span class="avatar-initial rounded-circle bg-label-info">JD</span></div></div><div class="d-flex flex-column"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="text-truncate text-heading"><span class="fw-medium">John Doe</span></a></div></div></td><td><span class="user-email">johndoe@user.com</span></td><td class="  text-center"><i class="ri-shield-line ri-24px text-danger"></i></td><td><div class="d-flex align-items-center gap-50"><button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="105" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ri-edit-box-line ri-20px"></i></button><button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="105"><i class="ri-delete-bin-7-line ri-20px"></i></button><button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ri-more-2-line ri-20px"></i></button><div class="dropdown-menu dropdown-menu-end m-0"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="dropdown-item">View</a><a href="javascript:;" class="dropdown-item">Suspend</a></div></div></td></tr><tr class="odd"><td class="  control" tabindex="0" style="display: none;"></td><td><span>3</span></td><td class="sorting_1"><div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar avatar-sm me-3"><span class="avatar-initial rounded-circle bg-label-success">G</span></div></div><div class="d-flex flex-column"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="text-truncate text-heading"><span class="fw-medium">Guest</span></a></div></div></td><td><span class="user-email">guest@guest.com</span></td><td class="  text-center"><i class="ri-shield-line ri-24px text-danger"></i></td><td><div class="d-flex align-items-center gap-50"><button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="100" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ri-edit-box-line ri-20px"></i></button><button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="100"><i class="ri-delete-bin-7-line ri-20px"></i></button><button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ri-more-2-line ri-20px"></i></button><div class="dropdown-menu dropdown-menu-end m-0"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="dropdown-item">View</a><a href="javascript:;" class="dropdown-item">Suspend</a></div></div></td></tr><tr class="even"><td class="  control" tabindex="0" style="display: none;"></td><td><span>4</span></td><td class="sorting_1"><div class="d-flex justify-content-start align-items-center user-name"><div class="avatar-wrapper"><div class="avatar avatar-sm me-3"><span class="avatar-initial rounded-circle bg-label-primary">A</span></div></div><div class="d-flex flex-column"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="text-truncate text-heading"><span class="fw-medium">Admin</span></a></div></div></td><td><span class="user-email">admin@admin.com</span></td><td class="  text-center"><i class="ri-shield-line ri-24px text-danger"></i></td><td><div class="d-flex align-items-center gap-50"><button class="btn btn-sm btn-icon edit-record btn-text-secondary rounded-pill waves-effect" data-id="113" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><i class="ri-edit-box-line ri-20px"></i></button><button class="btn btn-sm btn-icon delete-record btn-text-secondary rounded-pill waves-effect" data-id="113"><i class="ri-delete-bin-7-line ri-20px"></i></button><button class="btn btn-sm btn-icon btn-text-secondary rounded-pill waves-effect dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ri-more-2-line ri-20px"></i></button><div class="dropdown-menu dropdown-menu-end m-0"><a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account" class="dropdown-item">View</a><a href="javascript:;" class="dropdown-item">Suspend</a></div></div></td></tr></tbody>
+        </table><div class="row mx-1"><div class="col-sm-12 col-md-6"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Displaying 1 to 4 of 4 entries</div></div><div class="col-sm-12 col-md-6"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="previous" tabindex="-1" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page" data-dt-idx="0" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a aria-controls="DataTables_Table_0" aria-disabled="true" role="link" data-dt-idx="next" tabindex="-1" class="page-link">Next</a></li></ul></div></div></div></div>
+      </div>
+
+
 @endsection
