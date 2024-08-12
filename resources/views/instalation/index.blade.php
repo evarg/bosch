@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex flex-column">
-                                        <a href="https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/user/view/account"
+                                        <a href="{{ route('instalation.show', 1) }}"
                                             class="text-truncate text-heading"><span class="fw-medium">Test</span></a>
                                     </div>
                                 </div>

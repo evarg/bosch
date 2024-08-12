@@ -41,7 +41,7 @@ class InstalationController extends Controller
      */
     public function show(Instalation $instalation)
     {
-        //
+        return view('instalation.show', compact('instalation'));
     }
 
     /**

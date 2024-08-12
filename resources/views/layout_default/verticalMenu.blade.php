@@ -1,5 +1,4 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo">
         <a href="{{ url('/') }}" class="app-brand-link">
@@ -18,7 +17,7 @@
 
     <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1">
+    <ul class="menu-inner py-1" style="top: 70px">
 
         <li class="menu-item">
             <a href="{{ route('dashboard') }}" class="menu-link">
