@@ -7,6 +7,7 @@ use App\Http\Controllers\BoschFPA5000\CONFIG_NETWORK_Controller;
 use App\Http\Controllers\BoschFPA5000\MODULE_Controller;
 use App\Http\Controllers\BoschFPA5000\NODE_Controller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventsUploadController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\InstalationController;
 
@@ -17,6 +18,7 @@ Route::get('/import/config', [ImportController::class, 'config']);
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('/instalation', InstalationController::class);
+Route::resource('/events_upload', EventsUploadController::class);
 
 Route::post('/upload', [FileUploadController::class, 'upload']);
 

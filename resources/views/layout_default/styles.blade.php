@@ -7,13 +7,15 @@
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/fonts/materialdesignicons.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/node-waves/node-waves.css')) }}" />
 <!-- Core CSS -->
-<link rel="stylesheet" href="{{ asset(mix('assets/vendor/css/core.css')) }}" />
+{{-- <link rel="stylesheet" href="{{ asset(mix('assets/vendor/css/core.css')) }}" /> --}}
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/css/theme-default.css')) }}" />
 <link rel="stylesheet" href="{{ asset(mix('assets/css/demo.css')) }}" />
 <!-- Vendors CSS -->
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')) }}" />
 
 <link rel="stylesheet" href="{{ asset('assets/css/ddd.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/invoice.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" />
 
 <!-- Vendor Styles -->
 @yield('vendor-style')

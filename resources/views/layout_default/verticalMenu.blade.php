@@ -17,7 +17,7 @@
 
     <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1" style="top: 70px">
+    <ul class="menu-inner py-1">
 
         <li class="menu-item">
             <a href="{{ route('dashboard') }}" class="menu-link">
@@ -31,6 +31,13 @@
             <a href="{{ route('instalation.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-weather-snowy"></i>
                 <div>Instalacje</div>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{ route('events_upload.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-weather-snowy"></i>
+                <div>Upload zdarzeń</div>
             </a>
         </li>
 
