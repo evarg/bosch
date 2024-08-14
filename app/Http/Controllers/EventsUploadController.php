@@ -55,7 +55,7 @@ class EventsUploadController extends Controller
      */
     public function show(EventsUpload $eventsUpload)
     {
-        //
+        return view('events_upload.show', compact('eventsUpload'));
     }
 
     /**

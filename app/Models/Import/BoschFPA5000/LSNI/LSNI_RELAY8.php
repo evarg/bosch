@@ -5,6 +5,21 @@ namespace App\Models\Import\BoschFPA5000\LSNI;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Import\BoschFPA5000\LSNDeviceBase|null $BASE
+ * @method static \Illuminate\Database\Eloquent\Builder|LSNI_RELAY8 newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LSNI_RELAY8 newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LSNI_RELAY8 query()
+ * @method static \Illuminate\Database\Eloquent\Builder|LSNI_RELAY8 whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSNI_RELAY8 whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSNI_RELAY8 whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class LSNI_RELAY8 extends Model
 {
     use HasFactory;

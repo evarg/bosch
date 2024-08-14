@@ -19,7 +19,6 @@
         <div class="row invoice-add">
             <!-- Invoice Add-->
 
-
             <div class="col-lg-9 col-12 mb-lg-0 mb-6">
                 <div class="card invoice-preview-card p-sm-12 p-6">
                     <div class="card-body invoice-preview-header rounded p-6">
