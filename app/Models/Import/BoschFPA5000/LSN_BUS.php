@@ -5,6 +5,32 @@ namespace App\Models\Import\BoschFPA5000;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property string|null $siType
+ * @property int|null $port
+ * @property string|null $label
+ * @property int|null $siNumber
+ * @property int|null $LSNxxx_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Import\BoschFPA5000\LSNDeviceBase> $DEVICES
+ * @property-read int|null $d_e_v_i_c_e_s_count
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS query()
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereLSNxxxId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereLabel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereSiNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereSiType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LSN_BUS whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class LSN_BUS extends Model
 {
     use HasFactory;

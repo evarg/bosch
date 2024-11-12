@@ -1,19 +1,24 @@
 @extends('layout_default/content')
 
-@section('title', 'F-NET Bosch')
+@section('title', 'RAW Data / BoschFPA5000 / CONFIG_NETWORK')
 
 @section('content')
 <h4 class="py-3 mb-4">
-        <span class="text-muted fw-light">
-        RAW Data / BoschFPA5000 / 
-        </span>
-        CONFIG_NETWORK
-    </h4>
-
-<!-- Basic Bootstrap Table -->
-<div class="card">
+    <span class="text-muted fw-light">
+        RAW Data / BoschFPA5000 /
+    </span>
+    CONFIG_NETWORK
+</h4>
 
 
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-pills flex-column flex-md-row mb-4 gap-2 gap-lg-0">
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);"><i class="mdi mdi-note-plus-outline mdi-20px me-1"></i>DODAJ</a></li>
+        </ul>
+    </div>
+
+    <!-- Basic Bootstrap Table -->
     <div class="card">
         <!-- <h5 class="card-header">Table Header & Footer</h5> -->
         <div class="table-responsive text-nowrap">
@@ -31,9 +36,10 @@
                 </thead>
                 <tbody>
                     @foreach ($cns as $cn)
-                    <tr onclick="window.location='/Bosch_FPA5000/NODE?config_network={{ $cn->id }}'">
+                    <tr>
                         <td>{{ $cn->id }}</td>
-                        <td>{{ $cn->HEADER->filename }}</td>
+                        <td><a href="{{ route('BoschFPA5000.NODE.index', ['CONFIG_NETWORK' => $cn->id]) }}">{{ $cn->HEADER->filename }}</a>
+                        </td>
                         <td>{{ $cn->HEADER->dataVersion }}</td>
                         <td>{{ $cn->numberOfNodes }}</td>
                         <td><span class="badge rounded-pill bg-label-primary me-1">Aktywny</span></td>
@@ -42,8 +48,8 @@
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="mdi mdi-pencil-outline me-1"></i> Edycja </a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="mdi mdi-trash-can-outline me-1"></i> Usuń </a>
+                                    <a class="dropdown-item" href="{{ route('BoschFPA5000.NODE.index', ['CONFIG_NETWORK' => $cn->id]) }}"><i class="mdi mdi-pencil-outline me-1"></i> Edycja </a>
+                                    <a class="dropdown-item" href="{{ route('BoschFPA5000.NODE.index', ['CONFIG_NETWORK' => $cn->id]) }}"><i class="mdi mdi-delete me-1"></i> Usuń </a>
                                 </div>
                             </div>
                         </td>
@@ -64,5 +70,6 @@
             </table>
         </div>
     </div>
+</div>
 
-    @endsection
+@endsection
