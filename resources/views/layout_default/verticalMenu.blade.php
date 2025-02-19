@@ -42,6 +42,17 @@
         </li>
 
         <li class="menu-header fw-medium mt-4">
+            <span class="menu-header-text">Schrack</span>
+        </li>
+
+        <li class="menu-item">
+            <a href="{{ route('Secolog.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-weather-snowy"></i>
+                <div>Secolog</div>
+            </a>
+        </li>
+
+        <li class="menu-header fw-medium mt-4">
             <span class="menu-header-text">Raw data</span>
         </li>
 

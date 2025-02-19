@@ -1,0 +1,40 @@
+	<xs:element name="CONFIG_NETWORK">
+		<xs:annotation>
+			<xs:documentation source="2.5.0">Copied from 2.1.0 revision 1.4</xs:documentation>
+			<xs:documentation source="2.6.0">Copied from 2.5.0 revision 1.5</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="HEADER">
+					<xs:annotation>
+						<xs:documentation source="2.0.0">As in the V 1.x.x configurations</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="NETWORK_INFO">
+					<xs:annotation>
+						<xs:documentation source="2.0.0">Information regarding the network itself like name, description etc. which is not yet defined in the existing local panel configurations but must be present in each panel.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="CUSTOMER_INFO"/>
+				<xs:element ref="SUPPORT_INFO"/>
+				<xs:element ref="REMOTE_SERVICES_NETWORK_DATA" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="2.13.0">PRELIM optional</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="LZ_STATE_MAPPING" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Must not be inserted by conversion, is inserted by RPS  if neccessary</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="NODES">
+					<xs:annotation>
+						<xs:documentation source="2.0.0">All nodes which are participants in a network. This can be panels or other devices with a logical netID. External modules are not considered as nodes.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="SWITCHES" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="netGeneralAttributeGroup"/>
+			<xs:attribute name="panelEncoding" type="encodingType" use="optional"/>
+		</xs:complexType>
+	</xs:element>
