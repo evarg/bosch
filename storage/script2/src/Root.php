@@ -142,17 +142,16 @@ class Root
 
     public static function simpleTypeA($xmlNode) {}
 
-    public static function simpleType($xmlNode) {
+    public static function simpleType($xmlNode)
+    {
         Root::indent();
         $attributes = $xmlNode->attributes();
 
-        if((isset($attributes['minOccurs'])) & ($attributes['minOccurs']==0)){
+        if ((isset($attributes['minOccurs'])) & ($attributes['minOccurs'] == 0)) {
             print(" ?" . $attributes['name'] . "\n");
-        }
-        else{
+        } else {
             print(" -" . $attributes['name'] . "\n");
         }
-
     }
 
     public static function group($xmlNode)
@@ -200,13 +199,12 @@ class Root
         if (isset($xmlNode->attributes()['ref'])) {
             // Root::indent();
             // print("Element -> rel\n");
-            // Root::element("//xs:schema/xs:element[@name='" . $xmlNode->attributes()['ref'] . "']");
             $xmlNode = Root::$xml->xpath("//xs:schema/xs:element[@name='" . $xmlNode->attributes()['ref'] . "']")[0];
         }
 
-        Root::indent();
+        //Root::indent();
         //print_r($xmlNode->attributes());
-        print(">>ELEMENT: " . $xmlNode->attributes()['name'] . "\n");
+        //print(">>ELEMENT: " . $xmlNode->attributes()['name'] . "\n");
         Root::indentInc();
 
         if (isset($xmlNode->attributes()['type'])) {
@@ -215,6 +213,8 @@ class Root
             // print("Element -> type: " . $type . "\n");
 
             if (in_array($type, Root::$simpleTypes)) {
+                Root::indent();
+                print($xmlNode->attributes()['name'] . "\n");
                 Root::indentDec();
                 return;
             } else {
@@ -223,8 +223,10 @@ class Root
             }
             Root::indentDec();
             return;
-        }
-        else{
+        } else {
+            Root::indent();
+            print($xmlNode->attributes()['name'] . "\n");
+
             $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
 
             foreach ($nodes as $node) {
@@ -233,7 +235,9 @@ class Root
                         Root::annotation($node);
                         break;
                     case 'simpleType':
-                        Root::simpleType($node);
+                        Root::indent();
+                        print($xmlNode->attributes()['name'] . "\n");
+                        // Root::indentDec();
                         break;
                     case 'complexType':
                         Root::complexType($node);
@@ -384,23 +388,26 @@ class Root
     public function run()
     {
         $nodes = Root::$xml->children(Root::$ns);
+        $GLOBALS['level'] = 0;
+
         $rootNode = Root::$xml->xpath("//xs:schema/xs:element[@name='CONFIG_NETWORK']")[0];
 
         Root::getSimpletypes();
 
-        $GLOBALS['level'] = 0;
+        Root::element($rootNode);
 
-        foreach ($rootNode->children(Root::$ns) as $node) {
-            switch ($node->getName()) {
-                case 'annotation':
-                    Root::annotation($node);
-                    break;
-                case 'complexType':
-                    Root::complexType($node);
-                    break;
-                default:
-                    unknown($node);
-            }
-        }
+
+        // foreach ($rootNode->children(Root::$ns) as $node) {
+        //     switch ($node->getName()) {
+        //         case 'annotation':
+        //             Root::annotation($node);
+        //             break;
+        //         case 'complexType':
+        //             Root::complexType($node);
+        //             break;
+        //         default:
+        //             unknown($node);
+        //     }
+        // }
     }
 }
