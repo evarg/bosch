@@ -123,13 +123,13 @@ class Root
                     // Root::group($node);
                     break;
                 case 'all':
-                    Root::sequence($node);
+                    Root::sequence($node, $lvl);
                     break;
                 case 'choice':
                     // Root::choice($node);
                     break;
                 case 'sequence':
-                    Root::sequence($node);
+                    Root::sequence($node, $lvl);
                     break;
                 case 'attribute':
                     // Root::attribute($node);
@@ -354,6 +354,8 @@ class Root
         $attributes = $xmlNode->attributes();
         $name = $attributes['name'];
 
+        // print("\n\n" . $name . "\n\n");
+
         if (isset($attributes['type'])) {
             $typeName = $attributes['type'];
 
@@ -382,7 +384,7 @@ class Root
                             $typeSC = "S2";
                             break;
                         case 'complexType':
-                            Root::complexType($node);
+                            Root::complexType($node, 1);
                             $typeSC = "C2";
                             break;
                     }
@@ -409,23 +411,11 @@ class Root
 
         Root::getSimpletypes();
 
-
         // Root::complexType($rootNode);
         Root::element($rootNode);
 
-        // print_r($rootNode->children('http://www.w3.org/2001/XMLSchema'));
-
-        var_dump($rootNode->children('http://www.w3.org/2001/XMLSchema'));
-
-
-        $array = json_decode($json,TRUE);
-        var_dump($array);
 
         print(Root::$mig);
-
-foreach(Root::$simpleTypes as $st){
-    print("sed -i 's/$st/xs:string/g' Main-3-0-0-RedukcjaST.xsd\n");
-}
 
         // foreach ($rootNode->children(Root::$ns) as $node) {
         //     switch ($node->getName()) {
