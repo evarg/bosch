@@ -2173,34 +2173,27 @@ Initial revision
 	</xs:element>
 	<xs:complexType name="ACTIVITYTEXTSType">
 		<xs:all>
-			<xs:element name="fire" type="ActivityTextWithAttribType"/>
-			<xs:element name="heat" type="ActivityTextWithAttribType"/>
-			<xs:element name="smoke" type="ActivityTextWithAttribType"/>
-			<xs:element name="water" type="ActivityTextWithAttribType"/>
-			<xs:element name="tamper" type="ActivityTextWithAttribType"/>
-			<xs:element name="trouble" type="ActivityTextWithAttribType"/>
-			<xs:element name="firePre" type="ActivityTextWithAttribType"/>
-			<xs:element name="pollution" type="ActivityTextWithAttribType"/>
-			<xs:element name="powerFail" type="ActivityTextWithAttribType"/>
-			<xs:element name="supervisory" type="ActivityTextWithAttribType"/>
-			<xs:element name="paperOut" type="ActivityTextWithAttribType"/>
-			<xs:element name="coverOpen" type="ActivityTextWithAttribType"/>
-			<xs:element name="activationFailed" type="ActivityTextWithAttribType"/>
-			<xs:element name="activated" type="ActivityTextWithAttribType"/>
-			<xs:element name="on" type="ActivityTextWithAttribType"/>
-			<xs:element name="off" type="ActivityTextWithAttribType"/>
-			<xs:element name="normal" type="ActivityTextWithAttribType"/>
-			<xs:element name="invalid" type="ActivityTextWithAttribType"/>
-			<xs:element name="info_alarm" type="ActivityTextWithAttribType" />
+			<xs:element name="fire" type="xs:string"/>
+			<xs:element name="heat" type="xs:string"/>
+			<xs:element name="smoke" type="xs:string"/>
+			<xs:element name="water" type="xs:string"/>
+			<xs:element name="tamper" type="xs:string"/>
+			<xs:element name="trouble" type="xs:string"/>
+			<xs:element name="firePre" type="xs:string"/>
+			<xs:element name="pollution" type="xs:string"/>
+			<xs:element name="powerFail" type="xs:string"/>
+			<xs:element name="supervisory" type="xs:string"/>
+			<xs:element name="paperOut" type="xs:string"/>
+			<xs:element name="coverOpen" type="xs:string"/>
+			<xs:element name="activationFailed" type="xs:string"/>
+			<xs:element name="activated" type="xs:string"/>
+			<xs:element name="on" type="xs:string"/>
+			<xs:element name="off" type="xs:string"/>
+			<xs:element name="normal" type="xs:string"/>
+			<xs:element name="invalid" type="xs:string"/>
+			<xs:element name="info_alarm" type="xs:string" />
 		</xs:all>
 		<xs:attributeGroup ref="generalAttributeGroup"/>
-	</xs:complexType>
-	<xs:complexType name="ActivityTextWithAttribType">
-		<xs:simpleContent>
-			<xs:extension base="xs:string">
-				<xs:attribute name="rpsDisplayName" use="optional"/>
-			</xs:extension>
-		</xs:simpleContent>
 	</xs:complexType>
 	<xs:complexType name="ACTIVITYType">
 		<xs:sequence>
