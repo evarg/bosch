@@ -119,7 +119,7 @@ class Root
                     // Root::all($node);
                     break;
                 case 'choice':
-                    // Root::choice($node);
+                    Root::choice($node);
                     break;
                 case 'sequence':
                     Root::sequence($node);
@@ -197,14 +197,12 @@ class Root
     {
 
         if (isset($xmlNode->attributes()['ref'])) {
-            // Root::indent();
-            // print("Element -> rel\n");
             $xmlNode = Root::$xml->xpath("//xs:schema/xs:element[@name='" . $xmlNode->attributes()['ref'] . "']")[0];
         }
 
-        //Root::indent();
-        //print_r($xmlNode->attributes());
-        //print(">>ELEMENT: " . $xmlNode->attributes()['name'] . "\n");
+        Root::indent();
+        // print_r($xmlNode->attributes());
+        print("" . $xmlNode->attributes()['name'] . "\n");
         Root::indentInc();
 
         if (isset($xmlNode->attributes()['type'])) {
@@ -213,8 +211,8 @@ class Root
             // print("Element -> type: " . $type . "\n");
 
             if (in_array($type, Root::$simpleTypes)) {
-                Root::indent();
-                print($xmlNode->attributes()['name'] . "\n");
+                // Root::indent();
+                // print($xmlNode->attributes()['name'] .  " (ST z listy)\n");
                 Root::indentDec();
                 return;
             } else {
@@ -224,9 +222,6 @@ class Root
             Root::indentDec();
             return;
         } else {
-            Root::indent();
-            print($xmlNode->attributes()['name'] . "\n");
-
             $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
 
             foreach ($nodes as $node) {
@@ -235,9 +230,6 @@ class Root
                         Root::annotation($node);
                         break;
                     case 'simpleType':
-                        Root::indent();
-                        print($xmlNode->attributes()['name'] . "\n");
-                        // Root::indentDec();
                         break;
                     case 'complexType':
                         Root::complexType($node);
@@ -247,8 +239,6 @@ class Root
         }
 
         Root::indentDec();
-        Root::indent();
-        print("<<ELEMENT:\n");
     }
 
     public static function sequence($xmlNode)
@@ -268,10 +258,10 @@ class Root
                     // Root::group($node);
                     break;
                 case 'choice':
-                    // Root::choice($node);
+                    Root::choice($node);
                     break;
                 case 'sequence':
-                    // Root::sequence($node);
+                    Root::sequence($node);
                     break;
                 case 'any':
                     // Root::any($node);
@@ -320,8 +310,8 @@ class Root
 
     public static function choice($xmlNode)
     {
-        Root::indent();
-        // print("CHOICE:\n");
+        // Root::indent();
+        print(">>CHOICE:\n");
         Root::indentInc();
 
         $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
@@ -349,6 +339,8 @@ class Root
             }
         }
 
+        Root::indent();
+        print(">>CHOICE:\n");
         Root::indentDec();
     }
 
