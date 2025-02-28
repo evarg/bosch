@@ -11,11 +11,18 @@ class Root
 
     public static $ns = 'http://www.w3.org/2001/XMLSchema';
 
+    public static $mig = '';
+
+    public static $mod = '';
+
+    public static $imp = '';
+
     public function __construct()
     {
         Root::$xml = simplexml_load_file($this->xmlFile);
         $ns = Root::$xml->getNamespaces(true)['xs'];
     }
+
 
 
     public static function getSimpletypes()
@@ -102,10 +109,10 @@ class Root
 
     public static function annotation($xmlNode) {}
 
-    public static function complexType($xmlNode)
+    public static function complexType($xmlNode, $lvl = 0)
     {
-        Root::indent();
-        print(">>COMPLEX_TYPE\n");
+        // Root::indent();
+        // print(">>COMPLEX_TYPE\n");
 
         Root::indentInc();
         $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
@@ -116,13 +123,13 @@ class Root
                     // Root::group($node);
                     break;
                 case 'all':
-                    // Root::all($node);
+                    Root::sequence($node, $lvl);
                     break;
                 case 'choice':
-                    Root::choice($node);
+                    // Root::choice($node);
                     break;
                 case 'sequence':
-                    Root::sequence($node);
+                    Root::sequence($node, $lvl);
                     break;
                 case 'attribute':
                     // Root::attribute($node);
@@ -130,15 +137,21 @@ class Root
                 case 'attributeGroup':
                     // Root::attributeGroup($node);
                     break;
+                case 'complexContent':
+                    Root::complexContent($node);
+                    break;
             }
         }
 
-        Root::indentDec();
-        Root::indent();
-        print("<<COMPLEX_TYPE\n");
+        // Root::indentDec();
+        // Root::indent();
+        // print("<<COMPLEX_TYPE\n");
     }
 
-    public static function complexTypeA($xmlNode) {}
+    public static function complexContent($xmlNode)
+    {
+        print("COMPLEX CONTENT");
+    }
 
     public static function simpleTypeA($xmlNode) {}
 
@@ -193,75 +206,27 @@ class Root
         // print("ATTRIBUTE GROUP\n");
     }
 
-    public static function element($xmlNode)
+    public static function sequence($xmlNode, $lvl = 0)
     {
-
-        if (isset($xmlNode->attributes()['ref'])) {
-            $xmlNode = Root::$xml->xpath("//xs:schema/xs:element[@name='" . $xmlNode->attributes()['ref'] . "']")[0];
-        }
-
-        Root::indent();
-        // print_r($xmlNode->attributes());
-        print("" . $xmlNode->attributes()['name'] . "\n");
-        Root::indentInc();
-
-        if (isset($xmlNode->attributes()['type'])) {
-            // Root::indent();
-            $type = $xmlNode->attributes()['type'];
-            // print("Element -> type: " . $type . "\n");
-
-            if (in_array($type, Root::$simpleTypes)) {
-                // Root::indent();
-                // print($xmlNode->attributes()['name'] .  " (ST z listy)\n");
-                Root::indentDec();
-                return;
-            } else {
-                $xmlNode = Root::$xml->xpath("//xs:schema/xs:complexType[@name='" . $type . "']")[0];
-                Root::complexType($xmlNode);
-            }
-            Root::indentDec();
-            return;
-        } else {
-            $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
-
-            foreach ($nodes as $node) {
-                switch ($node->getName()) {
-                    case 'annotation':
-                        Root::annotation($node);
-                        break;
-                    case 'simpleType':
-                        break;
-                    case 'complexType':
-                        Root::complexType($node);
-                        break;
-                }
-            }
-        }
-
-        Root::indentDec();
-    }
-
-    public static function sequence($xmlNode)
-    {
-        Root::indent();
-        print(">>SEQUENCE:\n");
-        Root::indentInc();
+        // Root::indent();
+        // print(">>SEQUENCE:\n");
+        // Root::indentInc();
 
         $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
 
         foreach ($nodes as $node) {
             switch ($node->getName()) {
                 case 'element':
-                    Root::element($node);
+                    Root::element($node, $lvl);
                     break;
                 case 'group':
                     // Root::group($node);
                     break;
                 case 'choice':
-                    Root::choice($node);
+                    // Root::choice($node);
                     break;
                 case 'sequence':
-                    Root::sequence($node);
+                    // Root::sequence($node);
                     break;
                 case 'any':
                     // Root::any($node);
@@ -271,9 +236,9 @@ class Root
                     // unknown($node);
             }
         }
-        Root::indentDec();
-        Root::indent();
-        print("<<SEQUENCE:\n");
+        // Root::indentDec();
+        // Root::indent();
+        // print("<<SEQUENCE:\n");
     }
 
     public static function any($xmlNode)
@@ -310,8 +275,8 @@ class Root
 
     public static function choice($xmlNode)
     {
-        // Root::indent();
-        print(">>CHOICE:\n");
+        Root::indent();
+        // print("CHOICE:\n");
         Root::indentInc();
 
         $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
@@ -339,8 +304,6 @@ class Root
             }
         }
 
-        Root::indent();
-        print(">>CHOICE:\n");
         Root::indentDec();
     }
 
@@ -377,17 +340,82 @@ class Root
         }
     }
 
+    public static function element($xmlNode, $lvl = 0)
+    {
+        $name = "BRAK_NAZWY";
+        $typeSC = "X";
+        $optional = false;
+        $typeName = "ANONIMOWA";
+
+        if (isset($xmlNode->attributes()['ref'])) {
+            $xmlNode = Root::$xml->xpath("//xs:schema/xs:element[@name='" . $xmlNode->attributes()['ref'] . "']")[0];
+        }
+
+        $attributes = $xmlNode->attributes();
+        $name = $attributes['name'];
+
+        // print("\n\n" . $name . "\n\n");
+
+        if (isset($attributes['type'])) {
+            $typeName = $attributes['type'];
+
+            if ((isset($attributes['minOccurs'])) & ($attributes['minOccurs'] == 0)) {
+                $optional = true;
+            }
+
+            if (in_array($typeName, Root::$simpleTypes)) {
+                $typeSC = 'S';
+                // return;
+            } else {
+                // $xmlNode = Root::$xml->xpath("//xs:schema/xs:complexType[@name='" . $typeName . "']")[0];
+                $typeSC = "C";
+            }
+            // return;
+        } else {
+            if ($lvl == 0) {
+                $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
+
+                foreach ($nodes as $node) {
+                    switch ($node->getName()) {
+                        case 'annotation':
+                            Root::annotation($node);
+                            break;
+                        case 'simpleType':
+                            $typeSC = "S2";
+                            break;
+                        case 'complexType':
+                            Root::complexType($node, 1);
+                            $typeSC = "C2";
+                            break;
+                    }
+                }
+            }
+        }
+
+        if($typeSC == 'S'){
+            Root::$mig .= '            $table->string(\'' . $name . '\')->nullable();' . "\n";
+        }
+
+        print("$typeSC $optional $name -> $typeName\n");
+    }
+
     public function run()
     {
         $nodes = Root::$xml->children(Root::$ns);
         $GLOBALS['level'] = 0;
 
-        $rootNode = Root::$xml->xpath("//xs:schema/xs:element[@name='CONFIG_NETWORK']")[0];
+        $rootNode = Root::$xml->xpath("//xs:schema/xs:element[@name='HEADER']")[0];
+        // $rootNode = Root::$xml->xpath("//xs:schema/xs:element[@name='CONFIG_NETWORK']")[0];
+        // $rootNode = Root::$xml->xpath("//xs:schema/xs:complexType[@name='ColoredLEDType']")[0];
+        $rootNode = Root::$xml->xpath("//xs:schema/xs:complexType[@name='HEADERType']")[0];
 
         Root::getSimpletypes();
 
+        // Root::complexType($rootNode);
         Root::element($rootNode);
 
+
+        print(Root::$mig);
 
         // foreach ($rootNode->children(Root::$ns) as $node) {
         //     switch ($node->getName()) {
