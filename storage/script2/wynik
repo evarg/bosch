@@ -1,0 +1,676 @@
+
+=== ELEMENT : CONFIG_NETWORK === 
+CONFIG_NETWORK
+  >>SEQUENCE:
+    HEADER -> <REFERENCE>
+    NETWORK_INFO -> <REFERENCE>
+    CUSTOMER_INFO -> <REFERENCE>
+    SUPPORT_INFO -> <REFERENCE>
+    REMOTE_SERVICES_NETWORK_DATA -> <REFERENCE>
+    LZ_STATE_MAPPING -> <REFERENCE>
+    NODES -> <REFERENCE>
+    SWITCHES -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : LOCAL_CONFIGURATIONType === 
+>>SEQUENCE:
+  HEADER -> <REFERENCE>
+  PANEL -> <REFERENCE>
+<<SEQUENCE:
+
+
+
+=== ELEMENT : HEADER === 
+HEADER
+  >>SEQUENCE:
+    filename -> <SIMPLE_TYPE>
+    revNumber -> <SIMPLE_TYPE>
+    lastModified -> <SIMPLE_TYPE>
+    dataVersion -> <SIMPLE_TYPE>
+    converted -> <SIMPLE_TYPE>
+    convertedFrom -> <SIMPLE_TYPE>
+    xmlValidation -> <SIMPLE_TYPE>
+    mismatchConfirmed -> <SIMPLE_TYPE>
+    adapted -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : NETWORK_INFO === 
+NETWORK_INFO
+  >>SEQUENCE:
+    label -> <SIMPLE_TYPE>
+    note -> <SIMPLE_TYPE>
+    bypassNACsRange -> <ANONYMOUS>
+    activateFireExt -> <SIMPLE_TYPE>
+    allowDetectorRemoval -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : CUSTOMER_INFO === 
+CUSTOMER_INFO
+  >>SEQUENCE:
+    contractNumber -> <SIMPLE_TYPE>
+    smtp -> <SIMPLE_TYPE>
+    x400 -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : SUPPORT_INFO === 
+SUPPORT_INFO
+  >>SEQUENCE:
+    contactName -> <SIMPLE_TYPE>
+    smtp -> <SIMPLE_TYPE>
+    x400 -> <SIMPLE_TYPE>
+    oemLogoFilename -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : REMOTE_SERVICES_NETWORK_DATA === 
+REMOTE_SERVICES_NETWORK_DATA
+  >>SEQUENCE:
+    RemoteServicesType -> <ANONYMOUS>
+    CLOUD_DATA -> CloudDataType
+    P2P_DATA -> P2PType
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : LZ_STATE_MAPPING === 
+LZ_STATE_MAPPING
+  >>SEQUENCE:
+    CONFIGURED_MAPPINGS -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : NODES === 
+NODES
+  >>SEQUENCE:
+    netCRC -> <REFERENCE>
+    NODE -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : SWITCHES === 
+SWITCHES
+  >>SEQUENCE:
+    SWITCH -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : HEADER === 
+HEADER
+  >>SEQUENCE:
+    filename -> <SIMPLE_TYPE>
+    revNumber -> <SIMPLE_TYPE>
+    lastModified -> <SIMPLE_TYPE>
+    dataVersion -> <SIMPLE_TYPE>
+    converted -> <SIMPLE_TYPE>
+    convertedFrom -> <SIMPLE_TYPE>
+    xmlValidation -> <SIMPLE_TYPE>
+    mismatchConfirmed -> <SIMPLE_TYPE>
+    adapted -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : PANEL === 
+PANEL
+  >>SEQUENCE:
+    siNumber -> <SIMPLE_TYPE>
+    siType -> <SIMPLE_TYPE>
+    label -> <SIMPLE_TYPE>
+    country -> <SIMPLE_TYPE>
+    redundancy -> <SIMPLE_TYPE>
+    maxLSNPoints -> <SIMPLE_TYPE>
+    timeZone -> <SIMPLE_TYPE>
+    timeDisplay24h -> <SIMPLE_TYPE>
+    serialNumber -> <SIMPLE_TYPE>
+    startupLanguage -> <SIMPLE_TYPE>
+    quiet1 -> <SIMPLE_TYPE>
+    quiet2 -> <SIMPLE_TYPE>
+    quiet3 -> <SIMPLE_TYPE>
+    andDelay -> <ANONYMOUS>
+    PASacknowledge -> <ANONYMOUS>
+    logicalViewMMI -> <SIMPLE_TYPE>
+    PASResetEnableDelay -> <SIMPLE_TYPE>
+    note -> <ANONYMOUS>
+    resetMode -> <SIMPLE_TYPE>
+    troubleCausesAlarm -> <SIMPLE_TYPE>
+    colorProfileUsed -> <SIMPLE_TYPE>
+    fastFaultIndicationLSN -> <SIMPLE_TYPE>
+    debugInfo -> <ANONYMOUS>
+    idOfAccesspointToHangUp -> <SIMPLE_TYPE>
+    mAddressCardTimeDivider -> <SIMPLE_TYPE>
+    CONFIG_INFO -> <REFERENCE>
+    LICENCING_V303 -> LicencingType
+    ONBOARD -> <REFERENCE>
+        LOGICAL_GROUPING -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : CloudDataType === 
+>>SEQUENCE:
+  ipAddress -> <SIMPLE_TYPE>
+  portNumber -> <SIMPLE_TYPE>
+  siteName -> <ANONYMOUS>
+  crl -> <SIMPLE_TYPE>
+  isAutoAnswerEnabled -> <SIMPLE_TYPE>
+  isRemoteMaintenanceEnabled -> <SIMPLE_TYPE>
+  isRemoteAlertEnabled -> <SIMPLE_TYPE>
+  INTERFACE_PANEL -> InterfacePanelType
+<<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : P2PType === 
+>>SEQUENCE:
+  ipAddress -> <SIMPLE_TYPE>
+  portNumber -> <SIMPLE_TYPE>
+  networkId -> <ANONYMOUS>
+  crl -> <SIMPLE_TYPE>
+  isAutoAnswerEnabled -> <SIMPLE_TYPE>
+  isRemoteMaintenanceEnabled -> <SIMPLE_TYPE>
+  isRemoteAlertEnabled -> <SIMPLE_TYPE>
+  INTERFACE_PANEL -> InterfacePanelType
+<<SEQUENCE:
+
+
+
+=== ELEMENT : CONFIGURED_MAPPINGS === 
+CONFIGURED_MAPPINGS
+  >>SEQUENCE:
+    FTYPE_LZ_MAPPINGS -> <REFERENCE>
+    LZ_ADIS -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : netCRC === 
+netCRC
+
+
+
+=== ELEMENT : NODE === 
+NODE
+  >>SEQUENCE:
+    netLocalCRC -> <SIMPLE_TYPE>
+        rsn -> <ANONYMOUS>
+    nodeType -> <SIMPLE_TYPE>
+    scope -> <SIMPLE_TYPE>
+    displayNetworkStates -> <SIMPLE_TYPE>
+    label -> <SIMPLE_TYPE>
+    ipAddress -> <SIMPLE_TYPE>
+    subnetMask -> <SIMPLE_TYPE>
+    gateway -> <SIMPLE_TYPE>
+    multicastAddress -> <SIMPLE_TYPE>
+    portNumber -> <SIMPLE_TYPE>
+    useEthernetSettings -> <SIMPLE_TYPE>
+    syncRequired -> <SIMPLE_TYPE>
+    showEthernetRxOverloadWarning -> <SIMPLE_TYPE>
+    usePanelNetworkingOverIP -> <SIMPLE_TYPE>
+    SPANNING_TREE -> <REFERENCE>
+    NET_INTERFACES -> <REFERENCE>
+    EXPORTS -> <REFERENCE>
+    IMPORTS -> <REFERENCE>
+    ASSIGNED_OPCSVRS -> <REFERENCE>
+    ASSIGNED_MTS_NODES -> <REFERENCE>
+    CONNECTABLE -> <REFERENCE>
+    CONFIG_DATA -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : SWITCH === 
+SWITCH
+  >>SEQUENCE:
+    description -> <ANONYMOUS>
+    number -> <ANONYMOUS>
+    PORTS -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : CONFIG_INFO === 
+CONFIG_INFO
+
+
+
+=== COMPLEXTYPE : LicencingType === 
+>>SEQUENCE:
+  LICENSE_BUNDLE_TABLE_V303 -> LicenseBundleType
+<<SEQUENCE:
+
+
+
+=== ELEMENT : ONBOARD === 
+ONBOARD
+  >>SEQUENCE:
+    LED -> LEDOnboardType
+    BUZZER_ONBOARD -> BUZZER_ONBOARDType
+    GROUND -> GROUNDType
+    PAS_CONFIRMATION -> PAS_CONFIRMATIONType
+    KEYLOCK -> KEYLOCKType
+    FUNCTION_KEY -> FUNCTION_KEYType
+    RS232 -> RS232Type
+    CANBUS -> CANBUSType
+    ETHERNET -> ETHERNETType
+    OB_INPUTS -> <ANONYMOUS>
+    OB_POWER_INS -> <ANONYMOUS>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : LOGICAL_GROUPING === 
+LOGICAL_GROUPING
+
+
+
+=== COMPLEXTYPE : InterfacePanelType === 
+>>SEQUENCE:
+  <<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : InterfacePanelType === 
+>>SEQUENCE:
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : FTYPE_LZ_MAPPINGS === 
+FTYPE_LZ_MAPPINGS
+  >>SEQUENCE:
+    FTYPE_LZ_MAPPING -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : LZ_ADIS === 
+LZ_ADIS
+  >>SEQUENCE:
+    LZ_ADI -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : SPANNING_TREE === 
+SPANNING_TREE
+  >>SEQUENCE:
+    redundancyMode -> <ANONYMOUS>
+    STP_BridgePriority -> <ANONYMOUS>
+    STP_HelloTime -> <ANONYMOUS>
+    STP_MaxAge -> <ANONYMOUS>
+    STP_ForwardDelay -> <ANONYMOUS>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : NET_INTERFACES === 
+NET_INTERFACES
+  >>SEQUENCE:
+    NET_INTERFACE -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : EXPORTS === 
+EXPORTS
+  >>SEQUENCE:
+    netCRC -> <REFERENCE>
+    REPLICATED_SIS -> <REFERENCE>
+    REPLICATED_COUNTERS -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : IMPORTS === 
+IMPORTS
+  >>SEQUENCE:
+    netCRC -> <REFERENCE>
+    USED_SIS -> <REFERENCE>
+    USED_COUNTERS -> <REFERENCE>
+    USED_OFFSET_TABLES -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : ASSIGNED_OPCSVRS === 
+ASSIGNED_OPCSVRS
+  >>SEQUENCE:
+    OPCSERVER -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : ASSIGNED_MTS_NODES === 
+ASSIGNED_MTS_NODES
+  >>SEQUENCE:
+    MTS_NODE -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : CONNECTABLE === 
+CONNECTABLE
+  >>SEQUENCE:
+    CONNECTABLE_PANEL -> <ANONYMOUS>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : CONFIG_DATA === 
+CONFIG_DATA
+  >>SEQUENCE:
+    >>CHOICE:
+      xmlLocation -> <SIMPLE_TYPE>
+      LOCAL_CONFIGURATION -> <REFERENCE>
+    <<CHOICE:
+    RK_DATA -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : PORTS === 
+PORTS
+  >>SEQUENCE:
+    PORT -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : LicenseBundleType === 
+>>SEQUENCE:
+  premiumBundle -> <SIMPLE_TYPE>
+<<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : LEDOnboardType === 
+
+
+
+=== COMPLEXTYPE : BUZZER_ONBOARDType === 
+
+
+
+=== COMPLEXTYPE : GROUNDType === 
+>>SEQUENCE:
+  siType -> <SIMPLE_TYPE>
+  siNumber -> <SIMPLE_TYPE>
+  label -> <SIMPLE_TYPE>
+<<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : PAS_CONFIRMATIONType === 
+
+
+
+=== COMPLEXTYPE : KEYLOCKType === 
+
+
+
+=== COMPLEXTYPE : FUNCTION_KEYType === 
+
+
+
+=== COMPLEXTYPE : RS232Type === 
+>>SEQUENCE:
+  port -> <SIMPLE_TYPE>
+  connectedWith -> <SIMPLE_TYPE>
+<<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : CANBUSType === 
+>>SEQUENCE:
+  port -> <SIMPLE_TYPE>
+  siType -> <SIMPLE_TYPE>
+  enabled -> <SIMPLE_TYPE>
+<<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : ETHERNETType === 
+>>SEQUENCE:
+  port -> <SIMPLE_TYPE>
+  siType -> <SIMPLE_TYPE>
+  enabled -> <SIMPLE_TYPE>
+<<SEQUENCE:
+
+
+
+=== ELEMENT : FTYPE_LZ_MAPPING === 
+FTYPE_LZ_MAPPING
+
+
+
+=== ELEMENT : LZ_ADI === 
+LZ_ADI
+
+
+
+=== ELEMENT : NET_INTERFACE === 
+NET_INTERFACE
+
+
+
+=== ELEMENT : netCRC === 
+netCRC
+
+
+
+=== ELEMENT : REPLICATED_SIS === 
+REPLICATED_SIS
+  >>SEQUENCE:
+    REPLICATED_SI -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : REPLICATED_COUNTERS === 
+REPLICATED_COUNTERS
+  >>SEQUENCE:
+    REPLICATED_COUNTER -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : netCRC === 
+netCRC
+
+
+
+=== ELEMENT : USED_SIS === 
+USED_SIS
+  >>SEQUENCE:
+    USED_SI -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : USED_COUNTERS === 
+USED_COUNTERS
+  >>SEQUENCE:
+    USED_COUNTER -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : USED_OFFSET_TABLES === 
+USED_OFFSET_TABLES
+  >>SEQUENCE:
+    USED_OFFSET_TABLE -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : OPCSERVER === 
+OPCSERVER
+  >>SEQUENCE:
+    netGroup -> <SIMPLE_TYPE>
+    netNode -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : MTS_NODE === 
+MTS_NODE
+
+
+
+=== ELEMENT : LOCAL_CONFIGURATION === 
+LOCAL_CONFIGURATION
+
+
+
+=== ELEMENT : RK_DATA === 
+RK_DATA
+
+
+
+=== ELEMENT : PORT === 
+PORT
+  >>SEQUENCE:
+    portNumber -> <SIMPLE_TYPE>
+    connectedToNetlineNbr -> <SIMPLE_TYPE>
+    lineType -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : REPLICATED_SI === 
+REPLICATED_SI
+  >>SEQUENCE:
+    globalID -> <SIMPLE_TYPE>
+    label -> <SIMPLE_TYPE>
+    scope -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : REPLICATED_COUNTER === 
+REPLICATED_COUNTER
+
+
+
+=== ELEMENT : USED_SI === 
+USED_SI
+  >>SEQUENCE:
+    localID -> <ANONYMOUS>
+    globalID -> <ANONYMOUS>
+    FAT_OFFSET_TABLE -> ADDROFFSET_TABLEType
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : USED_COUNTER === 
+USED_COUNTER
+  >>SEQUENCE:
+    localID -> <SIMPLE_TYPE>
+    globalID -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+
+=== ELEMENT : USED_OFFSET_TABLE === 
+USED_OFFSET_TABLE
+  >>SEQUENCE:
+        OFFSET_TABLE -> <REFERENCE>
+  <<SEQUENCE:
+
+
+
+=== COMPLEXTYPE : ADDROFFSET_TABLEType === 
+>>SEQUENCE:
+  panel -> <SIMPLE_TYPE>
+  point -> <SIMPLE_TYPE>
+  module -> <SIMPLE_TYPE>
+  coupler -> <SIMPLE_TYPE>
+  control -> <SIMPLE_TYPE>
+  input -> <SIMPLE_TYPE>
+  citytie -> <SIMPLE_TYPE>
+  fireextinguisher -> <SIMPLE_TYPE>
+  nac -> <SIMPLE_TYPE>
+  buzzer -> <SIMPLE_TYPE>
+  hvac -> <SIMPLE_TYPE>
+  doorholder -> <SIMPLE_TYPE>
+  keydepot -> <SIMPLE_TYPE>
+  status -> <SIMPLE_TYPE>
+  dialer -> <SIMPLE_TYPE>
+  printer -> <SIMPLE_TYPE>
+  fat -> <SIMPLE_TYPE>
+  fbf -> <SIMPLE_TYPE>
+  set -> <SIMPLE_TYPE>
+  auxpower -> <SIMPLE_TYPE>
+  battery -> <SIMPLE_TYPE>
+  mainpower -> <SIMPLE_TYPE>
+  railpower -> <SIMPLE_TYPE>
+  ground -> <SIMPLE_TYPE>
+  loop -> <SIMPLE_TYPE>
+  monitoring -> <SIMPLE_TYPE>
+  canbus -> <SIMPLE_TYPE>
+  network -> <SIMPLE_TYPE>
+  networknode -> <SIMPLE_TYPE>
+  network_line -> <SIMPLE_TYPE>
+  topology -> <SIMPLE_TYPE>
+  netaddress -> <SIMPLE_TYPE>
+  vas -> <SIMPLE_TYPE>
+<<SEQUENCE:
+
+
+
+=== ELEMENT : OFFSET_TABLE === 
+OFFSET_TABLE
+  >>SEQUENCE:
+    panel -> <SIMPLE_TYPE>
+    point -> <SIMPLE_TYPE>
+    module -> <SIMPLE_TYPE>
+    coupler -> <SIMPLE_TYPE>
+    control -> <SIMPLE_TYPE>
+    input -> <SIMPLE_TYPE>
+    citytie -> <SIMPLE_TYPE>
+    fireextinguisher -> <SIMPLE_TYPE>
+    nac -> <SIMPLE_TYPE>
+    buzzer -> <SIMPLE_TYPE>
+    hvac -> <SIMPLE_TYPE>
+    doorholder -> <SIMPLE_TYPE>
+    keydepot -> <SIMPLE_TYPE>
+    status -> <SIMPLE_TYPE>
+    dialer -> <SIMPLE_TYPE>
+    printer -> <SIMPLE_TYPE>
+    fat -> <SIMPLE_TYPE>
+    fbf -> <SIMPLE_TYPE>
+    set -> <SIMPLE_TYPE>
+    auxpower -> <SIMPLE_TYPE>
+    battery -> <SIMPLE_TYPE>
+    mainpower -> <SIMPLE_TYPE>
+    railpower -> <SIMPLE_TYPE>
+    ground -> <SIMPLE_TYPE>
+    loop -> <SIMPLE_TYPE>
+    monitoring -> <SIMPLE_TYPE>
+    canbus -> <SIMPLE_TYPE>
+    network -> <SIMPLE_TYPE>
+    networknode -> <SIMPLE_TYPE>
+    network_line -> <SIMPLE_TYPE>
+    topology -> <SIMPLE_TYPE>
+    netaddress -> <SIMPLE_TYPE>
+    vas -> <SIMPLE_TYPE>
+  <<SEQUENCE:
+
+
+Przetworzono Element: 49
+Przetworzono ComplexType: 16
+Przetworzono Group: 0
+
+Oczekiwano Element: 292

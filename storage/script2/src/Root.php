@@ -9,7 +9,9 @@ class Root
 
     public static $q;
 
-    public static $p;
+    public static $pElement;
+    public static $pComplexType;
+    public static $pGroup;
 
     public static $simpleTypes;
 
@@ -155,11 +157,10 @@ class Root
             //$nodeRef = Root::$xml->xpath("//xs:schema/xs:element[@name='" . $node->attributes()['ref'] . "']")[0];
             $typeName = "<REFERENCE>";
             $name = $node->attributes()['ref'];
-            $record = ['type' => 'element', 'name' => $node->attributes()['ref']];
 
-            if (array_search($record, Root::$p) === false) {
-                Root::$p[] = $record;
-                Root::$q->enqueue($record);
+            if (!in_array($name, Root::$pElement)) {
+                Root::$pElement[] = $name;
+                Root::$q->enqueue(["type" => "element", "name" => $name]);
             }
         } else {
             if (isset($node->attributes()['type'])) {
@@ -170,10 +171,10 @@ class Root
                 $typeName = "<SIMPLE_TYPE>";
             }
 
-            if (($typeName != "<ANONYMOUS>") & ($typeName != "<REF>") & ($typeName != "<SIMPLE_TYPE>")) {
-                $record = ['type' => 'element', 'name' => $node->attributes()['ref']];
-                if (array_search($record, Root::$p) === false) {
-                    Root::$p[] = $record;
+            if (($typeName != "<ANONYMOUS>") & ($typeName != "<SIMPLE_TYPE>")) {
+                if (!in_array($name, Root::$pComplexType)) {
+                    // die();
+                    Root::$pComplexType[] = $name;
                     Root::$q->enqueue(['type' => 'complexType', 'name' => $typeName]);
                 }
             }
@@ -248,16 +249,16 @@ class Root
                     Root::elementFlat($node);
                     break;
                 case 'group':
-                    // Root::group($node);
+                    Root::group($node);
                     break;
                 case 'choice':
-                    //Root::choice($node);
+                    Root::choice($node);
                     break;
                 case 'sequence':
-                    //Root::sequence($node);
+                    Root::sequence($node);
                     break;
                 case 'any':
-                    // Root::any($node);
+                    Root::any($node);
                     break;
                 default:
                     // print("default\n");
@@ -280,7 +281,7 @@ class Root
         foreach ($nodes as $node) {
             switch ($node->getName()) {
                 case 'element':
-                    Root::element($node);
+                    Root::elementFlat($node);
                     break;
                 case 'group':
                     Root::group($node);
@@ -303,16 +304,17 @@ class Root
 
     public static function choice($xmlNode)
     {
-        // Root::indent();
+        Root::indent();
         print(">>CHOICE:\n");
         Root::indentInc();
 
         $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
 
         foreach ($nodes as $node) {
+            //var_dump($node->attributes());
             switch ($node->getName()) {
                 case 'element':
-                    Root::element($node);
+                    Root::elementFlat($node);
                     break;
                 case 'group':
                     Root::group($node);
@@ -327,47 +329,49 @@ class Root
                     Root::any($node);
                     break;
                 default:
-                    print("default\n");
+                    // print("default\n");
                     // unknown($node);
             }
         }
-
-        Root::indent();
-        print(">>CHOICE:\n");
         Root::indentDec();
+        Root::indent();
+        print("<<CHOICE:\n");
     }
 
     public static function all($xmlNode)
     {
         Root::indent();
-        // print("ALL:\n");
+        print(">>ALL:\n");
+        Root::indentInc();
 
         $nodes = $xmlNode->children('http://www.w3.org/2001/XMLSchema');
 
         foreach ($nodes as $node) {
+            //var_dump($node->attributes());
             switch ($node->getName()) {
                 case 'element':
-                    // print("element\n");
-                    // element($node);
+                    Root::elementFlat($node);
                     break;
                 case 'group':
-                    // print("group\n");
+                    Root::group($node);
                     break;
                 case 'choice':
-                    // print("choice\n");
+                    Root::choice($node);
                     break;
                 case 'sequence':
-                    // print("sequence\n");
-                    //sequence($node);
+                    Root::sequence($node);
                     break;
                 case 'any':
-                    // print("any\n");
+                    Root::any($node);
                     break;
                 default:
                     // print("default\n");
                     // unknown($node);
             }
         }
+        Root::indentDec();
+        Root::indent();
+        print("<<ALL:\n");
     }
 
     public static function element($xmlNode)
@@ -426,11 +430,14 @@ class Root
         Root::getSimpletypes();
 
         Root::$q = new \SplQueue();
-        Root::$p = array();
+        Root::$pElement = array();
+        Root::$pComplexType = array();
+        Root::$pGroup = array();
 
 
         // Dodawanie elementów
         Root::$q->enqueue(["type" => "element", "name" => "CONFIG_NETWORK"]);
+        Root::$q->enqueue(["type" => "complexType", "name" => "LOCAL_CONFIGURATIONType"]);
         // Root::$q->enqueue("HEADER");
         // Root::$q->enqueue("Trzeci");
 
@@ -459,7 +466,15 @@ class Root
         }
 
 
-        print("Przetworzono: " . sizeof(Root::$p));
+        print("Przetworzono Element: " . sizeof(Root::$pElement) . PHP_EOL);
+        print("Przetworzono ComplexType: " . sizeof(Root::$pComplexType) . PHP_EOL);
+        print("Przetworzono Group: " . sizeof(Root::$pGroup) . PHP_EOL);
+
+        print(PHP_EOL);
+
+
+        print("Oczekiwano Element: " . sizeof(Root::$xml->xpath("//xs:schema/xs:complexType")) . PHP_EOL);
+
 
 
         // foreach ($rootNode->children(Root::$ns) as $node) {
