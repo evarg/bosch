@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Maria Lux
+
+Created: 13.01.2017
+
+$Revision: 1.1 $ 
+
+Last locked:   $Date: 2017/02/09 14:31:35CET $
+
+Last change by $Author: Maria Lux (lux2ot) $
+
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1.1 $">
+  <xs:include schemaLocation="CommonTypes-3-0-0.xsd"/>
+  <xs:element name="VOICE_SOUNDER_SPEECHTEXT_MAPPINGS">
+    <xs:annotation>
+      <xs:documentation>List of tone signal to speech text combinations for Fulleon Sounder FNM-420Voice</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="VOICE_SOUNDER_SPEECHTEXT_MAPPINGSType">
+          <xs:attribute name="rpsDisplayName" type="xs:string" use="optional"/>
+          <xs:attribute name="version" type="xs:string"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="VOICE_SOUNDER_SPEECHTEXT_MAPPINGSType">
+    <xs:sequence minOccurs="32" maxOccurs="32">
+      <xs:element name="SPEECH_TEXT_MAPPING">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="signal" type="nacPatternType"/>
+            <xs:element name="language">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:maxLength value="20"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element ref="SIGNAL_PART" minOccurs="2" maxOccurs="2"/>
+          </xs:sequence>
+          <xs:attribute name="rpsDisplayName" type="xs:string" use="optional"/>
+        </xs:complexType>
+        <xs:key name="SignalToneText_Key">
+          <xs:selector xpath="SIGNAL_PART"/>
+          <xs:field xpath="part"/>
+        </xs:key>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SIGNAL_PARTType">
+    <xs:sequence>
+      <xs:element name="part">
+        <xs:simpleType>
+          <xs:restriction base="xs:unsignedByte">
+            <xs:minInclusive value="1"/>
+            <xs:maxInclusive value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="tonePattern" type="nacPatternType"/>
+      <xs:element name="text">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="200"/>
+            <xs:minLength value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SIGNAL_PART">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="SIGNAL_PARTType">
+          <xs:attribute name="rpsDisplayName" type="xs:string" use="optional"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

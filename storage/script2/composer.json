@@ -1,0 +1,17 @@
+{
+    "name": "bosch/xsd",
+    "description": "testy parsera xsd",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "grAVE",
+            "email": "g.r.a.v.e@wp.pl"
+        }
+    ],
+    "require": {}
+}

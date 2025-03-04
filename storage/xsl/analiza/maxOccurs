@@ -1,0 +1,175 @@
+						<xs:element name="RAS_SENSOR_TMS" type="TITANUS_MICROSensorType" minOccurs="6" maxOccurs="6"/>
+						<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType" maxOccurs="2"/>
+						<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType" maxOccurs="2"/>
+					<xs:element name="LED" type="LEDType" minOccurs="32" maxOccurs="32"/>
+					<xs:element name="LED" type="ColoredLEDType" minOccurs="32" maxOccurs="32"/>
+					<xs:element name="LED" type="BlinkingLEDType" minOccurs="32" maxOccurs="32"/>
+					<xs:element name="numberOfSubelements" type="xs:unsignedShort" default="0" minOccurs="0" maxOccurs="1">
+		<xs:choice minOccurs="0" maxOccurs="30">
+					<xs:element ref="GLTZONEKD" minOccurs="2" maxOccurs="2"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="AUXPOWER" type="AUXPOWER_MultipleType" minOccurs="2" maxOccurs="2">
+					<xs:element ref="GLTZONE_LSNI_CONV4" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext5BitType" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="8" maxOccurs="8">
+					<xs:element name="OUTPUT" type="LSNI_OUT2_OUTPUTType" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="OUTPUT" type="LSNI_OUT8IN2_OUTPUTType" minOccurs="8" maxOccurs="8"/>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="RELAY" type="LSNI_RELAYFeedbackType" minOccurs="8" maxOccurs="8"/>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0" maxOccurs="2">
+					<xs:element ref="GLTZONENBK" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="OUTPUT" type="NEV300_OUTPUTType" minOccurs="3" maxOccurs="3"/>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="8" maxOccurs="8"/>
+					<xs:element name="RELAY" type="RELAY_NSB100Type" minOccurs="2" maxOccurs="2">
+					<xs:element name="OUTPUT" type="NTK100_OUTPUTType" minOccurs="8" maxOccurs="8"/>
+				<xs:sequence maxOccurs="unbounded">
+			<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
+			<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2">
+			<xs:group ref="LSNIGroup" minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="LSNClassicGroup" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:sequence minOccurs="32" maxOccurs="32">
+              <xs:element ref="SIGNAL_PART" minOccurs="2" maxOccurs="2"/>
+					<xs:sequence maxOccurs="32">
+			<xs:element name="oemLogoFilename" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:sequence minOccurs="2" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="244">
+					<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
+					<xs:element name="AUXPOWER" type="AUXPOWER_BCType" minOccurs="6" maxOccurs="6">
+					<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
+					<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2">
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="20">
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="CTIE" type="CTIEType" minOccurs="2" maxOccurs="2"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="GLTZONE" minOccurs="4" maxOccurs="4"/>
+		<xs:sequence minOccurs="3" maxOccurs="unbounded">
+		<xs:choice minOccurs="3" maxOccurs="unbounded">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="CONDITION_STATE" type="CONDITION_STATEType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CONDITION_COUNTER" type="CONDITION_COUNTERType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="RELAY" type="RELAY_ENOTType" minOccurs="4" maxOccurs="4"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FBF_LEDORBUTTON" type="FBF_LEDORBUTTONType" minOccurs="10" maxOccurs="10">
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="POINT" type="POINTType" minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="adapted" type="dateTimeType" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="ACTIVITY" type="ACTIVITYType" maxOccurs="20"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HVAC" type="HVACType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="INPUT" minOccurs="8" maxOccurs="8">
+					<xs:element name="OUTPUT" type="OUTPUTType" minOccurs="8" maxOccurs="8"/>
+					<xs:element name="RS232" type="RS232Type" minOccurs="2" maxOccurs="2"/>
+					<xs:element name="S20" type="S20Type" minOccurs="2" maxOccurs="2">
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="subNumber" type="siSubNumberType" default="0" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="LED" type="LEDType" maxOccurs="32">
+			<xs:element name="RIGHT" type="RIGHTType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="0" maxOccurs="2"/>
+					<xs:element name="GROUND" type="GROUND_LSN1500Type" minOccurs="0" maxOccurs="2"/>
+					<xs:element ref="LSN_BUS" minOccurs="0" maxOccurs="2"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="0" maxOccurs="2"/>
+					<xs:element ref="LSN_BUS" minOccurs="0" maxOccurs="2"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="cityTieAddress" type="fullSIQueryType" default="MP_SI_INVALID.0.0" minOccurs="0" maxOccurs="1">
+			<xs:element ref="FAT_LEDORBUTTON" minOccurs="0" maxOccurs="11"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="NAC" type="NACType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="NAC_ZONE" type="NAC_ZONEType" minOccurs="2" maxOccurs="2"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="2">
+		<xs:sequence minOccurs="0" maxOccurs="2">
+			<xs:element name="LED" type="LEDOnboardType" minOccurs="11" maxOccurs="20"/>
+			<xs:element name="KEYLOCK" type="KEYLOCKType" minOccurs="0" maxOccurs="2">
+			<xs:element name="FUNCTION_KEY" type="FUNCTION_KEYType" minOccurs="0" maxOccurs="3">
+			<xs:element name="RS232" type="RS232Type" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CANBUS" type="CANBUSType" minOccurs="3" maxOccurs="3">
+			<xs:element name="ETHERNET" type="ETHERNETType" maxOccurs="4">
+						<xs:element name="INPUT" minOccurs="2" maxOccurs="2">
+						<xs:element name="MAINPOWER" type="MAINPOWERType" minOccurs="2" maxOccurs="2"/>
+			<xs:element ref="OPERATOR" maxOccurs="205"/>
+			<xs:element name="MENU_ENTRY" type="MenuActionType" minOccurs="1" maxOccurs="8"/>
+			<xs:element name="PERSONALIZED_MENU" type="OperatorMenuType" minOccurs="0" maxOccurs="1"/>
+		<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence maxOccurs="4">
+		<xs:sequence minOccurs="0" maxOccurs="1">
+			<xs:element name="TRANSFER" type="TRANSFERType" minOccurs="0" maxOccurs="2"/>
+			<xs:group ref="MODULESGroup" minOccurs="0" maxOccurs="48"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="20">
+			<xs:element name="time" type="TimePairWithAttribType" minOccurs="0" maxOccurs="10">
+			<xs:element name="LEVEL" type="LEVELType" maxOccurs="unbounded"/>
+					<xs:element name="RELAY" type="RELAY_RLLVType" minOccurs="8" maxOccurs="8"/>
+			<xs:group ref="CONDITIONGroup" minOccurs="0" maxOccurs="unbounded">
+			<xs:group ref="CONDITIONGroup" minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="192">
+			<xs:element name="element" type="fullSINumberType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ACTIVITY" type="ACTIVITYType" maxOccurs="20"/>
+			<xs:element name="color" type="LEDColorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="DELAY" type="DELAYType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="11" maxOccurs="unbounded">
+			<xs:element name="STATUS" type="STATUSType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="RULEGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="counter" type="sumcounterCounterType" maxOccurs="unbounded"/>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:choice minOccurs="0" maxOccurs="2">
+			<xs:element name="ACTIVITY" type="ACTIVITYType" maxOccurs="20"/>
+			<xs:element ref="RULE_STATE" minOccurs="2" maxOccurs="unbounded"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:sequence maxOccurs="unbounded">
+						<xs:sequence maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence maxOccurs="255">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="activateFireExt" type="yesnoType" default="ST_YES" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="allowDetectorRemoval" type="yesnoType" default="ST_NO" minOccurs="0" maxOccurs="1"/>
+			<xs:sequence maxOccurs="unbounded">
+			<xs:sequence maxOccurs="128">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="CLOUD_DATA" type="CloudDataType" minOccurs="0" maxOccurs="1">
+			<xs:element name="P2P_DATA" type="P2PType" minOccurs="0" maxOccurs="1">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">

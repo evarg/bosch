@@ -1,0 +1,41 @@
+<xs:element>
+	Definiuje pojedynczy element w schemacie XML.
+	Może zawierać atrybuty, takie jak name, type, minOccurs, maxOccurs, default, nillable.
+	1.2. <xs:complexType>
+	Definiuje złożony typ, który może zawierać inne elementy lub atrybuty.
+	Zawiera sekcje takie jak xs:sequence, xs:choice, xs:all do określania porządku elementów wewnątrz.
+	1.3. <xs:simpleType>
+	Definiuje prosty typ danych, np. dla tekstu lub liczb.
+	Może zawierać xs:restriction do ograniczania wartości.
+	1.4. <xs:attribute>
+	Określa atrybut dla elementu XML.
+	Może zawierać atrybuty jak name, type, use, default, fixed.
+	1.5. <xs:sequence>
+	Określa kolejność elementów w ramach złożonego typu.
+	1.6. <xs:choice>
+	Pozwala na zdefiniowanie grupy elementów, z których dokładnie jeden musi wystąpić.
+	1.7. <xs:all>
+	Określa, że wszystkie elementy w grupie mogą wystąpić, ale w dowolnej kolejności.
+	1.8. <xs:group>
+	Definiuje grupę elementów, które mogą być użyte wielokrotnie w innych częściach schematu.
+	1.9. <xs:import>
+	Umożliwia importowanie innych schematów XML zdefiniowanych w innych przestrzeniach nazw.
+	1.10. <xs:include>
+	Umożliwia włączenie innego schematu do bieżącego schematu.
+	1.11. <xs:key> i <xs:keyref>
+	Definiuje klucz (identyfikator) oraz odwołania do tego klucza, używane w celu walidacji referencji między elementami.
+	1.12. <xs:annotation>
+	Zawiera dodatkowe informacje, komentarze lub dokumentację.
+
+<xs:complexType>
+<xs:simpleType>
+<xs:attribute>
+<xs:sequence>
+<xs:choice>
+<xs:all>
+<xs:group>
+<xs:import>
+<xs:include>
+<xs:key> i 
+<xs:keyref>
+<xs:annotation>
