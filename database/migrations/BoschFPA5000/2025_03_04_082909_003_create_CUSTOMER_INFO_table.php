@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('smtp')->nullable();
             $table->string('x400')->nullable();
 
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();

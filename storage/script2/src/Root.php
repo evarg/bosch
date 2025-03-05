@@ -191,9 +191,9 @@ class Root
 
                     if (!in_array($base, Root::$pComplexType)) {
                         Root::$pComplexType[] = $base;
-                        Root::$pAll[] = ["type" => "complexType", "name" => $base];
                         Root::$q->enqueue(["type" => "complexType", "name" => $base]);
                         Root::indent();
+                        Root::$pAll[] = ["type" => "complexType", "name" => $base];
                     }
 
                     break;
@@ -231,14 +231,17 @@ class Root
             }
         } else {
             if (isset($node->attributes()['type'])) {
-                $typeName = $node->attributes()['type'];
+                $typeName = (string) $node->attributes()['type'];
                 if (in_array($typeName, Root::$simpleTypes)) {
                     $typeName = "<SIMPLE_TYPE>";
                 } else {
+                    // var_dump($typeName);
                     // die();
-                    Root::$pComplexType[] = $name;
-                    Root::$q->enqueue(['type' => 'complexType', 'name' => $typeName]);
-                    Root::$pAll[] = ["type" => "complexType", "name" => $typeName];
+                    if (!in_array($typeName, Root::$pComplexType)) {
+                        Root::$pComplexType[] = $typeName;
+                        Root::$q->enqueue(['type' => 'complexType', 'name' => $typeName]);
+                        Root::$pAll[] = ["type" => "complexType", "name" => $typeName];
+                    }
                 }
             } else {
             }
@@ -573,10 +576,11 @@ class Root
         print("Oczekiwano complexType: " . sizeof(Root::$xml->xpath("//xs:schema/xs:complexType")) . PHP_EOL);
         print("Oczekiwano group: " . sizeof(Root::$xml->xpath("//xs:schema/xs:group")) . PHP_EOL);
 
-        foreach(Root::$pAll as $key => $value){
-            print($key+1 . " " . $value['name'] . '(' . $value['type'] . ')' . PHP_EOL);
+        foreach (Root::$pAll as $key => $value) {
+            print($key + 1 . " " . $value['name'] . '(' . $value['type'] . ')' . PHP_EOL);
         }
 
+        print_r(Root::$pComplexType);
 
         // print_r(Root::$pElement);
         // if(!in_array("DAYSGroup", Root::$pGroup)){

@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->create('NODES', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -28,3 +30,8 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->dropIfExists('NODES');
     }
 };
+
+// NODES
+//   []-- SEQUENCE
+//     --?- netCRC -> <REFERENCE>
+//     ---- NODE -> <REFERENCE>

@@ -61,7 +61,7 @@ class HEADER extends Model
 
     public function CONFIG_NETWORK()
     {
-        return $this->belongsTo(CONFIG_NETWORK::class);
+        return $this->belongsTo(CONFIG_NETWORK::class, 'CONFIG_NETWORK');
     }
 
 

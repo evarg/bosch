@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('LZ_STATE_MAPPING', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('{{ table }}', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+            //$table->string('yyyy')->nullable();
+
+            //$table->foreignId('xxxx')->constrained('xxxx');
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
@@ -27,10 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LZ_STATE_MAPPING');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('{{ table }}');
     }
 };
-
-// LZ_STATE_MAPPING
-//   ---- SEQUENCE
-//     ---- CONFIGURED_MAPPINGS -> <REFERENCE>
