@@ -13,6 +13,8 @@ class Root
     public static $pComplexType;
     public static $pGroup;
 
+    public static $pAll;
+
     public static $simpleTypes;
 
     public static $ns = 'http://www.w3.org/2001/XMLSchema';
@@ -189,6 +191,7 @@ class Root
 
                     if (!in_array($base, Root::$pComplexType)) {
                         Root::$pComplexType[] = $base;
+                        Root::$pAll[] = ["type" => "complexType", "name" => $base];
                         Root::$q->enqueue(["type" => "complexType", "name" => $base]);
                         Root::indent();
                     }
@@ -224,6 +227,7 @@ class Root
             if (!in_array($name, Root::$pElement)) {
                 Root::$pElement[] = $name;
                 Root::$q->enqueue(["type" => "element", "name" => $name]);
+                Root::$pAll[] = ["type" => "element", "name" => $name];
             }
         } else {
             if (isset($node->attributes()['type'])) {
@@ -234,6 +238,7 @@ class Root
                     // die();
                     Root::$pComplexType[] = $name;
                     Root::$q->enqueue(['type' => 'complexType', 'name' => $typeName]);
+                    Root::$pAll[] = ["type" => "complexType", "name" => $typeName];
                 }
             } else {
             }
@@ -261,6 +266,7 @@ class Root
             if (!in_array($name, Root::$pGroup)) {
                 Root::$pGroup[] = $name;
                 Root::$q->enqueue(["type" => "group", "name" => $name]);
+                Root::$pAll[] = ["type" => "group", "name" => $name];
                 Root::indent();
                 print("" . $name . " -> " . $typeName . "\n");
             }
@@ -305,7 +311,6 @@ class Root
 
     public static function sequence($xmlNode)
     {
-
         $attrib = array(
             'maxOccurs' => false,
             'reference' => false,
@@ -567,6 +572,11 @@ class Root
         print("Oczekiwano element: " . sizeof(Root::$xml->xpath("//xs:schema/xs:element")) . PHP_EOL);
         print("Oczekiwano complexType: " . sizeof(Root::$xml->xpath("//xs:schema/xs:complexType")) . PHP_EOL);
         print("Oczekiwano group: " . sizeof(Root::$xml->xpath("//xs:schema/xs:group")) . PHP_EOL);
+
+        foreach(Root::$pAll as $key => $value){
+            print($key+1 . " " . $value['name'] . '(' . $value['type'] . ')' . PHP_EOL);
+        }
+
 
         // print_r(Root::$pElement);
         // if(!in_array("DAYSGroup", Root::$pGroup)){
