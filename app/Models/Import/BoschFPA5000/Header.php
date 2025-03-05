@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string|null $filename
@@ -63,5 +63,6 @@ class HEADER extends Model
     {
         return $this->belongsTo(CONFIG_NETWORK::class);
     }
+
 
 }
