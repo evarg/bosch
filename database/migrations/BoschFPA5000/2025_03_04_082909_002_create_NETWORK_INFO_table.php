@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('activateFireExt')->nullable();
             $table->string('allowDetectorRemoval')->nullable();
 
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('x400')->nullable();
             $table->string('oemLogoFilename')->nullable();
 
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -33,3 +35,5 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->dropIfExists('SUPPORT_INFO');
     }
 };
+
+//

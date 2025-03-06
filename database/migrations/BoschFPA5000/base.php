@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('CONFIG_NETWORK', function (Blueprint $table) {
             $table->id();
+
+
+
+            $table->string('rpsDisplayName')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

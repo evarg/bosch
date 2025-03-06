@@ -23,7 +23,10 @@ return new class extends Migration
             $table->string('xmlValidation')->nullable();
             $table->string('mismatchConfirmed')->nullable();
 
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+
             $table->string('rpsDisplayName')->nullable();
+            $table->string('rpsLanguage')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

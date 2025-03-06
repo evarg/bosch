@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->create('REMOTE_SERVICES_NETWORK_DATA', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -28,3 +30,9 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->dropIfExists('REMOTE_SERVICES_NETWORK_DATA');
     }
 };
+
+// REMOTE_SERVICES_NETWORK_DATA
+//   ---- SEQUENCE
+//     ---- RemoteServicesType -> <ANONYMOUS>
+//     --?- CLOUD_DATA -> CloudDataType
+//     --?- P2P_DATA -> P2PType
