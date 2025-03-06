@@ -16,6 +16,8 @@ return new class extends Migration
 
             $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
 
+            $table->string('RemoteServicesType')->nullable();
+
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();

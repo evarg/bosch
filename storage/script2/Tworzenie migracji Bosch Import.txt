@@ -1,362 +1,362 @@
 #!/bin/bash
-app:import-bosch-migration 001 HEADER
-app:import-bosch-migration 002 NETWORK_INFO
-app:import-bosch-migration 003 CUSTOMER_INFO
-app:import-bosch-migration 004 SUPPORT_INFO
-app:import-bosch-migration 005 REMOTE_SERVICES_NETWORK_DATA
-app:import-bosch-migration 006 LZ_STATE_MAPPING
-app:import-bosch-migration 007 NODES
-app:import-bosch-migration 008 SWITCHES
-app:import-bosch-migration 009 CloudDataType
-app:import-bosch-migration 010 P2PType
-app:import-bosch-migration 011 CONFIGURED_MAPPINGS
-app:import-bosch-migration 012 netCRC
-app:import-bosch-migration 013 NODE
-app:import-bosch-migration 014 SWITCH
-app:import-bosch-migration 015 InterfacePanelType
-app:import-bosch-migration 016 FTYPE_LZ_MAPPINGS
-app:import-bosch-migration 017 LZ_ADIS
-app:import-bosch-migration 018 LogicalNetAddr
-app:import-bosch-migration 019 SPANNING_TREE
-app:import-bosch-migration 020 NET_INTERFACES
-app:import-bosch-migration 021 EXPORTS
-app:import-bosch-migration 022 IMPORTS
-app:import-bosch-migration 023 ASSIGNED_OPCSVRS
-app:import-bosch-migration 024 ASSIGNED_MTS_NODES
-app:import-bosch-migration 025 CONNECTABLE
-app:import-bosch-migration 026 CONFIG_DATA
-app:import-bosch-migration 027 PORTS
-app:import-bosch-migration 028 FTYPE_LZ_MAPPING
-app:import-bosch-migration 029 LZ_ADI
-app:import-bosch-migration 030 NET_INTERFACE
-app:import-bosch-migration 031 REPLICATED_SIS
-app:import-bosch-migration 032 REPLICATED_COUNTERS
-app:import-bosch-migration 033 USED_SIS
-app:import-bosch-migration 034 USED_COUNTERS
-app:import-bosch-migration 035 USED_OFFSET_TABLES
-app:import-bosch-migration 036 OPCSERVER
-app:import-bosch-migration 037 MTS_NODE
-app:import-bosch-migration 038 LOCAL_CONFIGURATION
-app:import-bosch-migration 039 RK_DATA
-app:import-bosch-migration 040 PORT
-app:import-bosch-migration 041 FTYPE_LZ_MAPPINGType
-app:import-bosch-migration 042 LZ_ADI_MAPPINGType
-app:import-bosch-migration 043 NET_INTERFACEType
-app:import-bosch-migration 044 REPLICATED_SI
-app:import-bosch-migration 045 REPLICATED_COUNTER
-app:import-bosch-migration 046 USED_SI
-app:import-bosch-migration 047 USED_COUNTER
-app:import-bosch-migration 048 USED_OFFSET_TABLE
-app:import-bosch-migration 049 LOCAL_CONFIGURATIONType
-app:import-bosch-migration 050 RK_DATAType
-app:import-bosch-migration 051 CSTATES
-app:import-bosch-migration 052 ADI
-app:import-bosch-migration 053 CAN_PARAM
-app:import-bosch-migration 054 ETHERNET_PARAM
-app:import-bosch-migration 055 REPLICATED_COUNTERType
-app:import-bosch-migration 056 ADDROFFSET_TABLEType
-app:import-bosch-migration 057 OFFSET_TABLE
-app:import-bosch-migration 058 PANEL
-app:import-bosch-migration 059 CSTATE_MAPPING
-app:import-bosch-migration 060 ADI_Type
-app:import-bosch-migration 061 CONFIG_INFO
-app:import-bosch-migration 062 LicencingType
-app:import-bosch-migration 063 ONBOARD
-app:import-bosch-migration 064 MODULESGroup
-app:import-bosch-migration 065 LOGICAL_GROUPING
-app:import-bosch-migration 066 LicenseBundleType
-app:import-bosch-migration 067 LEDOnboardType
-app:import-bosch-migration 068 BUZZER_ONBOARDType
-app:import-bosch-migration 069 GROUNDType
-app:import-bosch-migration 070 PAS_CONFIRMATIONType
-app:import-bosch-migration 071 KEYLOCKType
-app:import-bosch-migration 072 FUNCTION_KEYType
-app:import-bosch-migration 073 RS232Type
-app:import-bosch-migration 074 CANBUSType
-app:import-bosch-migration 075 ETHERNETType
-app:import-bosch-migration 076 BATTERY_CONTR_MODULE
-app:import-bosch-migration 077 CITYTIE_MODULE
-app:import-bosch-migration 078 CONVENTIONAL_MODULE
-app:import-bosch-migration 079 ENOT_MODULE
-app:import-bosch-migration 080 IO_8_MODULE
-app:import-bosch-migration 081 IO_S20_MODULE
-app:import-bosch-migration 082 IO2_S20_MODULE
-app:import-bosch-migration 083 IO_SERIAL_MODULE
-app:import-bosch-migration 084 LEDINT_MODULE
-app:import-bosch-migration 085 LSN300_MODULE
-app:import-bosch-migration 086 LSN1500_MODULE
-app:import-bosch-migration 087 NAC_MODULE
-app:import-bosch-migration 088 RLHV_MODULE
-app:import-bosch-migration 089 RLLV_MODULE
-app:import-bosch-migration 090 BCMB_MODULE
-app:import-bosch-migration 091 VAS_INTERFACE
-app:import-bosch-migration 092 PANEL_ADMINISTRATION
-app:import-bosch-migration 093 SETS_ADMIN
-app:import-bosch-migration 094 GROUP_ADMIN
-app:import-bosch-migration 095 STATUS_ADMIN
-app:import-bosch-migration 096 NAC_ADMIN
-app:import-bosch-migration 097 CONTROL_ADMIN
-app:import-bosch-migration 098 DOORHOLDER_ADMIN
-app:import-bosch-migration 099 FIRE_ADMIN
-app:import-bosch-migration 0100 HVAC_ADMIN
-app:import-bosch-migration 0101 CITYTIE_ADMIN
-app:import-bosch-migration 0102 KEYDEPOT_ADMIN
-app:import-bosch-migration 0103 MTS_ADMIN
-app:import-bosch-migration 0104 PRINTER_ADMIN
-app:import-bosch-migration 0105 FBF_ADMIN
-app:import-bosch-migration 0106 COMMUNICATION_DEVICES
-app:import-bosch-migration 0107 ADDRESS_MANAGEMENT
-app:import-bosch-migration 0108 COUNTER_ADMIN
-app:import-bosch-migration 0109 COUNTER_ADMIN_LIFE_TIME
-app:import-bosch-migration 0110 OPERATOR_ADMIN
-app:import-bosch-migration 0111 RIGHT_MANAGEMENT
-app:import-bosch-migration 0112 TIME_CONTROL
-app:import-bosch-migration 0113 PANEL_COMMUNICATION
-app:import-bosch-migration 0114 ACTIVITYTEXTS
-app:import-bosch-migration 0115 PRIORITIES
-app:import-bosch-migration 0116 VOICE_SOUNDER_SPEECHTEXT_MAPPINGS
-app:import-bosch-migration 0117 KEYType
-app:import-bosch-migration 0118 LEDType
-app:import-bosch-migration 0119 BATTERYType
-app:import-bosch-migration 0120 MAINPOWERType
-app:import-bosch-migration 0121 RAILPOWERType
-app:import-bosch-migration 0122 AUXPOWER_BCType
-app:import-bosch-migration 0123 PANEL_MODULES_BaseType
-app:import-bosch-migration 0124 CTIEType
-app:import-bosch-migration 0125 AUXPOWER_SingleType
-app:import-bosch-migration 0126 GLTZONE
-app:import-bosch-migration 0127 KEYDEPOT_ENOTType
-app:import-bosch-migration 0128 UNLOCKAPPLIANCEType
-app:import-bosch-migration 0129 CTIE
-app:import-bosch-migration 0130 RELAY_ENOTType
-app:import-bosch-migration 0131 OUTPUTType
-app:import-bosch-migration 0132 S20Type
-app:import-bosch-migration 0133 AUXPOWER_WithLineSupervisionType
-app:import-bosch-migration 0134 LSN_BUS
-app:import-bosch-migration 0135 GROUND_LSN1500Type
-app:import-bosch-migration 0136 NAC_ZONEType
-app:import-bosch-migration 0137 RELAY_RLHVType
-app:import-bosch-migration 0138 INPUTBaseType
-app:import-bosch-migration 0139 RELAY_RLLVType
-app:import-bosch-migration 0140 UART
-app:import-bosch-migration 0141 PRAESIDEO_SETTINGS
-app:import-bosch-migration 0142 VAS_TRIGGERS
-app:import-bosch-migration 0143 RULEGroup
-app:import-bosch-migration 0144 SETType
-app:import-bosch-migration 0145 GROUPType
-app:import-bosch-migration 0146 STATUS_GROUPType
-app:import-bosch-migration 0147 NAC_GROUPType
-app:import-bosch-migration 0148 CONTROLType
-app:import-bosch-migration 0149 DOORHOLDERType
-app:import-bosch-migration 0150 FIREType
-app:import-bosch-migration 0151 HVACType
-app:import-bosch-migration 0152 CITYTIEType
-app:import-bosch-migration 0153 KEYDEPOTType
-app:import-bosch-migration 0154 MTS
-app:import-bosch-migration 0155 PRINTER
-app:import-bosch-migration 0156 FBFType
-app:import-bosch-migration 0157 DIALERType
-app:import-bosch-migration 0158 ADDRESS_MANAGEMENTType
-app:import-bosch-migration 0159 COUNTERGroup
-app:import-bosch-migration 0160 COUNTER_LIFE_TIMEType
-app:import-bosch-migration 0161 OPERATOR
-app:import-bosch-migration 0162 LEVELType
-app:import-bosch-migration 0163 TIME_CONTROLGroup
-app:import-bosch-migration 0164 TRANSFERType
-app:import-bosch-migration 0165 ActivityTextWithAttribType
-app:import-bosch-migration 0166 VOICE_SOUNDER_SPEECHTEXT_MAPPINGSType
-app:import-bosch-migration 0167 RELAYBaseType
-app:import-bosch-migration 0168 LINE_SUPERVISIONType
-app:import-bosch-migration 0169 LSNAllGroup
-app:import-bosch-migration 0170 NAK100
-app:import-bosch-migration 0171 VAS_TRIGGER
-app:import-bosch-migration 0172 RULE
-app:import-bosch-migration 0173 RULE_STATE_BLOCK
-app:import-bosch-migration 0174 RULE_STATE
-app:import-bosch-migration 0175 POINTType
-app:import-bosch-migration 0176 STATUSType
-app:import-bosch-migration 0177 NACType
-app:import-bosch-migration 0178 TRANSMISSION_TABLE
-app:import-bosch-migration 0179 MTS_CONNECTION
-app:import-bosch-migration 0180 FAT_LEDORBUTTON
-app:import-bosch-migration 0181 OB_UART
-app:import-bosch-migration 0182 FBF_LEDORBUTTONType
-app:import-bosch-migration 0183 GLOBAL_OFFSET_TABLE
-app:import-bosch-migration 0184 COUNTER
-app:import-bosch-migration 0185 SUMCOUNTER
-app:import-bosch-migration 0186 REMOTE_COUNTER
-app:import-bosch-migration 0187 ADMINSTATE_COUNTER
-app:import-bosch-migration 0188 OperatorMenuType
-app:import-bosch-migration 0189 RIGHTType
-app:import-bosch-migration 0190 CHANNELSType
-app:import-bosch-migration 0191 DAYSType
-app:import-bosch-migration 0192 PROGRAMSType
-app:import-bosch-migration 0193 OB_UARTType
-app:import-bosch-migration 0194 ATMODEMType
-app:import-bosch-migration 0195 LSNIGroup
-app:import-bosch-migration 0196 LSNClassicGroup
-app:import-bosch-migration 0197 LSN_BUS_NAK100Type
-app:import-bosch-migration 0198 LSNDeviceBranchBaseType
-app:import-bosch-migration 0199 RULE_TRIGGERGroup
-app:import-bosch-migration 0200 CONDITIONGroup
-app:import-bosch-migration 0201 RULE_ACTIONGroup
-app:import-bosch-migration 0202 PROTOCOL_4A
-app:import-bosch-migration 0203 MenuActionType
-app:import-bosch-migration 0204 CHANNELType
-app:import-bosch-migration 0205 DAYSGroup
-app:import-bosch-migration 0206 PROGRAMType
-app:import-bosch-migration 0207 DM210
-app:import-bosch-migration 0208 PULLSTATION
-app:import-bosch-migration 0209 T220IUS
-app:import-bosch-migration 0210 T410I
-app:import-bosch-migration 0211 O220IUS
-app:import-bosch-migration 0212 OT220IUS
-app:import-bosch-migration 0213 OTC220IUS
-app:import-bosch-migration 0214 O500IUS
-app:import-bosch-migration 0215 OC500IUS
-app:import-bosch-migration 0216 O500I
-app:import-bosch-migration 0217 O410I
-app:import-bosch-migration 0218 OC410I
-app:import-bosch-migration 0219 OT410I
-app:import-bosch-migration 0220 OTC410I
-app:import-bosch-migration 0221 O110I
-app:import-bosch-migration 0222 OT110I
-app:import-bosch-migration 0223 LSN_NAC
-app:import-bosch-migration 0224 RLHVI
-app:import-bosch-migration 0225 OC500I
-app:import-bosch-migration 0226 ISOLATOR
-app:import-bosch-migration 0227 LSNI_OUT2
-app:import-bosch-migration 0228 LSNI_OUT2_D
-app:import-bosch-migration 0229 LSNI_IN2
-app:import-bosch-migration 0230 LSNI_IN2_D
-app:import-bosch-migration 0231 LSNI_RELAY1
-app:import-bosch-migration 0232 LSNI_RELAY1_D
-app:import-bosch-migration 0233 RAS_TPS1
-app:import-bosch-migration 0234 RAS_TPS2
-app:import-bosch-migration 0235 RAS_TTS1
-app:import-bosch-migration 0236 RAS_TTS2
-app:import-bosch-migration 0237 RAS_TMS
-app:import-bosch-migration 0238 RAS_TMS_NOFAN
-app:import-bosch-migration 0239 RAS_TMS_RB
-app:import-bosch-migration 0240 LSNI_CONV4
-app:import-bosch-migration 0241 LSNTESTELEMENT
-app:import-bosch-migration 0242 LSNI_RELAY8
-app:import-bosch-migration 0243 LSNI_BEACON
-app:import-bosch-migration 0244 LSNI_IN8R1
-app:import-bosch-migration 0245 LSNI_OUT8_IN2
-app:import-bosch-migration 0246 LSNI_IN1
-app:import-bosch-migration 0247 LSNI_OUT1_IN1
-app:import-bosch-migration 0248 LSNI_RLE
-app:import-bosch-migration 0249 FULLEON_BASE
-app:import-bosch-migration 0250 FULLEON_BASE_U
-app:import-bosch-migration 0251 FULLEON_STANDALONE
-app:import-bosch-migration 0252 FULLEON_STANDALONE_U
-app:import-bosch-migration 0253 FULLEON_STANDALONE_V
-app:import-bosch-migration 0254 KD55_KD200
-app:import-bosch-migration 0255 LSNI_EOL_2W
-app:import-bosch-migration 0256 LSNI_EOL_4W
-app:import-bosch-migration 0257 DO410I
-app:import-bosch-migration 0258 DOT410I
-app:import-bosch-migration 0259 DOTC410I
-app:import-bosch-migration 0260 LSNI_TI13
-app:import-bosch-migration 0261 ATB420
-app:import-bosch-migration 0262 ATG420
-app:import-bosch-migration 0263 FWI270
-app:import-bosch-migration 0264 FNX425U
-app:import-bosch-migration 0265 NBM110
-app:import-bosch-migration 0266 NSB100
-app:import-bosch-migration 0267 ATX100
-app:import-bosch-migration 0268 MSS400
-app:import-bosch-migration 0269 MSS401
-app:import-bosch-migration 0270 NBK100
-app:import-bosch-migration 0271 NEV300
-app:import-bosch-migration 0272 NIM100
-app:import-bosch-migration 0273 NKK100
-app:import-bosch-migration 0274 NOM100
-app:import-bosch-migration 0275 NTK100
-app:import-bosch-migration 0276 NTM100
-app:import-bosch-migration 0277 O410
-app:import-bosch-migration 0278 O500
-app:import-bosch-migration 0279 OM200
-app:import-bosch-migration 0280 OT200
-app:import-bosch-migration 0281 OT410
-app:import-bosch-migration 0282 OTC410
-app:import-bosch-migration 0283 T410
-app:import-bosch-migration 0284 TM200
-app:import-bosch-migration 0285 FK100
-app:import-bosch-migration 0286 FBF100
-app:import-bosch-migration 0287 OC410
-app:import-bosch-migration 0288 OC500
-app:import-bosch-migration 0289 TRIGGER_ADMIN
-app:import-bosch-migration 0290 TRIGGER_COUNTER
-app:import-bosch-migration 0291 TRIGGER_DOWNLOAD
-app:import-bosch-migration 0292 TRIGGER_STATE
-app:import-bosch-migration 0293 TRIGGER_USER
-app:import-bosch-migration 0294 TRIGGER_ELAPSE
-app:import-bosch-migration 0295 CONDITION_COUNTER
-app:import-bosch-migration 0296 CONDITION_STATE
-app:import-bosch-migration 0297 CONDITION_ELAPSE
-app:import-bosch-migration 0298 ADMINISTRATION
-app:import-bosch-migration 0299 BUZZER_ACTION
-app:import-bosch-migration 0300 CITYTIE_ACTION
-app:import-bosch-migration 0301 CONTROL_ACTION
-app:import-bosch-migration 0302 DIALER_ACTION
-app:import-bosch-migration 0303 DOORHOLDER_ACTION
-app:import-bosch-migration 0304 FAT_ACTION
-app:import-bosch-migration 0305 FBF_ACTION
-app:import-bosch-migration 0306 FIRE_ACTION
-app:import-bosch-migration 0307 HVAC_ACTION
-app:import-bosch-migration 0308 KEYDEPOT_ACTION
-app:import-bosch-migration 0309 NAC_ACTION
-app:import-bosch-migration 0310 PRINTER_ACTION
-app:import-bosch-migration 0311 SET_ACTION
-app:import-bosch-migration 0312 STATUS_ACTION
-app:import-bosch-migration 0313 ON_ACTIONType
-app:import-bosch-migration 0314 OFF_ACTIONType
-app:import-bosch-migration 0315 HOLIDAYType
-app:import-bosch-migration 0316 WEEKDAYType
-app:import-bosch-migration 0317 SPECIALDAYType
-app:import-bosch-migration 0318 TimePairWithAttribType
-app:import-bosch-migration 0319 ManuDetBaseType
-app:import-bosch-migration 0320 LSNI_DetectorRELAYType
-app:import-bosch-migration 0321 AutoDetBaseType
-app:import-bosch-migration 0322 LSNI_RELAYFeedbackType
-app:import-bosch-migration 0323 LSN_BATTERYType
-app:import-bosch-migration 0324 LSNDeviceBaseType
-app:import-bosch-migration 0325 LSNI_RELAYFeedbackRLHVIType
-app:import-bosch-migration 0326 LSNI_OUT2_OUTPUTType
-app:import-bosch-migration 0327 LSNI_INPUT_Ext5BitType
-app:import-bosch-migration 0328 TITANUS_TOP_PROSensorType
-app:import-bosch-migration 0329 TITANUS_MICROSensorType
-app:import-bosch-migration 0330 AUXPOWER_MultipleType
-app:import-bosch-migration 0331 GLTZONE_LSNI_CONV4
-app:import-bosch-migration 0332 LSNI_INPUT_Ext2BitType
-app:import-bosch-migration 0333 LSNI_OUT8IN2_OUTPUTType
-app:import-bosch-migration 0334 LSNI_OUT1IN1_OUTPUTType
-app:import-bosch-migration 0335 LSNI_RELAYFeedbackRLEType
-app:import-bosch-migration 0336 GLTZONEKD
-app:import-bosch-migration 0337 LSNI_EOL_2WType
-app:import-bosch-migration 0338 TI13_BCMB
-app:import-bosch-migration 0339 BlinkingLEDType
-app:import-bosch-migration 0340 ATXBaseType
-app:import-bosch-migration 0341 ColoredLEDType
-app:import-bosch-migration 0342 FWI270BusType
-app:import-bosch-migration 0343 FNX425U_SOUNDERType
-app:import-bosch-migration 0344 FNX425U_STROBEType
-app:import-bosch-migration 0345 RELAY_NSB100Type
-app:import-bosch-migration 0346 RAS_NSB100Type
-app:import-bosch-migration 0347 GLTZONENBK
-app:import-bosch-migration 0348 NEV300_OUTPUTType
-app:import-bosch-migration 0349 NTK100_OUTPUTType
-app:import-bosch-migration 0350 LSN_BUS_FK100
-app:import-bosch-migration 0351 DELAYType
-app:import-bosch-migration 0352 CHANNEL_ACTIONSGroup
-app:import-bosch-migration 0353 ACTIVITYType
-app:import-bosch-migration 0354 FWI270ElementsGroup
-app:import-bosch-migration 0355 DOW1171
-app:import-bosch-migration 0356 CONDITION_STATEType
-app:import-bosch-migration 0357 CONDITION_COUNTERType
-app:import-bosch-migration 0358 FDOOT271_O
-app:import-bosch-migration 0359 FDM275_O
-app:import-bosch-migration 0360 FDM273_O
-app:import-bosch-migration 0361 FWI270DetBaseType
+php ../../artisan app:import-bosch-migration 0001 HEADER
+php ../../artisan app:import-bosch-migration 0002 NETWORK_INFO
+php ../../artisan app:import-bosch-migration 0003 CUSTOMER_INFO
+php ../../artisan app:import-bosch-migration 0004 SUPPORT_INFO
+php ../../artisan app:import-bosch-migration 0005 REMOTE_SERVICES_NETWORK_DATA
+php ../../artisan app:import-bosch-migration 0006 LZ_STATE_MAPPING
+php ../../artisan app:import-bosch-migration 0007 NODES
+php ../../artisan app:import-bosch-migration 0008 SWITCHES
+php ../../artisan app:import-bosch-migration 0009 CloudDataType
+php ../../artisan app:import-bosch-migration 0010 P2PType
+php ../../artisan app:import-bosch-migration 0011 CONFIGURED_MAPPINGS
+php ../../artisan app:import-bosch-migration 0012 netCRC
+php ../../artisan app:import-bosch-migration 0013 NODE
+php ../../artisan app:import-bosch-migration 0014 SWITCH
+php ../../artisan app:import-bosch-migration 0015 InterfacePanelType
+php ../../artisan app:import-bosch-migration 0016 FTYPE_LZ_MAPPINGS
+php ../../artisan app:import-bosch-migration 0017 LZ_ADIS
+php ../../artisan app:import-bosch-migration 0018 LogicalNetAddr
+php ../../artisan app:import-bosch-migration 0019 SPANNING_TREE
+php ../../artisan app:import-bosch-migration 0020 NET_INTERFACES
+php ../../artisan app:import-bosch-migration 0021 EXPORTS
+php ../../artisan app:import-bosch-migration 0022 IMPORTS
+php ../../artisan app:import-bosch-migration 0023 ASSIGNED_OPCSVRS
+php ../../artisan app:import-bosch-migration 0024 ASSIGNED_MTS_NODES
+php ../../artisan app:import-bosch-migration 0025 CONNECTABLE
+php ../../artisan app:import-bosch-migration 0026 CONFIG_DATA
+php ../../artisan app:import-bosch-migration 0027 PORTS
+php ../../artisan app:import-bosch-migration 0028 FTYPE_LZ_MAPPING
+php ../../artisan app:import-bosch-migration 0029 LZ_ADI
+php ../../artisan app:import-bosch-migration 0030 NET_INTERFACE
+php ../../artisan app:import-bosch-migration 0031 REPLICATED_SIS
+php ../../artisan app:import-bosch-migration 0032 REPLICATED_COUNTERS
+php ../../artisan app:import-bosch-migration 0033 USED_SIS
+php ../../artisan app:import-bosch-migration 0034 USED_COUNTERS
+php ../../artisan app:import-bosch-migration 0035 USED_OFFSET_TABLES
+php ../../artisan app:import-bosch-migration 0036 OPCSERVER
+php ../../artisan app:import-bosch-migration 0037 MTS_NODE
+php ../../artisan app:import-bosch-migration 0038 LOCAL_CONFIGURATION
+php ../../artisan app:import-bosch-migration 0039 RK_DATA
+php ../../artisan app:import-bosch-migration 0040 PORT
+php ../../artisan app:import-bosch-migration 0041 FTYPE_LZ_MAPPINGType
+php ../../artisan app:import-bosch-migration 0042 LZ_ADI_MAPPINGType
+php ../../artisan app:import-bosch-migration 0043 NET_INTERFACEType
+php ../../artisan app:import-bosch-migration 0044 REPLICATED_SI
+php ../../artisan app:import-bosch-migration 0045 REPLICATED_COUNTER
+php ../../artisan app:import-bosch-migration 0046 USED_SI
+php ../../artisan app:import-bosch-migration 0047 USED_COUNTER
+php ../../artisan app:import-bosch-migration 0048 USED_OFFSET_TABLE
+php ../../artisan app:import-bosch-migration 0049 LOCAL_CONFIGURATIONType
+php ../../artisan app:import-bosch-migration 0050 RK_DATAType
+php ../../artisan app:import-bosch-migration 0051 CSTATES
+php ../../artisan app:import-bosch-migration 0052 ADI
+php ../../artisan app:import-bosch-migration 0053 CAN_PARAM
+php ../../artisan app:import-bosch-migration 0054 ETHERNET_PARAM
+php ../../artisan app:import-bosch-migration 0055 REPLICATED_COUNTERType
+php ../../artisan app:import-bosch-migration 0056 ADDROFFSET_TABLEType
+php ../../artisan app:import-bosch-migration 0057 OFFSET_TABLE
+php ../../artisan app:import-bosch-migration 0058 PANEL
+php ../../artisan app:import-bosch-migration 0059 CSTATE_MAPPING
+php ../../artisan app:import-bosch-migration 0060 ADI_Type
+php ../../artisan app:import-bosch-migration 0061 CONFIG_INFO
+php ../../artisan app:import-bosch-migration 0062 LicencingType
+php ../../artisan app:import-bosch-migration 0063 ONBOARD
+php ../../artisan app:import-bosch-migration 0064 MODULESGroup
+php ../../artisan app:import-bosch-migration 0065 LOGICAL_GROUPING
+php ../../artisan app:import-bosch-migration 0066 LicenseBundleType
+php ../../artisan app:import-bosch-migration 0067 LEDOnboardType
+php ../../artisan app:import-bosch-migration 0068 BUZZER_ONBOARDType
+php ../../artisan app:import-bosch-migration 0069 GROUNDType
+php ../../artisan app:import-bosch-migration 0070 PAS_CONFIRMATIONType
+php ../../artisan app:import-bosch-migration 0071 KEYLOCKType
+php ../../artisan app:import-bosch-migration 0072 FUNCTION_KEYType
+php ../../artisan app:import-bosch-migration 0073 RS232Type
+php ../../artisan app:import-bosch-migration 0074 CANBUSType
+php ../../artisan app:import-bosch-migration 0075 ETHERNETType
+php ../../artisan app:import-bosch-migration 0076 BATTERY_CONTR_MODULE
+php ../../artisan app:import-bosch-migration 0077 CITYTIE_MODULE
+php ../../artisan app:import-bosch-migration 0078 CONVENTIONAL_MODULE
+php ../../artisan app:import-bosch-migration 0079 ENOT_MODULE
+php ../../artisan app:import-bosch-migration 0080 IO_8_MODULE
+php ../../artisan app:import-bosch-migration 0081 IO_S20_MODULE
+php ../../artisan app:import-bosch-migration 0082 IO2_S20_MODULE
+php ../../artisan app:import-bosch-migration 0083 IO_SERIAL_MODULE
+php ../../artisan app:import-bosch-migration 0084 LEDINT_MODULE
+php ../../artisan app:import-bosch-migration 0085 LSN300_MODULE
+php ../../artisan app:import-bosch-migration 0086 LSN1500_MODULE
+php ../../artisan app:import-bosch-migration 0087 NAC_MODULE
+php ../../artisan app:import-bosch-migration 0088 RLHV_MODULE
+php ../../artisan app:import-bosch-migration 0089 RLLV_MODULE
+php ../../artisan app:import-bosch-migration 0090 BCMB_MODULE
+php ../../artisan app:import-bosch-migration 0091 VAS_INTERFACE
+php ../../artisan app:import-bosch-migration 0092 PANEL_ADMINISTRATION
+php ../../artisan app:import-bosch-migration 0093 SETS_ADMIN
+php ../../artisan app:import-bosch-migration 0094 GROUP_ADMIN
+php ../../artisan app:import-bosch-migration 0095 STATUS_ADMIN
+php ../../artisan app:import-bosch-migration 0096 NAC_ADMIN
+php ../../artisan app:import-bosch-migration 0097 CONTROL_ADMIN
+php ../../artisan app:import-bosch-migration 0098 DOORHOLDER_ADMIN
+php ../../artisan app:import-bosch-migration 0099 FIRE_ADMIN
+php ../../artisan app:import-bosch-migration 0100 HVAC_ADMIN
+php ../../artisan app:import-bosch-migration 0101 CITYTIE_ADMIN
+php ../../artisan app:import-bosch-migration 0102 KEYDEPOT_ADMIN
+php ../../artisan app:import-bosch-migration 0103 MTS_ADMIN
+php ../../artisan app:import-bosch-migration 0104 PRINTER_ADMIN
+php ../../artisan app:import-bosch-migration 0105 FBF_ADMIN
+php ../../artisan app:import-bosch-migration 0106 COMMUNICATION_DEVICES
+php ../../artisan app:import-bosch-migration 0107 ADDRESS_MANAGEMENT
+php ../../artisan app:import-bosch-migration 0108 COUNTER_ADMIN
+php ../../artisan app:import-bosch-migration 0109 COUNTER_ADMIN_LIFE_TIME
+php ../../artisan app:import-bosch-migration 0110 OPERATOR_ADMIN
+php ../../artisan app:import-bosch-migration 0111 RIGHT_MANAGEMENT
+php ../../artisan app:import-bosch-migration 0112 TIME_CONTROL
+php ../../artisan app:import-bosch-migration 0113 PANEL_COMMUNICATION
+php ../../artisan app:import-bosch-migration 0114 ACTIVITYTEXTS
+php ../../artisan app:import-bosch-migration 0115 PRIORITIES
+php ../../artisan app:import-bosch-migration 0116 VOICE_SOUNDER_SPEECHTEXT_MAPPINGS
+php ../../artisan app:import-bosch-migration 0117 KEYType
+php ../../artisan app:import-bosch-migration 0118 LEDType
+php ../../artisan app:import-bosch-migration 0119 BATTERYType
+php ../../artisan app:import-bosch-migration 0120 MAINPOWERType
+php ../../artisan app:import-bosch-migration 0121 RAILPOWERType
+php ../../artisan app:import-bosch-migration 0122 AUXPOWER_BCType
+php ../../artisan app:import-bosch-migration 0123 PANEL_MODULES_BaseType
+php ../../artisan app:import-bosch-migration 0124 CTIEType
+php ../../artisan app:import-bosch-migration 0125 AUXPOWER_SingleType
+php ../../artisan app:import-bosch-migration 0126 GLTZONE
+php ../../artisan app:import-bosch-migration 0127 KEYDEPOT_ENOTType
+php ../../artisan app:import-bosch-migration 0128 UNLOCKAPPLIANCEType
+php ../../artisan app:import-bosch-migration 0129 CTIE
+php ../../artisan app:import-bosch-migration 0130 RELAY_ENOTType
+php ../../artisan app:import-bosch-migration 0131 OUTPUTType
+php ../../artisan app:import-bosch-migration 0132 S20Type
+php ../../artisan app:import-bosch-migration 0133 AUXPOWER_WithLineSupervisionType
+php ../../artisan app:import-bosch-migration 0134 LSN_BUS
+php ../../artisan app:import-bosch-migration 0135 GROUND_LSN1500Type
+php ../../artisan app:import-bosch-migration 0136 NAC_ZONEType
+php ../../artisan app:import-bosch-migration 0137 RELAY_RLHVType
+php ../../artisan app:import-bosch-migration 0138 INPUTBaseType
+php ../../artisan app:import-bosch-migration 0139 RELAY_RLLVType
+php ../../artisan app:import-bosch-migration 0140 UART
+php ../../artisan app:import-bosch-migration 0141 PRAESIDEO_SETTINGS
+php ../../artisan app:import-bosch-migration 0142 VAS_TRIGGERS
+php ../../artisan app:import-bosch-migration 0143 RULEGroup
+php ../../artisan app:import-bosch-migration 0144 SETType
+php ../../artisan app:import-bosch-migration 0145 GROUPType
+php ../../artisan app:import-bosch-migration 0146 STATUS_GROUPType
+php ../../artisan app:import-bosch-migration 0147 NAC_GROUPType
+php ../../artisan app:import-bosch-migration 0148 CONTROLType
+php ../../artisan app:import-bosch-migration 0149 DOORHOLDERType
+php ../../artisan app:import-bosch-migration 0150 FIREType
+php ../../artisan app:import-bosch-migration 0151 HVACType
+php ../../artisan app:import-bosch-migration 0152 CITYTIEType
+php ../../artisan app:import-bosch-migration 0153 KEYDEPOTType
+php ../../artisan app:import-bosch-migration 0154 MTS
+php ../../artisan app:import-bosch-migration 0155 PRINTER
+php ../../artisan app:import-bosch-migration 0156 FBFType
+php ../../artisan app:import-bosch-migration 0157 DIALERType
+php ../../artisan app:import-bosch-migration 0158 ADDRESS_MANAGEMENTType
+php ../../artisan app:import-bosch-migration 0159 COUNTERGroup
+php ../../artisan app:import-bosch-migration 0160 COUNTER_LIFE_TIMEType
+php ../../artisan app:import-bosch-migration 0161 OPERATOR
+php ../../artisan app:import-bosch-migration 0162 LEVELType
+php ../../artisan app:import-bosch-migration 0163 TIME_CONTROLGroup
+php ../../artisan app:import-bosch-migration 0164 TRANSFERType
+php ../../artisan app:import-bosch-migration 0165 ActivityTextWithAttribType
+php ../../artisan app:import-bosch-migration 0166 VOICE_SOUNDER_SPEECHTEXT_MAPPINGSType
+php ../../artisan app:import-bosch-migration 0167 RELAYBaseType
+php ../../artisan app:import-bosch-migration 0168 LINE_SUPERVISIONType
+php ../../artisan app:import-bosch-migration 0169 LSNAllGroup
+php ../../artisan app:import-bosch-migration 0170 NAK100
+php ../../artisan app:import-bosch-migration 0171 VAS_TRIGGER
+php ../../artisan app:import-bosch-migration 0172 RULE
+php ../../artisan app:import-bosch-migration 0173 RULE_STATE_BLOCK
+php ../../artisan app:import-bosch-migration 0174 RULE_STATE
+php ../../artisan app:import-bosch-migration 0175 POINTType
+php ../../artisan app:import-bosch-migration 0176 STATUSType
+php ../../artisan app:import-bosch-migration 0177 NACType
+php ../../artisan app:import-bosch-migration 0178 TRANSMISSION_TABLE
+php ../../artisan app:import-bosch-migration 0179 MTS_CONNECTION
+php ../../artisan app:import-bosch-migration 0180 FAT_LEDORBUTTON
+php ../../artisan app:import-bosch-migration 0181 OB_UART
+php ../../artisan app:import-bosch-migration 0182 FBF_LEDORBUTTONType
+php ../../artisan app:import-bosch-migration 0183 GLOBAL_OFFSET_TABLE
+php ../../artisan app:import-bosch-migration 0184 COUNTER
+php ../../artisan app:import-bosch-migration 0185 SUMCOUNTER
+php ../../artisan app:import-bosch-migration 0186 REMOTE_COUNTER
+php ../../artisan app:import-bosch-migration 0187 ADMINSTATE_COUNTER
+php ../../artisan app:import-bosch-migration 0188 OperatorMenuType
+php ../../artisan app:import-bosch-migration 0189 RIGHTType
+php ../../artisan app:import-bosch-migration 0190 CHANNELSType
+php ../../artisan app:import-bosch-migration 0191 DAYSType
+php ../../artisan app:import-bosch-migration 0192 PROGRAMSType
+php ../../artisan app:import-bosch-migration 0193 OB_UARTType
+php ../../artisan app:import-bosch-migration 0194 ATMODEMType
+php ../../artisan app:import-bosch-migration 0195 LSNIGroup
+php ../../artisan app:import-bosch-migration 0196 LSNClassicGroup
+php ../../artisan app:import-bosch-migration 0197 LSN_BUS_NAK100Type
+php ../../artisan app:import-bosch-migration 0198 LSNDeviceBranchBaseType
+php ../../artisan app:import-bosch-migration 0199 RULE_TRIGGERGroup
+php ../../artisan app:import-bosch-migration 0200 CONDITIONGroup
+php ../../artisan app:import-bosch-migration 0201 RULE_ACTIONGroup
+php ../../artisan app:import-bosch-migration 0202 PROTOCOL_4A
+php ../../artisan app:import-bosch-migration 0203 MenuActionType
+php ../../artisan app:import-bosch-migration 0204 CHANNELType
+php ../../artisan app:import-bosch-migration 0205 DAYSGroup
+php ../../artisan app:import-bosch-migration 0206 PROGRAMType
+php ../../artisan app:import-bosch-migration 0207 DM210
+php ../../artisan app:import-bosch-migration 0208 PULLSTATION
+php ../../artisan app:import-bosch-migration 0209 T220IUS
+php ../../artisan app:import-bosch-migration 0210 T410I
+php ../../artisan app:import-bosch-migration 0211 O220IUS
+php ../../artisan app:import-bosch-migration 0212 OT220IUS
+php ../../artisan app:import-bosch-migration 0213 OTC220IUS
+php ../../artisan app:import-bosch-migration 0214 O500IUS
+php ../../artisan app:import-bosch-migration 0215 OC500IUS
+php ../../artisan app:import-bosch-migration 0216 O500I
+php ../../artisan app:import-bosch-migration 0217 O410I
+php ../../artisan app:import-bosch-migration 0218 OC410I
+php ../../artisan app:import-bosch-migration 0219 OT410I
+php ../../artisan app:import-bosch-migration 0220 OTC410I
+php ../../artisan app:import-bosch-migration 0221 O110I
+php ../../artisan app:import-bosch-migration 0222 OT110I
+php ../../artisan app:import-bosch-migration 0223 LSN_NAC
+php ../../artisan app:import-bosch-migration 0224 RLHVI
+php ../../artisan app:import-bosch-migration 0225 OC500I
+php ../../artisan app:import-bosch-migration 0226 ISOLATOR
+php ../../artisan app:import-bosch-migration 0227 LSNI_OUT2
+php ../../artisan app:import-bosch-migration 0228 LSNI_OUT2_D
+php ../../artisan app:import-bosch-migration 0229 LSNI_IN2
+php ../../artisan app:import-bosch-migration 0230 LSNI_IN2_D
+php ../../artisan app:import-bosch-migration 0231 LSNI_RELAY1
+php ../../artisan app:import-bosch-migration 0232 LSNI_RELAY1_D
+php ../../artisan app:import-bosch-migration 0233 RAS_TPS1
+php ../../artisan app:import-bosch-migration 0234 RAS_TPS2
+php ../../artisan app:import-bosch-migration 0235 RAS_TTS1
+php ../../artisan app:import-bosch-migration 0236 RAS_TTS2
+php ../../artisan app:import-bosch-migration 0237 RAS_TMS
+php ../../artisan app:import-bosch-migration 0238 RAS_TMS_NOFAN
+php ../../artisan app:import-bosch-migration 0239 RAS_TMS_RB
+php ../../artisan app:import-bosch-migration 0240 LSNI_CONV4
+php ../../artisan app:import-bosch-migration 0241 LSNTESTELEMENT
+php ../../artisan app:import-bosch-migration 0242 LSNI_RELAY8
+php ../../artisan app:import-bosch-migration 0243 LSNI_BEACON
+php ../../artisan app:import-bosch-migration 0244 LSNI_IN8R1
+php ../../artisan app:import-bosch-migration 0245 LSNI_OUT8_IN2
+php ../../artisan app:import-bosch-migration 0246 LSNI_IN1
+php ../../artisan app:import-bosch-migration 0247 LSNI_OUT1_IN1
+php ../../artisan app:import-bosch-migration 0248 LSNI_RLE
+php ../../artisan app:import-bosch-migration 0249 FULLEON_BASE
+php ../../artisan app:import-bosch-migration 0250 FULLEON_BASE_U
+php ../../artisan app:import-bosch-migration 0251 FULLEON_STANDALONE
+php ../../artisan app:import-bosch-migration 0252 FULLEON_STANDALONE_U
+php ../../artisan app:import-bosch-migration 0253 FULLEON_STANDALONE_V
+php ../../artisan app:import-bosch-migration 0254 KD55_KD200
+php ../../artisan app:import-bosch-migration 0255 LSNI_EOL_2W
+php ../../artisan app:import-bosch-migration 0256 LSNI_EOL_4W
+php ../../artisan app:import-bosch-migration 0257 DO410I
+php ../../artisan app:import-bosch-migration 0258 DOT410I
+php ../../artisan app:import-bosch-migration 0259 DOTC410I
+php ../../artisan app:import-bosch-migration 0260 LSNI_TI13
+php ../../artisan app:import-bosch-migration 0261 ATB420
+php ../../artisan app:import-bosch-migration 0262 ATG420
+php ../../artisan app:import-bosch-migration 0263 FWI270
+php ../../artisan app:import-bosch-migration 0264 FNX425U
+php ../../artisan app:import-bosch-migration 0265 NBM110
+php ../../artisan app:import-bosch-migration 0266 NSB100
+php ../../artisan app:import-bosch-migration 0267 ATX100
+php ../../artisan app:import-bosch-migration 0268 MSS400
+php ../../artisan app:import-bosch-migration 0269 MSS401
+php ../../artisan app:import-bosch-migration 0270 NBK100
+php ../../artisan app:import-bosch-migration 0271 NEV300
+php ../../artisan app:import-bosch-migration 0272 NIM100
+php ../../artisan app:import-bosch-migration 0273 NKK100
+php ../../artisan app:import-bosch-migration 0274 NOM100
+php ../../artisan app:import-bosch-migration 0275 NTK100
+php ../../artisan app:import-bosch-migration 0276 NTM100
+php ../../artisan app:import-bosch-migration 0277 O410
+php ../../artisan app:import-bosch-migration 0278 O500
+php ../../artisan app:import-bosch-migration 0279 OM200
+php ../../artisan app:import-bosch-migration 0280 OT200
+php ../../artisan app:import-bosch-migration 0281 OT410
+php ../../artisan app:import-bosch-migration 0282 OTC410
+php ../../artisan app:import-bosch-migration 0283 T410
+php ../../artisan app:import-bosch-migration 0284 TM200
+php ../../artisan app:import-bosch-migration 0285 FK100
+php ../../artisan app:import-bosch-migration 0286 FBF100
+php ../../artisan app:import-bosch-migration 0287 OC410
+php ../../artisan app:import-bosch-migration 0288 OC500
+php ../../artisan app:import-bosch-migration 0289 TRIGGER_ADMIN
+php ../../artisan app:import-bosch-migration 0290 TRIGGER_COUNTER
+php ../../artisan app:import-bosch-migration 0291 TRIGGER_DOWNLOAD
+php ../../artisan app:import-bosch-migration 0292 TRIGGER_STATE
+php ../../artisan app:import-bosch-migration 0293 TRIGGER_USER
+php ../../artisan app:import-bosch-migration 0294 TRIGGER_ELAPSE
+php ../../artisan app:import-bosch-migration 0295 CONDITION_COUNTER
+php ../../artisan app:import-bosch-migration 0296 CONDITION_STATE
+php ../../artisan app:import-bosch-migration 0297 CONDITION_ELAPSE
+php ../../artisan app:import-bosch-migration 0298 ADMINISTRATION
+php ../../artisan app:import-bosch-migration 0299 BUZZER_ACTION
+php ../../artisan app:import-bosch-migration 0300 CITYTIE_ACTION
+php ../../artisan app:import-bosch-migration 0301 CONTROL_ACTION
+php ../../artisan app:import-bosch-migration 0302 DIALER_ACTION
+php ../../artisan app:import-bosch-migration 0303 DOORHOLDER_ACTION
+php ../../artisan app:import-bosch-migration 0304 FAT_ACTION
+php ../../artisan app:import-bosch-migration 0305 FBF_ACTION
+php ../../artisan app:import-bosch-migration 0306 FIRE_ACTION
+php ../../artisan app:import-bosch-migration 0307 HVAC_ACTION
+php ../../artisan app:import-bosch-migration 0308 KEYDEPOT_ACTION
+php ../../artisan app:import-bosch-migration 0309 NAC_ACTION
+php ../../artisan app:import-bosch-migration 0310 PRINTER_ACTION
+php ../../artisan app:import-bosch-migration 0311 SET_ACTION
+php ../../artisan app:import-bosch-migration 0312 STATUS_ACTION
+php ../../artisan app:import-bosch-migration 0313 ON_ACTIONType
+php ../../artisan app:import-bosch-migration 0314 OFF_ACTIONType
+php ../../artisan app:import-bosch-migration 0315 HOLIDAYType
+php ../../artisan app:import-bosch-migration 0316 WEEKDAYType
+php ../../artisan app:import-bosch-migration 0317 SPECIALDAYType
+php ../../artisan app:import-bosch-migration 0318 TimePairWithAttribType
+php ../../artisan app:import-bosch-migration 0319 ManuDetBaseType
+php ../../artisan app:import-bosch-migration 0320 LSNI_DetectorRELAYType
+php ../../artisan app:import-bosch-migration 0321 AutoDetBaseType
+php ../../artisan app:import-bosch-migration 0322 LSNI_RELAYFeedbackType
+php ../../artisan app:import-bosch-migration 0323 LSN_BATTERYType
+php ../../artisan app:import-bosch-migration 0324 LSNDeviceBaseType
+php ../../artisan app:import-bosch-migration 0325 LSNI_RELAYFeedbackRLHVIType
+php ../../artisan app:import-bosch-migration 0326 LSNI_OUT2_OUTPUTType
+php ../../artisan app:import-bosch-migration 0327 LSNI_INPUT_Ext5BitType
+php ../../artisan app:import-bosch-migration 0328 TITANUS_TOP_PROSensorType
+php ../../artisan app:import-bosch-migration 0329 TITANUS_MICROSensorType
+php ../../artisan app:import-bosch-migration 0330 AUXPOWER_MultipleType
+php ../../artisan app:import-bosch-migration 0331 GLTZONE_LSNI_CONV4
+php ../../artisan app:import-bosch-migration 0332 LSNI_INPUT_Ext2BitType
+php ../../artisan app:import-bosch-migration 0333 LSNI_OUT8IN2_OUTPUTType
+php ../../artisan app:import-bosch-migration 0334 LSNI_OUT1IN1_OUTPUTType
+php ../../artisan app:import-bosch-migration 0335 LSNI_RELAYFeedbackRLEType
+php ../../artisan app:import-bosch-migration 0336 GLTZONEKD
+php ../../artisan app:import-bosch-migration 0337 LSNI_EOL_2WType
+php ../../artisan app:import-bosch-migration 0338 TI13_BCMB
+php ../../artisan app:import-bosch-migration 0339 BlinkingLEDType
+php ../../artisan app:import-bosch-migration 0340 ATXBaseType
+php ../../artisan app:import-bosch-migration 0341 ColoredLEDType
+php ../../artisan app:import-bosch-migration 0342 FWI270BusType
+php ../../artisan app:import-bosch-migration 0343 FNX425U_SOUNDERType
+php ../../artisan app:import-bosch-migration 0344 FNX425U_STROBEType
+php ../../artisan app:import-bosch-migration 0345 RELAY_NSB100Type
+php ../../artisan app:import-bosch-migration 0346 RAS_NSB100Type
+php ../../artisan app:import-bosch-migration 0347 GLTZONENBK
+php ../../artisan app:import-bosch-migration 0348 NEV300_OUTPUTType
+php ../../artisan app:import-bosch-migration 0349 NTK100_OUTPUTType
+php ../../artisan app:import-bosch-migration 0350 LSN_BUS_FK100
+php ../../artisan app:import-bosch-migration 0351 DELAYType
+php ../../artisan app:import-bosch-migration 0352 CHANNEL_ACTIONSGroup
+php ../../artisan app:import-bosch-migration 0353 ACTIVITYType
+php ../../artisan app:import-bosch-migration 0354 FWI270ElementsGroup
+php ../../artisan app:import-bosch-migration 0355 DOW1171
+php ../../artisan app:import-bosch-migration 0356 CONDITION_STATEType
+php ../../artisan app:import-bosch-migration 0357 CONDITION_COUNTERType
+php ../../artisan app:import-bosch-migration 0358 FDOOT271_O
+php ../../artisan app:import-bosch-migration 0359 FDM275_O
+php ../../artisan app:import-bosch-migration 0360 FDM273_O
+php ../../artisan app:import-bosch-migration 0361 FWI270DetBaseType

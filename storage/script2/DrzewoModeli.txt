@@ -8,8 +8,13 @@
 ┃   ┗━━ P2P_DATA
 ┃       ┗━━ INTERFACE_PANEL
 ┣━━ LZ_STATE_MAPPING
+┃   ┗━━ CONFIGURED_MAPPINGS
 ┣━━ NODES
+┃   ┗━━ NODE[]
 ┗━━ SWITCHES 
+    ┗━━ SWITCH[]
+
+
 
     ─	━	│	┃	┄	┅	┆	┇	┈	┉	┊	┋	┌	┍	┎	┏
 	┐	┑	┒	┓	└	┕	┖	┗	┘	┙	┚	┛	├	┝	┞	┟
