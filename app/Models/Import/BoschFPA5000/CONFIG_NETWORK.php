@@ -45,7 +45,7 @@ class CONFIG_NETWORK extends Model
 
     public function NODES()
     {
-        return $this->hasMany(NODES::class, 'CONFIG_NETWORK');
+        return $this->hasMany(NODE::class, 'CONFIG_NETWORK');
     }
 
     public function SWITCHES()

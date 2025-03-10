@@ -14,9 +14,25 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->create('NODE', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('netLocalCRC')->nullable();
+            $table->string('netGroup')->nullable();
+            $table->string('netNode')->nullable();
+            $table->string('rsn')->nullable();
+            $table->string('nodeType')->nullable();
+            $table->string('scope')->nullable();
+            $table->string('displayNetworkStates')->nullable();
+            $table->string('label')->nullable();
+            $table->string('ipAddress')->nullable();
+            $table->string('subnetMask')->nullable();
+            $table->string('gateway')->nullable();
+            $table->string('multicastAddress')->nullable();
+            $table->string('portNumber')->nullable();
+            $table->string('useEthernetSettings')->nullable();
+            $table->string('syncRequired')->nullable();
+            $table->string('showEthernetRxOverloadWarning')->nullable();
+            $table->string('usePanelNetworkingOverIP')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
+            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK')->onDelete('cascade');;
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();

@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use App\Models\Import\BoschFPA5000\CONFIG_NETWORK;
-use App\Models\Import\BoschFPA5000\HEADER;
 use Illuminate\Console\Command;
 
 class ImportBosch extends Command
@@ -199,7 +198,7 @@ class ImportBosch extends Command
 
     public function CLOUD_DATA($mainNode, $owner): void
     {
-        $model = new CLOUD_DATA();
+        $model = new \App\Models\Import\BoschFPA5000\CLOUD_DATA();
         $model->ipAddress = (string) ($mainNode->ipAddress ?? '');
         $model->portNumber = (string) ($mainNode->portNumber ?? '');
         $model->siteName = (string) ($mainNode->siteName ?? '');
@@ -223,7 +222,7 @@ class ImportBosch extends Command
 
     public function P2P_DATA($mainNode, $owner)
     {
-        $model = new P2P_DATA();
+        $model = new \App\Models\Import\BoschFPA5000\P2P_DATA();
         $model->ipAddress = (string) ($mainNode->ipAddress ?? '');
         $model->portNumber = (string) ($mainNode->portNumber ?? '');
         $model->crl = (string) ($mainNode->crl ?? '');
@@ -247,28 +246,194 @@ class ImportBosch extends Command
 
     public function CONFIGURED_MAPPINGS($mainNode, $owner) {}
     public function netCRC($mainNode, $owner) {}
-    public function NODE($mainNode, $owner) {
-        print('node');
+
+    public function NODE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\NODE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->netLocalCRC = (string) ($mainNode->netLocalCRC ?? '');
+        $model->netGroup = (string) ($mainNode->netGroup ?? '');
+        $model->netNode = (string) ($mainNode->netNode ?? '');
+        $model->nodeType = (string) ($mainNode->nodeType ?? '');
+        $model->scope = (string) ($mainNode->scope ?? '');
+        $model->displayNetworkStates = (string) ($mainNode->displayNetworkStates ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->ipAddress = (string) ($mainNode->ipAddress ?? '');
+        $model->subnetMask = (string) ($mainNode->subnetMask ?? '');
+        $model->gateway = (string) ($mainNode->gateway ?? '');
+        $model->multicastAddress = (string) ($mainNode->multicastAddress ?? '');
+        $model->portNumber = (string) ($mainNode->portNumber ?? '');
+        $model->useEthernetSettings = (string) ($mainNode->useEthernetSettings ?? '');
+        $model->syncRequired = (string) ($mainNode->syncRequired ?? '');
+        $model->showEthernetRxOverloadWarning = (string) ($mainNode->showEthernetRxOverloadWarning ?? '');
+        $model->usePanelNetworkingOverIP = (string) ($mainNode->usePanelNetworkingOverIP ?? '');
+        $model->rsn = (string) ($mainNode->rsn ?? '');
+
+        $model->CONFIG_NETWORK = $owner->id;
+        $model->save();
+
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "SPANNING_TREE":
+                    $this->SPANNING_TREE($node, $owner);
+                    break;
+                case "NET_INTERFACES":
+                    $this->NET_INTERFACES($node, $owner);
+                    break;
+                case "EXPORTS":
+                    $this->EXPORTS($node, $owner);
+                    break;
+                case "IMPORTS":
+                    $this->IMPORTS($node, $owner);
+                    break;
+                case "ASSIGNED_OPCSVRS":
+                    $this->ASSIGNED_OPCSVRS($node, $owner);
+                    break;
+                case "ASSIGNED_MTS_NODES":
+                    $this->ASSIGNED_MTS_NODES($node, $owner);
+                    break;
+                case "CONNECTABLE":
+                    $this->CONNECTABLE($node, $owner);
+                    break;
+                case "CONFIG_DATA":
+                    $this->CONFIG_DATA($node, $owner);
+                    break;
+            }
+        }
     }
+
     public function SWITCH($mainNode, $owner) {}
+
     public function InterfacePanelType($mainNode, $owner) {}
     public function FTYPE_LZ_MAPPINGS($mainNode, $owner) {}
     public function LZ_ADIS($mainNode, $owner) {}
     public function LogicalNetAddr($mainNode, $owner) {}
-    public function SPANNING_TREE($mainNode, $owner) {}
-    public function NET_INTERFACES($mainNode, $owner) {}
-    public function EXPORTS($mainNode, $owner) {}
-    public function IMPORTS($mainNode, $owner) {}
-    public function ASSIGNED_OPCSVRS($mainNode, $owner) {}
-    public function ASSIGNED_MTS_NODES($mainNode, $owner) {}
-    public function CONNECTABLE($mainNode, $owner) {}
-    public function CONFIG_DATA($mainNode, $owner) {}
+
+    public function SPANNING_TREE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\SPANNING_TREE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->redundancyMode = (string) ($mainNode->redundancyMode ?? '');
+        $model->STP_BridgePriority = (string) ($mainNode->STP_BridgePriority ?? '');
+        $model->STP_HelloTime = (string) ($mainNode->STP_HelloTime ?? '');
+        $model->STP_MaxAge = (string) ($mainNode->STP_MaxAge ?? '');
+        $model->STP_ForwardDelay = (string) ($mainNode->STP_ForwardDelay ?? '');
+
+        $model->NODE = $owner->id;
+        $model->save();
+    }
+
+    public function NET_INTERFACES($mainNode, $owner): void
+    {
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "NET_INTERFACE":
+                    $this->NET_INTERFACE($node, $owner);
+                    break;
+            }
+        }
+    }
+
+    public function EXPORTS($mainNode, $owner)
+    {
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "REPLICATED_SIS":
+                    $this->REPLICATED_SIS($node, $owner);
+                    break;
+                case "REPLICATED_COUNTERS":
+                    $this->REPLICATED_COUNTERS($node, $owner);
+                    break;
+            }
+        }
+    }
+
+    public function IMPORTS($mainNode, $owner)
+    {
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "USED_SIS":
+                    $this->USED_SIS($node, $owner);
+                    break;
+                case "USED_COUNTERS":
+                    $this->USED_COUNTERS($node, $owner);
+                    break;
+                case "USED_OFFSET_TABLES":
+                    $this->USED_OFFSET_TABLES($node, $owner);
+                    break;    }
+            }
+        }
+
+    public function ASSIGNED_OPCSVRS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\ASSIGNED_OPCSVRS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // $model->redundancyMode = (string) ($mainNode->redundancyMode ?? '');
+
+        $model->NODE = $owner->id;
+        $model->save();
+    }
+    public function ASSIGNED_MTS_NODES($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\ASSIGNED_MTS_NODES();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // $model->redundancyMode = (string) ($mainNode->redundancyMode ?? '');
+
+        $model->NODE = $owner->id;
+        $model->save();
+    }
+
+    public function CONNECTABLE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\CONNECTABLE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // $model->redundancyMode = (string) ($mainNode->redundancyMode ?? '');
+
+        $model->NODE = $owner->id;
+        $model->save();
+    }
+
+    public function CONFIG_DATA($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\CONFIG_DATA();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // $model->redundancyMode = (string) ($mainNode->redundancyMode ?? '');
+
+        $model->NODE = $owner->id;
+        $model->save();
+    }
+
     public function PORTS($mainNode, $owner) {}
     public function FTYPE_LZ_MAPPING($mainNode, $owner) {}
     public function LZ_ADI($mainNode, $owner) {}
     public function NET_INTERFACE($mainNode, $owner) {}
-    public function REPLICATED_SIS($mainNode, $owner) {}
-    public function REPLICATED_COUNTERS($mainNode, $owner) {}
+    public function REPLICATED_SIS($mainNode, $owner) {
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "REPLICATED_SI":
+                    $this->REPLICATED_SI($node, $owner);
+                    break;
+            }
+        }
+    }
+
+    public function REPLICATED_COUNTERS($mainNode, $owner) {
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "REPLICATED_COUNTER":
+                    $this->REPLICATED_COUNTER($node, $owner);
+                    break;
+            }
+        }
+
+    }
+
     public function USED_SIS($mainNode, $owner) {}
     public function USED_COUNTERS($mainNode, $owner) {}
     public function USED_OFFSET_TABLES($mainNode, $owner) {}
@@ -279,9 +444,57 @@ class ImportBosch extends Command
     public function PORT($mainNode, $owner) {}
     public function FTYPE_LZ_MAPPINGType($mainNode, $owner) {}
     public function LZ_ADI_MAPPINGType($mainNode, $owner) {}
-    public function NET_INTERFACEType($mainNode, $owner) {}
-    public function REPLICATED_SI($mainNode, $owner) {}
-    public function REPLICATED_COUNTER($mainNode, $owner) {}
+
+    public function NET_INTERFACEType($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\NET_INTERFACE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->type = (string) ($mainNode->type ?? '');
+        $model->connectedToNetlineNbr = (string) ($mainNode->connectedToNetlineNbr ?? '');
+        $model->isUsed = (string) ($mainNode->isUsed ?? '');
+        $model->interfaceNbr = (string) ($mainNode->interfaceNbr ?? '');
+
+        $model->NODE = $owner->id;
+        $model->save();
+
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "CAN_PARAM":
+                    $this->CAN_PARAM($node, $owner);
+                    break;
+                case "ETHERNET_PARAM":
+                    $this->ETHERNET_PARAM($node, $owner);
+                    break;
+            }
+        }
+    }
+
+    public function REPLICATED_SI($mainNode, $owner) {
+        $model = new \App\Models\Import\BoschFPA5000\REPLICATED_SI();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->globalID = (string) ($mainNode->globalID ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->scope = (string) ($mainNode->scope ?? '');
+
+        $model->NODE = $owner->id;
+
+        $model->save();
+    }
+
+    public function REPLICATED_COUNTER($mainNode, $owner) {
+        $model = new \App\Models\Import\BoschFPA5000\REPLICATED_COUNTER();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->globalID = (string) ($mainNode->globalID ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->scope = (string) ($mainNode->scope ?? '');
+
+        $model->NODE = $owner->id;
+
+        $model->save();
+    }
     public function USED_SI($mainNode, $owner) {}
     public function USED_COUNTER($mainNode, $owner) {}
     public function USED_OFFSET_TABLE($mainNode, $owner) {}

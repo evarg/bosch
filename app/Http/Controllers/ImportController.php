@@ -17,11 +17,9 @@ class ImportController extends Controller
 
     public function config()
     {
-        die("tu");
         $xmlElement = new SimpleXMLElement(file_get_contents(storage_path('B5.xml')));
         $cn = new CONFIG_NETWORK_Element($xmlElement);
         return view('IMPORT_CONFIG.index');
-
 
         $this->cn = new CONFIG_NETWORK();
         $this->cn->save();

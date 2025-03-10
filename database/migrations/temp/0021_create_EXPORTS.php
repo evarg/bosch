@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('NODES', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('EXPORTS', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('CONFIG_NETWORK')->constrained('CONFIG_NETWORK');
+            //$table->string('yyyy')->nullable();
+
+            $table->foreignId('NODE')->constrained('NODE');
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('NODES');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('EXPORTS');
     }
 };

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('REPLICATED_COUNTERType', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('REPLICATED_SI', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('globalID')->nullable();
+            $table->string('label')->nullable();
+            $table->string('scope')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
+            $table->foreignId('NODE')->constrained('NODE');
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('REPLICATED_COUNTERType');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('REPLICATED_SI');
     }
 };

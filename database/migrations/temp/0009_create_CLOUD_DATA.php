@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('CloudDataType');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('CLOUD_DATA');
     }
 };

@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('REPLICATED_SIS', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('ASSIGNED_OPCSVRS', function (Blueprint $table) {
             $table->id();
 
             //$table->string('yyyy')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
+            $table->foreignId('NODE')->constrained('NODE');
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('REPLICATED_SIS');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('ASSIGNED_OPCSVRS');
     }
 };
