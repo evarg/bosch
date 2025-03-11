@@ -247,12 +247,42 @@ class Root
             }
         }
 
-        Root::indent();
-        $attrib['maxOccurs'] ? print('[]') : print('--');
-        $attrib['optional'] ? print('?') : print('-');
-        $attrib['reference'] ? print('>') : print('-');
-        print(" " . $name . " -> " . $typeName . "\n");
+        // Root::indent();
+        // $attrib['maxOccurs'] ? print('[]') : print('--');
+        // $attrib['optional'] ? print('?') : print('-');
+        // $attrib['reference'] ? print('>') : print('-');
+        // print(" " . $name . " -> " . $typeName . "\n");
+
+        // $attrib['maxOccurs'] ? print('[]') : print('--');
+        // $attrib['optional'] ? print('?') : print('-');
+        // $attrib['reference'] ? print('>') : print('-');
+
+
+        if (($typeName == '<REFERENCE>') | ($typeName != '<SIMPLE_TYPE>')){
+            print('                case "' . $name . '":' . PHP_EOL);
+            print('                    $this->' . $name . '($node, $owner);' . PHP_EOL);
+            print('                    break;' . PHP_EOL);
+        } else {
+            if ($attrib['maxOccurs']) {
+                print('        //XXXXX ' . $name . PHP_EOL);
+            } else {
+                print('        $model->' . $name . ' = (string) ($mainNode->' . $name . ' ?? \'\');' . PHP_EOL);
+            }
+        }
+
+        // print('    public function YYYYY($mainNode, $owner) {' . PHP_EOL);
+        // print('        $model = new SUPPORT_INFO();' . PHP_EOL);
+        // print('        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? \'\');' . PHP_EOL);
+        // print('        $model->contractNumber = (string) $mainNode->contractNumber;' . PHP_EOL);
+        // print('        $model->smtp = (string) $mainNode->smtp;' . PHP_EOL);
+        // print('        $model->x400 = (string) $mainNode->x400;' . PHP_EOL);
+        // print('' . PHP_EOL);
+        // print('        $model->ZZZZZ = $owner->id;' . PHP_EOL);
+        // print('        $model->save();' . PHP_EOL);
+        // print('    }' . PHP_EOL);
+
     }
+
 
     public static function simpleType($xmlNode)
     {
@@ -576,11 +606,11 @@ class Root
         print("Oczekiwano complexType: " . sizeof(Root::$xml->xpath("//xs:schema/xs:complexType")) . PHP_EOL);
         print("Oczekiwano group: " . sizeof(Root::$xml->xpath("//xs:schema/xs:group")) . PHP_EOL);
 
-        foreach (Root::$pAll as $key => $value) {
-            print($key + 1 . " " . $value['name'] . '(' . $value['type'] . ')' . PHP_EOL);
-        }
+        // foreach (Root::$pAll as $key => $value) {
+        //     print($key + 1 . " " . $value['name'] . '(' . $value['type'] . ')' . PHP_EOL);
+        // }
 
-        print_r(Root::$pComplexType);
+        // print_r(Root::$pComplexType);
 
         // print_r(Root::$pElement);
         // if(!in_array("DAYSGroup", Root::$pGroup)){

@@ -1,0 +1,5353 @@
+
+     ╔═══════ 2550 ══════╦════════ 2550 ══════╗              ┌─────── 2500 ──────┬──────── 2500 ──────┐
+     ║                   ║                    ║              │                   │                    │
+     ║                   ║                    ║              │                   │                    │
+    2551                2551                 2551           2502                2502                 2502
+     ║                   ║                    ║              │                   │                    │
+     ║                   ║                    ║              │                   │                    │
+2560 ╠═══════ 2550 ══════╬════════ 2550 ══════╣ 2563    251C ├─────── 2500 ──────┼──────── 2500 ──────┤ 2524
+     ║                   ║ 256C               ║              │                   │ 253C               │
+     ║                   ║                    ║              │                   │                    │
+     ║                   ║                    ║              │                   │                    │
+    2551                2551                 2551           2502                2502                 2502
+     ║                   ║                    ║              │                   │                    │
+     ╚═══════ 2550 ══════╩════════ 2550 ══════╝              └─────── 2500 ──────┴──────── 2500 ──────┘
+
+CONFIG_NETWORK
+├───HEADER
+├───NETWORK_INFO
+├───CUSTOMER_INFO
+├───SUPPORT_INFO
+├───REMOTE_SERVICES_NETWORK_DATA
+│   ├───CLOUD_DATA
+│   │   └───INTERFACE_PANEL
+│   └───P2P_DATA
+│       └───INTERFACE_PANEL
+├───LZ_STATE_MAPPING
+│   └───CONFIGURED_MAPPINGS
+│       └───FTYPE_LZ_MAPPINGS
+│           ├───FTYPE_LZ_MAPPING[]
+│			│	└───CSTATES
+│           └───LZ_ADIS
+│               └───LZ_ADI[]
+│					└───ADI
+├───NODES
+│   └───NODE[]
+│       ├───SPANNING_TREE
+│       ├───NET_INTERFACES
+│       │   └───NET_INTERFACE[]
+│       ├───EXPORTS
+│		│	├───REPLICATED_SIS
+│		│	└───REPLICATED_COUNTERS
+│       ├───IMPORTS
+│		│	├───USED_SIS
+│		│	├───USED_COUNTERS
+│		│	└───USED_OFFSET_TABLES
+│       ├───ASSIGNED_OPCSVRS
+│		│	└───OPCSERVER[]
+│       ├───ASSIGNED_MTS_NODES
+│		│	└───MTS_NODE[]
+│       ├───CONNECTABLE
+│		│	└───CONNECTABLE_PANEL[]
+│       └───CONFIG_DATA
+│			├───LOCAL_CONFIGURATION
+│			└───RK_DATA
+└───SWITCHES 
+    └───SWITCH[]
+        └───PORTS
+			└───PORT[]
+
+
+=== ELEMENT : LZ_ADI === 
+LZ_ADI
+  LZ_ADI_MAPPINGType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : NET_INTERFACE === 
+NET_INTERFACE
+  NET_INTERFACEType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : REPLICATED_SIS === 
+REPLICATED_SIS
+  []?- SEQUENCE
+    ---- REPLICATED_SI -> <REFERENCE>
+
+
+
+=== ELEMENT : REPLICATED_COUNTERS === 
+REPLICATED_COUNTERS
+  []?- SEQUENCE
+    ---- REPLICATED_COUNTER -> <REFERENCE>
+
+
+
+=== ELEMENT : USED_SIS === 
+USED_SIS
+  []?- SEQUENCE
+    ---- USED_SI -> <REFERENCE>
+
+
+
+=== ELEMENT : USED_COUNTERS === 
+USED_COUNTERS
+  []?- SEQUENCE
+    ---- USED_COUNTER -> <REFERENCE>
+
+
+
+=== ELEMENT : USED_OFFSET_TABLES === 
+USED_OFFSET_TABLES
+  []?- SEQUENCE
+    ---- USED_OFFSET_TABLE -> <REFERENCE>
+
+
+
+=== ELEMENT : OPCSERVER === 
+OPCSERVER
+  ---- SEQUENCE
+    ---- netGroup -> <SIMPLE_TYPE>
+    ---- netNode -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : MTS_NODE === 
+MTS_NODE
+
+
+
+=== ELEMENT : LOCAL_CONFIGURATION === 
+LOCAL_CONFIGURATION
+  LOCAL_CONFIGURATIONType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : RK_DATA === 
+RK_DATA
+  RK_DATAType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : PORT === 
+PORT
+  ---- SEQUENCE
+    ---- portNumber -> <SIMPLE_TYPE>
+    ---- connectedToNetlineNbr -> <SIMPLE_TYPE>
+    ---- lineType -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : FTYPE_LZ_MAPPINGType === 
+---- SEQUENCE
+  ---- functionType -> <SIMPLE_TYPE>
+  ---- CSTATES -> <REFERENCE>
+
+
+
+=== COMPLEXTYPE : LZ_ADI_MAPPINGType === 
+---- SEQUENCE
+  ---- lz -> <SIMPLE_TYPE>
+  ---- ADI -> <REFERENCE>
+
+
+
+=== COMPLEXTYPE : NET_INTERFACEType === 
+---- SEQUENCE
+  ---- type -> <SIMPLE_TYPE>
+  ---- interfaceNbr -> <ANONYMOUS>
+  ---- connectedToNetlineNbr -> <SIMPLE_TYPE>
+  ---- isUsed -> <SIMPLE_TYPE>
+  >>CHOICE:
+    ---- CAN_PARAM -> <REFERENCE>
+    ---- ETHERNET_PARAM -> <REFERENCE>
+  <<CHOICE:
+
+
+
+=== ELEMENT : REPLICATED_SI === 
+REPLICATED_SI
+  ---- SEQUENCE
+    ---- globalID -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- scope -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : REPLICATED_COUNTER === 
+REPLICATED_COUNTER
+  REPLICATED_COUNTERType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : USED_SI === 
+USED_SI
+  ---- SEQUENCE
+    ---- localID -> <ANONYMOUS>
+    ---- globalID -> <ANONYMOUS>
+    --?- FAT_OFFSET_TABLE -> ADDROFFSET_TABLEType
+
+
+
+=== ELEMENT : USED_COUNTER === 
+USED_COUNTER
+  ---- SEQUENCE
+    ---- localID -> <SIMPLE_TYPE>
+    ---- globalID -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : USED_OFFSET_TABLE === 
+USED_OFFSET_TABLE
+  ---- SEQUENCE
+    ---- OFFSET_TABLE -> <REFERENCE>
+
+
+
+=== COMPLEXTYPE : LOCAL_CONFIGURATIONType === 
+---- SEQUENCE
+  --?- HEADER -> <REFERENCE>
+  ---- PANEL -> <REFERENCE>
+
+
+
+=== COMPLEXTYPE : RK_DATAType === 
+---- SEQUENCE
+  ---- dedicatedNetGroup -> <SIMPLE_TYPE>
+  ---- dedicatedNetNode -> <SIMPLE_TYPE>
+  ---- showReportsInLockedState -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : CSTATES === 
+CSTATES
+  []?- SEQUENCE
+    ---- CSTATE_MAPPING -> <REFERENCE>
+
+
+
+=== ELEMENT : ADI === 
+ADI
+  ADI_Type -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : CAN_PARAM === 
+CAN_PARAM
+  ---- SEQUENCE
+    ---- bitRate -> <SIMPLE_TYPE>
+    ---- propagationSegment -> <SIMPLE_TYPE>
+    ---- phaseSegment1 -> <SIMPLE_TYPE>
+    ---- phaseSegment2 -> <SIMPLE_TYPE>
+    ---- synchronizationJumpWidth -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : ETHERNET_PARAM === 
+ETHERNET_PARAM
+  ---- SEQUENCE
+    ---- lineType -> <SIMPLE_TYPE>
+    ---- speedAndDuplex -> <SIMPLE_TYPE>
+    ---- flowControl -> <SIMPLE_TYPE>
+    ---- STP_PathCost -> <ANONYMOUS>
+    ---- STP_PortPriority -> <ANONYMOUS>
+    ---- RSTP_LinkType -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : REPLICATED_COUNTERType === 
+---- SEQUENCE
+  ---- globalID -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- scope -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ADDROFFSET_TABLEType === 
+---- SEQUENCE
+  ---- panel -> <SIMPLE_TYPE>
+  ---- point -> <SIMPLE_TYPE>
+  ---- module -> <SIMPLE_TYPE>
+  ---- coupler -> <SIMPLE_TYPE>
+  ---- control -> <SIMPLE_TYPE>
+  ---- input -> <SIMPLE_TYPE>
+  ---- citytie -> <SIMPLE_TYPE>
+  ---- fireextinguisher -> <SIMPLE_TYPE>
+  ---- nac -> <SIMPLE_TYPE>
+  ---- buzzer -> <SIMPLE_TYPE>
+  ---- hvac -> <SIMPLE_TYPE>
+  ---- doorholder -> <SIMPLE_TYPE>
+  ---- keydepot -> <SIMPLE_TYPE>
+  ---- status -> <SIMPLE_TYPE>
+  ---- dialer -> <SIMPLE_TYPE>
+  ---- printer -> <SIMPLE_TYPE>
+  ---- fat -> <SIMPLE_TYPE>
+  ---- fbf -> <SIMPLE_TYPE>
+  ---- set -> <SIMPLE_TYPE>
+  ---- auxpower -> <SIMPLE_TYPE>
+  ---- battery -> <SIMPLE_TYPE>
+  ---- mainpower -> <SIMPLE_TYPE>
+  ---- railpower -> <SIMPLE_TYPE>
+  ---- ground -> <SIMPLE_TYPE>
+  ---- loop -> <SIMPLE_TYPE>
+  ---- monitoring -> <SIMPLE_TYPE>
+  ---- canbus -> <SIMPLE_TYPE>
+  ---- network -> <SIMPLE_TYPE>
+  ---- networknode -> <SIMPLE_TYPE>
+  ---- network_line -> <SIMPLE_TYPE>
+  ---- topology -> <SIMPLE_TYPE>
+  ---- netaddress -> <SIMPLE_TYPE>
+  ---- vas -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OFFSET_TABLE === 
+OFFSET_TABLE
+  ---- SEQUENCE
+    ---- panel -> <SIMPLE_TYPE>
+    ---- point -> <SIMPLE_TYPE>
+    ---- module -> <SIMPLE_TYPE>
+    ---- coupler -> <SIMPLE_TYPE>
+    ---- control -> <SIMPLE_TYPE>
+    ---- input -> <SIMPLE_TYPE>
+    ---- citytie -> <SIMPLE_TYPE>
+    ---- fireextinguisher -> <SIMPLE_TYPE>
+    ---- nac -> <SIMPLE_TYPE>
+    ---- buzzer -> <SIMPLE_TYPE>
+    ---- hvac -> <SIMPLE_TYPE>
+    ---- doorholder -> <SIMPLE_TYPE>
+    ---- keydepot -> <SIMPLE_TYPE>
+    ---- status -> <SIMPLE_TYPE>
+    ---- dialer -> <SIMPLE_TYPE>
+    ---- printer -> <SIMPLE_TYPE>
+    ---- fat -> <SIMPLE_TYPE>
+    ---- fbf -> <SIMPLE_TYPE>
+    ---- set -> <SIMPLE_TYPE>
+    ---- auxpower -> <SIMPLE_TYPE>
+    ---- battery -> <SIMPLE_TYPE>
+    ---- mainpower -> <SIMPLE_TYPE>
+    ---- railpower -> <SIMPLE_TYPE>
+    ---- ground -> <SIMPLE_TYPE>
+    ---- loop -> <SIMPLE_TYPE>
+    ---- monitoring -> <SIMPLE_TYPE>
+    ---- canbus -> <SIMPLE_TYPE>
+    ---- network -> <SIMPLE_TYPE>
+    ---- networknode -> <SIMPLE_TYPE>
+    ---- network_line -> <SIMPLE_TYPE>
+    ---- topology -> <SIMPLE_TYPE>
+    ---- netaddress -> <SIMPLE_TYPE>
+    ---- vas -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : PANEL === 
+PANEL
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- siType -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- country -> <SIMPLE_TYPE>
+    ---- redundancy -> <SIMPLE_TYPE>
+    ---- maxLSNPoints -> <SIMPLE_TYPE>
+    ---- timeZone -> <SIMPLE_TYPE>
+    ---- timeDisplay24h -> <SIMPLE_TYPE>
+    ---- serialNumber -> <SIMPLE_TYPE>
+    ---- startupLanguage -> <SIMPLE_TYPE>
+    ---- quiet1 -> <SIMPLE_TYPE>
+    ---- quiet2 -> <SIMPLE_TYPE>
+    ---- quiet3 -> <SIMPLE_TYPE>
+    ---- andDelay -> <ANONYMOUS>
+    ---- PASacknowledge -> <ANONYMOUS>
+    ---- logicalViewMMI -> <SIMPLE_TYPE>
+    ---- PASResetEnableDelay -> <SIMPLE_TYPE>
+    ---- note -> <ANONYMOUS>
+    ---- resetMode -> <SIMPLE_TYPE>
+    ---- troubleCausesAlarm -> <SIMPLE_TYPE>
+    ---- colorProfileUsed -> <SIMPLE_TYPE>
+    --?- fastFaultIndicationLSN -> <SIMPLE_TYPE>
+    --?- debugInfo -> <ANONYMOUS>
+    --?- idOfAccesspointToHangUp -> <SIMPLE_TYPE>
+    --?- mAddressCardTimeDivider -> <SIMPLE_TYPE>
+    ---- CONFIG_INFO -> <REFERENCE>
+    --?- LICENCING_V303 -> LicencingType
+    ---- ONBOARD -> <REFERENCE>
+    MODULESGroup -> <GROUP_REFERENCE>
+    ---- LOGICAL_GROUPING -> <REFERENCE>
+
+
+
+=== ELEMENT : CSTATE_MAPPING === 
+CSTATE_MAPPING
+  ---- SEQUENCE
+    ---- compoundState -> <SIMPLE_TYPE>
+    ---- lz -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ADI_Type === 
+---- SEQUENCE
+  ---- adi -> <SIMPLE_TYPE>
+  ---- mk -> <SIMPLE_TYPE>
+  ---- prio -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : CONFIG_INFO === 
+CONFIG_INFO
+  >>ALL:
+    ---- cfgDataVersion -> <SIMPLE_TYPE>
+    ---- cfgDataGenerated -> <SIMPLE_TYPE>
+    ---- cfgStreamFileName -> <SIMPLE_TYPE>
+    ---- downloadTime -> <SIMPLE_TYPE>
+    ---- uploadTime -> <SIMPLE_TYPE>
+    ---- activationTime -> <SIMPLE_TYPE>
+    ---- sizeInFlashUsed -> <SIMPLE_TYPE>
+    ---- sizeInFlashRemaining -> <SIMPLE_TYPE>
+    ---- cfgDataGenerator -> <SIMPLE_TYPE>
+    --?- guid -> <SIMPLE_TYPE>
+    --?- rpsTimeStamp -> <SIMPLE_TYPE>
+    --?- xmlCRC -> <SIMPLE_TYPE>
+  <<ALL:
+
+
+
+=== COMPLEXTYPE : LicencingType === 
+---- SEQUENCE
+  ---- LICENSE_BUNDLE_TABLE_V303 -> LicenseBundleType
+
+
+
+=== ELEMENT : ONBOARD === 
+ONBOARD
+  ---- SEQUENCE
+    []-- LED -> LEDOnboardType
+    ---- BUZZER_ONBOARD -> BUZZER_ONBOARDType
+    --?- GROUND -> GROUNDType
+    ---- PAS_CONFIRMATION -> PAS_CONFIRMATIONType
+    []?- KEYLOCK -> KEYLOCKType
+    []?- FUNCTION_KEY -> FUNCTION_KEYType
+    --?- RS232 -> RS232Type
+    []-- CANBUS -> CANBUSType
+    []-- ETHERNET -> ETHERNETType
+    --?- OB_INPUTS -> <ANONYMOUS>
+    --?- OB_POWER_INS -> <ANONYMOUS>
+
+
+
+=== GROUP : MODULESGroup === 
+>>CHOICE:
+  ---- BATTERY_CONTR_MODULE -> <REFERENCE>
+  ---- CITYTIE_MODULE -> <REFERENCE>
+  ---- CONVENTIONAL_MODULE -> <REFERENCE>
+  ---- ENOT_MODULE -> <REFERENCE>
+  ---- IO_8_MODULE -> <REFERENCE>
+  ---- IO_S20_MODULE -> <REFERENCE>
+  ---- IO2_S20_MODULE -> <REFERENCE>
+  ---- IO_SERIAL_MODULE -> <REFERENCE>
+  ---- LEDINT_MODULE -> <REFERENCE>
+  ---- LSN300_MODULE -> <REFERENCE>
+  ---- LSN1500_MODULE -> <REFERENCE>
+  ---- NAC_MODULE -> <REFERENCE>
+  ---- RLHV_MODULE -> <REFERENCE>
+  ---- RLLV_MODULE -> <REFERENCE>
+  ---- BCMB_MODULE -> <REFERENCE>
+  ---- VAS_INTERFACE -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== ELEMENT : LOGICAL_GROUPING === 
+LOGICAL_GROUPING
+  >>ALL:
+    ---- PANEL_ADMINISTRATION -> <REFERENCE>
+    ---- SETS_ADMIN -> <REFERENCE>
+    ---- GROUP_ADMIN -> <REFERENCE>
+    ---- STATUS_ADMIN -> <REFERENCE>
+    --?- NAC_ADMIN -> <REFERENCE>
+    --?- CONTROL_ADMIN -> <REFERENCE>
+    --?- DOORHOLDER_ADMIN -> <REFERENCE>
+    --?- FIRE_ADMIN -> <REFERENCE>
+    --?- HVAC_ADMIN -> <REFERENCE>
+    --?- CITYTIE_ADMIN -> <REFERENCE>
+    --?- KEYDEPOT_ADMIN -> <REFERENCE>
+    --?- MTS_ADMIN -> <REFERENCE>
+    --?- PRINTER_ADMIN -> <REFERENCE>
+    --?- FBF_ADMIN -> <REFERENCE>
+    --?- COMMUNICATION_DEVICES -> <REFERENCE>
+    --?- ADDRESS_MANAGEMENT -> <REFERENCE>
+    ---- COUNTER_ADMIN -> <REFERENCE>
+    --?- COUNTER_ADMIN_LIFE_TIME -> <REFERENCE>
+    ---- OPERATOR_ADMIN -> <REFERENCE>
+    ---- RIGHT_MANAGEMENT -> <REFERENCE>
+    ---- TIME_CONTROL -> <REFERENCE>
+    --?- PANEL_COMMUNICATION -> <REFERENCE>
+    ---- ACTIVITYTEXTS -> <REFERENCE>
+    ---- PRIORITIES -> <REFERENCE>
+    --?- VOICE_SOUNDER_SPEECHTEXT_MAPPINGS -> <REFERENCE>
+  <<ALL:
+
+
+
+=== COMPLEXTYPE : LicenseBundleType === 
+---- SEQUENCE
+  ---- premiumBundle -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LEDOnboardType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : BUZZER_ONBOARDType === 
+>>ALL:
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : GROUNDType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : PAS_CONFIRMATIONType === 
+>>ALL:
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : KEYLOCKType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : FUNCTION_KEYType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- KEY -> KEYType
+  ---- LED -> LEDType
+<<ALL:
+
+
+
+=== COMPLEXTYPE : RS232Type === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- connectedWith -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CANBUSType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- enabled -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ETHERNETType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- enabled -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : BATTERY_CONTR_MODULE === 
+BATTERY_CONTR_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- powerSupplyMax -> <SIMPLE_TYPE>
+      ---- MinMainPowerOK -> <SIMPLE_TYPE>
+      ---- normalLoadDuration -> <SIMPLE_TYPE>
+      ---- manualLoadDuration -> <SIMPLE_TYPE>
+      ---- testDuration -> <SIMPLE_TYPE>
+      ---- minCharge -> <SIMPLE_TYPE>
+      ---- stopDischarge -> <SIMPLE_TYPE>
+      ---- useNewBattery -> <SIMPLE_TYPE>
+      ---- batteryTrouble -> <SIMPLE_TYPE>
+      ---- startPanelAtPowerFailMin -> <SIMPLE_TYPE>
+      ---- battStartChargeMin -> <SIMPLE_TYPE>
+      []-- BATTERY -> BATTERYType
+      ---- MAINPOWER -> MAINPOWERType
+      ---- RAILPOWER -> RAILPOWERType
+      []-- AUXPOWER -> AUXPOWER_BCType
+  
+
+
+=== ELEMENT : CITYTIE_MODULE === 
+CITYTIE_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- CTIE -> CTIEType
+
+
+
+=== ELEMENT : CONVENTIONAL_MODULE === 
+CONVENTIONAL_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- AUXPOWER -> AUXPOWER_SingleType
+      []-- GLTZONE -> <REFERENCE>
+
+
+
+=== ELEMENT : ENOT_MODULE === 
+ENOT_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- KEYDEPOT_ENOT -> KEYDEPOT_ENOTType
+      ---- AUXPOWER -> AUXPOWER_SingleType
+      ---- UNLOCKAPPLIANCE -> UNLOCKAPPLIANCEType
+      ---- CTIE -> <REFERENCE>
+      []-- RELAY -> RELAY_ENOTType
+
+
+
+=== ELEMENT : IO_8_MODULE === 
+IO_8_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- INPUT -> <ANONYMOUS>
+      []-- OUTPUT -> OUTPUTType
+
+
+
+=== ELEMENT : IO_S20_MODULE === 
+IO_S20_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- S20 -> S20Type
+      ---- RS232 -> RS232Type
+
+
+
+=== ELEMENT : IO2_S20_MODULE === 
+IO2_S20_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- S20 -> S20Type
+
+
+
+=== ELEMENT : IO_SERIAL_MODULE === 
+IO_SERIAL_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- RS232 -> RS232Type
+
+
+
+=== ELEMENT : LEDINT_MODULE === 
+LEDINT_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- LED -> LEDType
+
+
+
+=== ELEMENT : LSN300_MODULE === 
+LSN300_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- nrOfElements -> <ANONYMOUS>
+      ---- mode -> <SIMPLE_TYPE>
+      ---- redundantModule -> <ANONYMOUS>
+      ---- currentConsumption -> <SIMPLE_TYPE>
+      ---- topology -> <SIMPLE_TYPE>
+      ---- lastElement -> <ANONYMOUS>
+      ---- ert -> <SIMPLE_TYPE>
+      ---- shortCircuit -> <SIMPLE_TYPE>
+      ---- creepingShortDetectionOff -> <SIMPLE_TYPE>
+      ---- en5413Enabled -> <SIMPLE_TYPE>
+      ---- detect4wShort -> <SIMPLE_TYPE>
+      ---- aux1CreepI_max -> <ANONYMOUS>
+      ---- aux2CreepI_max -> <ANONYMOUS>
+      []?- AUXPOWER -> AUXPOWER_WithLineSupervisionType
+      []?- LSN_BUS -> <REFERENCE>
+
+
+
+=== ELEMENT : LSN1500_MODULE === 
+LSN1500_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- nrOfElements -> <ANONYMOUS>
+      ---- mode -> <SIMPLE_TYPE>
+      ---- redundantModule -> <ANONYMOUS>
+      ---- currentConsumption -> <SIMPLE_TYPE>
+      ---- topology -> <SIMPLE_TYPE>
+      ---- lastElement -> <ANONYMOUS>
+      ---- ert -> <SIMPLE_TYPE>
+      ---- shortCircuit -> <SIMPLE_TYPE>
+      ---- creepingShortDetectionOff -> <SIMPLE_TYPE>
+      ---- en5413Enabled -> <SIMPLE_TYPE>
+      ---- detect4wShort -> <SIMPLE_TYPE>
+      ---- aux1CreepI_max -> <ANONYMOUS>
+      ---- aux2CreepI_max -> <ANONYMOUS>
+      []?- AUXPOWER -> AUXPOWER_WithLineSupervisionType
+      []?- GROUND -> GROUND_LSN1500Type
+      []?- LSN_BUS -> <REFERENCE>
+
+
+
+=== ELEMENT : NAC_MODULE === 
+NAC_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- electricEnvironment -> <SIMPLE_TYPE>
+      ---- useRail -> <SIMPLE_TYPE>
+      ---- synOptions -> <SIMPLE_TYPE>
+      ---- masterSlot -> <ANONYMOUS>
+      ---- ismaster -> <SIMPLE_TYPE>
+      []-- NAC_ZONE -> NAC_ZONEType
+      ---- BATTERY -> BATTERYType
+      ---- AUXPOWER -> AUXPOWER_SingleType
+
+
+
+=== ELEMENT : RLHV_MODULE === 
+RLHV_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- RELAY -> RELAY_RLHVType
+      --?- INPUT -> INPUTBaseType
+      ---- RELAY -> RELAY_RLHVType
+      --?- INPUT -> INPUTBaseType
+
+
+
+=== ELEMENT : RLLV_MODULE === 
+RLLV_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- RELAY -> RELAY_RLLVType
+
+
+
+=== ELEMENT : BCMB_MODULE === 
+BCMB_MODULE
+  PANEL_MODULES_BaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- measurementPeriod -> <SIMPLE_TYPE>
+      ---- batteryManualChargeDuration -> <SIMPLE_TYPE>
+      ---- mainPowerU_min -> <SIMPLE_TYPE>
+      ---- mainPowerU_max -> <SIMPLE_TYPE>
+      ---- batteryAutoChargeU_min -> <SIMPLE_TYPE>
+      ---- batteryManualChargeU_min -> <SIMPLE_TYPE>
+      ---- batteryDischargeU_min -> <SIMPLE_TYPE>
+      ---- batteryMonitoringR_max -> <SIMPLE_TYPE>
+      ---- pOut1ShutdownI_max -> <SIMPLE_TYPE>
+      ---- pOut2ShutdownI_max -> <SIMPLE_TYPE>
+      ---- pOut1CreepI_max -> <ANONYMOUS>
+      ---- pOut2CreepI_max -> <ANONYMOUS>
+      ---- pOut1_BatteryBuffered -> <SIMPLE_TYPE>
+      ---- pOut2_BatteryBuffered -> <SIMPLE_TYPE>
+      []-- BATTERY -> BATTERYType
+      ---- MAINPOWER -> MAINPOWERType
+      ---- RAILPOWER -> RAILPOWERType
+      []-- AUXPOWER -> AUXPOWER_WithLineSupervisionType
+
+
+
+=== ELEMENT : VAS_INTERFACE === 
+VAS_INTERFACE
+  ---- SEQUENCE
+    ---- siType -> <ANONYMOUS>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- slot -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- connectedWith -> <SIMPLE_TYPE>
+    ---- supervised -> <SIMPLE_TYPE>
+    ---- vasSupervisionTime -> <SIMPLE_TYPE>
+    --?- UART -> <REFERENCE>
+    --?- PRAESIDEO_SETTINGS -> <REFERENCE>
+    --?- VAS_TRIGGERS -> <REFERENCE>
+
+
+
+=== ELEMENT : PANEL_ADMINISTRATION === 
+PANEL_ADMINISTRATION
+  RULEGroup -> <GROUP_REFERENCE>
+
+
+
+=== ELEMENT : SETS_ADMIN === 
+SETS_ADMIN
+  []?- SEQUENCE
+    ---- SET -> SETType
+
+
+
+=== ELEMENT : GROUP_ADMIN === 
+GROUP_ADMIN
+  []?- SEQUENCE
+    ---- GROUP -> GROUPType
+
+
+
+=== ELEMENT : STATUS_ADMIN === 
+STATUS_ADMIN
+  []-- SEQUENCE
+    ---- STATUS_GROUP -> STATUS_GROUPType
+
+
+
+=== ELEMENT : NAC_ADMIN === 
+NAC_ADMIN
+  []?- SEQUENCE
+    ---- NAC_GROUP -> NAC_GROUPType
+
+
+
+=== ELEMENT : CONTROL_ADMIN === 
+CONTROL_ADMIN
+  []?- SEQUENCE
+    ---- CONTROL -> CONTROLType
+
+
+
+=== ELEMENT : DOORHOLDER_ADMIN === 
+DOORHOLDER_ADMIN
+  []?- SEQUENCE
+    ---- DOORHOLDER -> DOORHOLDERType
+
+
+
+=== ELEMENT : FIRE_ADMIN === 
+FIRE_ADMIN
+  []?- SEQUENCE
+    ---- FIRE -> FIREType
+
+
+
+=== ELEMENT : HVAC_ADMIN === 
+HVAC_ADMIN
+  ---- SEQUENCE
+    ---- sequentialOperation -> <SIMPLE_TYPE>
+    []?- HVAC -> HVACType
+
+
+
+=== ELEMENT : CITYTIE_ADMIN === 
+CITYTIE_ADMIN
+  []?- SEQUENCE
+    ---- CITYTIE -> CITYTIEType
+
+
+
+=== ELEMENT : KEYDEPOT_ADMIN === 
+KEYDEPOT_ADMIN
+  []?- SEQUENCE
+    ---- KEYDEPOT -> KEYDEPOTType
+
+
+
+=== ELEMENT : MTS_ADMIN === 
+MTS_ADMIN
+  []?- SEQUENCE
+    ---- MTS -> <REFERENCE>
+
+
+
+=== ELEMENT : PRINTER_ADMIN === 
+PRINTER_ADMIN
+  []?- SEQUENCE
+    ---- PRINTER -> <REFERENCE>
+
+
+
+=== ELEMENT : FBF_ADMIN === 
+FBF_ADMIN
+  []?- SEQUENCE
+    ---- FBF -> FBFType
+
+
+
+=== ELEMENT : COMMUNICATION_DEVICES === 
+COMMUNICATION_DEVICES
+  []?- SEQUENCE
+    ---- DIALER -> DIALERType
+
+
+
+=== ELEMENT : ADDRESS_MANAGEMENT === 
+ADDRESS_MANAGEMENT
+  ADDRESS_MANAGEMENTType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : COUNTER_ADMIN === 
+COUNTER_ADMIN
+  >>CHOICE:
+    COUNTERGroup -> <GROUP_REFERENCE>
+  <<CHOICE:
+
+
+
+=== ELEMENT : COUNTER_ADMIN_LIFE_TIME === 
+COUNTER_ADMIN_LIFE_TIME
+  []-- SEQUENCE
+    ---- COUNTER_LIFE_TIME -> COUNTER_LIFE_TIMEType
+
+
+
+=== ELEMENT : OPERATOR_ADMIN === 
+OPERATOR_ADMIN
+  ---- SEQUENCE
+    ---- useAllOverPwd -> <SIMPLE_TYPE>
+    ---- is24hMasterPwd -> <SIMPLE_TYPE>
+    --?- maxIdleTime -> <ANONYMOUS>
+    []-- OPERATOR -> <REFERENCE>
+
+
+
+=== ELEMENT : RIGHT_MANAGEMENT === 
+RIGHT_MANAGEMENT
+  ---- SEQUENCE
+    ---- allowNotCfgCmd -> <SIMPLE_TYPE>
+    []-- LEVEL -> LEVELType
+
+
+
+=== ELEMENT : TIME_CONTROL === 
+TIME_CONTROL
+  []?- SEQUENCE
+    TIME_CONTROLGroup -> <GROUP_REFERENCE>
+
+
+
+=== ELEMENT : PANEL_COMMUNICATION === 
+PANEL_COMMUNICATION
+  --?- SEQUENCE
+    []?- TRANSFER -> TRANSFERType
+
+
+
+=== ELEMENT : ACTIVITYTEXTS === 
+ACTIVITYTEXTS
+  >>ALL:
+    ---- fire -> ActivityTextWithAttribType
+    ---- heat -> ActivityTextWithAttribType
+    ---- smoke -> ActivityTextWithAttribType
+    ---- water -> ActivityTextWithAttribType
+    ---- tamper -> ActivityTextWithAttribType
+    ---- trouble -> ActivityTextWithAttribType
+    ---- firePre -> ActivityTextWithAttribType
+    ---- pollution -> ActivityTextWithAttribType
+    ---- powerFail -> ActivityTextWithAttribType
+    ---- supervisory -> ActivityTextWithAttribType
+    ---- paperOut -> ActivityTextWithAttribType
+    ---- coverOpen -> ActivityTextWithAttribType
+    ---- activationFailed -> ActivityTextWithAttribType
+    ---- activated -> ActivityTextWithAttribType
+    ---- on -> ActivityTextWithAttribType
+    ---- off -> ActivityTextWithAttribType
+    ---- normal -> ActivityTextWithAttribType
+    ---- invalid -> ActivityTextWithAttribType
+    ---- info_alarm -> ActivityTextWithAttribType
+  <<ALL:
+
+
+
+=== ELEMENT : PRIORITIES === 
+PRIORITIES
+  ---- SEQUENCE
+    ---- invalid -> <SIMPLE_TYPE>
+    ---- on -> <SIMPLE_TYPE>
+    ---- off -> <SIMPLE_TYPE>
+    ---- normal -> <SIMPLE_TYPE>
+    ---- activated -> <SIMPLE_TYPE>
+    ---- paperOut -> <SIMPLE_TYPE>
+    ---- coverOpen -> <SIMPLE_TYPE>
+    ---- trouble -> <SIMPLE_TYPE>
+    ---- powerFail -> <SIMPLE_TYPE>
+    ---- pollution -> <SIMPLE_TYPE>
+    ---- supervisory -> <SIMPLE_TYPE>
+    ---- firePre -> <SIMPLE_TYPE>
+    ---- fire -> <SIMPLE_TYPE>
+    ---- fireInternal -> <SIMPLE_TYPE>
+    ---- heat -> <SIMPLE_TYPE>
+    ---- smoke -> <SIMPLE_TYPE>
+    ---- water -> <SIMPLE_TYPE>
+    ---- activationFailed -> <SIMPLE_TYPE>
+    ---- tamper -> <SIMPLE_TYPE>
+    ---- ac_changed -> <SIMPLE_TYPE>
+    ---- ac_tamper -> <SIMPLE_TYPE>
+    ---- ac_countdown_started -> <SIMPLE_TYPE>
+    ---- warning -> <SIMPLE_TYPE>
+    ---- pollutionLight -> <SIMPLE_TYPE>
+    ---- verifyFire -> <SIMPLE_TYPE>
+    ---- troubleLight -> <SIMPLE_TYPE>
+    ---- watchdogRestart -> <SIMPLE_TYPE>
+    ---- pasWaitForAck -> <SIMPLE_TYPE>
+    ---- pasInvestigate -> <SIMPLE_TYPE>
+    ---- netConfigMismatch -> <SIMPLE_TYPE>
+    ---- unknownItem -> <SIMPLE_TYPE>
+    ---- missingItem -> <SIMPLE_TYPE>
+    ---- incompatibleSoftware -> <SIMPLE_TYPE>
+    ---- incompatibleNetProtocol -> <SIMPLE_TYPE>
+    ---- warning_smoke -> <SIMPLE_TYPE>
+    ---- warning_heat -> <SIMPLE_TYPE>
+    ---- info_alarm -> <SIMPLE_TYPE>
+    ---- chemical -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : VOICE_SOUNDER_SPEECHTEXT_MAPPINGS === 
+VOICE_SOUNDER_SPEECHTEXT_MAPPINGS
+  VOICE_SOUNDER_SPEECHTEXT_MAPPINGSType -> <BASE EXTENSION>
+  
+
+
+=== COMPLEXTYPE : KEYType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  --?- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- latching -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : LEDType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : BATTERYType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- port -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : MAINPOWERType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- delayForTrouble -> <ANONYMOUS>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : RAILPOWERType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : AUXPOWER_BCType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- batteryBackup -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : PANEL_MODULES_BaseType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- slot -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- serialNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CTIEType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- activationType -> <SIMPLE_TYPE>
+  ---- activationTime -> <SIMPLE_TYPE>
+  ---- deactivateOnReset -> <SIMPLE_TYPE>
+  ---- ctType -> <SIMPLE_TYPE>
+  ---- withFeedback -> <SIMPLE_TYPE>
+  ---- feedbackTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : AUXPOWER_SingleType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : GLTZONE === 
+GLTZONE
+  ---- SEQUENCE
+    ---- port -> <ANONYMOUS>
+    ---- siType -> <ANONYMOUS>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- usageType -> <SIMPLE_TYPE>
+    ---- automaticDetectors -> <SIMPLE_TYPE>
+    ---- andDetector -> <SIMPLE_TYPE>
+    ---- andZoneNr -> <SIMPLE_TYPE>
+    ---- andLatching -> <SIMPLE_TYPE>
+    ---- av -> <SIMPLE_TYPE>
+    ---- avDelay -> <SIMPLE_TYPE>
+    ---- resetOutput -> <SIMPLE_TYPE>
+    ---- resetTime -> <SIMPLE_TYPE>
+    ---- pulsingLED -> <SIMPLE_TYPE>
+    ---- indicateAlarmOnShort -> <SIMPLE_TYPE>
+    ---- cleanMe -> <SIMPLE_TYPE>
+    ---- wiringTechnologyClassA -> <SIMPLE_TYPE>
+    ---- EOLRValue -> <SIMPLE_TYPE>
+    ---- wire -> <ANONYMOUS>
+    ---- detectorClass -> <SIMPLE_TYPE>
+    ---- alarmResistance -> <ANONYMOUS>
+    ---- detectorStandByCurrent -> <ANONYMOUS>
+    ---- nrOfDetectors -> <SIMPLE_TYPE>
+    ---- dayNightMode -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- resetByAuxpower -> <SIMPLE_TYPE>
+    ---- en5413Enabled -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : KEYDEPOT_ENOTType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- wallLight -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : AUXPOWER_SingleType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : UNLOCKAPPLIANCEType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : CTIE === 
+CTIE
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- siType -> <ANONYMOUS>
+    ---- label -> <SIMPLE_TYPE>
+    ---- ctType -> <SIMPLE_TYPE>
+    ---- ueeType -> <SIMPLE_TYPE>
+    ---- ueResistance -> <SIMPLE_TYPE>
+    ---- activationTime -> <SIMPLE_TYPE>
+    ---- deactivateOnReset -> <SIMPLE_TYPE>
+    ---- withFeedback -> <SIMPLE_TYPE>
+    ---- feedbackTime -> <SIMPLE_TYPE>
+    ---- supplyVoltage -> <SIMPLE_TYPE>
+    ---- externallyUsed -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RELAY_ENOTType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <ANONYMOUS>
+    ---- fault -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : S20Type === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- connectedWith -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RS232Type === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- connectedWith -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : S20Type === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- connectedWith -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RS232Type === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- connectedWith -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LEDType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : AUXPOWER_WithLineSupervisionType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- LINE_SUPERVISION -> LINE_SUPERVISIONType
+
+
+
+=== ELEMENT : LSN_BUS === 
+LSN_BUS
+  ---- SEQUENCE
+    ---- siType -> <SIMPLE_TYPE>
+    ---- port -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- siNumber -> <ANONYMOUS>
+    >>CHOICE:
+      LSNAllGroup -> <GROUP_REFERENCE>
+      ---- NAK100 -> <REFERENCE>
+    <<CHOICE:
+
+
+
+=== COMPLEXTYPE : AUXPOWER_WithLineSupervisionType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- LINE_SUPERVISION -> LINE_SUPERVISIONType
+
+
+
+=== COMPLEXTYPE : GROUND_LSN1500Type === 
+---- SEQUENCE
+  --?- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : NAC_ZONEType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- synProtocol -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <ANONYMOUS>
+  ---- drillPattern -> <SIMPLE_TYPE>
+  ---- testActivationPattern -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : BATTERYType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- port -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : AUXPOWER_SingleType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RELAY_RLHVType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <SIMPLE_TYPE>
+  ---- siNumber -> <ANONYMOUS>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subType -> <SIMPLE_TYPE>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- supervised -> <SIMPLE_TYPE>
+  ---- feedback -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <ANONYMOUS>
+  ---- feedbackEOL -> <SIMPLE_TYPE>
+  ---- feedbackActivation -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RELAY_RLHVType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <SIMPLE_TYPE>
+  ---- siNumber -> <ANONYMOUS>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subType -> <SIMPLE_TYPE>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- supervised -> <SIMPLE_TYPE>
+  ---- feedback -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <ANONYMOUS>
+  ---- feedbackEOL -> <SIMPLE_TYPE>
+  ---- feedbackActivation -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RELAY_RLLVType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : BATTERYType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- port -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : MAINPOWERType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- delayForTrouble -> <ANONYMOUS>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : RAILPOWERType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : AUXPOWER_WithLineSupervisionType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- LINE_SUPERVISION -> LINE_SUPERVISIONType
+
+
+
+=== ELEMENT : UART === 
+UART
+  ---- SEQUENCE
+    ---- number -> <ANONYMOUS>
+    ---- speed -> <SIMPLE_TYPE>
+    ---- frame -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : PRAESIDEO_SETTINGS === 
+PRAESIDEO_SETTINGS
+  ---- SEQUENCE
+    ---- ipAddress -> <SIMPLE_TYPE>
+    ---- portNumber -> <SIMPLE_TYPE>
+    ---- userName -> <ANONYMOUS>
+    ---- pwd -> <ANONYMOUS>
+
+
+
+=== ELEMENT : VAS_TRIGGERS === 
+VAS_TRIGGERS
+  []?- SEQUENCE
+    ---- VAS_TRIGGER -> <REFERENCE>
+
+
+
+=== GROUP : RULEGroup === 
+>>CHOICE:
+  ---- RULE -> <REFERENCE>
+  ---- RULE_STATE_BLOCK -> <REFERENCE>
+  []-- RULE_STATE -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : SETType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  []?- element -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : GROUPType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- alarmInvestigation -> <SIMPLE_TYPE>
+  ---- investigationTime -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  []?- POINT -> POINTType
+
+
+
+=== COMPLEXTYPE : STATUS_GROUPType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  []?- STATUS -> STATUSType
+
+
+
+=== COMPLEXTYPE : NAC_GROUPType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  []?- NAC -> NACType
+
+
+
+=== COMPLEXTYPE : CONTROLType === 
+[]-- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : DOORHOLDERType === 
+[]-- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : FIREType === 
+[]-- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : HVACType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CITYTIEType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : KEYDEPOTType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : MTS === 
+MTS
+  ---- SEQUENCE
+    ---- subType -> <ANONYMOUS>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- redundantSiNumber -> <SIMPLE_TYPE>
+    --?- cityTieAddress -> <SIMPLE_TYPE>
+    ---- TRANSMISSION_TABLE -> <REFERENCE>
+    ---- MTS_CONNECTION -> <REFERENCE>
+    []?- FAT_LEDORBUTTON -> <REFERENCE>
+
+
+
+=== ELEMENT : PRINTER === 
+PRINTER
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- printerType -> <SIMPLE_TYPE>
+    ---- connectedWith -> <SIMPLE_TYPE>
+    >>CHOICE:
+      ---- UART -> <REFERENCE>
+      ---- OB_UART -> <REFERENCE>
+    <<CHOICE:
+
+
+
+=== COMPLEXTYPE : FBFType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+  []-- FBF_LEDORBUTTON -> FBF_LEDORBUTTONType
+
+
+
+=== COMPLEXTYPE : DIALERType === 
+---- SEQUENCE
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- connectedWith -> <SIMPLE_TYPE>
+  ---- supervisionInterval -> <SIMPLE_TYPE>
+  ---- maxRetryReport -> <ANONYMOUS>
+  ---- commFailRetries -> <ANONYMOUS>
+  ---- retryInterval -> <ANONYMOUS>
+  ---- troublePerDay -> <ANONYMOUS>
+  ---- phoneNumber1 -> <SIMPLE_TYPE>
+  ---- accountNumber1 -> <SIMPLE_TYPE>
+  ---- format1 -> <SIMPLE_TYPE>
+  ---- dialingMethod1 -> <SIMPLE_TYPE>
+  ---- phoneNumber2 -> <SIMPLE_TYPE>
+  ---- accountNumber2 -> <SIMPLE_TYPE>
+  ---- format2 -> <SIMPLE_TYPE>
+  ---- dialingMethod2 -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ADDRESS_MANAGEMENTType === 
+---- SEQUENCE
+  --?- GLOBAL_OFFSET_TABLE -> <REFERENCE>
+
+
+
+=== GROUP : COUNTERGroup === 
+>>CHOICE:
+  ---- COUNTER -> <REFERENCE>
+  ---- SUMCOUNTER -> <REFERENCE>
+  ---- REMOTE_COUNTER -> <REFERENCE>
+  ---- ADMINSTATE_COUNTER -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : COUNTER_LIFE_TIMEType === 
+>>ALL:
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- cstate -> <SIMPLE_TYPE>
+  ---- replicate -> <SIMPLE_TYPE>
+  ---- condition -> <SIMPLE_TYPE>
+  ---- subject -> <SIMPLE_TYPE>
+  ---- subjectNumber -> <SIMPLE_TYPE>
+  ---- subjectSubNumber -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== ELEMENT : OPERATOR === 
+OPERATOR
+  >>ALL:
+    ---- id -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- level -> <SIMPLE_TYPE>
+    --?- scope -> <SIMPLE_TYPE>
+    --?- pwd -> <SIMPLE_TYPE>
+    --?- PERSONALIZED_MENU -> OperatorMenuType
+  <<ALL:
+
+
+
+=== COMPLEXTYPE : LEVELType === 
+---- SEQUENCE
+  ---- id -> <SIMPLE_TYPE>
+  []?- RIGHT -> RIGHTType
+
+
+
+=== GROUP : TIME_CONTROLGroup === 
+>>CHOICE:
+  ---- CHANNELS -> CHANNELSType
+  ---- DAYS -> DAYSType
+  ---- PROGRAMS -> PROGRAMSType
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : TRANSFERType === 
+[]-- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- isCallbackRequired -> <SIMPLE_TYPE>
+  ---- isAutoAnswerEnabled -> <SIMPLE_TYPE>
+  ---- isCallbackConfirmation -> <SIMPLE_TYPE>
+  ---- isTeleservice -> <SIMPLE_TYPE>
+  ---- tfMaxPacketSize -> <ANONYMOUS>
+  ---- tfMaxPacketInterleave -> <ANONYMOUS>
+  ---- tfMaxResendDistance -> <ANONYMOUS>
+  ---- tfMaxParallelConnections -> <ANONYMOUS>
+  ---- tfMaxSendMsgBuffers -> <ANONYMOUS>
+  ---- maxPipeBytepoolSize -> <ANONYMOUS>
+  ---- maxPipeMsgBlocks -> <ANONYMOUS>
+  ---- maxPacketCacheSize -> <ANONYMOUS>
+  ---- sessionTimeoutS -> <ANONYMOUS>
+  ---- noDataTimeoutS -> <ANONYMOUS>
+  ---- tfPacketCRCType -> <SIMPLE_TYPE>
+  ---- callback1 -> <SIMPLE_TYPE>
+  ---- callback2 -> <SIMPLE_TYPE>
+  ---- callback3 -> <SIMPLE_TYPE>
+  >>CHOICE:
+    ---- OB_UART -> OB_UARTType
+    ---- ATMODEM -> ATMODEMType
+  <<CHOICE:
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ActivityTextWithAttribType === 
+
+
+
+=== COMPLEXTYPE : VOICE_SOUNDER_SPEECHTEXT_MAPPINGSType === 
+[]-- SEQUENCE
+  ---- SPEECH_TEXT_MAPPING -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : RELAYBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <SIMPLE_TYPE>
+  ---- siNumber -> <ANONYMOUS>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subType -> <SIMPLE_TYPE>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- supervised -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LINE_SUPERVISIONType === 
+---- SEQUENCE
+  ---- physAddrOfEOLDevice -> <SIMPLE_TYPE>
+  ---- isConventional -> <SIMPLE_TYPE>
+  --?- SUPPLIED_DEVICES -> <ANONYMOUS>
+
+
+
+=== GROUP : LSNAllGroup === 
+>>CHOICE:
+  LSNIGroup -> <GROUP_REFERENCE>
+  LSNClassicGroup -> <GROUP_REFERENCE>
+<<CHOICE:
+
+
+
+=== ELEMENT : NAK100 === 
+NAK100
+  LSNDeviceBranchBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- LSN_BUS_NAK100 -> LSN_BUS_NAK100Type
+  
+
+
+=== COMPLEXTYPE : LINE_SUPERVISIONType === 
+---- SEQUENCE
+  ---- physAddrOfEOLDevice -> <SIMPLE_TYPE>
+  ---- isConventional -> <SIMPLE_TYPE>
+  --?- SUPPLIED_DEVICES -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : LINE_SUPERVISIONType === 
+---- SEQUENCE
+  ---- physAddrOfEOLDevice -> <SIMPLE_TYPE>
+  ---- isConventional -> <SIMPLE_TYPE>
+  --?- SUPPLIED_DEVICES -> <ANONYMOUS>
+
+
+
+=== ELEMENT : VAS_TRIGGER === 
+VAS_TRIGGER
+  ---- SEQUENCE
+    ---- vasTriggerNumber -> <ANONYMOUS>
+    ---- siType -> <SIMPLE_TYPE>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- silenceable -> <SIMPLE_TYPE>
+    ---- drillable -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : RULE === 
+RULE
+  ---- SEQUENCE
+    ---- note -> <SIMPLE_TYPE>
+    RULE_TRIGGERGroup -> <GROUP_REFERENCE>
+    CONDITIONGroup -> <GROUP_REFERENCE>
+    RULE_ACTIONGroup -> <GROUP_REFERENCE>
+
+
+
+=== ELEMENT : RULE_STATE_BLOCK === 
+RULE_STATE_BLOCK
+  []-- SEQUENCE
+    ---- RULE_STATE -> <REFERENCE>
+
+
+
+=== ELEMENT : RULE_STATE === 
+RULE_STATE
+  ---- SEQUENCE
+    ---- note -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : POINTType === 
+---- SEQUENCE
+  ---- subNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : STATUSType === 
+---- SEQUENCE
+  ---- subNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : NACType === 
+---- SEQUENCE
+  ---- subNumber -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TRANSMISSION_TABLE === 
+TRANSMISSION_TABLE
+  ---- SEQUENCE
+    ---- panel -> <SIMPLE_TYPE>
+    ---- point -> <SIMPLE_TYPE>
+    ---- module -> <SIMPLE_TYPE>
+    ---- coupler -> <SIMPLE_TYPE>
+    ---- control -> <SIMPLE_TYPE>
+    ---- input -> <SIMPLE_TYPE>
+    ---- citytie -> <SIMPLE_TYPE>
+    ---- fireextinguisher -> <SIMPLE_TYPE>
+    ---- nac -> <SIMPLE_TYPE>
+    ---- buzzer -> <SIMPLE_TYPE>
+    ---- hvac -> <SIMPLE_TYPE>
+    ---- doorholder -> <SIMPLE_TYPE>
+    ---- keydepot -> <SIMPLE_TYPE>
+    ---- status -> <SIMPLE_TYPE>
+    ---- dialer -> <SIMPLE_TYPE>
+    ---- printer -> <SIMPLE_TYPE>
+    ---- fat -> <SIMPLE_TYPE>
+    ---- fbf -> <SIMPLE_TYPE>
+    ---- set -> <SIMPLE_TYPE>
+    ---- auxpower -> <SIMPLE_TYPE>
+    ---- battery -> <SIMPLE_TYPE>
+    ---- mainpower -> <SIMPLE_TYPE>
+    ---- railpower -> <SIMPLE_TYPE>
+    ---- ground -> <SIMPLE_TYPE>
+    ---- loop -> <SIMPLE_TYPE>
+    ---- monitoring -> <SIMPLE_TYPE>
+    ---- canbus -> <SIMPLE_TYPE>
+    ---- network -> <SIMPLE_TYPE>
+    ---- networknode -> <SIMPLE_TYPE>
+    ---- network_line -> <SIMPLE_TYPE>
+    ---- topology -> <SIMPLE_TYPE>
+    ---- netaddress -> <SIMPLE_TYPE>
+    ---- vas -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : MTS_CONNECTION === 
+MTS_CONNECTION
+  ---- SEQUENCE
+    ---- connectedWith -> <SIMPLE_TYPE>
+    >>CHOICE:
+      ---- UART -> <REFERENCE>
+      ---- OB_UART -> <REFERENCE>
+    <<CHOICE:
+    --?- PROTOCOL_4A -> <REFERENCE>
+
+
+
+=== ELEMENT : FAT_LEDORBUTTON === 
+FAT_LEDORBUTTON
+  ---- SEQUENCE
+    ---- subNumber -> <ANONYMOUS>
+
+
+
+=== ELEMENT : OB_UART === 
+OB_UART
+  ---- SEQUENCE
+    ---- number -> <ANONYMOUS>
+    ---- speed -> <SIMPLE_TYPE>
+    ---- frame -> <SIMPLE_TYPE>
+    ---- irdaEnabled -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : FBF_LEDORBUTTONType === 
+---- SEQUENCE
+  ---- subNumber -> <ANONYMOUS>
+
+
+
+=== ELEMENT : GLOBAL_OFFSET_TABLE === 
+GLOBAL_OFFSET_TABLE
+  ---- SEQUENCE
+    ---- panel -> <SIMPLE_TYPE>
+    ---- point -> <SIMPLE_TYPE>
+    ---- module -> <SIMPLE_TYPE>
+    ---- coupler -> <SIMPLE_TYPE>
+    ---- control -> <SIMPLE_TYPE>
+    ---- input -> <SIMPLE_TYPE>
+    ---- citytie -> <SIMPLE_TYPE>
+    ---- fireextinguisher -> <SIMPLE_TYPE>
+    ---- nac -> <SIMPLE_TYPE>
+    ---- buzzer -> <SIMPLE_TYPE>
+    ---- hvac -> <SIMPLE_TYPE>
+    ---- doorholder -> <SIMPLE_TYPE>
+    ---- keydepot -> <SIMPLE_TYPE>
+    ---- status -> <SIMPLE_TYPE>
+    ---- dialer -> <SIMPLE_TYPE>
+    ---- printer -> <SIMPLE_TYPE>
+    ---- fat -> <SIMPLE_TYPE>
+    ---- fbf -> <SIMPLE_TYPE>
+    ---- set -> <SIMPLE_TYPE>
+    ---- auxpower -> <SIMPLE_TYPE>
+    ---- battery -> <SIMPLE_TYPE>
+    ---- mainpower -> <SIMPLE_TYPE>
+    ---- railpower -> <SIMPLE_TYPE>
+    ---- ground -> <SIMPLE_TYPE>
+    ---- loop -> <SIMPLE_TYPE>
+    ---- monitoring -> <SIMPLE_TYPE>
+    ---- canbus -> <SIMPLE_TYPE>
+    ---- network -> <SIMPLE_TYPE>
+    ---- networknode -> <SIMPLE_TYPE>
+    ---- network_line -> <SIMPLE_TYPE>
+    ---- topology -> <SIMPLE_TYPE>
+    ---- netaddress -> <SIMPLE_TYPE>
+    ---- vas -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : COUNTER === 
+COUNTER
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- cstate -> <SIMPLE_TYPE>
+    ---- condition -> <SIMPLE_TYPE>
+    ---- subject -> <SIMPLE_TYPE>
+    ---- subjectNumber -> <SIMPLE_TYPE>
+    ---- subjectSubNumber -> <SIMPLE_TYPE>
+    --?- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : SUMCOUNTER === 
+SUMCOUNTER
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    []-- counter -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : REMOTE_COUNTER === 
+REMOTE_COUNTER
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : ADMINSTATE_COUNTER === 
+ADMINSTATE_COUNTER
+  ---- SEQUENCE
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- adminState -> <SIMPLE_TYPE>
+    ---- condition -> <SIMPLE_TYPE>
+    ---- subject -> <SIMPLE_TYPE>
+    ---- subjectNumber -> <SIMPLE_TYPE>
+    ---- subjectSubNumber -> <SIMPLE_TYPE>
+    --?- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : OperatorMenuType === 
+---- SEQUENCE
+  []-- MENU_ENTRY -> MenuActionType
+
+
+
+=== COMPLEXTYPE : RIGHTType === 
+---- SEQUENCE
+  ---- type -> <SIMPLE_TYPE>
+  ---- action -> <SIMPLE_TYPE>
+  ---- target -> <SIMPLE_TYPE>
+  ---- on -> <SIMPLE_TYPE>
+  ---- off -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CHANNELSType === 
+[]?- SEQUENCE
+  ---- CHANNEL -> CHANNELType
+
+
+
+=== COMPLEXTYPE : DAYSType === 
+>>CHOICE:
+  DAYSGroup -> <GROUP_REFERENCE>
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : PROGRAMSType === 
+[]?- SEQUENCE
+  ---- PROGRAM -> PROGRAMType
+
+
+
+=== COMPLEXTYPE : OB_UARTType === 
+---- SEQUENCE
+  ---- number -> <ANONYMOUS>
+  ---- speed -> <SIMPLE_TYPE>
+  ---- frame -> <SIMPLE_TYPE>
+  ---- irdaEnabled -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ATMODEMType === 
+---- SEQUENCE
+  ---- modemType -> <SIMPLE_TYPE>
+  ---- init -> <SIMPLE_TYPE>
+  ---- disconnect -> <SIMPLE_TYPE>
+  ---- dial -> <SIMPLE_TYPE>
+  ---- answer -> <SIMPLE_TYPE>
+  ---- answerOff -> <SIMPLE_TYPE>
+  ---- onlineMode -> <SIMPLE_TYPE>
+  ---- escape -> <SIMPLE_TYPE>
+  ---- wait -> <SIMPLE_TYPE>
+
+
+
+=== GROUP : LSNIGroup === 
+>>CHOICE:
+  ---- DM210 -> <REFERENCE>
+  ---- PULLSTATION -> <REFERENCE>
+  ---- T220IUS -> <REFERENCE>
+  ---- T410I -> <REFERENCE>
+  ---- O220IUS -> <REFERENCE>
+  ---- OT220IUS -> <REFERENCE>
+  ---- OTC220IUS -> <REFERENCE>
+  ---- O500IUS -> <REFERENCE>
+  ---- OC500IUS -> <REFERENCE>
+  ---- O500I -> <REFERENCE>
+  ---- O410I -> <REFERENCE>
+  ---- OC410I -> <REFERENCE>
+  ---- OT410I -> <REFERENCE>
+  ---- OTC410I -> <REFERENCE>
+  ---- O110I -> <REFERENCE>
+  ---- OT110I -> <REFERENCE>
+  ---- LSN_NAC -> <REFERENCE>
+  ---- RLHVI -> <REFERENCE>
+  ---- OC500I -> <REFERENCE>
+  ---- ISOLATOR -> <REFERENCE>
+  ---- LSNI_OUT2 -> <REFERENCE>
+  ---- LSNI_OUT2_D -> <REFERENCE>
+  ---- LSNI_IN2 -> <REFERENCE>
+  ---- LSNI_IN2_D -> <REFERENCE>
+  ---- LSNI_RELAY1 -> <REFERENCE>
+  ---- LSNI_RELAY1_D -> <REFERENCE>
+  ---- RAS_TPS1 -> <REFERENCE>
+  ---- RAS_TPS2 -> <REFERENCE>
+  ---- RAS_TTS1 -> <REFERENCE>
+  ---- RAS_TTS2 -> <REFERENCE>
+  ---- RAS_TMS -> <REFERENCE>
+  ---- RAS_TMS_NOFAN -> <REFERENCE>
+  ---- RAS_TMS_RB -> <REFERENCE>
+  ---- LSNI_CONV4 -> <REFERENCE>
+  ---- LSNTESTELEMENT -> <REFERENCE>
+  ---- LSNI_RELAY8 -> <REFERENCE>
+  ---- LSNI_BEACON -> <REFERENCE>
+  ---- LSNI_IN8R1 -> <REFERENCE>
+  ---- LSNI_OUT8_IN2 -> <REFERENCE>
+  ---- LSNI_IN1 -> <REFERENCE>
+  ---- LSNI_OUT1_IN1 -> <REFERENCE>
+  ---- LSNI_RLE -> <REFERENCE>
+  ---- FULLEON_BASE -> <REFERENCE>
+  ---- FULLEON_BASE_U -> <REFERENCE>
+  ---- FULLEON_STANDALONE -> <REFERENCE>
+  ---- FULLEON_STANDALONE_U -> <REFERENCE>
+  ---- FULLEON_STANDALONE_V -> <REFERENCE>
+  ---- KD55_KD200 -> <REFERENCE>
+  ---- LSNI_EOL_2W -> <REFERENCE>
+  ---- LSNI_EOL_4W -> <REFERENCE>
+  ---- DO410I -> <REFERENCE>
+  ---- DOT410I -> <REFERENCE>
+  ---- DOTC410I -> <REFERENCE>
+  ---- LSNI_TI13 -> <REFERENCE>
+  ---- ATB420 -> <REFERENCE>
+  ---- ATG420 -> <REFERENCE>
+  ---- FWI270 -> <REFERENCE>
+  ---- FNX425U -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== GROUP : LSNClassicGroup === 
+>>CHOICE:
+  ---- NBM110 -> <REFERENCE>
+  ---- NSB100 -> <REFERENCE>
+  ---- ATX100 -> <REFERENCE>
+  ---- MSS400 -> <REFERENCE>
+  ---- MSS401 -> <REFERENCE>
+  ---- NBK100 -> <REFERENCE>
+  ---- NEV300 -> <REFERENCE>
+  ---- NIM100 -> <REFERENCE>
+  ---- NKK100 -> <REFERENCE>
+  ---- NOM100 -> <REFERENCE>
+  ---- NTK100 -> <REFERENCE>
+  ---- NTM100 -> <REFERENCE>
+  ---- O410 -> <REFERENCE>
+  ---- O500 -> <REFERENCE>
+  ---- OM200 -> <REFERENCE>
+  ---- OT200 -> <REFERENCE>
+  ---- OT410 -> <REFERENCE>
+  ---- OTC410 -> <REFERENCE>
+  ---- T410 -> <REFERENCE>
+  ---- TM200 -> <REFERENCE>
+  ---- FK100 -> <REFERENCE>
+  ---- FBF100 -> <REFERENCE>
+  ---- OC410 -> <REFERENCE>
+  ---- OC500 -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : LSN_BUS_NAK100Type === 
+>>CHOICE:
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : LSNDeviceBranchBaseType === 
+---- SEQUENCE
+  ---- lsnTypeID -> <SIMPLE_TYPE>
+  ---- lsnSubtype -> <SIMPLE_TYPE>
+  ---- backPointer -> <SIMPLE_TYPE>
+  ---- branch -> <SIMPLE_TYPE>
+
+
+
+=== GROUP : RULE_TRIGGERGroup === 
+>>CHOICE:
+  ---- TRIGGER_ADMIN -> <REFERENCE>
+  ---- TRIGGER_COUNTER -> <REFERENCE>
+  ---- TRIGGER_DOWNLOAD -> <REFERENCE>
+  ---- TRIGGER_STATE -> <REFERENCE>
+  ---- TRIGGER_USER -> <REFERENCE>
+  ---- TRIGGER_ELAPSE -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== GROUP : CONDITIONGroup === 
+>>CHOICE:
+  ---- CONDITION_COUNTER -> <REFERENCE>
+  ---- CONDITION_STATE -> <REFERENCE>
+  ---- CONDITION_ELAPSE -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== GROUP : RULE_ACTIONGroup === 
+>>CHOICE:
+  ---- ADMINISTRATION -> <REFERENCE>
+  ---- BUZZER_ACTION -> <REFERENCE>
+  ---- CITYTIE_ACTION -> <REFERENCE>
+  ---- CONTROL_ACTION -> <REFERENCE>
+  ---- DIALER_ACTION -> <REFERENCE>
+  ---- DOORHOLDER_ACTION -> <REFERENCE>
+  ---- FAT_ACTION -> <REFERENCE>
+  ---- FBF_ACTION -> <REFERENCE>
+  ---- FIRE_ACTION -> <REFERENCE>
+  ---- HVAC_ACTION -> <REFERENCE>
+  ---- KEYDEPOT_ACTION -> <REFERENCE>
+  ---- NAC_ACTION -> <REFERENCE>
+  ---- PRINTER_ACTION -> <REFERENCE>
+  ---- SET_ACTION -> <REFERENCE>
+  ---- STATUS_ACTION -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== ELEMENT : PROTOCOL_4A === 
+PROTOCOL_4A
+  ---- SEQUENCE
+    ---- timerA -> <ANONYMOUS>
+    ---- timerB -> <ANONYMOUS>
+    ---- timerC -> <ANONYMOUS>
+    ---- timerD -> <ANONYMOUS>
+    ---- timerLinecheck -> <ANONYMOUS>
+    ---- retriesA -> <ANONYMOUS>
+    ---- retriesC -> <ANONYMOUS>
+    ---- isMaster -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : MenuActionType === 
+---- SEQUENCE
+  ---- action -> <SIMPLE_TYPE>
+  ---- direction -> <SIMPLE_TYPE>
+  ---- targetAddress -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CHANNELType === 
+---- SEQUENCE
+  ---- id -> <ANONYMOUS>
+  ---- target -> <SIMPLE_TYPE>
+  ---- ON_ACTION -> ON_ACTIONType
+  ---- OFF_ACTION -> OFF_ACTIONType
+
+
+
+=== GROUP : DAYSGroup === 
+>>CHOICE:
+  ---- HOLIDAY -> HOLIDAYType
+  ---- WEEKDAY -> WEEKDAYType
+  ---- SPECIALDAY -> SPECIALDAYType
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : PROGRAMType === 
+---- SEQUENCE
+  ---- id -> <ANONYMOUS>
+  []?- time -> TimePairWithAttribType
+
+
+
+=== ELEMENT : DM210 === 
+DM210
+  ManuDetBaseType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : PULLSTATION === 
+PULLSTATION
+  ManuDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : T220IUS === 
+T220IUS
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+  
+
+
+=== ELEMENT : T410I === 
+T410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : O220IUS === 
+O220IUS
+  AutoDetBaseType -> <BASE EXTENSION>
+    []-- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OT220IUS === 
+OT220IUS
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- thermalSensitivity1 -> <SIMPLE_TYPE>
+      ---- opticalSensitivity1 -> <SIMPLE_TYPE>
+      ---- thermalSensitivity2 -> <SIMPLE_TYPE>
+      ---- opticalSensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OTC220IUS === 
+OTC220IUS
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- thermalSensitivity1 -> <SIMPLE_TYPE>
+      ---- opticalSensitivity1 -> <SIMPLE_TYPE>
+      ---- thermalSensitivity2 -> <SIMPLE_TYPE>
+      ---- opticalSensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : O500IUS === 
+O500IUS
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OC500IUS === 
+OC500IUS
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : O500I === 
+O500I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : O410I === 
+O410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OC410I === 
+OC410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OT410I === 
+OT410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OTC410I === 
+OTC410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : O110I === 
+O110I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : OT110I === 
+OT110I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : LSN_NAC === 
+LSN_NAC
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- actualCurrent -> <SIMPLE_TYPE>
+      >>CHOICE:
+        ---- NAC_ZONE -> NAC_ZONEType
+        ---- RELAY -> LSNI_RELAYFeedbackType
+      <<CHOICE:
+      ---- BATTERY -> LSN_BATTERYType
+      ---- AUXPOWER -> AUXPOWER_SingleType
+  
+
+
+=== ELEMENT : RLHVI === 
+RLHVI
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- LSNRELAY -> LSNI_RELAYFeedbackRLHVIType
+      --?- INPUT -> INPUTBaseType
+      ---- LSNRELAY -> LSNI_RELAYFeedbackRLHVIType
+      --?- INPUT -> INPUTBaseType
+
+
+
+=== ELEMENT : OC500I === 
+OC500I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : ISOLATOR === 
+ISOLATOR
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : LSNI_OUT2 === 
+LSNI_OUT2
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- OUTPUT -> LSNI_OUT2_OUTPUTType
+
+
+
+=== ELEMENT : LSNI_OUT2_D === 
+LSNI_OUT2_D
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- OUTPUT -> LSNI_OUT2_OUTPUTType
+
+
+
+=== ELEMENT : LSNI_IN2 === 
+LSNI_IN2
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- INPUT -> LSNI_INPUT_Ext5BitType
+
+
+
+=== ELEMENT : LSNI_IN2_D === 
+LSNI_IN2_D
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- INPUT -> LSNI_INPUT_Ext5BitType
+
+
+
+=== ELEMENT : LSNI_RELAY1 === 
+LSNI_RELAY1
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- RELAY -> LSNI_RELAYFeedbackType
+
+
+
+=== ELEMENT : LSNI_RELAY1_D === 
+LSNI_RELAY1_D
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- RELAY -> LSNI_RELAYFeedbackType
+
+
+
+=== ELEMENT : RAS_TPS1 === 
+RAS_TPS1
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- RAS_SENSOR -> TITANUS_TOP_PROSensorType
+
+
+
+=== ELEMENT : RAS_TPS2 === 
+RAS_TPS2
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      []-- RAS_SENSOR -> TITANUS_TOP_PROSensorType
+
+
+
+=== ELEMENT : RAS_TTS1 === 
+RAS_TTS1
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- RAS_SENSOR -> TITANUS_TOP_PROSensorType
+
+
+
+=== ELEMENT : RAS_TTS2 === 
+RAS_TTS2
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      []-- RAS_SENSOR -> TITANUS_TOP_PROSensorType
+
+
+
+=== ELEMENT : RAS_TMS === 
+RAS_TMS
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- RAS_SENSOR_TMS -> TITANUS_MICROSensorType
+
+
+
+=== ELEMENT : RAS_TMS_NOFAN === 
+RAS_TMS_NOFAN
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- RAS_SENSOR_TMS -> TITANUS_MICROSensorType
+
+
+
+=== ELEMENT : RAS_TMS_RB === 
+RAS_TMS_RB
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      []-- RAS_SENSOR_TMS -> TITANUS_MICROSensorType
+
+
+
+=== ELEMENT : LSNI_CONV4 === 
+LSNI_CONV4
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- enableCalibration -> <SIMPLE_TYPE>
+      ---- classAWiring -> <SIMPLE_TYPE>
+      ---- eolResistor -> <ANONYMOUS>
+      []-- AUXPOWER -> AUXPOWER_MultipleType
+      []-- GLTZONE_LSNI_CONV4 -> <REFERENCE>
+
+
+
+=== ELEMENT : LSNTESTELEMENT === 
+LSNTESTELEMENT
+  ---- SEQUENCE
+    ---- lsnTypeID -> <SIMPLE_TYPE>
+    ---- lsnSubtype -> <SIMPLE_TYPE>
+    ---- backPointer -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : LSNI_RELAY8 === 
+LSNI_RELAY8
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- RELAY -> LSNI_RELAYFeedbackType
+
+
+
+=== ELEMENT : LSNI_BEACON === 
+LSNI_BEACON
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <ANONYMOUS>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : LSNI_IN8R1 === 
+LSNI_IN8R1
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- INPUT -> LSNI_INPUT_Ext2BitType
+      ---- RELAY -> LSNI_RELAYFeedbackType
+
+
+
+=== ELEMENT : LSNI_OUT8_IN2 === 
+LSNI_OUT8_IN2
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      []-- OUTPUT -> LSNI_OUT8IN2_OUTPUTType
+      []-- INPUT -> LSNI_INPUT_Ext2BitType
+
+
+
+=== ELEMENT : LSNI_IN1 === 
+LSNI_IN1
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- INPUT -> LSNI_INPUT_Ext2BitType
+
+
+
+=== ELEMENT : LSNI_OUT1_IN1 === 
+LSNI_OUT1_IN1
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      ---- OUTPUT -> LSNI_OUT1IN1_OUTPUTType
+      ---- INPUT -> LSNI_INPUT_Ext2BitType
+
+
+
+=== ELEMENT : LSNI_RLE === 
+LSNI_RLE
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- RELAY -> LSNI_RELAYFeedbackRLEType
+      []?- INPUT -> INPUTBaseType
+
+
+
+=== ELEMENT : FULLEON_BASE === 
+FULLEON_BASE
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+
+
+
+=== ELEMENT : FULLEON_BASE_U === 
+FULLEON_BASE_U
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+      ---- batteryUsed -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : FULLEON_STANDALONE === 
+FULLEON_STANDALONE
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+
+
+
+=== ELEMENT : FULLEON_STANDALONE_U === 
+FULLEON_STANDALONE_U
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+      ---- batteryUsed -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : FULLEON_STANDALONE_V === 
+FULLEON_STANDALONE_V
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+      ---- batteryUsed -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : KD55_KD200 === 
+KD55_KD200
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      []-- GLTZONEKD -> <REFERENCE>
+
+
+
+=== ELEMENT : LSNI_EOL_2W === 
+LSNI_EOL_2W
+  LSNI_EOL_2WType -> <BASE EXTENSION>
+  
+
+
+=== ELEMENT : LSNI_EOL_4W === 
+LSNI_EOL_4W
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- maxResistance -> <SIMPLE_TYPE>
+      ---- minVoltage -> <SIMPLE_TYPE>
+      ---- sumPower -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : DO410I === 
+DO410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : DOT410I === 
+DOT410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : DOTC410I === 
+DOTC410I
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+      ---- standbyLEDblinking -> <SIMPLE_TYPE>
+      --?- RELAY -> LSNI_DetectorRELAYType
+
+
+
+=== ELEMENT : LSNI_TI13 === 
+LSNI_TI13
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- TI13_BCMB -> <REFERENCE>
+
+
+
+=== ELEMENT : ATB420 === 
+ATB420
+  ATXBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- LED -> BlinkingLEDType
+  
+
+
+=== ELEMENT : ATG420 === 
+ATG420
+  ATXBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- LED -> ColoredLEDType
+
+
+
+=== ELEMENT : FWI270 === 
+FWI270
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      --?- numberOfSubelements -> <SIMPLE_TYPE>
+      ---- FWI270_BUS -> FWI270BusType
+
+
+
+=== ELEMENT : FNX425U === 
+FNX425U
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- FNX425U_SOUNDER -> FNX425U_SOUNDERType
+      ---- FNX425U_STROBE -> FNX425U_STROBEType
+
+
+
+=== ELEMENT : NBM110 === 
+NBM110
+  ManuDetBaseType -> <BASE EXTENSION>
+
+
+
+=== ELEMENT : NSB100 === 
+NSB100
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- buzzerActivity -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      []-- RELAY -> RELAY_NSB100Type
+      --?- RAS -> RAS_NSB100Type
+
+
+
+=== ELEMENT : ATX100 === 
+ATX100
+  ATXBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      []-- LED -> LEDType
+
+
+
+=== ELEMENT : MSS400 === 
+MSS400
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+
+
+
+=== ELEMENT : MSS401 === 
+MSS401
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- subNumber -> <SIMPLE_TYPE>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- silenceable -> <SIMPLE_TYPE>
+      ---- drillable -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- nacType -> <SIMPLE_TYPE>
+      ---- volume -> <ANONYMOUS>
+      ---- feedbackDelay -> <SIMPLE_TYPE>
+      ---- drillPattern -> <SIMPLE_TYPE>
+      ---- drillVolume -> <ANONYMOUS>
+      ---- testActivationPattern -> <SIMPLE_TYPE>
+      ---- testActivationVolume -> <ANONYMOUS>
+
+
+
+=== ELEMENT : NBK100 === 
+NBK100
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- buzzerActivity -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      []-- GLTZONENBK -> <REFERENCE>
+
+
+
+=== ELEMENT : NEV300 === 
+NEV300
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- BATTERY -> LSN_BATTERYType
+      ---- AUXPOWER -> AUXPOWER_SingleType
+      []-- OUTPUT -> NEV300_OUTPUTType
+
+
+
+=== ELEMENT : NIM100 === 
+NIM100
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : NKK100 === 
+NKK100
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- buzzerActivity -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      []-- INPUT -> INPUTBaseType
+
+
+
+=== ELEMENT : NOM100 === 
+NOM100
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : NTK100 === 
+NTK100
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- lamptestWithE1 -> <SIMPLE_TYPE>
+      ---- buzzerActivity -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      []-- OUTPUT -> NTK100_OUTPUTType
+      ---- INPUT -> INPUTBaseType
+
+
+
+=== ELEMENT : NTM100 === 
+NTM100
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : O410 === 
+O410
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : O500 === 
+O500
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OM200 === 
+OM200
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OT200 === 
+OT200
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OT410 === 
+OT410
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OTC410 === 
+OTC410
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : T410 === 
+T410
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TM200 === 
+TM200
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : FK100 === 
+FK100
+  LSNDeviceBranchBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- numberOfDOW1171 -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- LSN_BUS_FK100 -> <REFERENCE>
+
+
+
+=== ELEMENT : FBF100 === 
+FBF100
+  LSNDeviceBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- siType -> <ANONYMOUS>
+      ---- comAdr -> <SIMPLE_TYPE>
+      ---- siNumber -> <SIMPLE_TYPE>
+      ---- label -> <SIMPLE_TYPE>
+      ---- serialNumber -> <SIMPLE_TYPE>
+      ---- operator -> <SIMPLE_TYPE>
+      ---- bypassable -> <SIMPLE_TYPE>
+      ---- blockable -> <SIMPLE_TYPE>
+      ---- cityTieAddress -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OC410 === 
+OC410
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : OC500 === 
+OC500
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+      ---- LEDpresent -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TRIGGER_ADMIN === 
+TRIGGER_ADMIN
+  ---- SEQUENCE
+    ---- command -> <SIMPLE_TYPE>
+    ---- cmdType -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TRIGGER_COUNTER === 
+TRIGGER_COUNTER
+  ---- SEQUENCE
+    ---- triggerSubject -> <ANONYMOUS>
+    ---- triggerNumber -> <SIMPLE_TYPE>
+    ---- threshold -> <SIMPLE_TYPE>
+    ---- condition -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TRIGGER_DOWNLOAD === 
+TRIGGER_DOWNLOAD
+  ---- SEQUENCE
+    ---- triggerSubject -> <ANONYMOUS>
+    ---- type -> <ANONYMOUS>
+
+
+
+=== ELEMENT : TRIGGER_STATE === 
+TRIGGER_STATE
+  ---- SEQUENCE
+    ---- triggerSubject -> <SIMPLE_TYPE>
+    ---- triggerNumber -> <SIMPLE_TYPE>
+    ---- triggerSubNumber -> <SIMPLE_TYPE>
+    ---- oldstate -> <SIMPLE_TYPE>
+    ---- newstate -> <SIMPLE_TYPE>
+    ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TRIGGER_USER === 
+TRIGGER_USER
+  ---- SEQUENCE
+    ---- command -> <ANONYMOUS>
+    ---- userId -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TRIGGER_ELAPSE === 
+TRIGGER_ELAPSE
+  ---- SEQUENCE
+    ---- elapseTime -> <SIMPLE_TYPE>
+    ---- restart -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : CONDITION_COUNTER === 
+CONDITION_COUNTER
+  ---- SEQUENCE
+    ---- conditionNumber -> <SIMPLE_TYPE>
+    ---- threshold -> <SIMPLE_TYPE>
+    ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : CONDITION_STATE === 
+CONDITION_STATE
+  ---- SEQUENCE
+    ---- conditionSubject -> <SIMPLE_TYPE>
+    ---- conditionNumber -> <SIMPLE_TYPE>
+    ---- conditionSubNumber -> <SIMPLE_TYPE>
+    ---- compoundState -> <SIMPLE_TYPE>
+    ---- comparator -> <SIMPLE_TYPE>
+    ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : CONDITION_ELAPSE === 
+CONDITION_ELAPSE
+  ---- SEQUENCE
+    ---- elapseTime -> <SIMPLE_TYPE>
+    ---- comparator -> <SIMPLE_TYPE>
+    ---- restart -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : ADMINISTRATION === 
+ADMINISTRATION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- direction -> <ANONYMOUS>
+    --?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : BUZZER_ACTION === 
+BUZZER_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : CITYTIE_ACTION === 
+CITYTIE_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : CONTROL_ACTION === 
+CONTROL_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : DIALER_ACTION === 
+DIALER_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : DOORHOLDER_ACTION === 
+DOORHOLDER_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : FAT_ACTION === 
+FAT_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : FBF_ACTION === 
+FBF_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : FIRE_ACTION === 
+FIRE_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : HVAC_ACTION === 
+HVAC_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : KEYDEPOT_ACTION === 
+KEYDEPOT_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : NAC_ACTION === 
+NAC_ACTION
+  ---- SEQUENCE
+    ---- pattern -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    ---- volume -> <ANONYMOUS>
+    ---- beep1 -> <ANONYMOUS>
+    ---- beep2 -> <ANONYMOUS>
+    ---- beep3 -> <ANONYMOUS>
+    ---- beep4 -> <ANONYMOUS>
+    ---- beep5 -> <ANONYMOUS>
+    ---- beep6 -> <ANONYMOUS>
+    ---- timeGap -> <ANONYMOUS>
+    ---- repeat -> <ANONYMOUS>
+    ---- followup -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : PRINTER_ACTION === 
+PRINTER_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : SET_ACTION === 
+SET_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== ELEMENT : STATUS_ACTION === 
+STATUS_ACTION
+  ---- SEQUENCE
+    ---- action -> <SIMPLE_TYPE>
+    ---- duration -> <SIMPLE_TYPE>
+    --?- color -> <SIMPLE_TYPE>
+    []?- DELAY -> DELAYType
+
+
+
+=== COMPLEXTYPE : ON_ACTIONType === 
+[]?- SEQUENCE
+  CHANNEL_ACTIONSGroup -> <GROUP_REFERENCE>
+
+
+
+=== COMPLEXTYPE : OFF_ACTIONType === 
+[]?- SEQUENCE
+
+
+
+=== COMPLEXTYPE : HOLIDAYType === 
+---- SEQUENCE
+  ---- name -> <SIMPLE_TYPE>
+  []-- ACTIVITY -> ACTIVITYType
+
+
+
+=== COMPLEXTYPE : WEEKDAYType === 
+---- SEQUENCE
+  ---- name -> <SIMPLE_TYPE>
+  []-- ACTIVITY -> ACTIVITYType
+
+
+
+=== COMPLEXTYPE : SPECIALDAYType === 
+---- SEQUENCE
+  ---- name -> <SIMPLE_TYPE>
+  ---- date -> <SIMPLE_TYPE>
+  []-- ACTIVITY -> ACTIVITYType
+
+
+
+=== COMPLEXTYPE : TimePairWithAttribType === 
+
+
+
+=== COMPLEXTYPE : ManuDetBaseType === 
+LSNDeviceBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- siType -> <ANONYMOUS>
+    ---- comAdr -> <SIMPLE_TYPE>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- usageType -> <SIMPLE_TYPE>
+    ---- serialNumber -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- dayNightMode -> <SIMPLE_TYPE>
+    ---- av -> <SIMPLE_TYPE>
+    ---- avDelay -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : AutoDetBaseType === 
+LSNDeviceBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- siType -> <ANONYMOUS>
+    ---- comAdr -> <SIMPLE_TYPE>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- usageType -> <SIMPLE_TYPE>
+    ---- serialNumber -> <SIMPLE_TYPE>
+    ---- andDetector -> <SIMPLE_TYPE>
+    ---- andZoneNr -> <SIMPLE_TYPE>
+    ---- andLatching -> <SIMPLE_TYPE>
+    ---- av -> <SIMPLE_TYPE>
+    ---- avDelay -> <ANONYMOUS>
+    ---- resetOutput -> <SIMPLE_TYPE>
+    ---- resetTime -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- dayNightMode -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : NAC_ZONEType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- synProtocol -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <ANONYMOUS>
+  ---- drillPattern -> <SIMPLE_TYPE>
+  ---- testActivationPattern -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSN_BATTERYType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : AUXPOWER_SingleType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNDeviceBaseType === 
+---- SEQUENCE
+  ---- lsnTypeID -> <SIMPLE_TYPE>
+  ---- lsnSubtype -> <SIMPLE_TYPE>
+  ---- backPointer -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackRLHVIType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <SIMPLE_TYPE>
+  ---- siNumber -> <ANONYMOUS>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subType -> <SIMPLE_TYPE>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- supervised -> <SIMPLE_TYPE>
+  ---- feedbackVariant -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <SIMPLE_TYPE>
+  ---- independentInput -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackRLHVIType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <SIMPLE_TYPE>
+  ---- siNumber -> <ANONYMOUS>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subType -> <SIMPLE_TYPE>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- supervised -> <SIMPLE_TYPE>
+  ---- feedbackVariant -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <SIMPLE_TYPE>
+  ---- independentInput -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_OUT2_OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_OUT2_OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_INPUT_Ext5BitType === 
+INPUTBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- operatingMode -> <ANONYMOUS>
+    ---- invertActivation -> <SIMPLE_TYPE>
+    ---- thresholdHigh -> <SIMPLE_TYPE>
+    ---- thresholdLow -> <SIMPLE_TYPE>
+    ---- usesEOLResistor -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_INPUT_Ext5BitType === 
+INPUTBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- operatingMode -> <ANONYMOUS>
+    ---- invertActivation -> <SIMPLE_TYPE>
+    ---- thresholdHigh -> <SIMPLE_TYPE>
+    ---- thresholdLow -> <SIMPLE_TYPE>
+    ---- usesEOLResistor -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_TOP_PROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <ANONYMOUS>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_TOP_PROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <ANONYMOUS>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_TOP_PROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <ANONYMOUS>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_TOP_PROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <ANONYMOUS>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_MICROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <SIMPLE_TYPE>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+  ---- fanVoltage -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_MICROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <SIMPLE_TYPE>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+  ---- fanVoltage -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : TITANUS_MICROSensorType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- sensitivity1 -> <SIMPLE_TYPE>
+  ---- sensitivity2 -> <SIMPLE_TYPE>
+  ---- thresholdAirFlow -> <SIMPLE_TYPE>
+  ---- alarmDelay -> <SIMPLE_TYPE>
+  ---- airFlowFaultDelay -> <SIMPLE_TYPE>
+  ---- logicSens -> <SIMPLE_TYPE>
+  ---- fanVoltage -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : AUXPOWER_MultipleType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- LINE_SUPERVISION -> LINE_SUPERVISIONType
+
+
+
+=== ELEMENT : GLTZONE_LSNI_CONV4 === 
+GLTZONE_LSNI_CONV4
+  ---- SEQUENCE
+    ---- port -> <ANONYMOUS>
+    ---- siType -> <ANONYMOUS>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- usageType -> <SIMPLE_TYPE>
+    ---- automaticDetectors -> <SIMPLE_TYPE>
+    ---- andDetector -> <SIMPLE_TYPE>
+    ---- andZoneNr -> <SIMPLE_TYPE>
+    ---- andLatching -> <SIMPLE_TYPE>
+    ---- av -> <SIMPLE_TYPE>
+    ---- avDelay -> <SIMPLE_TYPE>
+    ---- resetOutput -> <SIMPLE_TYPE>
+    ---- resetTime -> <SIMPLE_TYPE>
+    ---- pulsingLED -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- dayNightMode -> <SIMPLE_TYPE>
+    ---- indicateAlarmOnShort -> <SIMPLE_TYPE>
+    ---- cleanMe -> <SIMPLE_TYPE>
+    ---- resetByAuxpower -> <SIMPLE_TYPE>
+    ---- eolModuleUsed -> <SIMPLE_TYPE>
+    ---- detectorClass -> <SIMPLE_TYPE>
+    ---- alarmResistance -> <ANONYMOUS>
+    ---- detectorStandByCurrent -> <ANONYMOUS>
+    ---- calibrationValue -> <SIMPLE_TYPE>
+    ---- nrOfDetectors -> <SIMPLE_TYPE>
+    ---- en5413Enabled -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_INPUT_Ext2BitType === 
+INPUTBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- operatingMode -> <ANONYMOUS>
+    ---- invertActivation -> <SIMPLE_TYPE>
+    ---- thresholdHigh -> <SIMPLE_TYPE>
+    ---- thresholdLow -> <SIMPLE_TYPE>
+    ---- usesEOLResistor -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_OUT8IN2_OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_INPUT_Ext2BitType === 
+INPUTBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- operatingMode -> <ANONYMOUS>
+    ---- invertActivation -> <SIMPLE_TYPE>
+    ---- thresholdHigh -> <SIMPLE_TYPE>
+    ---- thresholdLow -> <SIMPLE_TYPE>
+    ---- usesEOLResistor -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_INPUT_Ext2BitType === 
+INPUTBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- operatingMode -> <ANONYMOUS>
+    ---- invertActivation -> <SIMPLE_TYPE>
+    ---- thresholdHigh -> <SIMPLE_TYPE>
+    ---- thresholdLow -> <SIMPLE_TYPE>
+    ---- usesEOLResistor -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_OUT1IN1_OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_INPUT_Ext2BitType === 
+INPUTBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- operatingMode -> <ANONYMOUS>
+    ---- invertActivation -> <SIMPLE_TYPE>
+    ---- thresholdHigh -> <SIMPLE_TYPE>
+    ---- thresholdLow -> <SIMPLE_TYPE>
+    ---- usesEOLResistor -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_RELAYFeedbackRLEType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <SIMPLE_TYPE>
+  ---- siNumber -> <ANONYMOUS>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- subType -> <SIMPLE_TYPE>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- supervised -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <SIMPLE_TYPE>
+  ---- feedbackVariant1 -> <SIMPLE_TYPE>
+  ---- feedbackVariant2 -> <SIMPLE_TYPE>
+  ---- independentInput -> <SIMPLE_TYPE>
+  ---- independentInput2 -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : GLTZONEKD === 
+GLTZONEKD
+  ---- SEQUENCE
+    ---- port -> <ANONYMOUS>
+    ---- siType -> <ANONYMOUS>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- andDetector -> <SIMPLE_TYPE>
+    ---- andZoneNr -> <SIMPLE_TYPE>
+    ---- andLatching -> <SIMPLE_TYPE>
+    ---- av -> <SIMPLE_TYPE>
+    ---- avDelay -> <SIMPLE_TYPE>
+    ---- resetOutput -> <SIMPLE_TYPE>
+    ---- resetTime -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- usageType -> <SIMPLE_TYPE>
+    ---- automaticDetectors -> <SIMPLE_TYPE>
+    ---- dayNightMode -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_EOL_2WType === 
+LSNDeviceBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- siType -> <SIMPLE_TYPE>
+    ---- comAdr -> <SIMPLE_TYPE>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- serialNumber -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LSNI_DetectorRELAYType === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : TI13_BCMB === 
+TI13_BCMB
+  ---- SEQUENCE
+    ---- measurementPeriod -> <SIMPLE_TYPE>
+    ---- batteryManualChargeDuration -> <SIMPLE_TYPE>
+    ---- mainPowerU_min -> <SIMPLE_TYPE>
+    ---- mainPowerU_max -> <SIMPLE_TYPE>
+    ---- batteryAutoChargeU_min -> <SIMPLE_TYPE>
+    ---- batteryManualChargeU_min -> <SIMPLE_TYPE>
+    ---- batteryDischargeU_min -> <SIMPLE_TYPE>
+    ---- batteryMonitoringR_max -> <SIMPLE_TYPE>
+    ---- pOut1ShutdownI_max -> <SIMPLE_TYPE>
+    ---- pOut2ShutdownI_max -> <SIMPLE_TYPE>
+    ---- pOut1CreepI_max -> <ANONYMOUS>
+    ---- pOut2CreepI_max -> <ANONYMOUS>
+    ---- pOut1_BatteryBuffered -> <SIMPLE_TYPE>
+    ---- pOut2_BatteryBuffered -> <SIMPLE_TYPE>
+    ---- GROUND -> GROUNDType
+    []-- BATTERY -> BATTERYType
+    ---- MAINPOWER -> MAINPOWERType
+    []-- AUXPOWER -> AUXPOWER_WithLineSupervisionType
+
+
+
+=== COMPLEXTYPE : BlinkingLEDType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ATXBaseType === 
+LSNDeviceBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- siType -> <ANONYMOUS>
+    ---- comAdr -> <SIMPLE_TYPE>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- buzzerActivity -> <SIMPLE_TYPE>
+    ---- serialNumber -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : ColoredLEDType === 
+BlinkingLEDType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- baseColor -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : FWI270BusType === 
+>>CHOICE:
+  FWI270ElementsGroup -> <GROUP_REFERENCE>
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : FNX425U_SOUNDERType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- port -> <ANONYMOUS>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- volume -> <ANONYMOUS>
+  ---- feedbackDelay -> <SIMPLE_TYPE>
+  ---- drillPattern -> <SIMPLE_TYPE>
+  ---- drillVolume -> <ANONYMOUS>
+  ---- testActivationPattern -> <SIMPLE_TYPE>
+  ---- testActivationVolume -> <ANONYMOUS>
+  ---- dampenVolume -> <ANONYMOUS>
+  ---- minimumVolume -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : FNX425U_STROBEType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- flashRate -> <SIMPLE_TYPE>
+  ---- intensityLevel -> <SIMPLE_TYPE>
+  ---- port -> <ANONYMOUS>
+  ---- nacType -> <SIMPLE_TYPE>
+  ---- feedbackDelay -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- silenceable -> <SIMPLE_TYPE>
+  ---- drillable -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : RELAY_NSB100Type === 
+RELAYBaseType -> <BASE EXTENSION>
+  ---- SEQUENCE
+    ---- feedback -> <SIMPLE_TYPE>
+    ---- feedbackDelay -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : RAS_NSB100Type === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- usageType -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LEDType === 
+>>ALL:
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== ELEMENT : GLTZONENBK === 
+GLTZONENBK
+  ---- SEQUENCE
+    ---- port -> <ANONYMOUS>
+    ---- siType -> <ANONYMOUS>
+    ---- siNumber -> <SIMPLE_TYPE>
+    ---- subNumber -> <SIMPLE_TYPE>
+    ---- andDetector -> <SIMPLE_TYPE>
+    ---- andZoneNr -> <SIMPLE_TYPE>
+    ---- andLatching -> <SIMPLE_TYPE>
+    ---- av -> <SIMPLE_TYPE>
+    ---- avDelay -> <SIMPLE_TYPE>
+    ---- resetOutput -> <SIMPLE_TYPE>
+    ---- resetTime -> <SIMPLE_TYPE>
+    ---- bypassable -> <SIMPLE_TYPE>
+    ---- blockable -> <SIMPLE_TYPE>
+    ---- label -> <SIMPLE_TYPE>
+    ---- usageType -> <SIMPLE_TYPE>
+    ---- automaticDetectors -> <SIMPLE_TYPE>
+    ---- dayNightMode -> <SIMPLE_TYPE>
+    ---- detectionMethod -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : LSN_BATTERYType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : AUXPOWER_SingleType === 
+---- SEQUENCE
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : NEV300_OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : NTK100_OUTPUTType === 
+---- SEQUENCE
+  ---- port -> <ANONYMOUS>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== ELEMENT : LSN_BUS_FK100 === 
+LSN_BUS_FK100
+  []?- SEQUENCE
+    ---- DOW1171 -> <REFERENCE>
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== COMPLEXTYPE : DELAYType === 
+---- SEQUENCE
+  ---- time -> <SIMPLE_TYPE>
+  []?- CONDITION_STATE -> CONDITION_STATEType
+  []?- CONDITION_COUNTER -> CONDITION_COUNTERType
+
+
+
+=== GROUP : CHANNEL_ACTIONSGroup === 
+>>CHOICE:
+  ---- ADMINISTRATION -> <REFERENCE>
+  ---- BUZZER_ACTION -> <REFERENCE>
+  ---- CITYTIE_ACTION -> <REFERENCE>
+  ---- CONTROL_ACTION -> <REFERENCE>
+  ---- DIALER_ACTION -> <REFERENCE>
+  ---- DOORHOLDER_ACTION -> <REFERENCE>
+  ---- FAT_ACTION -> <REFERENCE>
+  ---- FIRE_ACTION -> <REFERENCE>
+  ---- HVAC_ACTION -> <REFERENCE>
+  ---- KEYDEPOT_ACTION -> <REFERENCE>
+  ---- NAC_ACTION -> <REFERENCE>
+  ---- PRINTER_ACTION -> <REFERENCE>
+  ---- SET_ACTION -> <REFERENCE>
+  ---- STATUS_ACTION -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== COMPLEXTYPE : ACTIVITYType === 
+---- SEQUENCE
+  ---- channel -> <ANONYMOUS>
+  ---- program -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : ACTIVITYType === 
+---- SEQUENCE
+  ---- channel -> <ANONYMOUS>
+  ---- program -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : ACTIVITYType === 
+---- SEQUENCE
+  ---- channel -> <ANONYMOUS>
+  ---- program -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : INPUTBaseType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  --?- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LINE_SUPERVISIONType === 
+---- SEQUENCE
+  ---- physAddrOfEOLDevice -> <SIMPLE_TYPE>
+  ---- isConventional -> <SIMPLE_TYPE>
+  --?- SUPPLIED_DEVICES -> <ANONYMOUS>
+
+
+
+=== COMPLEXTYPE : GROUNDType === 
+---- SEQUENCE
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : BATTERYType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- port -> <SIMPLE_TYPE>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : MAINPOWERType === 
+>>ALL:
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- delayForTrouble -> <ANONYMOUS>
+<<ALL:
+
+
+
+=== COMPLEXTYPE : AUXPOWER_WithLineSupervisionType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  --?- LINE_SUPERVISION -> LINE_SUPERVISIONType
+
+
+
+=== COMPLEXTYPE : BlinkingLEDType === 
+---- SEQUENCE
+  ---- port -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- restPosition -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+
+
+
+=== GROUP : FWI270ElementsGroup === 
+>>CHOICE:
+  ---- FDOOT271_O -> <REFERENCE>
+  ---- FDM275_O -> <REFERENCE>
+  ---- FDM273_O -> <REFERENCE>
+<<CHOICE:
+
+
+
+=== ELEMENT : DOW1171 === 
+DOW1171
+  AutoDetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity -> <SIMPLE_TYPE>
+      ---- automaticDetector -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_STATEType === 
+---- SEQUENCE
+  ---- conditionSubject -> <SIMPLE_TYPE>
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- conditionSubNumber -> <SIMPLE_TYPE>
+  ---- compoundState -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+  ---- isRemote -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : CONDITION_COUNTERType === 
+---- SEQUENCE
+  ---- conditionNumber -> <SIMPLE_TYPE>
+  ---- threshold -> <SIMPLE_TYPE>
+  ---- comparator -> <SIMPLE_TYPE>
+
+
+
+=== COMPLEXTYPE : LINE_SUPERVISIONType === 
+---- SEQUENCE
+  ---- physAddrOfEOLDevice -> <SIMPLE_TYPE>
+  ---- isConventional -> <SIMPLE_TYPE>
+  --?- SUPPLIED_DEVICES -> <ANONYMOUS>
+
+
+
+=== ELEMENT : FDOOT271_O === 
+FDOOT271_O
+  FWI270DetBaseType -> <BASE EXTENSION>
+    ---- SEQUENCE
+      ---- sensitivity1 -> <SIMPLE_TYPE>
+      ---- sensitivity2 -> <SIMPLE_TYPE>
+  
+
+
+=== ELEMENT : FDM275_O === 
+FDM275_O
+  FWI270DetBaseType -> <BASE EXTENSION>
+
+
+
+=== ELEMENT : FDM273_O === 
+FDM273_O
+  FWI270DetBaseType -> <BASE EXTENSION>
+
+
+
+=== COMPLEXTYPE : FWI270DetBaseType === 
+---- SEQUENCE
+  ---- radioType -> <ANONYMOUS>
+  ---- radioId -> <SIMPLE_TYPE>
+  ---- siType -> <SIMPLE_TYPE>
+  ---- port -> <ANONYMOUS>
+  ---- siNumber -> <SIMPLE_TYPE>
+  ---- subNumber -> <SIMPLE_TYPE>
+  ---- label -> <SIMPLE_TYPE>
+  ---- bypassable -> <SIMPLE_TYPE>
+  ---- blockable -> <SIMPLE_TYPE>
+  ---- usageType -> <ANONYMOUS>
+  ---- dayNightMode -> <SIMPLE_TYPE>
+  ---- andDetector -> <SIMPLE_TYPE>
+  ---- andZoneNr -> <SIMPLE_TYPE>
+  ---- andLatching -> <SIMPLE_TYPE>
+  ---- resetOutput -> <SIMPLE_TYPE>
+  ---- resetTime -> <SIMPLE_TYPE>
+  ---- av -> <SIMPLE_TYPE>
+  ---- avDelay -> <ANONYMOUS>
+
+
+Przetworzono Element: 231
+Przetworzono ComplexType: 246
+Przetworzono Group: 14
+
+Oczekiwano element: 242
+Oczekiwano complexType: 292
+Oczekiwano group: 15
