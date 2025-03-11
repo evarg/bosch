@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('NAC_MODULE', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('CONVENTIONAL_MODULE', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('siType')->nullable();
+            $table->string('slot')->nullable();
+            $table->string('label')->nullable();
+            $table->string('serialNumber')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
-
+            $table->foreignId('PANEL')->constrained('PANEL');
+            
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('NAC_MODULE');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('CONVENTIONAL_MODULE');
     }
 };

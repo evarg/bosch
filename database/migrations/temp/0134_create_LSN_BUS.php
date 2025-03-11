@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('IO2_S20_MODULE', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('LSN_BUS', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('siType')->nullable();
+            $table->string('port')->nullable();
+            $table->string('label')->nullable();
+            $table->string('siNumber')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
+            $table->foreignId('LSN300_MODULE')->constrained('LSN300_MODULE');
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('IO2_S20_MODULE');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('LSN_BUS');
     }
 };

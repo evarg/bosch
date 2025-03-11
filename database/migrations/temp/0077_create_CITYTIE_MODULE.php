@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->create('CITYTIE_MODULE', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('siType')->nullable();
+            $table->string('slot')->nullable();
+            $table->string('label')->nullable();
+            $table->string('serialNumber')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
-
-            $table->string('rpsDisplayName')->nullable();
-            $table->softDeletes();
+            $table->foreignId('PANEL')->constrained('PANEL');
+            
+			$table->string('rpsDisplayName')->nullable();
+			$table->softDeletes();
             $table->timestamps();
         });
     }

@@ -273,6 +273,7 @@ class ImportBosch extends Command
         $model->CONFIG_NETWORK = $owner->id;
         $model->save();
 
+        $owner = $model;
         foreach ($mainNode->children() as $node) {
             switch ($node->getName()) {
                 case "SPANNING_TREE":
@@ -362,9 +363,10 @@ class ImportBosch extends Command
                     break;
                 case "USED_OFFSET_TABLES":
                     $this->USED_OFFSET_TABLES($node, $owner);
-                    break;    }
+                    break;
             }
         }
+    }
 
     public function ASSIGNED_OPCSVRS($mainNode, $owner)
     {
@@ -400,20 +402,22 @@ class ImportBosch extends Command
 
     public function CONFIG_DATA($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\CONFIG_DATA();
-        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
-        // $model->redundancyMode = (string) ($mainNode->redundancyMode ?? '');
-
-        $model->NODE = $owner->id;
-        $model->save();
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "LOCAL_CONFIGURATION":
+                    $this->LOCAL_CONFIGURATION($node, $owner);
+                    break;
+            }
+        }
     }
 
     public function PORTS($mainNode, $owner) {}
     public function FTYPE_LZ_MAPPING($mainNode, $owner) {}
     public function LZ_ADI($mainNode, $owner) {}
     public function NET_INTERFACE($mainNode, $owner) {}
-    public function REPLICATED_SIS($mainNode, $owner) {
+    public function REPLICATED_SIS($mainNode, $owner)
+    {
         foreach ($mainNode->children() as $node) {
             switch ($node->getName()) {
                 case "REPLICATED_SI":
@@ -423,7 +427,8 @@ class ImportBosch extends Command
         }
     }
 
-    public function REPLICATED_COUNTERS($mainNode, $owner) {
+    public function REPLICATED_COUNTERS($mainNode, $owner)
+    {
         foreach ($mainNode->children() as $node) {
             switch ($node->getName()) {
                 case "REPLICATED_COUNTER":
@@ -431,7 +436,6 @@ class ImportBosch extends Command
                     break;
             }
         }
-
     }
 
     public function USED_SIS($mainNode, $owner) {}
@@ -439,7 +443,18 @@ class ImportBosch extends Command
     public function USED_OFFSET_TABLES($mainNode, $owner) {}
     public function OPCSERVER($mainNode, $owner) {}
     public function MTS_NODE($mainNode, $owner) {}
-    public function LOCAL_CONFIGURATION($mainNode, $owner) {}
+
+    public function LOCAL_CONFIGURATION($mainNode, $owner)
+    {
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "PANEL":
+                    $this->PANEL($node, $owner);
+                    break;
+            }
+        }
+    }
+
     public function RK_DATA($mainNode, $owner) {}
     public function PORT($mainNode, $owner) {}
     public function FTYPE_LZ_MAPPINGType($mainNode, $owner) {}
@@ -470,7 +485,8 @@ class ImportBosch extends Command
         }
     }
 
-    public function REPLICATED_SI($mainNode, $owner) {
+    public function REPLICATED_SI($mainNode, $owner)
+    {
         $model = new \App\Models\Import\BoschFPA5000\REPLICATED_SI();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
@@ -483,7 +499,8 @@ class ImportBosch extends Command
         $model->save();
     }
 
-    public function REPLICATED_COUNTER($mainNode, $owner) {
+    public function REPLICATED_COUNTER($mainNode, $owner)
+    {
         $model = new \App\Models\Import\BoschFPA5000\REPLICATED_COUNTER();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
@@ -507,7 +524,109 @@ class ImportBosch extends Command
     public function REPLICATED_COUNTERType($mainNode, $owner) {}
     public function ADDROFFSET_TABLEType($mainNode, $owner) {}
     public function OFFSET_TABLE($mainNode, $owner) {}
-    public function PANEL($mainNode, $owner) {}
+
+    public function PANEL($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\PANEL();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->country = (string) ($mainNode->country ?? '');
+        $model->redundancy = (string) ($mainNode->redundancy ?? '');
+        $model->maxLSNPoints = (string) ($mainNode->maxLSNPoints ?? '');
+        $model->timeZone = (string) ($mainNode->timeZone ?? '');
+        $model->timeDisplay24h = (string) ($mainNode->timeDisplay24h ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->startupLanguage = (string) ($mainNode->startupLanguage ?? '');
+        $model->quiet1 = (string) ($mainNode->quiet1 ?? '');
+        $model->quiet2 = (string) ($mainNode->quiet2 ?? '');
+        $model->quiet3 = (string) ($mainNode->quiet3 ?? '');
+        $model->logicalViewMMI = (string) ($mainNode->logicalViewMMI ?? '');
+        $model->PASResetEnableDelay = (string) ($mainNode->PASResetEnableDelay ?? '');
+        $model->resetMode = (string) ($mainNode->resetMode ?? '');
+        $model->troubleCausesAlarm = (string) ($mainNode->troubleCausesAlarm ?? '');
+        $model->colorProfileUsed = (string) ($mainNode->colorProfileUsed ?? '');
+        $model->fastFaultIndicationLSN = (string) ($mainNode->fastFaultIndicationLSN ?? '');
+        $model->idOfAccesspointToHangUp = (string) ($mainNode->idOfAccesspointToHangUp ?? '');
+        $model->mAddressCardTimeDivider = (string) ($mainNode->mAddressCardTimeDivider ?? '');
+        $model->andDelay = (string) ($mainNode->andDelay ?? '');
+        $model->PASacknowledge = (string) ($mainNode->PASacknowledge ?? '');
+        $model->note = (string) ($mainNode->note ?? '');
+        $model->debugInfo = (string) ($mainNode->debugInfo ?? '');
+
+        $model->NODE = $owner->id;
+
+        $model->save();
+
+        $owner = $model;
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "CONFIG_INFO":
+                    $this->CONFIG_INFO($node, $owner);
+                    break;
+                case "LICENCING_V303":
+                    $this->LICENCING_V303($node, $owner);
+                    break;
+                case "ONBOARD":
+                    $this->ONBOARD($node, $owner);
+                    break;
+                case "LOGICAL_GROUPING":
+                    $this->LOGICAL_GROUPING($node, $owner);
+                    break;
+                case "BATTERY_CONTR_MODULE":
+                    $this->BATTERY_CONTR_MODULE($node, $owner);
+                    break;
+                case "CITYTIE_MODULE":
+                    $this->CITYTIE_MODULE($node, $owner);
+                    break;
+                case "CONVENTIONAL_MODULE":
+                    $this->CONVENTIONAL_MODULE($node, $owner);
+                    break;
+                case "ENOT_MODULE":
+                    $this->ENOT_MODULE($node, $owner);
+                    break;
+                case "IO_8_MODULE":
+                    $this->IO_8_MODULE($node, $owner);
+                    break;
+                case "IO_S20_MODULE":
+                    $this->IO_S20_MODULE($node, $owner);
+                    break;
+                case "IO_S20_MODULE":
+                    $this->IO_S20_MODULE($node, $owner);
+                    break;
+                case "IO_SERIAL_MODULE":
+                    $this->IO_SERIAL_MODULE($node, $owner);
+                    break;
+                case "LEDINT_MODULE":
+                    $this->LEDINT_MODULE($node, $owner);
+                    break;
+                case "LSN300_MODULE":
+                    $this->LSN300_MODULE($node, $owner);
+                    break;
+                case "LSN1500_MODULE":
+                    $this->LSN300_MODULE($node, $owner);
+                    break;
+                case "NAC_MODULE":
+                    $this->NAC_MODULE($node, $owner);
+                    break;
+                case "RLHV_MODULE":
+                    $this->RLHV_MODULE($node, $owner);
+                    break;
+                case "RLLV_MODULE":
+                    $this->RLLV_MODULE($node, $owner);
+                    break;
+                case "BCMB_MODULE":
+                    $this->BCMB_MODULE($node, $owner);
+                    break;
+                case "VAS_INTERFACE":
+                    $this->VAS_INTERFACE($node, $owner);
+                    break;
+            }
+        }
+    }
+
     public function CSTATE_MAPPING($mainNode, $owner) {}
     public function ADI_Type($mainNode, $owner) {}
     public function CONFIG_INFO($mainNode, $owner) {}
@@ -525,22 +644,274 @@ class ImportBosch extends Command
     public function RS232Type($mainNode, $owner) {}
     public function CANBUSType($mainNode, $owner) {}
     public function ETHERNETType($mainNode, $owner) {}
-    public function BATTERY_CONTR_MODULE($mainNode, $owner) {}
-    public function CITYTIE_MODULE($mainNode, $owner) {}
-    public function CONVENTIONAL_MODULE($mainNode, $owner) {}
-    public function ENOT_MODULE($mainNode, $owner) {}
-    public function IO_8_MODULE($mainNode, $owner) {}
-    public function IO_S20_MODULE($mainNode, $owner) {}
-    public function IO2_S20_MODULE($mainNode, $owner) {}
-    public function IO_SERIAL_MODULE($mainNode, $owner) {}
-    public function LEDINT_MODULE($mainNode, $owner) {}
-    public function LSN300_MODULE($mainNode, $owner) {}
-    public function LSN1500_MODULE($mainNode, $owner) {}
-    public function NAC_MODULE($mainNode, $owner) {}
-    public function RLHV_MODULE($mainNode, $owner) {}
-    public function RLLV_MODULE($mainNode, $owner) {}
-    public function BCMB_MODULE($mainNode, $owner) {}
-    public function VAS_INTERFACE($mainNode, $owner) {}
+
+    public function BATTERY_CONTR_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\BATTERY_CONTR_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function CITYTIE_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\CITYTIE_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function CONVENTIONAL_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\CONVENTIONAL_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function ENOT_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\ENOT_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function IO_8_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\IO_8_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function IO_S20_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\IO_S20_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function IO2_S20_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\IO2_S20_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function IO_SERIAL_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\IO_SERIAL_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function LEDINT_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\LEDINT_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function LSN300_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\LSN300_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->type = (string) ($mainNode->type ?? '');
+        $model->connectedToNetlineNbr = (string) ($mainNode->connectedToNetlineNbr ?? '');
+        $model->isUsed = (string) ($mainNode->isUsed ?? '');
+        $model->interfaceNbr = (string) ($mainNode->interfaceNbr ?? '');
+        $model->nrOfElements = (string) ($mainNode->nrOfElements ?? '');
+        $model->redundantModule = (string) ($mainNode->redundantModule ?? '');
+        $model->mode = (string) ($mainNode->mode ?? '');
+        $model->currentConsumption = (string) ($mainNode->currentConsumption ?? '');
+        $model->topology = (string) ($mainNode->topology ?? '');
+        $model->ert = (string) ($mainNode->ert ?? '');
+        $model->shortCircuit = (string) ($mainNode->shortCircuit ?? '');
+        $model->creepingShortDetectionOff = (string) ($mainNode->creepingShortDetectionOff ?? '');
+        $model->en5413Enabled = (string) ($mainNode->en5413Enabled ?? '');
+        $model->detect4wShort = (string) ($mainNode->detect4wShort ?? '');
+        $model->lastElement = (string) ($mainNode->lastElement ?? '');
+        $model->aux1CreepI_max = (string) ($mainNode->aux1CreepI_max ?? '');
+        $model->aux2CreepI_max = (string) ($mainNode->aux2CreepI_max ?? '');
+
+        $model->PANEL = $owner->id;
+        $model->save();
+
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "LSN_BUS":
+                    $this->LSN_BUS($node, $model);
+                    break;
+            }
+        }
+
+
+    }
+
+    public function LSN1500_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\LSN1500_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function NAC_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\NAC_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function RLHV_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\RLHV_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function RLLV_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\RLLV_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function BCMB_MODULE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\BCMB_MODULE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
+    public function VAS_INTERFACE($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\VAS_INTERFACE();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->slot = (string) ($mainNode->slot ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+
+        $model->PANEL = $owner->id;
+
+        $model->save();
+    }
+
     public function PANEL_ADMINISTRATION($mainNode, $owner) {}
     public function SETS_ADMIN($mainNode, $owner) {}
     public function GROUP_ADMIN($mainNode, $owner) {}
@@ -583,7 +954,205 @@ class ImportBosch extends Command
     public function OUTPUTType($mainNode, $owner) {}
     public function S20Type($mainNode, $owner) {}
     public function AUXPOWER_WithLineSupervisionType($mainNode, $owner) {}
-    public function LSN_BUS($mainNode, $owner) {}
+
+    public function LSN_BUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\LSN_BUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->port = (string) ($mainNode->port ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+
+        $model->LSN300_MODULE = $owner->id;
+
+        $model->save();
+
+        $owner = $model;
+        foreach ($mainNode->children() as $node) {
+            switch ($node->getName()) {
+                case "DM210":
+                    $this->DM210($node, $owner);
+                    break;
+                case "PULLSTATION":
+                    $this->PULLSTATION($node, $owner);
+                    break;
+                case "T220IUS":
+                    $this->T220IUS($node, $owner);
+                    break;
+                case "T410I":
+                    $this->T410I($node, $owner);
+                    break;
+                case "O220IUS":
+                    $this->O220IUS($node, $owner);
+                    break;
+                case "OT220IUS":
+                    $this->OT220IUS($node, $owner);
+                    break;
+                case "OTC220IUS":
+                    $this->OTC220IUS($node, $owner);
+                    break;
+                case "O500IUS":
+                    $this->O500IUS($node, $owner);
+                    break;
+                case "OC500IUS":
+                    $this->OC500IUS($node, $owner);
+                    break;
+                case "O500I":
+                    $this->O500I($node, $owner);
+                    break;
+                case "O410I":
+                    $this->O410I($node, $owner);
+                    break;
+                case "OC410I":
+                    $this->OC410I($node, $owner);
+                    break;
+                case "OT410I":
+                    $this->OT410I($node, $owner);
+                    break;
+                case "OTC410I":
+                    $this->OTC410I($node, $owner);
+                    break;
+                case "O110I":
+                    $this->O110I($node, $owner);
+                    break;
+                case "OT110I":
+                    $this->OT110I($node, $owner);
+                    break;
+                case "LSN_NAC":
+                    $this->LSN_NAC($node, $owner);
+                    break;
+                case "RLHVI":
+                    $this->RLHVI($node, $owner);
+                    break;
+                case "OC500I":
+                    $this->OC500I($node, $owner);
+                    break;
+                case "ISOLATOR":
+                    $this->ISOLATOR($node, $owner);
+                    break;
+                case "LSNI_OUT2":
+                    $this->LSNI_OUT2($node, $owner);
+                    break;
+                case "LSNI_OUT2_D":
+                    $this->LSNI_OUT2_D($node, $owner);
+                    break;
+                case "LSNI_IN2":
+                    $this->LSNI_IN2($node, $owner);
+                    break;
+                case "LSNI_IN2_D":
+                    $this->LSNI_IN2_D($node, $owner);
+                    break;
+                case "LSNI_RELAY1":
+                    $this->LSNI_RELAY1($node, $owner);
+                    break;
+                case "LSNI_RELAY1_D":
+                    $this->LSNI_RELAY1_D($node, $owner);
+                    break;
+                case "RAS_TPS1":
+                    $this->RAS_TPS1($node, $owner);
+                    break;
+                case "RAS_TPS2":
+                    $this->RAS_TPS2($node, $owner);
+                    break;
+                case "RAS_TTS1":
+                    $this->RAS_TTS1($node, $owner);
+                    break;
+                case "RAS_TTS2":
+                    $this->RAS_TTS2($node, $owner);
+                    break;
+                case "RAS_TMS":
+                    $this->RAS_TMS($node, $owner);
+                    break;
+                case "RAS_TMS_NOFAN":
+                    $this->RAS_TMS_NOFAN($node, $owner);
+                    break;
+                case "RAS_TMS_RB":
+                    $this->RAS_TMS_RB($node, $owner);
+                    break;
+                case "LSNI_CONV4":
+                    $this->LSNI_CONV4($node, $owner);
+                    break;
+                case "LSNTESTELEMENT":
+                    $this->LSNTESTELEMENT($node, $owner);
+                    break;
+                case "LSNI_RELAY8":
+                    $this->LSNI_RELAY8($node, $owner);
+                    break;
+                case "LSNI_BEACON":
+                    $this->LSNI_BEACON($node, $owner);
+                    break;
+                case "LSNI_IN8R1":
+                    $this->LSNI_IN8R1($node, $owner);
+                    break;
+                case "LSNI_OUT8_IN2":
+                    $this->LSNI_OUT8_IN2($node, $owner);
+                    break;
+                case "LSNI_IN1":
+                    $this->LSNI_IN1($node, $owner);
+                    break;
+                case "LSNI_OUT1_IN1":
+                    $this->LSNI_OUT1_IN1($node, $owner);
+                    break;
+                case "LSNI_RLE":
+                    $this->LSNI_RLE($node, $owner);
+                    break;
+                case "FULLEON_BASE":
+                    $this->FULLEON_BASE($node, $owner);
+                    break;
+                case "FULLEON_BASE_U":
+                    $this->FULLEON_BASE_U($node, $owner);
+                    break;
+                case "FULLEON_STANDALONE":
+                    $this->FULLEON_STANDALONE($node, $owner);
+                    break;
+                case "FULLEON_STANDALONE_U":
+                    $this->FULLEON_STANDALONE_U($node, $owner);
+                    break;
+                case "FULLEON_STANDALONE_V":
+                    $this->FULLEON_STANDALONE_V($node, $owner);
+                    break;
+                case "KD55_KD200":
+                    $this->KD55_KD200($node, $owner);
+                    break;
+                case "LSNI_EOL_2W":
+                    $this->LSNI_EOL_2W($node, $owner);
+                    break;
+                case "LSNI_EOL_4W":
+                    $this->LSNI_EOL_4W($node, $owner);
+                    break;
+                case "DO410I":
+                    $this->DO410I($node, $owner);
+                    break;
+                case "DOT410I":
+                    $this->DOT410I($node, $owner);
+                    break;
+                case "DOTC410I":
+                    $this->DOTC410I($node, $owner);
+                    break;
+                case "LSNI_TI13":
+                    $this->LSNI_TI13($node, $owner);
+                    break;
+                case "ATB420":
+                    $this->ATB420($node, $owner);
+                    break;
+                case "ATG420":
+                    $this->ATG420($node, $owner);
+                    break;
+                case "FWI270":
+                    $this->FWI270($node, $owner);
+                    break;
+                case "FNX425U":
+                    $this->FNX425U($node, $owner);
+                    break;
+                case "NAK100":
+                    $this->NAK100($node, $owner);
+                    break;
+            }
+        }
+    }
+
     public function GROUND_LSN1500Type($mainNode, $owner) {}
     public function NAC_ZONEType($mainNode, $owner) {}
     public function RELAY_RLHVType($mainNode, $owner) {}
