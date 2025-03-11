@@ -14,10 +14,6 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->create('NBM110', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
-
-            //$table->foreignId('xxxx')->constrained('xxxx');
-
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();

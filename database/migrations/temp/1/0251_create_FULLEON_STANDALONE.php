@@ -14,9 +14,25 @@ return new class extends Migration
         Schema::connection('mysql_BoschFPA5000')->create('FULLEON_STANDALONE', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('siType')->nullable();
+            $table->string('comAdr')->nullable();
+            $table->string('siNumber')->nullable();
+            $table->string('subNumber')->nullable();
+            $table->string('label')->nullable();
+            $table->string('usageType')->nullable();
+            $table->string('serialNumber')->nullable();
+            $table->string('andDetector')->nullable();
+            $table->string('andZoneNr')->nullable();
+            $table->string('andLatching')->nullable();
+            $table->string('av')->nullable();
+            $table->string('avDelay')->nullable();
+            $table->string('resetOutput')->nullable();
+            $table->string('resetTime')->nullable();
+            $table->string('bypassable')->nullable();
+            $table->string('blockable')->nullable();
+            $table->string('dayNightMode')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
+            $table->foreignId('LSN_BUS')->constrained('LSN_BUS');
 
             $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();

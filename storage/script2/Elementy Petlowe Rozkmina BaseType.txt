@@ -1,0 +1,114 @@
+ATB420                 ->   ATXBaseType
+ATG420                 ->   ATXBaseType
+
+DM210                  ->   ManuDetBaseType
+PULLSTATION            ->   ManuDetBaseType
+
+T220IUS                ->   AutoDetBaseType
+T410I                  ->   AutoDetBaseType
+O220IUS                ->   AutoDetBaseType
+OT220IUS               ->   AutoDetBaseType
+OTC220IUS              ->   AutoDetBaseType
+O500IUS                ->   AutoDetBaseType
+OC500IUS               ->   AutoDetBaseType
+O500I                  ->   AutoDetBaseType
+O410I                  ->   AutoDetBaseType
+OC410I                 ->   AutoDetBaseType
+OT410I                 ->   AutoDetBaseType
+OTC410I                ->   AutoDetBaseType
+O110I                  ->   AutoDetBaseType
+OT110I                 ->   AutoDetBaseType
+OC500I                 ->   AutoDetBaseType
+DO410I                 ->   AutoDetBaseType
+DOT410I                ->   AutoDetBaseType
+DOTC410I               ->   AutoDetBaseType
+
+LSN_NAC                ->   LSNDeviceBaseType
+RLHVI                  ->   LSNDeviceBaseType
+ISOLATOR               ->   LSNDeviceBaseType
+LSNI_OUT2              ->   LSNDeviceBaseType
+LSNI_OUT2_D            ->   LSNDeviceBaseType
+LSNI_IN2               ->   LSNDeviceBaseType
+LSNI_IN2_D             ->   LSNDeviceBaseType
+LSNI_RELAY1            ->   LSNDeviceBaseType
+LSNI_RELAY1_D          ->   LSNDeviceBaseType
+RAS_TPS1               ->   LSNDeviceBaseType
+RAS_TPS2               ->   LSNDeviceBaseType
+RAS_TTS1               ->   LSNDeviceBaseType
+RAS_TTS2               ->   LSNDeviceBaseType
+RAS_TMS                ->   LSNDeviceBaseType
+RAS_TMS_NOFAN          ->   LSNDeviceBaseType
+RAS_TMS_RB             ->   LSNDeviceBaseType
+LSNI_CONV4             ->   LSNDeviceBaseType
+LSNTESTELEMENT         ->   LSNDeviceBaseType
+LSNI_BEACON            ->   LSNDeviceBaseType
+LSNI_IN8R1             ->   LSNDeviceBaseType
+LSNI_OUT8_IN2          ->   LSNDeviceBaseType
+LSNI_IN1               ->   LSNDeviceBaseType
+LSNI_OUT1_IN1          ->   LSNDeviceBaseType
+LSNI_RLE               ->   LSNDeviceBaseType
+FULLEON_BASE           ->   LSNDeviceBaseType
+FULLEON_BASE_U         ->   LSNDeviceBaseType
+FULLEON_STANDALONE     ->   LSNDeviceBaseType
+FULLEON_STANDALONE_U   ->   LSNDeviceBaseType
+FULLEON_STANDALONE_V   ->   LSNDeviceBaseType
+KD55_KD200             ->   LSNDeviceBaseType
+LSNI_EOL_4W            ->   LSNDeviceBaseType
+LSNI_TI13              ->   LSNDeviceBaseType
+FWI270                 ->   LSNDeviceBaseType
+FNX425U                ->   LSNDeviceBaseType
+
+LSNI_EOL_2W            ->   LSNI_EOL_2WType
+
+
+=== COMPLEXTYPE : LSNDeviceBaseType($mainNode, $owner) {
+        $model = new ---- SEQUENCE
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+=== COMPLEXTYPE : AutoDetBaseType($mainNode, $owner) {
+        $model = new LSNDeviceBaseType -> <BASE EXTENSION>();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+                case "siType":
+                    $this->siType($node, $owner);
+                    break;
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+                case "avDelay":
+                    $this->avDelay($node, $owner);
+                    break;
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+=== COMPLEXTYPE : ManuDetBaseType($mainNode, $owner) {
+        $model = new LSNDeviceBaseType -> <BASE EXTENSION>();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+                case "siType":
+                    $this->siType($node, $owner);
+                    break;
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+                case "avDelay":
+                    $this->avDelay($node, $owner);
+                    break;

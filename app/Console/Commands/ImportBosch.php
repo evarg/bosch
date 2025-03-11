@@ -818,8 +818,6 @@ class ImportBosch extends Command
                     break;
             }
         }
-
-
     }
 
     public function LSN1500_MODULE($mainNode, $owner)
@@ -1149,6 +1147,8 @@ class ImportBosch extends Command
                 case "NAK100":
                     $this->NAK100($node, $owner);
                     break;
+                default:
+                    //print("!!!!!!!!!!!!!!!!!!!!!! nienznany typ LSN_BUS: " . $node->getName() . "\n");
             }
         }
     }
@@ -1225,59 +1225,729 @@ class ImportBosch extends Command
     public function CHANNELType($mainNode, $owner) {}
     public function DAYSGroup($mainNode, $owner) {}
     public function PROGRAMType($mainNode, $owner) {}
-    public function DM210($mainNode, $owner) {}
-    public function PULLSTATION($mainNode, $owner) {}
-    public function T220IUS($mainNode, $owner) {}
-    public function T410I($mainNode, $owner) {}
-    public function O220IUS($mainNode, $owner) {}
-    public function OT220IUS($mainNode, $owner) {}
-    public function OTC220IUS($mainNode, $owner) {}
-    public function O500IUS($mainNode, $owner) {}
-    public function OC500IUS($mainNode, $owner) {}
-    public function O500I($mainNode, $owner) {}
-    public function O410I($mainNode, $owner) {}
-    public function OC410I($mainNode, $owner) {}
-    public function OT410I($mainNode, $owner) {}
-    public function OTC410I($mainNode, $owner) {}
-    public function O110I($mainNode, $owner) {}
-    public function OT110I($mainNode, $owner) {}
+
+    public function DM210($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\DM210();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // ManuDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+
+        // DM210
+
+        $model->LSN_BUS = $owner->id;
+
+        $model->save();
+    }
+
+    public function PULLSTATION($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\PULLSTATION();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // ManuDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+
+        // PULLSTATION
+        $model->standbyLEDblinking = (string) ($mainNode->standbyLEDblinking ?? '');
+
+        $model->LSN_BUS = $owner->id;
+
+        $model->save();
+    }
+
+    public function T220IUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\T220IUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function T410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\T410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function O220IUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\O220IUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OT220IUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OT220IUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OTC220IUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OTC220IUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function O500IUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\O500IUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OC500IUS($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OC500IUS();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function O500I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\O500I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function O410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\O410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OC410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OC410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OT410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OT410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OTC410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OTC410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function O110I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\O110I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function OT110I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OT110I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
     public function LSN_NAC($mainNode, $owner) {}
+
     public function RLHVI($mainNode, $owner) {}
-    public function OC500I($mainNode, $owner) {}
+
+    public function OC500I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\OC500I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
     public function ISOLATOR($mainNode, $owner) {}
+
     public function LSNI_OUT2($mainNode, $owner) {}
+
     public function LSNI_OUT2_D($mainNode, $owner) {}
+
     public function LSNI_IN2($mainNode, $owner) {}
+
     public function LSNI_IN2_D($mainNode, $owner) {}
+
     public function LSNI_RELAY1($mainNode, $owner) {}
+
     public function LSNI_RELAY1_D($mainNode, $owner) {}
+
     public function RAS_TPS1($mainNode, $owner) {}
+
     public function RAS_TPS2($mainNode, $owner) {}
+
     public function RAS_TTS1($mainNode, $owner) {}
+
     public function RAS_TTS2($mainNode, $owner) {}
+
     public function RAS_TMS($mainNode, $owner) {}
+
     public function RAS_TMS_NOFAN($mainNode, $owner) {}
+
     public function RAS_TMS_RB($mainNode, $owner) {}
+
     public function LSNI_CONV4($mainNode, $owner) {}
+
     public function LSNTESTELEMENT($mainNode, $owner) {}
+
     public function LSNI_RELAY8($mainNode, $owner) {}
+
     public function LSNI_BEACON($mainNode, $owner) {}
+
     public function LSNI_IN8R1($mainNode, $owner) {}
+
     public function LSNI_OUT8_IN2($mainNode, $owner) {}
+
     public function LSNI_IN1($mainNode, $owner) {}
+
     public function LSNI_OUT1_IN1($mainNode, $owner) {}
+
     public function LSNI_RLE($mainNode, $owner) {}
+
     public function FULLEON_BASE($mainNode, $owner) {}
+
     public function FULLEON_BASE_U($mainNode, $owner) {}
+
     public function FULLEON_STANDALONE($mainNode, $owner) {}
+
     public function FULLEON_STANDALONE_U($mainNode, $owner) {}
+
     public function FULLEON_STANDALONE_V($mainNode, $owner) {}
+
     public function KD55_KD200($mainNode, $owner) {}
+
     public function LSNI_EOL_2W($mainNode, $owner) {}
+
     public function LSNI_EOL_4W($mainNode, $owner) {}
-    public function DO410I($mainNode, $owner) {}
-    public function DOT410I($mainNode, $owner) {}
-    public function DOTC410I($mainNode, $owner) {}
+
+    public function DO410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\DO410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function DOT410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\DOT410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
+
+    public function DOTC410I($mainNode, $owner)
+    {
+        $model = new \App\Models\Import\BoschFPA5000\DOTC410I();
+        $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
+
+        // LSNDeviceBaseType
+        $model->lsnTypeID = (string) ($mainNode->lsnTypeID ?? '');
+        $model->lsnSubtype = (string) ($mainNode->lsnSubtype ?? '');
+        $model->backPointer = (string) ($mainNode->backPointer ?? '');
+
+        // AutoDetBaseType
+        $model->siType = (string) ($mainNode->siType ?? '');
+        $model->comAdr = (string) ($mainNode->comAdr ?? '');
+        $model->siNumber = (string) ($mainNode->siNumber ?? '');
+        $model->subNumber = (string) ($mainNode->subNumber ?? '');
+        $model->label = (string) ($mainNode->label ?? '');
+        $model->usageType = (string) ($mainNode->usageType ?? '');
+        $model->serialNumber = (string) ($mainNode->serialNumber ?? '');
+        $model->andDetector = (string) ($mainNode->andDetector ?? '');
+        $model->andZoneNr = (string) ($mainNode->andZoneNr ?? '');
+        $model->andLatching = (string) ($mainNode->andLatching ?? '');
+        $model->av = (string) ($mainNode->av ?? '');
+        $model->avDelay = (string) ($mainNode->avDelay ?? '');
+        $model->resetOutput = (string) ($mainNode->resetOutput ?? '');
+        $model->resetTime = (string) ($mainNode->resetTime ?? '');
+        $model->bypassable = (string) ($mainNode->bypassable ?? '');
+        $model->blockable = (string) ($mainNode->blockable ?? '');
+        $model->dayNightMode = (string) ($mainNode->dayNightMode ?? '');
+
+        $model->LSN_BUS = $owner->id;
+        $model->save();
+    }
     public function LSNI_TI13($mainNode, $owner) {}
     public function ATB420($mainNode, $owner) {}
     public function ATG420($mainNode, $owner) {}
