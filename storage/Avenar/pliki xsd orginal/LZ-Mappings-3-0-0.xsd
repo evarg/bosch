@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by Endler (Bosch Sicherheitssysteme GmbH) -->
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Anton Engl
+
+Created: 2017/11/23
+
+$Revision: 1.1 $ 
+
+Last locked:   $Date: 2017/11/23 14:36:13CET $
+
+Last change by $Author: Anton Engl (ena2ot) $
+
+History: 
+$Log: LZ-Mappings-3-0-0.xsd  $
+Revision 1.1 2017/11/23 14:36:13CET Anton Engl (ena2ot) 
+Initial revision
+Member added to project f:/MKS_Repository/Fire/MagicPanel/Source/PCTools/RPSTools/Definitions/LZMappings/LZMappings.pj
+
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Revision: 1.1 $">
+	<xs:element name="FUNCTION_TYPE_LZ_MAPPINGS">
+		<xs:annotation>
+			<xs:documentation>Root for default-list</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CONFIGURED_MAPPINGS">
+					<xs:annotation>
+						<xs:documentation source="2.5.1">Is used in the defaul mapping file. RPS reads this to create and fill or reset a CONFIGURED_MAPPINGS node.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="FTypesCStates" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>For generator tool only</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ADI">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ADI_Type">
+					<xs:attributeGroup ref="rpsAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CONFIGURED_MAPPINGS" type="MAPPING_LISTType"/>
+	<xs:element name="CSTATES">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="CSTATE_MAPPING"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="rpsAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CSTATE_MAPPING" type="CSTATE_MAPPINGType"/>
+	<xs:element name="DEFAULT_MAPPINGS" type="MAPPING_LISTType"/>
+	<xs:element name="FTYPE_LZ_MAPPING">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="FTYPE_LZ_MAPPINGType">
+					<xs:attributeGroup ref="rpsAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FTYPE_LZ_MAPPINGS">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="FTYPE_LZ_MAPPING"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="rpsAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LZ_ADI">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LZ_ADI_MAPPINGType">
+					<xs:attributeGroup ref="rpsAttributes"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LZ_ADIS">
+		<xs:complexType>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="LZ_ADI"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="rpsAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ADI_Type">
+		<xs:sequence>
+			<xs:element name="adi" type="adiType"/>
+			<xs:element name="mk" type="mkType"/>
+			<xs:element name="prio" type="prioType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CSTATE_MAPPINGType">
+		<xs:sequence>
+			<xs:element name="compoundState" type="compound_stateType"/>
+			<xs:element name="lz" type="lzType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="rpsAttributes"/>
+	</xs:complexType>
+	<xs:complexType name="FTYPE_LZ_MAPPINGType">
+		<xs:sequence>
+			<xs:element name="functionType" type="functionTypeType"/>
+			<xs:element ref="CSTATES"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LZ_ADI_MAPPINGType">
+		<xs:sequence>
+			<xs:element name="lz" type="lzType"/>
+			<xs:element ref="ADI"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TARGET_STATEType">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="MAPPING_LISTType">
+		<xs:sequence>
+			<xs:element ref="FTYPE_LZ_MAPPINGS"/>
+			<xs:element ref="LZ_ADIS" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="rpsAttributes"/>
+	</xs:complexType>
+	<xs:simpleType name="adiType">
+		<xs:annotation>
+			<xs:documentation>Represents the ADI values</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADI_0x03_LQNDBU">
+				<xs:annotation>
+					<xs:documentation>0x03 - Löschen, Quittieren,Prio niedrig, Druck, Bedienpflichtig, Übersicht</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ADI_0x00_L_N__U">
+				<xs:annotation>
+					<xs:documentation>0x00</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ADI_0x06_L_ND_U"/>
+			<xs:enumeration value="ADI_0x0B_LQHDBU">
+				<xs:annotation>
+					<xs:documentation>0x0B - Löschen, Quittieren,Prio hoch, Druck, Bedienpflichtig, Übersicht</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ADI_0x08__N__U"/>
+			<xs:enumeration value="ADI_0x0E__ND_U"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="compound_stateType">
+		<xs:annotation>
+			<xs:documentation>do not change name: possible conflict</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MP_ET_INVALID"/>
+			<xs:enumeration value="MP_ET_NORMAL"/>
+			<xs:enumeration value="MP_ET_TROUBLE"/>
+			<xs:enumeration value="MP_ET_FIRE"/>
+			<xs:enumeration value="MP_ET_FIRE_PRE"/>
+			<xs:enumeration value="MP_ET_VERIFY_FIRE"/>
+			<xs:enumeration value="MP_ET_HEAT"/>
+			<xs:enumeration value="MP_ET_SUPERVISORY"/>
+			<xs:enumeration value="MP_ET_SMOKE"/>
+			<xs:enumeration value="MP_ET_ACTIVATION"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_FAILED"/>
+			<xs:enumeration value="MP_ET_TAMPER"/>
+			<xs:enumeration value="MP_ET_COVER_OPEN"/>
+			<xs:enumeration value="MP_ET_PAPER_OUT"/>
+			<xs:enumeration value="MP_ET_WARNING"/>
+			<xs:enumeration value="MP_ET_TROUBLE_LIGHT"/>
+			<xs:enumeration value="MP_ET_WATCHDOGRESTART"/>
+			<xs:enumeration value="MP_ET_ON"/>
+			<xs:enumeration value="MP_ET_OFF"/>
+			<xs:enumeration value="MP_ET_POLLUTION"/>
+			<xs:enumeration value="MP_ET_POLLUTION_LIGHT"/>
+			<xs:enumeration value="MP_ET_MONITOR"/>
+			<xs:enumeration value="MP_ET_WATER"/>
+			<xs:enumeration value="MP_ET_POWERFAIL"/>
+			<xs:enumeration value="MP_ET_MANUAL_ALARM"/>
+			<xs:enumeration value="MP_ET_PAS_WAIT_FOR_ACK"/>
+			<xs:enumeration value="MP_ET_PAS_INVESTIGATE"/>
+			<xs:enumeration value="MP_ET_AC_CHANGED"/>
+			<xs:enumeration value="MP_ET_AC_COUNTDOWN_STARTED"/>
+			<xs:enumeration value="MP_ET_AC_TAMPER"/>
+			<xs:enumeration value="MP_ET_FIRE_INT"/>
+			<xs:enumeration value="MP_ET_ERROR"/>
+			<xs:enumeration value="MP_ET_UNKNOWN"/>
+			<xs:enumeration value="MP_ET_MATCHALL"/>
+			<xs:enumeration value="MP_ET_NET_CONFIG_MISMATCH"/>
+			<xs:enumeration value="MP_ET_UNKNOWN_ITEM"/>
+			<xs:enumeration value="MP_ET_MISSING_ITEM"/>
+			<xs:enumeration value="MP_ET_INCOMPATIBLE_SOFTWARE"/>
+			<xs:enumeration value="MP_ET_INCOMPATIBLE_NET_PROTOCOL"/>
+			<xs:enumeration value="MP_ET_INFO_ALARM"/>
+			<xs:enumeration value="MP_ET_CHEMICAL"/>
+			<xs:enumeration value="MP_ET_WARNING_HEAT"/>
+			<xs:enumeration value="MP_ET_WARNING_SMOKE"/>
+			<xs:enumeration value="MP_ET_WARNING_CHEMICAL"/>
+			<xs:enumeration value="MP_ET_REBOOT_READY"/>
+			<xs:enumeration value="MP_ET_LAST_LOGICAL"/>
+			<xs:enumeration value="MP_ET_FIRST_COMPOUND"/>
+			<xs:enumeration value="MP_ET_NORMAL_WALKTEST"/>
+			<xs:enumeration value="MP_ET_TROUBLE_WALKTEST"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_WALKTEST"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_FAILED_WALKTEST"/>
+			<xs:enumeration value="MP_ET_ON_WALKTEST"/>
+			<xs:enumeration value="MP_ET_OFF_WALKTEST"/>
+			<xs:enumeration value="MP_ET_SUPERVISORY_WALKTEST"/>
+			<xs:enumeration value="MP_ET_WATER_WALKTEST"/>
+			<xs:enumeration value="MP_ET_HEAT_WALKTEST"/>
+			<xs:enumeration value="MP_ET_SMOKE_WALKTEST"/>
+			<xs:enumeration value="MP_ET_CHEMICAL_WALKTEST"/>
+			<xs:enumeration value="MP_ET_FIRE_WALKTEST"/>
+			<xs:enumeration value="MP_ET_ALARM_WALKTEST"/>
+			<xs:enumeration value="MP_ET_NORMAL_BYPASS"/>
+			<xs:enumeration value="MP_ET_TROUBLE_BYPASS"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_BYPASS"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_FAILED_BYPASS"/>
+			<xs:enumeration value="MP_ET_ALARM_BYPASS"/>
+			<xs:enumeration value="MP_ET_NORMAL_BLOCKED"/>
+			<xs:enumeration value="MP_ET_TROUBLE_BLOCKED"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_BLOCKED"/>
+			<xs:enumeration value="MP_ET_ACTIVATION_FAILED_BLOCKED"/>
+			<xs:enumeration value="MP_ET_ALARM_BLOCKED"/>
+			<xs:enumeration value="MP_ET_NORMAL_DAY"/>
+			<xs:enumeration value="MP_ET_TROUBLE_DAY"/>
+			<xs:enumeration value="MP_ET_WATER_DAY"/>
+			<xs:enumeration value="MP_ET_HEAT_DAY"/>
+			<xs:enumeration value="MP_ET_SMOKE_DAY"/>
+			<xs:enumeration value="MP_ET_FIRE_DAY"/>
+			<xs:enumeration value="MP_ET_ALARM_DAY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="functionTypeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="MP_FT_UNDEFINED"/>
+			<xs:enumeration value="MP_FT_PANEL"/>
+			<xs:enumeration value="MP_FT_GENERAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_UNLOCKAPPLIANCE"/>
+			<xs:enumeration value="MP_FT_THERMODIFFERENTIAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_THERMO_DETECTOR"/>
+			<xs:enumeration value="MP_FT_RAS_DETECTOR"/>
+			<xs:enumeration value="MP_FT_OPTICAL_DETECTOR"/>
+			<xs:enumeration value="MP_FT_IONIZATION_DETECTOR"/>
+			<xs:enumeration value="MP_FT_MULTISENSOR_OT_DETECTOR"/>
+			<xs:enumeration value="MP_FT_MULTISENSOR_OTC_DETECTOR"/>
+			<xs:enumeration value="MP_FT_MANUALCALLPOINT"/>
+			<xs:enumeration value="MP_FT_POWER_MOD"/>
+			<xs:enumeration value="MP_FT_CITYTIE_MOD"/>
+			<xs:enumeration value="MP_FT_CONTROL_MOD"/>
+			<xs:enumeration value="MP_FT_LOOP"/>
+			<xs:enumeration value="MP_FT_LINE"/>
+			<xs:enumeration value="MP_FT_LOGGER_MOD"/>
+			<xs:enumeration value="MP_FT_STATUS_MOD"/>
+			<xs:enumeration value="MP_FT_LOOP_MOD"/>
+			<xs:enumeration value="MP_FT_FBF"/>
+			<xs:enumeration value="MP_FT_INSULATION_MOD"/>
+			<xs:enumeration value="MP_FT_LINE_MOD"/>
+			<xs:enumeration value="MP_FT_RADIO_MOD"/>
+			<xs:enumeration value="MP_FT_CONTROL"/>
+			<xs:enumeration value="MP_FT_INPUT"/>
+			<xs:enumeration value="MP_FT_CITYTIE"/>
+			<xs:enumeration value="MP_FT_FIREEXTINGUISHER"/>
+			<xs:enumeration value="MP_FT_NAC_STROBE"/>
+			<xs:enumeration value="MP_FT_NAC_SOUNDER"/>
+			<xs:enumeration value="MP_FT_BUZZER"/>
+			<xs:enumeration value="MP_FT_POWER"/>
+			<xs:enumeration value="MP_FT_MAIN_POWER"/>
+			<xs:enumeration value="MP_FT_GROUND"/>
+			<xs:enumeration value="MP_FT_MONITORING"/>
+			<xs:enumeration value="MP_FT_DOORHOLDER"/>
+			<xs:enumeration value="MP_FT_KEYDEPOT"/>
+			<xs:enumeration value="MP_FT_DIALER"/>
+			<xs:enumeration value="MP_FT_STATUS"/>
+			<xs:enumeration value="MP_FT_PRINTER"/>
+			<xs:enumeration value="MP_FT_RAMV"/>
+			<xs:enumeration value="MP_FT_NETWORK"/>
+			<xs:enumeration value="MP_FT_TRANSFER"/>
+			<xs:enumeration value="MP_FT_DIAGNOSTICS"/>
+			<xs:enumeration value="MP_FT_HISTORY"/>
+			<xs:enumeration value="MP_FT_ADDRESSCARD"/>
+			<xs:enumeration value="MP_FT_ALARMCOUNTER"/>
+			<xs:enumeration value="MP_FT_FAT"/>
+			<xs:enumeration value="MP_FT_DAMPER"/>
+			<xs:enumeration value="MP_FT_CANBUS"/>
+			<xs:enumeration value="MP_FT_SET"/>
+			<xs:enumeration value="MP_FT_COUNTER"/>
+			<xs:enumeration value="MP_FT_TIME"/>
+			<xs:enumeration value="MP_FT_ZONE"/>
+			<xs:enumeration value="MP_FT_LOOP_SET"/>
+			<xs:enumeration value="MP_FT_WT_GROUP"/>
+			<xs:enumeration value="MP_FT_CONV_ZONE"/>
+			<xs:enumeration value="MP_FT_BYPASS_GROUP"/>
+			<xs:enumeration value="MP_FT_BLOCK_GROUP"/>
+			<xs:enumeration value="MP_FT_INPUT_GROUP"/>
+			<xs:enumeration value="MP_FT_OUTPUT_GROUP"/>
+			<xs:enumeration value="MP_FT_USER"/>
+			<xs:enumeration value="MP_FT_DISPLAY"/>
+			<xs:enumeration value="MP_FT_TC_CHANNEL"/>
+			<xs:enumeration value="MP_FT_DOWNLOAD"/>
+			<xs:enumeration value="MP_FT_NETWORKNODE"/>
+			<xs:enumeration value="MP_FT_NETWORK_LINE"/>
+			<xs:enumeration value="MP_FT_TOPOLOGY"/>
+			<xs:enumeration value="MP_FT_NETADDRESS"/>
+			<xs:enumeration value="MP_FT_VAS"/>
+			<xs:enumeration value="MP_FT_SUPERVISION_MOD"/>
+			<xs:enumeration value="MP_FT_SYSTEMSTATUS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="lzType">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="FG"/>
+					<xs:enumeration value="ABS"/>
+					<xs:enumeration value="ASP"/>
+					<xs:enumeration value="AV"/>
+					<xs:enumeration value="A3"/>
+					<xs:enumeration value="A5"/>
+					<xs:enumeration value="ERK"/>
+					<xs:enumeration value="FG"/>
+					<xs:enumeration value="F1"/>
+					<xs:enumeration value="F1-T"/>
+					<xs:enumeration value="F1-O"/>
+					<xs:enumeration value="F2"/>
+					<xs:enumeration value="F3"/>
+					<xs:enumeration value="GE"/>
+					<xs:enumeration value="G0"/>
+					<xs:enumeration value="G1"/>
+					<xs:enumeration value="H1"/>
+					<xs:enumeration value="K2"/>
+					<xs:enumeration value="K3"/>
+					<xs:enumeration value="PA"/>
+					<xs:enumeration value="PE"/>
+					<xs:enumeration value="P4"/>
+					<xs:enumeration value="P5"/>
+					<xs:enumeration value="P6"/>
+					<xs:enumeration value="STE"/>
+					<xs:enumeration value="V1"/>
+					<xs:enumeration value="V2"/>
+					<xs:enumeration value="AV_O"/>
+					<xs:enumeration value="AV_T"/>
+					<xs:enumeration value="RF1"/>
+					<xs:enumeration value="RF1-T"/>
+					<xs:enumeration value="RF1-O"/>
+					<xs:enumeration value="RF4"/>
+					<xs:enumeration value="RF5"/>
+					<xs:enumeration value="RFX"/>
+					<xs:enumeration value="RGE"/>
+					<xs:enumeration value="RG0"/>
+					<xs:enumeration value="RG8"/>
+					<xs:enumeration value="RK2"/>
+					<xs:enumeration value="RK3"/>
+					<xs:enumeration value="RSTE"/>
+					<xs:enumeration value="RH1"/>
+					<xs:enumeration value="N_A"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:unsignedByte">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="127"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="mkType">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="prioType">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="rpsAttributes">
+		<xs:annotation>
+			<xs:documentation>for use in RPS-schemas</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="rpsDisplayName" type="xs:string" use="optional"/>
+	</xs:attributeGroup>
+	<xs:element name="FTypesCStates">
+		<xs:annotation>
+			<xs:documentation>For generator only</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FTypes">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element name="Ftype">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="functionTypeType">
+											<xs:attributeGroup ref="ftypeAttributeGroup"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CStates">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element name="Cstate">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="compound_stateType">
+											<xs:attribute name="lzPointCtrl" type="lzType" use="optional"/>
+											<xs:attribute name="lzOther" type="lzType" use="optional"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="targetValueGroup">
+		<xs:annotation>
+			<xs:documentation>For generator only</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="lzPointCtrl" type="lzType" use="required"/>
+		<xs:attribute name="lzOther" type="lzType" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ftypeAttributeGroup">
+		<xs:annotation>
+			<xs:documentation>For generator only</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="group" type="groupType" use="required"/>
+	</xs:attributeGroup>
+	<xs:simpleType name="groupType">
+		<xs:annotation>
+			<xs:documentation>For generator only</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="PointCtrl"/>
+			<xs:enumeration value="Others"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

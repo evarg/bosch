@@ -26,7 +26,7 @@ class ImportBosch extends Command
      */
     public function handle()
     {
-        $xmlFile = storage_path('script2/B5.xml');
+        $xmlFile = storage_path('script2/B5-v3.xml');
         $xml = simplexml_load_file($xmlFile);
         //$xml->getNamespaces(true)['xs'];
 
@@ -630,7 +630,7 @@ class ImportBosch extends Command
     public function CSTATE_MAPPING($mainNode, $owner) {}
     public function ADI_Type($mainNode, $owner) {}
     public function CONFIG_INFO($mainNode, $owner) {}
-    public function LicencingType($mainNode, $owner) {}
+    public function LICENCING_V303($mainNode, $owner) {}
     public function ONBOARD($mainNode, $owner) {}
     public function MODULESGroup($mainNode, $owner) {}
     public function LOGICAL_GROUPING($mainNode, $owner) {}
@@ -1228,7 +1228,7 @@ class ImportBosch extends Command
 
     public function DM210($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\DM210();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\DM210();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1259,7 +1259,7 @@ class ImportBosch extends Command
 
     public function PULLSTATION($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\PULLSTATION();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\PULLSTATION();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1291,7 +1291,7 @@ class ImportBosch extends Command
 
     public function T220IUS($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\T220IUS();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\T220IUS();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1324,7 +1324,7 @@ class ImportBosch extends Command
 
     public function T410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\T410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\T410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1357,7 +1357,7 @@ class ImportBosch extends Command
 
     public function O220IUS($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\O220IUS();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\O220IUS();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1390,7 +1390,7 @@ class ImportBosch extends Command
 
     public function OT220IUS($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OT220IUS();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OT220IUS();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1423,7 +1423,7 @@ class ImportBosch extends Command
 
     public function OTC220IUS($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OTC220IUS();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OTC220IUS();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1456,7 +1456,7 @@ class ImportBosch extends Command
 
     public function O500IUS($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\O500IUS();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\O500IUS();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1489,7 +1489,7 @@ class ImportBosch extends Command
 
     public function OC500IUS($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OC500IUS();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OC500IUS();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1522,7 +1522,7 @@ class ImportBosch extends Command
 
     public function O500I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\O500I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\O500I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1555,7 +1555,7 @@ class ImportBosch extends Command
 
     public function O410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\O410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\O410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1588,7 +1588,7 @@ class ImportBosch extends Command
 
     public function OC410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OC410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OC410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1621,7 +1621,7 @@ class ImportBosch extends Command
 
     public function OT410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OT410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OT410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1654,7 +1654,7 @@ class ImportBosch extends Command
 
     public function OTC410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OTC410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OTC410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1687,7 +1687,7 @@ class ImportBosch extends Command
 
     public function O110I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\O110I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\O110I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1720,7 +1720,7 @@ class ImportBosch extends Command
 
     public function OT110I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OT110I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OT110I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1757,7 +1757,7 @@ class ImportBosch extends Command
 
     public function OC500I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\OC500I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\OC500I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType

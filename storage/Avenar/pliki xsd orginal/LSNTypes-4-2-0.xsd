@@ -1,0 +1,4349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+BOSCH Security Systems (Ottobrunn)
+
+Project: Magic.Panel
+
+Author: Vitor Amorim
+
+Created: 26.10.2022
+
+Last change by $Author: Vitor Amorim (amv1ovr) $
+
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:include schemaLocation="CommonTypes-4-0-0.xsd"/>
+	<xs:annotation>
+		<xs:documentation source="4.2.0">new version 4.2.0</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ATB420" type="ATB420Type">
+		<xs:annotation>
+			<xs:documentation>ATB420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ATB420Type">
+		<xs:annotation>
+			<xs:documentation>Coupler ATB420 (with C-outputs); the element LED stands for the C-outputs</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ATXBaseType">
+				<xs:sequence>
+					<xs:element name="LED" type="BlinkingLEDType" minOccurs="32" maxOccurs="32"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ATG420" type="ATG420Type">
+		<xs:annotation>
+			<xs:documentation>ATG420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ATG420Type">
+		<xs:annotation>
+			<xs:documentation>Coupler ATG420 (with LED)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ATXBaseType">
+				<xs:sequence>
+					<xs:element name="LED" type="ColoredLEDType" minOccurs="32" maxOccurs="32"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ATX100" type="ATX100Type">
+		<xs:annotation>
+			<xs:documentation>ATX100</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ATX100Type">
+		<xs:annotation>
+			<xs:documentation>Coupler ATX100</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ATXBaseType">
+				<xs:sequence>
+					<xs:element name="LED" type="LEDType" minOccurs="32" maxOccurs="32"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ATXBaseType">
+		<xs:annotation>
+			<xs:documentation>Coupler ATX100, ATB420, ATG420</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="buzzerActivity" type="yesnoType" default="ST_NO"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AutoDetBaseType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">Properties for automatic detectors used in   DOW1171Type NIM100Type NOM100Type NTM100Type O220IUSType O410IType O410Type O500IType O500IUSType O500Type OC410IType OC410Type OC500IType OC500IUSType OC500Type OM200Type OT200Type OT220IUSType OT410IType OT410Type OTC220IUSType OTC410IType OTC410Type T220IUSType T410IType T410Type TM200Type, RAS_TTS1, RAS_TTS2, RAS_TPS1, RAS_TPS2, RAS_TMS</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_POINT">
+						<xs:annotation>
+							<xs:documentation>"MP_SI_POINT" only</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_POINT"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 1 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+					<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
+					<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+					<xs:element name="av" type="yesnoType" default="ST_NO"/>
+					<xs:element name="avDelay" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="90"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+					<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="branchType">
+		<xs:union memberTypes="xs:unsignedByte">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:length value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:element name="DM210" type="DM210Type">
+		<xs:annotation>
+			<xs:documentation>DM/SM210 is available as classic and LSNi-detector</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DM210Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ManuDetBaseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DO410I" type="O410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-DO420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DOT410I" type="OT410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-DOT420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DOTC410I" type="OTC410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-DOTC420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DOTCOR" type="OTCO425IType">
+		<xs:annotation>
+			<xs:documentation>FAP-425-DOTCO-R. Based on DOTC410I with new sensitity settings.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DOW1171" type="DOW1171Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">Is used for two Detectors which have the same APK and cannot be distinguished by autodetection. DOW1171 = automatic and HFM-RT-FW = manual</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DOW1171Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="automaticDetector" type="yesnoType" default="ST_YES">
+						<xs:annotation>
+							<xs:documentation source="1.3.0">The distinction between DOW1171 (ST_YES)  and HFM-RT-FW (ST_NO) is done by this flag.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FBF100" type="FBF100Type">
+		<xs:annotation>
+			<xs:documentation>FBF100</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FBF100Type">
+		<xs:annotation>
+			<xs:documentation source="1.1.0">in version 1.1.0 element cityTieAddress is added</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType">
+						<xs:annotation>
+							<xs:appinfo>doc: range 1 - 254
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 1 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="operator" type="xs:unsignedInt" default="10002"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="cityTieAddress" type="fullSIQueryType" default="MP_SI_INVALID.0.0">
+						<xs:annotation>
+							<xs:documentation source="1.1.0">Possible values: MP_SI_INVALID.*.* selects no citytie,
+MP_SI_CITYTIE.*.* selects all cityties,
+MP_SI_CITYTIE.x.y selects one distinct cititie with siNumber x and subNumber y</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FDM273_O" type="FDM27xType">
+		<xs:annotation>
+			<xs:documentation>detector on FWI270 (wireless gateway)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FDM275_O" type="FDM27xType">
+		<xs:annotation>
+			<xs:documentation>detector on FWI270 (wireless gateway)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FDM27xType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FWI270DetBaseType">
+				<xs:annotation>
+					<xs:documentation>no extensions required</xs:documentation>
+				</xs:annotation>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FDOOT271_O" type="FDOOT271_OType">
+		<xs:annotation>
+			<xs:documentation>detector on FWI270 (wireless gateway)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FDOOT271_OType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FWI270DetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="radioSensType" default="DOOT_FAST_RESPONSE"/>
+					<xs:element name="sensitivity2" type="radioSensType" default="DOOT_FAST_RESPONSE"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FK100" type="FK100Type">
+		<xs:annotation>
+			<xs:documentation>FK100</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FK100Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBranchBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="numberOfDOW1171" type="xs:unsignedShort" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 30</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element ref="LSN_BUS_FK100"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FLM430I2M1" type="FLM430I2M1Type">
+		<xs:annotation>
+			<xs:documentation>FLM-430-I2M1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FLM430I2M1Type">
+		<xs:annotation>
+			<xs:documentation>Coupler</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_YES"/>
+					<xs:element name="actualCurrent" type="xs:float" default="0"/>
+					<xs:element name="GROUND" type="GROUNDType"/>
+					<xs:element name="INPUT" type="FLM430I2M1_InputType" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FNX425U" type="FNX425U_Type">
+		<xs:annotation>
+			<xs:documentation>FNX425U</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FNX425U_SOUNDERType">
+		<xs:annotation>
+			<xs:documentation>All in One - Sounder</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" default="MP_SI_NAC">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_NAC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="port" fixed="1">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">fixed 1 </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="volume" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
+			<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
+			<xs:element name="drillVolume" default="4">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
+			<xs:element name="testActivationVolume" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dampenVolume" default="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="minimumVolume" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="FNX425U_STROBEType">
+		<xs:annotation>
+			<xs:documentation>All in One - Strobe</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" default="MP_SI_NAC">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_NAC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="port" fixed="2">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">fixed 1 </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nacType" type="nacType" default="NT_OPTIC"/>
+			<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillPattern" type="flashRateType" default="MP_ACM_FLASH_RATE_500mHz">
+				<xs:annotation>
+					<xs:appinfo>doc: 0.5 or 1</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="drillVolume" type="intensityLevelType" default="3">
+				<xs:annotation>
+					<xs:appinfo>doc: 1, 2 or 3 - Low, Medium or High</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="testActivationPattern" type="flashRateType" default="MP_ACM_FLASH_RATE_500mHz">
+				<xs:annotation>
+					<xs:appinfo>doc: 0.5 or 1</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="testActivationVolume" type="intensityLevelType" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: 1, 2 or 3 - Low, Medium or High</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="FNX425U_Type">
+		<xs:annotation>
+			<xs:documentation>All in One</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="FNX425U_SOUNDER" type="FNX425U_SOUNDERType"/>
+					<xs:element name="FNX425U_STROBE" type="FNX425U_STROBEType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="FULLEON_BASE" type="LSN_FulleonSounderType">
+		<xs:annotation>
+			<xs:documentation>FNM-420-A-BS</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FULLEON_BASE_U" type="LSN_FulleonSounderWithBatteryType">
+		<xs:annotation>
+			<xs:documentation>FNM-420U-A-BS</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FULLEON_STANDALONE" type="LSN_FulleonSounderType">
+		<xs:annotation>
+			<xs:documentation>FNM-420-A/B</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FULLEON_STANDALONE_U" type="LSN_FulleonSounderWithBatteryType">
+		<xs:annotation>
+			<xs:documentation>FNM-420U-A/B</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FULLEON_STANDALONE_V" type="LSN_FulleonVoiceSounderWithBatteryType">
+		<xs:annotation>
+			<xs:documentation>FNM-420V</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FWI270" type="FWI270Type">
+		<xs:annotation>
+			<xs:documentation>FWI270: wireless gateway</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FWI270BusType">
+		<xs:annotation>
+			<xs:documentation>may contain all from FWI270ElementsGroup</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0" maxOccurs="30">
+			<xs:group ref="FWI270ElementsGroup"/>
+		</xs:choice>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="FWI270DetBaseType">
+		<xs:sequence>
+			<xs:element name="radioType" default="0x1a">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="0x1a">
+							<xs:annotation>
+								<xs:documentation>FDOOT271</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="0x57">
+							<xs:annotation>
+								<xs:documentation>FDM273</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="0x58">
+							<xs:annotation>
+								<xs:documentation>FDM275</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="radioId" type="hexLongPlain" default=""/>
+			<xs:element name="siType" type="inputSiTypesType" default="MP_SI_POINT"/>
+			<xs:element name="port">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="30"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0"/>
+			<xs:element name="subNumber" type="siSubNumberType" default="0"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="usageType" default="MP_UT_FIRE">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_UT_SUPERVISORY"/>
+						<xs:enumeration value="MP_UT_TROUBLE"/>
+						<xs:enumeration value="MP_UT_INPUT_ON_OFF"/>
+						<xs:enumeration value="MP_UT_INPUT_NORMAL_TROUBLE"/>
+						<xs:enumeration value="MP_UT_FIRE"/>
+						<xs:enumeration value="MP_UT_FIRE_INT"/>
+						<xs:enumeration value="MP_UT_WATER"/>
+						<xs:enumeration value="MP_UT_SMOKE"/>
+						<xs:enumeration value="MP_UT_HEAT"/>
+						<xs:enumeration value="MP_UT_EVACUATION"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
+			<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+			<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0">
+				<xs:annotation>
+					<xs:documentation>only here for the trafo; not used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+					<xs:documentation>only here for the trafo; not used</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="av" type="yesnoType" default="ST_NO"/>
+			<xs:element name="avDelay" default="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="90"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:group name="FWI270ElementsGroup">
+		<xs:annotation>
+			<xs:documentation>containing elements for the radio gateway FWI-270</xs:documentation>
+			<xs:documentation source="3.0.0"/>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="FDOOT271_O"/>
+			<xs:element ref="FDM275_O"/>
+			<xs:element ref="FDM273_O"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="FWI270Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="hexLongPlain"/>
+					<xs:element name="numberOfSubelements" type="xs:unsignedShort" default="0" minOccurs="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 30</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FWI270_BUS" type="FWI270BusType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GLTZONE_LSNI_CONV4" type="GLTZONE_LSNI_CONV4Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">The element has two lines (zones). In case of classA wiring (a kind of loop) the second line is used as input. Hence only 1 zone can be configured. In this case the second zone is to be marked as unused by setting the siNumber to zero.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GLTZONE_LSNI_CONV4Type">
+		<xs:sequence>
+			<xs:element name="port" default="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siType" default="MP_SI_POINT">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_POINT"/>
+						<xs:enumeration value="MP_SI_INPUT"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
+			<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">Are automatic or manual detectors connected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andZoneNr" type="siNumberType" default="0"/>
+			<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+			<xs:element name="av" type="yesnoType" default="ST_NO"/>
+			<xs:element name="avDelay" type="avDelayType" default="0"/>
+			<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+			<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pulsingLED" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">Red LED on detectors blinking or steady</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+			<xs:element name="indicateAlarmOnShort" type="yesnoType" default="ST_NO"/>
+			<xs:element name="cleanMe" type="yesnoType" default="ST_NO"/>
+			<xs:element name="resetByAuxpower" type="yesnoType" default="ST_NO"/>
+			<xs:element name="eolModuleUsed" type="yesnoType" default="ST_NO"/>
+			<xs:element name="detectorClass" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">needed to remember type of selected detector for upload</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alarmResistance" default="800">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">Value in Ohm, Restriction added</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedShort">
+						<xs:minInclusive value="300"/>
+						<xs:maxInclusive value="1350"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="detectorStandByCurrent" default="0">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">Value in micro Ampere</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedInt"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="calibrationValue" type="xs:unsignedByte">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">numeric value without unit is read from the diagnistic of the running zone on a panel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nrOfDetectors" type="xs:unsignedByte" default="5">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 32
+					</xs:appinfo>
+					<xs:documentation source="1.2.0">needed to rember number of detectors, and for calculation of standby current</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="en5413Enabled" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.5.1">new in 2.5.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="GLTZONEKD" type="GLTZONEKDType"/>
+	<xs:complexType name="GLTZONEKDType">
+		<xs:annotation>
+			<xs:documentation>SHOULD BE REVIEWED there is no description in configuration.doc</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siType" default="MP_SI_POINT">
+				<xs:annotation>
+					<xs:documentation>"MP_SI_POINT" or "MP_SI_INPUT" only</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_POINT"/>
+						<xs:enumeration value="MP_SI_INPUT"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
+			<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+			<xs:element name="av" type="yesnoType" default="ST_NO"/>
+			<xs:element name="avDelay" type="avDelayType" default="0"/>
+			<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+			<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="usageType" type="usageTypeType" default="MP_UT_SUPERVISORY"/>
+			<xs:element name="automaticDetectors" type="yesnoType" default="ST_YES">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">Are automatic or manual detectors connected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:simpleType name="inputLSNi2BitThresholdType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">threshold values (voltage) for Inputs 4 of 4</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="VOLTAGE_0">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">0 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">0,87V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">1,73 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_3">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">2,6 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="inputLSNi5BitThresholdType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">threshold values (voltage) for Inputs 4 of 32</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="VOLTAGE_0">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">0 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">0,87V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">1,73 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_3">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">2,6 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_4">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">3,47 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_5">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">4,33 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_6">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">5,2 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_7">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">6,06 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_8">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">6,93 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_9">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">7,8 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_10">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">8,66 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_11">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">9,53 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_12">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">10,40 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_13">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">11,26 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_14">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">12,13 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_15">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">12,99 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_16">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">13,86 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_17">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">14,73 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_18">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">15,59 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_19">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">16,46 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_20">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">17,33 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_21">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">18,19 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_22">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">19,06 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_23">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">19,92 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_24">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">20,79 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_25">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">21,66 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_26">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">22,52 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_27">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">23,39 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_28">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">24,26 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_29">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">25,12 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_30">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">25,99 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="VOLTAGE_31">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">26,85 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ISOLATOR" type="ISOLATORType">
+		<xs:annotation>
+			<xs:documentation>Isolator</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ISOLATORType">
+		<xs:annotation>
+			<xs:documentation>Coupler Isolator</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KD55_KD200" type="KD55_KD200Type">
+		<xs:annotation>
+			<xs:documentation>KD55-1/KD200</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="KD55_KD200Type">
+		<xs:annotation>
+			<xs:documentation>Coupler</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="GLTZONEKD" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="LEDpresentLSNIType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="LP_NONE"/>
+			<xs:enumeration value="LP_BLINK"/>
+			<xs:enumeration value="LP_STEADY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LEDpresentType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="yesnoType"/>
+	</xs:simpleType>
+	<xs:complexType name="LSN_BATTERYType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" default="MP_SI_BATTERY">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_BATTERY"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="LSN_BUS_FK100" type="LSN_BUS_FK100Type"/>
+	<xs:complexType name="LSN_BUS_FK100Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="DOW1171"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSN_BUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" type="siTypeType" default="MP_SI_LOOP"/>
+			<xs:element name="port" type="portType" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 2</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="siNumber" default="1">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 54999</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="siNumberType">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="54999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:group ref="LSNAllGroup"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSN_FulleonSounderType">
+		<xs:annotation>
+			<xs:documentation source="2.1.1">FNM-420, Fulleon</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_NAC">
+						<xs:annotation>
+							<xs:documentation>"MP_SI_NAC" only</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_NAC"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+					<xs:element name="volume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">Cannot be configured anymore shall be set to 1. Volume is now set by the NAC_ACTIVATION.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
+					<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
+					<xs:element name="drillVolume" default="5">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
+					<xs:element name="testActivationVolume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSN_FulleonSounderWithBatteryType">
+		<xs:annotation>
+			<xs:documentation source="2.1.1">FNM-420U, Fulleon</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_NAC">
+						<xs:annotation>
+							<xs:documentation>"MP_SI_NAC" only</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_NAC"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+					<xs:element name="volume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">Cannot be configured anymore shall be set to 1. Volume is now set by the NAC_ACTIVATION.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
+					<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
+					<xs:element name="drillVolume" default="5">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DIN33404"/>
+					<xs:element name="testActivationVolume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="batteryUsed" type="yesnoType" default="ST_YES">
+						<xs:annotation>
+							<xs:documentation source="2.7.2">new in 2.7.2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSN_FulleonVoiceSounderWithBatteryType">
+		<xs:annotation>
+			<xs:documentation source="2.8.3">FNM-420V, Fulleon</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_NAC">
+						<xs:annotation>
+							<xs:documentation>"MP_SI_NAC" only</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_NAC"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+					<xs:element name="volume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">Cannot be configured anymore shall be set to 1. Volume is now set by the NAC_ACTIVATION.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
+					<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_SIGNAL01"/>
+					<xs:element name="drillVolume" default="5">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_SIGNAL01"/>
+					<xs:element name="testActivationVolume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="5"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="batteryUsed" type="yesnoType" default="ST_YES">
+						<xs:annotation>
+							<xs:documentation source="2.7.2">new in 2.7.2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSN_MSS400SounderType">
+		<xs:annotation>
+			<xs:documentation source="2.1.1">For MSS400/401</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_NAC">
+						<xs:annotation>
+							<xs:documentation>"MP_SI_NAC" only</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_NAC"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+					<xs:element name="volume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">Cannot be configured anymore shall be set to 1. Volume is now set by the NAC_ACTIVATION.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="4"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="feedbackDelay" type="feedbackDelayType" default="240"/>
+					<xs:element name="drillPattern" type="nacPatternType" default="MP_ACM_DE_DIN"/>
+					<xs:element name="drillVolume" default="4">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="4"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="testActivationPattern" type="nacPatternType" default="MP_ACM_DE_DIN"/>
+					<xs:element name="testActivationVolume" default="1">
+						<xs:annotation>
+							<xs:documentation source="2.1.1">implemented in 2.1.1</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="1"/>
+								<xs:maxInclusive value="4"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSN_NAC" type="LSN_NACType">
+		<xs:annotation>
+			<xs:documentation>FLM-420-NAC</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSN_NACType">
+		<xs:annotation>
+			<xs:documentation>Coupler</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_YES"/>
+					<xs:element name="actualCurrent" type="xs:float" default="0">
+						<xs:annotation>
+							<xs:documentation source="2.7.1">new in 2.7.1</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
+						<xs:element name="NAC_ZONE" type="NAC_ZONEType"/>
+						<xs:element name="RELAY" type="LSNI_RELAYFeedbackType"/>
+					</xs:choice>
+					<xs:element name="BATTERY" type="LSN_BATTERYType"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_SingleType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:group name="LSNAllGroup">
+		<xs:annotation>
+			<xs:documentation>containing all Classics, all LSNIs not  NAK100</xs:documentation>
+			<xs:documentation source="1.2.0">DM210 moved from LSNClassicGroup to LSNIGroup. It now has two variants a classic and a LSNi version. Configuration data are identical for both types.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:group ref="LSNIGroup" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>containing only LSNI, t-tappable, without DM210</xs:documentation>
+				</xs:annotation>
+			</xs:group>
+			<xs:group ref="LSNClassicGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:group>
+	<xs:group name="LSNClassicGroup">
+		<xs:annotation>
+			<xs:documentation>containing Classics without NAK100 and without DM210</xs:documentation>
+			<xs:documentation source="1.2.0">DM210 moved from LSNClassicGroup to LSNAllGroup. It now has two variants a classic and a LSNi version. Configuration data are identical for both types.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="NBM110"/>
+			<xs:element ref="ATX100"/>
+			<xs:element ref="MSS400"/>
+			<xs:element ref="MSS401"/>
+			<xs:element ref="NEV300"/>
+			<xs:element ref="NIM100"/>
+			<xs:element ref="NOM100"/>
+			<xs:element ref="NTM100"/>
+			<xs:element ref="O410"/>
+			<xs:element ref="O500"/>
+			<xs:element ref="OM200"/>
+			<xs:element ref="OT200"/>
+			<xs:element ref="OT410"/>
+			<xs:element ref="OTC410"/>
+			<xs:element ref="T410"/>
+			<xs:element ref="TM200"/>
+			<xs:element ref="FK100"/>
+			<xs:element ref="FBF100"/>
+			<xs:element ref="OC410"/>
+			<xs:element ref="OC500"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="LSNDeviceBaseType">
+		<xs:sequence>
+			<xs:element name="lsnTypeID" type="hexByte"/>
+			<xs:element name="lsnSubtype" type="lsnSubTypeType"/>
+			<xs:element name="backPointer" type="xs:unsignedByte"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSNDeviceBranchBaseType">
+		<xs:sequence>
+			<xs:element name="lsnTypeID" type="hexByte"/>
+			<xs:element name="lsnSubtype" type="lsnSubTypeType"/>
+			<xs:element name="backPointer" type="xs:unsignedByte"/>
+			<xs:element name="branch" type="branchType" default="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="LSNI_BEACON" type="LSNI_BEACONType">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">LSNi Beacon (NAC) new in 1.3.0 (PCtrl 1.3)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_BEACONType">
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_NAC">
+						<xs:annotation>
+							<xs:documentation>"MP_SI_NAC" only</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_NAC"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="nacType" fixed="NT_OPTIC">
+						<xs:simpleType>
+							<xs:restriction base="nacType"/>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType"/>
+					<xs:element name="feedbackDelay" type="feedbackDelayType" default="60"/>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_CONV4" type="LSNI_CONV4Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420/4-CON new in 1.2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_CONV4Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">Conventional Line Interface 4 Wire, 2 Zones, under construction</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="enableCalibration" type="yesnoType" default="ST_NO"/>
+					<xs:element name="classAWiring" type="yesnoType" default="ST_NO"/>
+					<xs:element name="eolResistor" default="RESISTANCE_2">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">The element is set to NOT_USED if classAWiring or enableCalibration is ST_YES</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="RESISTANCE_1"/>
+								<xs:enumeration value="RESISTANCE_2"/>
+								<xs:enumeration value="RESISTANCE_3"/>
+								<xs:enumeration value="NOT_USED"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="AUXPOWER" type="AUXPOWER_MultipleType" minOccurs="2" maxOccurs="2">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">The element has two lines (zones). Each line has an auxpower which can be used by 4-wire detectors. In case of classA wiring (a kind of loop) the second line is used as input. Hence only 1 zone can be configured. In this case the second zone is to be marked as unused by setting the siNumber to zero. Accordingly the second auxpower's siNumber has to be set to zero too.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="GLTZONE_LSNI_CONV4" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_DetectorRELAYType">
+		<xs:annotation>
+			<xs:documentation>Relay on automatic detectors if controlled by panel</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RELAYBaseType">
+				<xs:sequence>
+					<xs:element name="feedback" type="yesnoType" default="ST_NO"/>
+					<xs:element name="feedbackDelay" type="xs:unsignedByte" default="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_EOL_2W">
+		<xs:annotation>
+			<xs:documentation source="2.5.1">FLM-420 -EOL2W-W</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNI_EOL_2WType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="LSNI_EOL_2WType">
+		<xs:annotation>
+			<xs:documentation source="2.5.1">Besides the address data there are no special data. The element is considered as coupler without any sub- elements.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" type="siTypeType" fixed="MP_SI_COUPLER"/>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_EOL_4W" type="LSNI_EOL_4WType">
+		<xs:annotation>
+			<xs:documentation source="2.5.1">FLM-420 -EOL4W-W</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_EOL_4WType">
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" type="siTypeType" fixed="MP_SI_COUPLER"/>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="maxResistance" type="xs:float" default="0">
+						<xs:annotation>
+							<xs:documentation source="2.6.0">For creeping short detection. Is calculated by RPS</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minVoltage" type="xs:float" default="0">
+						<xs:annotation>
+							<xs:documentation source="2.6.0">For creeping short detection. Is calculated by RPS</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="sumPower" type="xs:float" default="0">
+						<xs:annotation>
+							<xs:documentation source="2.6.0">For creeping short detection. Is calculated by RPS</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_IN1" type="LSNI_IN1Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">FLM-420-IN1 new in 1.3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_IN1Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">new LSNi-Coupler with one input</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_IN2" type="LSNI_IN2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-I2-W/E new in 1.2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LSNI_IN2_D" type="LSNI_IN2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-I2-D</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_IN2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">new LSNi-Coupler with two inputs</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext5BitType" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_IN8R1" type="LSNI_IN8R1Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">FLM-420-I8R1-D new in 1.3.0 (PCtrl 1.3)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_IN8R1Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">new LSNi-Coupler with eight inputs and one relay low voltage</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="8" maxOccurs="8">
+						<xs:annotation>
+							<xs:documentation source="1.3.0">port numbers from 1 to 8</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_RELAYFeedbackType">
+						<xs:annotation>
+							<xs:documentation source="1.3.0">port number 9 fix</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_INPUT_Ext2BitType">
+		<xs:complexContent>
+			<xs:extension base="INPUTBaseType">
+				<xs:sequence>
+					<xs:element name="operatingMode" default="RESISTANCE">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">The input can work in two different operating modes. 1. RESISTANCE: the value of usesEOLResostor must be considered. 2. VOLTAGE: the values of thresholdHigh and thresholdLow must be considered.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="RESISTANCE"/>
+								<xs:enumeration value="VOLTAGE"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="invertActivation" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to both operational modes. The user can choose which state of the input triggers the activation and which state is considered as normal respectively. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thresholdHigh" type="inputLSNi2BitThresholdType" default="VOLTAGE_3">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to the operational mode VOLTAGE only: If the voltage at the input exceeds  this value the state change is triggered. If invertActive = ST_NO triggered state is ACTIVATION, if ST_YES triggered state is NORMAL</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thresholdLow" type="inputLSNi2BitThresholdType" default="VOLTAGE_1">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to the operational mode VOLTAGE only: If the voltage at the input falls below this value the state change is triggered. If invertActive = ST_NO triggered state is NORMAL, if ST_YES triggered state is ACTIVATION.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="usesEOLResistor" type="yesnoType">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to the operational mode RESISTANCE only.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_INPUT_Ext5BitType">
+		<xs:complexContent>
+			<xs:extension base="INPUTBaseType">
+				<xs:sequence>
+					<xs:element name="operatingMode" default="RESISTANCE">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">The input can work in two different operating modes. 1. RESISTANCE: the value of usesEOLResostor must be considered. 2. VOLTAGE: the values of thresholdHigh and thresholdLow must be considered.</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="RESISTANCE"/>
+								<xs:enumeration value="VOLTAGE"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="invertActivation" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to both operational modes. The user can choose which state of the input triggers the activation and which state is considered as normal respectively. </xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thresholdHigh" type="inputLSNi5BitThresholdType" default="VOLTAGE_31">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to the operational mode VOLTAGE only: If the voltage at the input exceeds  this value the state change is triggered. If invertActive = ST_NO triggered state is ACTIVATION, if ST_YES triggered state is NORMAL</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="thresholdLow" type="inputLSNi5BitThresholdType" default="VOLTAGE_1">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to the operational mode VOLTAGE only: If the voltage at the input falls below this value the state change is triggered. If invertActive = ST_NO triggered state is NORMAL, if ST_YES triggered state is ACTIVATION.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="usesEOLResistor" type="yesnoType">
+						<xs:annotation>
+							<xs:documentation source="1.2.0">Applies to the operational mode RESISTANCE only.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FLM430I2M1_InputType">
+	<xs:complexContent>
+		<xs:extension base="INPUTBaseType">
+				<xs:sequence>
+					<xs:element name="operatingMode" default="NONE">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:enumeration value="NONE"/>
+							<xs:enumeration value="SINGLE_RESISTOR"/>
+							<xs:enumeration value="DOUBLE_RESISTOR"/>
+							<xs:enumeration value="DOUBLE_RESISTOR_EXTENDED"/>
+						</xs:restriction>
+					</xs:simpleType>
+					</xs:element>
+					<xs:element name="invertActivation" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">User can choose "Normally open" (ST_YES) or "Normally closed" (ST_NO)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_OUT1_IN1" type="LSNI_OUT1_IN1Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">FLM-420-O1I1 new in 1.3.0  (PCtrl 1.3)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_OUT1_IN1Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">new LSNi-Coupler with 8 outputs 2 inputs</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OUTPUT" type="LSNI_OUT1IN1_OUTPUTType">
+						<xs:annotation>
+							<xs:documentation source="1.3.0">One Output port 1</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType">
+						<xs:annotation>
+							<xs:documentation source="1.3.0">One Input port 2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_OUT1IN1_OUTPUTType">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">Output of new LSNI_OUT1IN1 (1 output, 1 input), structure is identical to NEV300OUTPUTType (3 outputs) and NTK100_OUTPUTType (8 outputs). Due to the different number of outputs the ranges of element 'port' are accordingly different in the three structures.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" fixed="1">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">fixed 1 </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siType" default="MP_SI_INVALID">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_STATUS"/>
+						<xs:enumeration value="MP_SI_CONTROL"/>
+						<xs:enumeration value="MP_SI_DOORHOLDER"/>
+						<xs:enumeration value="MP_SI_INVALID"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="LSNI_OUT2" type="LSNI_OUT2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-O2-W/E new in 1.2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LSNI_OUT2_D" type="LSNI_OUT2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-O2-D new in 1.2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_OUT2_OUTPUTType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">Output of new LSNI_OUT2 (2 outputs), structure is identical to NEV300OUTPUTType (3 outputs) and NTK100_OUTPUTType (8 outputs). Due to the different number of outputs the ranges of element 'port' are accordingly different in the three structures.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siType" default="MP_SI_INVALID">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_STATUS"/>
+						<xs:enumeration value="MP_SI_CONTROL"/>
+						<xs:enumeration value="MP_SI_DOORHOLDER"/>
+						<xs:enumeration value="MP_SI_INVALID"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSNI_OUT2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">new LSNi-Coupler with 2 outputs</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OUTPUT" type="LSNI_OUT2_OUTPUTType" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_OUT8_IN2" type="LSNI_OUT8_IN2Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">FLM-420-O8I2-PS new in 1.3.0  (PCtrl 1.3)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_OUT8_IN2Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">new LSNi-Coupler with 8 outputs 2 inputs</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="OUTPUT" type="LSNI_OUT8IN2_OUTPUTType" minOccurs="8" maxOccurs="8"/>
+					<xs:element name="INPUT" type="LSNI_INPUT_Ext2BitType" minOccurs="2" maxOccurs="2"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_OUT8IN2_OUTPUTType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">Output of new LSNI_OUT8IN2 (8 outputs, 2 inputs), structure is identical to NEV300OUTPUTType (3 outputs) and NTK100_OUTPUTType (8 outputs). Due to the different number of outputs the ranges of element 'port' are accordingly different in the three structures.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">Outputs use ports 1 - 8</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siType" default="MP_SI_INVALID">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_STATUS"/>
+						<xs:enumeration value="MP_SI_CONTROL"/>
+						<xs:enumeration value="MP_SI_DOORHOLDER"/>
+						<xs:enumeration value="MP_SI_INVALID"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSNI_R1Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">new LSNi-coupler with one relay (low voltage)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_RELAYFeedbackType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_R8Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">new LSNi-coupler with eight relays (low voltage)</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>Green operational LED blinking</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_RELAYFeedbackType" minOccurs="8" maxOccurs="8"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_RELAY1" type="LSNI_R1Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-RLV1-W/E new in 1.2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LSNI_RELAY1_D" type="LSNI_R1Type">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-RLV1-D new in 1.2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LSNI_RELAY8" type="LSNI_R8Type">
+		<xs:annotation>
+			<xs:documentation source="1.3.0">FLM-420-RLV8-PS new in 1.3.0 (PCtrl 1.3)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_RELAYFeedbackRLEType">
+		<xs:annotation>
+			<xs:documentation>Relay of LSNI_RLE having two feedback lines, which can be used as independent input also,
+RelayBaseType no longer used to be able to set default of 'supervised' to ST_YES</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
+			<xs:element name="port" type="xs:unsignedByte"/>
+			<xs:element name="siNumber" default="0">
+				<xs:simpleType>
+					<xs:restriction base="siNumberType">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="60000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
+			<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="supervised" type="yesnoType" default="ST_YES"/>
+			<xs:element name="feedbackDelay" type="xs:unsignedByte" default="20"/>
+			<xs:element name="feedbackVariant1" type="feedBackVariantType" default="F1"/>
+			<xs:element name="feedbackVariant2" type="feedBackVariantType" default="F1"/>
+			<xs:element name="independentInput" type="yesnoType" default="ST_YES">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">Usage of feedbackline: ST_NO if used as feedbackline for relay, ST_YES if used as independent INPUT, in this case an according element INPUT must be present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="independentInput2" type="yesnoType" default="ST_YES">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">Usage of feedbackline: ST_NO if used as feedbackline for relay, ST_YES if used as independent INPUT, in this case an according element INPUT must be present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSNI_RELAYFeedbackRLHVIType">
+		<xs:annotation>
+			<xs:documentation>Relay of RLHVI having one feedback line
+RelayBaseType no longer used to be able to set default of 'supervised' to ST_YES</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="siType" type="relaySiTypesType" default="MP_SI_CONTROL"/>
+			<xs:element name="port" type="xs:unsignedByte"/>
+			<xs:element name="siNumber" default="0">
+				<xs:simpleType>
+					<xs:restriction base="siNumberType">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="60000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0"/>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="subType" type="subTypeType" default="MP_ST_NONE"/>
+			<xs:element name="nacType" type="nacType" default="NT_ACOUSTIC"/>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="silenceable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="drillable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="supervised" type="yesnoType" default="ST_YES"/>
+			<xs:element name="feedbackVariant" type="feedBackVariantType" default="F1"/>
+			<xs:element name="feedbackDelay" type="xs:unsignedByte" default="20"/>
+			<xs:element name="independentInput" type="yesnoType" default="ST_NO">
+				<xs:annotation>
+					<xs:documentation source="2.0.1">Usage of feedbackline: ST_NO if used as feedbackline for relay, ST_YES if used as independent INPUT, in this case an according element INPUT must be present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="LSNI_RELAYFeedbackType">
+		<xs:complexContent>
+			<xs:extension base="RELAYBaseType">
+				<xs:sequence>
+					<xs:element name="feedback" type="yesnoType" default="ST_NO"/>
+					<xs:element name="feedbackDelay" type="xs:unsignedByte" default="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_RLE" type="LSNI_RLEType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FLM-420-RLE new in 2.1.0 </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_RLEType">
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_RELAYFeedbackRLEType"/>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0" maxOccurs="2">
+						<xs:annotation>
+							<xs:documentation source="2.0.8">There can be two elements INPUT which are related to the feedback-lines of the RELAYS. This applies only if the feedback-lines are used as independent INPUTS.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LSNI_TI13" type="LSNI_TI13Type">
+		<xs:annotation>
+			<xs:documentation>FPP-5000-TI13</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LSNI_IFM" type="LSNI_IFMType">
+		<xs:annotation>
+			<xs:documentation>FPP-5000-IFM</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="LSNI_TI13Type">
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" type="siTypeType" fixed="MP_SI_COUPLER"/>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element ref="TI13_BCMB"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LSNI_IFMType">
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" type="siTypeType" fixed="MP_SI_COUPLER"/>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element ref="IFM_BCMB"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:group name="LSNIGroup">
+		<xs:annotation>
+			<xs:documentation>containing only LSNI, t-tappable</xs:documentation>
+			<xs:documentation source="1.2.0">New elements added: LSNI_OUT2, LSNI_RELAY1, RAS_TPS1, RAS_TPS2, RAS_TTS1, RAS_TTS2, RAS_TMS, CONV4_LSNI</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="DM210"/>
+			<xs:element ref="PULLSTATION"/>
+			<xs:element ref="T220IUS"/>
+			<xs:element ref="T410I"/>
+			<xs:element ref="O220IUS"/>
+			<xs:element ref="OT220IUS"/>
+			<xs:element ref="OTC220IUS"/>
+			<xs:element ref="O500IUS"/>
+			<xs:element ref="OC500IUS"/>
+			<xs:element ref="O500I"/>
+			<xs:element ref="O410I"/>
+			<xs:element ref="OC410I"/>
+			<xs:element ref="OT410I"/>
+			<xs:element ref="OTC410I"/>
+			<xs:element ref="O110I"/>
+			<xs:element ref="OT110I"/>
+			<xs:element ref="LSN_NAC"/>
+			<xs:element ref="RLHVI"/>
+			<xs:element ref="OC500I"/>
+			<xs:element ref="ISOLATOR"/>
+			<xs:element ref="LSNI_OUT2"/>
+			<xs:element ref="LSNI_OUT2_D"/>
+			<xs:element ref="LSNI_IN2"/>
+			<xs:element ref="LSNI_IN2_D"/>
+			<xs:element ref="LSNI_RELAY1"/>
+			<xs:element ref="LSNI_RELAY1_D"/>
+			<xs:element ref="RAS_TPS1"/>
+			<xs:element ref="RAS_TPS2"/>
+			<xs:element ref="RAS_TTS1"/>
+			<xs:element ref="RAS_TTS2"/>
+			<xs:element ref="RAS_TMS"/>
+			<xs:element ref="RAS_TMS_NOFAN"/>
+			<xs:element ref="RAS_TMS_RB"/>
+			<xs:element ref="LSNI_CONV4"/>
+			<xs:element ref="LSNTESTELEMENT"/>
+			<xs:element ref="LSNI_RELAY8"/>
+			<xs:element ref="LSNI_BEACON"/>
+			<xs:element ref="LSNI_IN8R1"/>
+			<xs:element ref="LSNI_OUT8_IN2"/>
+			<xs:element ref="LSNI_IN1">
+				<xs:annotation>
+					<xs:documentation>FLM-420-IN1 new in 1.3.0 (PCtrl 1.3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="LSNI_OUT1_IN1"/>
+			<xs:element ref="LSNI_RLE"/>
+			<xs:element ref="FULLEON_BASE"/>
+			<xs:element ref="FULLEON_BASE_U"/>
+			<xs:element ref="FULLEON_STANDALONE"/>
+			<xs:element ref="FULLEON_STANDALONE_U"/>
+			<xs:element ref="FULLEON_STANDALONE_V">
+				<xs:annotation>
+					<xs:documentation>FLM-420V new in 2.8 </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="KD55_KD200"/>
+			<xs:element ref="LSNI_EOL_2W"/>
+			<xs:element ref="LSNI_EOL_4W"/>
+			<xs:element ref="DO410I"/>
+			<xs:element ref="DOT410I"/>
+			<xs:element ref="DOTC410I"/>
+			<xs:element ref="LSNI_TI13"/>
+			<xs:element ref="ATB420"/>
+			<xs:element ref="ATG420"/>
+			<xs:element ref="FWI270"/>
+			<xs:element ref="FNX425U"/>
+			<xs:element ref="DOTCOR"/>
+			<xs:element ref="FLM430I2M1"/>
+			<xs:element ref="LSNI_IFM"/>
+		</xs:choice>
+	</xs:group>
+	<xs:simpleType name="lsnSubTypeType">
+		<xs:union memberTypes="hexByte xs:string"/>
+	</xs:simpleType>
+	<xs:element name="LSNTESTELEMENT" type="LSNDeviceBaseType">
+		<xs:annotation>
+			<xs:documentation>structure is like ISOLATOR only for testing, is not supported by RPS but by the transformer</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="magicSensBaseSetType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="MSEN_THEATRE"/>
+			<xs:enumeration value="MSEN_WAREHOUSE"/>
+			<xs:enumeration value="MSEN_OFFICE_SMOKER"/>
+			<xs:enumeration value="MSEN_CONFERNCE_HALL"/>
+			<xs:enumeration value="MSEN_OFFICE_AFTER"/>
+			<xs:enumeration value="MSEN_SCHOOL"/>
+			<xs:enumeration value="MSEN_GARAGES"/>
+			<xs:enumeration value="MSEN_KITCHEN_ACTIVE"/>
+			<xs:enumeration value="MSEN_PRODUCTION"/>
+			<xs:enumeration value="MSEN_EDP"/>
+			<xs:enumeration value="MSEN_HIGH_STORAGE"/>
+			<xs:enumeration value="MSEN_OFFICE_DAYMODE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="magicSensOTCType">
+		<xs:union memberTypes="magicSensOTType">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="MSEN_OPTIC_CHEMICAL"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="magicSensOTCOType">
+		<xs:annotation>
+			<xs:documentation>Based on OTC410IType. Adding new sensitity settings.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="magicSensOTCType">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="MSEN_SUPPRESS_SINGLE_FIRE_PHENOMENA_HIGH"/>
+					<xs:enumeration value="MSEN_SUPPRESS_SINGLE_FIRE_PHENOMENA_LOW"/>
+					<xs:enumeration value="MSEN_SUPPRESS_OPTICAL_DISTURBANCE"/>
+					<xs:enumeration value="MSEN_CARBON_MONOXIDE_ONLY"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="magicSensOTType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:union memberTypes="magicSensBaseSetType">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="MSEN_OPTICAL_ONLY"/>
+					<xs:enumeration value="MSEN_TDIFF_ONLY"/>
+					<xs:enumeration value="MSEN_TMAX_ONLY"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:complexType name="ManuDetBaseType">
+		<xs:annotation>
+			<xs:documentation>Properties for manual detectors used in   DM210Type NBM110Type PULLSTATIONType </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" default="MP_SI_POINT">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_POINT"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType">
+						<xs:annotation>
+							<xs:appinfo>doc: range 1 - 254
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="siNumber" type="siNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 1 - 60000</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="subNumber" type="siSubNumberType" default="0">
+						<xs:annotation>
+							<xs:appinfo>doc: range 0 - 255
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+					<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+					<xs:element name="av" type="yesnoType" default="ST_NO"/>
+					<xs:element name="avDelay" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="90"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="microSensAirFlowFaultDelayType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus MicroSens fault delay</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_30S">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0  = 30 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_100S">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1  = 100 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_15M">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2  = 15 min</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_PROGRAMMABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="microSensAlarmDelayType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus MicroSens alarm delay</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="ALARM_DELAY_10">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0 = 10 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALARM_DELAY_30">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1 = 30 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALARM_DELAY_60">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2 = 60 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALARM_DELAY_PROGRAMMABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="microSensFanVoltageType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus MicroSens fan voltage</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="FAN_VOLTAGE_9">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0 = 9 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAN_VOLTAGE_10_5">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1 = 10,5 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAN_VOLTAGE_12">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2 = 12 V</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FAN_VOLTAGE_PROGRAMMABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="microSensSensitivityType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus MicroSens sensitivities</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="CELLTYPE4_SENS1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE3  (name = Cell 0.1): level 1 = 0,1 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE4_SENS2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE3  (name = Cell 0.1): level 2 = 0,2 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE4_SENS3">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE3  (name = Cell 0.1): level 3 = 0,3 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE4_PROGRAMMABLE"/>
+			<xs:enumeration value="CELLTYPE5_SENS1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE4 (name = Cell 0.5) : level 5 = 0,5 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE5_SENS2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE4 (name = Cell 0.5): level 6 = 1 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE5_SENS3">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE4 (name = Cell 0.5): level 7 = 2 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE5_PROGRAMMABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="microSensThresholdAirFlowType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus MicroSens air flow threshold</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="THRESHOLD_20">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0 = 20%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="THRESHOLD_30">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1 = 30%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="THRESHOLD_50">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2 = 50%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="THRESHOLD_PROGRAMMABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="MSS400" type="LSN_MSS400SounderType">
+		<xs:annotation>
+			<xs:documentation>MSS400</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MSS401" type="LSN_MSS400SounderType">
+		<xs:annotation>
+			<xs:documentation>MSS401</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NBM110" type="NBM110Type">
+		<xs:annotation>
+			<xs:documentation>NBM110</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="NBM110Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ManuDetBaseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NEV300" type="NEV300Type">
+		<xs:annotation>
+			<xs:documentation>NEV300</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="NEV300_OUTPUTType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siType" fixed="MP_SI_STATUS">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_STATUS"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 60000
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="restPosition" type="onoffType" default="OOT_OFF"/>
+			<xs:element name="label" type="labelTextType"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="NEV300Type">
+		<xs:annotation>
+			<xs:documentation>Coupler</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BATTERY" type="LSN_BATTERYType"/>
+					<xs:element name="AUXPOWER" type="AUXPOWER_SingleType"/>
+					<xs:element name="OUTPUT" type="NEV300_OUTPUTType" minOccurs="3" maxOccurs="3"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NIM100" type="NIM100Type">
+		<xs:annotation>
+			<xs:documentation>NIM100</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="NIM100Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NOM100" type="NOM100Type">
+		<xs:annotation>
+			<xs:documentation>NOM100</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="NOM100Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NTM100" type="NTM100Type">
+		<xs:annotation>
+			<xs:documentation>NTM100</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="NTM100Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="O110I" type="O410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-O110</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="O220IUS" type="O220IUSType">
+		<xs:annotation>
+			<xs:documentation>FAP-420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="O220IUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence maxOccurs="unbounded">
+					<xs:element name="sensitivity1" type="optSensType" default="OSEN_1"/>
+					<xs:element name="sensitivity2" type="optSensType" default="OSEN_1"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="O410" type="O410Type">
+		<xs:annotation>
+			<xs:documentation>O400</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="O410I" type="O410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-O420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="O410IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="O410Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="O500" type="O500Type">
+		<xs:annotation>
+			<xs:documentation>O500</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="O500I" type="O500IType">
+		<xs:annotation>
+			<xs:documentation>FAP-O520</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="O500IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES"</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="O500IUS" type="O500IUSType">
+		<xs:annotation>
+			<xs:documentation>FAP-520</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="O500IUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="O500Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OC410" type="OC410Type">
+		<xs:annotation>
+			<xs:documentation>OC410</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OC410I" type="OC410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-OC420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OC410IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OC410Type">
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="yesnoType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OC500" type="OC500Type">
+		<xs:annotation>
+			<xs:documentation>OC500</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OC500I" type="OC500IType">
+		<xs:annotation>
+			<xs:documentation>FAP-OC520</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OC500IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OC500IUS" type="OC500IUSType">
+		<xs:annotation>
+			<xs:documentation>FAP-520C</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OC500IUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="sensitivity2" type="simpleSensType" default="SSEN_MEDIUM"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OC500Type">
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensBaseSetType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="yesnoType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OM200" type="OM200Type">
+		<xs:annotation>
+			<xs:documentation>OM200</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OM200Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="optDisSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="OSEN_1"/>
+			<xs:enumeration value="OSEN_2"/>
+			<xs:enumeration value="OSEN_3"/>
+			<xs:enumeration value="OSEN_4"/>
+			<xs:enumeration value="OSEN_5"/>
+			<xs:enumeration value="OSEN_DISABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="optSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="OSEN_1"/>
+			<xs:enumeration value="OSEN_2"/>
+			<xs:enumeration value="OSEN_3"/>
+			<xs:enumeration value="OSEN_4"/>
+			<xs:enumeration value="OSEN_5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="OT110I" type="OT410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-OT110</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OT200" type="OT200Type">
+		<xs:annotation>
+			<xs:documentation>OT200</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OT200Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OT220IUS" type="OT220IUSType">
+		<xs:annotation>
+			<xs:documentation>FAP-420-T</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OT220IUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="thermalSensitivity1" type="usTempDisSensType" default="USTSEN_135F"/>
+					<xs:element name="opticalSensitivity1" type="optDisSensType" default="OSEN_1"/>
+					<xs:element name="thermalSensitivity2" type="usTempDisSensType" default="USTSEN_135F"/>
+					<xs:element name="opticalSensitivity2" type="optDisSensType" default="OSEN_1"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OT410" type="OT410Type">
+		<xs:annotation>
+			<xs:documentation>OT400</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OT410I" type="OT410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-OT420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OT410IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OT410Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensOTType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OTC220IUS" type="OTC220IUSType">
+		<xs:annotation>
+			<xs:documentation>FAP-420-TC</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OTC220IUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="thermalSensitivity1" type="usTempDisSensType" default="USTSEN_135F"/>
+					<xs:element name="opticalSensitivity1" type="optDisSensType" default="OSEN_1"/>
+					<xs:element name="thermalSensitivity2" type="usTempDisSensType" default="USTSEN_135F"/>
+					<xs:element name="opticalSensitivity2" type="optDisSensType" default="OSEN_1"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="OTC410" type="OTC410Type">
+		<xs:annotation>
+			<xs:documentation>OTC410</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OTC410I" type="OTC410IType">
+		<xs:annotation>
+			<xs:documentation>FAP-OTC420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="OTC410IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OTCO425IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensOTCOType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensOTCOType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OTC410Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="sensitivity2" type="magicSensOTCType" default="MSEN_OFFICE_DAYMODE"/>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PULLSTATION" type="PULLSTATIONType">
+		<xs:annotation>
+			<xs:documentation>Pull Station</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="PULLSTATIONType">
+		<xs:annotation>
+			<xs:documentation>Pullstation</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ManuDetBaseType">
+				<xs:sequence>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="radioSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="DOOT_ROBUST">
+				<xs:annotation>
+					<xs:documentation>Dual-optical with temperature, Robust</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DOOT_SUPPRESSION">
+				<xs:annotation>
+					<xs:documentation>Dual-optical with temperature, Suppression</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DOOT_FAST_RESPONSE">
+				<xs:annotation>
+					<xs:documentation>Dual-optical with temperature, Fast response</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="T_60_RATE_OF_RISE">
+				<xs:annotation>
+					<xs:documentation>Temperature sensor, 60 degree C rate of rise</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="T_60_MAXIMUM">
+				<xs:annotation>
+					<xs:documentation>Temperature sensor, 60 degree C maximum</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DOO_UNIVERSAL">
+				<xs:annotation>
+					<xs:documentation>Dual-optical, Universal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DOO_ROBUST">
+				<xs:annotation>
+					<xs:documentation>Dual-optical, Robust</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DOO_SENSITIVE">
+				<xs:annotation>
+					<xs:documentation>Dual-optical, Sensitive</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RAS_TMS">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TMS Titanus MicroSens (1 sensor), pseudo coupler with 1 detector</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR_TMS" type="TITANUS_MICROSensorType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RAS_TMS_NOFAN">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TMS_DB Titanus MicroSens (1 sensor), pseudo coupler with 1 detector</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR_TMS" type="TITANUS_MICROSensorType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RAS_TMS_RB">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TMS_RB Titanus MicroSens (1 sensor), pseudo coupler with 1 detector and 5 Fire-Source identifications</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR_TMS" type="TITANUS_MICROSensorType" minOccurs="6" maxOccurs="6"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RAS_TPS1">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TP1 Titanus ProSens (1 sensor), pseudo coupler with 1 detector</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RAS_TPS2">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TP2 Titanus ProSens (2 sensors), pseudo coupler with 2 detectors</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType" maxOccurs="2"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RAS_TTS1">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TT1 Titanus TopSens (1 sensor), pseudo coupler with 1 detector</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RAS_TTS2">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">FAS-420-TT2 Titanus TopSens (2 sensors), pseudo coupler with 2 detectors</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="LSNDeviceBaseType">
+					<xs:sequence>
+						<xs:element name="comAdr" type="comAddrType"/>
+						<xs:element name="serialNumber" type="serialNumberType"/>
+						<xs:element name="RAS_SENSOR" type="TITANUS_TOP_PROSensorType" maxOccurs="2"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="RELAY_NSB100Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RELAYBaseType">
+				<xs:sequence>
+					<xs:element name="feedback" type="yesnoType" default="ST_NO"/>
+					<xs:element name="feedbackDelay" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedByte">
+								<xs:minInclusive value="0"/>
+								<xs:maxInclusive value="60"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="RLHVI" type="RLHVIType">
+		<xs:annotation>
+			<xs:documentation>FLM420-RHV</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="RLHVIrelayInputGroup">
+		<xs:sequence>
+			<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType"/>
+			<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="RLHVIType">
+		<xs:annotation>
+			<xs:documentation>Coupler</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="LSNDeviceBaseType">
+				<xs:sequence>
+					<xs:element name="siType" fixed="MP_SI_COUPLER">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="MP_SI_COUPLER"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="comAdr" type="comAddrType"/>
+					<xs:element name="siNumber" type="siNumberType" default="0"/>
+					<xs:element name="label" type="labelTextType"/>
+					<xs:element name="serialNumber" type="serialNumberType"/>
+					<xs:element name="bypassable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="blockable" type="yesnoType" fixed="ST_YES">
+						<xs:annotation>
+							<xs:documentation>Couplers have fixed value ST_YES, applies only for the coupler itself, not for devices on a coupler.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_YES"/>
+					<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">First relay, port=1</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">Occurs only if feedbackline of first relay is used as independent input, portnumber=3</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LSNRELAY" type="LSNI_RELAYFeedbackRLHVIType">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">Second relay, port=2</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="INPUT" type="INPUTBaseType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation source="2.1.0">Occurs only if feedbackline of second relay is used as independent input, portnumber=4</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="simpleSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="SSEN_LOW"/>
+			<xs:enumeration value="SSEN_MEDIUM"/>
+			<xs:enumeration value="SSEN_HIGH"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="T220IUS" type="T220IUSType">
+		<xs:annotation>
+			<xs:documentation>FAH-420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="T220IUSType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="usTempSensType" default="USTSEN_135F"/>
+					<xs:element name="sensitivity2" type="usTempSensType" default="USTSEN_135F"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="T410" type="T410Type">
+		<xs:annotation>
+			<xs:documentation>T400</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="T410I" type="T410IType">
+		<xs:annotation>
+			<xs:documentation>FAH-T420</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="T410IType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="tempSensType" default="TSEN_A2R"/>
+					<xs:element name="sensitivity2" type="tempSensType" default="TSEN_A2R"/>
+					<xs:element name="LEDpresent" type="LEDpresentLSNIType" default="LP_NONE"/>
+					<xs:element name="standbyLEDblinking" type="yesnoType" default="ST_NO">
+						<xs:annotation>
+							<xs:documentation>default for US use would be "ST_YES
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RELAY" type="LSNI_DetectorRELAYType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="T410Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="sensitivity1" type="tempSensType" default="TSEN_A2R"/>
+					<xs:element name="sensitivity2" type="tempSensType" default="TSEN_A2R"/>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="tempSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="TSEN_A2R"/>
+			<xs:enumeration value="TSEN_A2S"/>
+			<xs:enumeration value="TSEN_BR"/>
+			<xs:enumeration value="TSEN_BS"/>
+			<xs:enumeration value="TSEN_A1R"/>
+			<xs:enumeration value="TSEN_A1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="TI13_BCMB" type="BCMBType">
+		<xs:annotation>
+			<xs:documentation>Battery-Controller properties of TI13</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IFM_BCMB" type="BCMBType">
+		<xs:annotation>
+			<xs:documentation>Battery-Controller properties of IFM</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="BCMBType">
+		<xs:sequence>
+			<xs:element name="measurementPeriod" type="xs:unsignedShort" default="10">
+				<xs:annotation>
+					<xs:documentation>unit: sec</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="batteryManualChargeDuration" type="xs:unsignedShort" default="900">
+				<xs:annotation>
+					<xs:documentation>unit: sec</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mainPowerU_min" type="xs:unsignedShort" default="21000">
+				<xs:annotation>
+					<xs:documentation>unit: mV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="mainPowerU_max" type="xs:unsignedShort" default="30500">
+				<xs:annotation>
+					<xs:documentation>unit: mV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="batteryAutoChargeU_min" type="xs:unsignedShort" default="21000">
+				<xs:annotation>
+					<xs:documentation>unit: mV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="batteryManualChargeU_min" type="xs:unsignedShort" default="18000">
+				<xs:annotation>
+					<xs:documentation>unit: mV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="batteryDischargeU_min" type="xs:unsignedShort" default="20500">
+				<xs:annotation>
+					<xs:documentation>unit: mV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="batteryMonitoringR_max" type="xs:unsignedShort" default="400">
+				<xs:annotation>
+					<xs:documentation>unit: mOhm</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pOut1ShutdownI_max" type="xs:unsignedShort" default="2800">
+				<xs:annotation>
+					<xs:documentation>unit: mA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pOut2ShutdownI_max" type="xs:unsignedShort" default="2800">
+				<xs:annotation>
+					<xs:documentation>unit: mA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pOut1CreepI_max" default="0">
+				<xs:annotation>
+					<xs:documentation>unit: mA, 0 = creeping short detection is switched off
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedShort">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="2800"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pOut2CreepI_max" default="0">
+				<xs:annotation>
+					<xs:documentation>unit: mA, 0 = creeping short detection is switched off
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedShort">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="2800"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pOut1_BatteryBuffered" type="yesnoType" default="ST_YES"/>
+			<xs:element name="pOut2_BatteryBuffered" type="yesnoType" default="ST_YES"/>
+			<xs:element name="GROUND" type="GROUNDType"/>
+			<xs:element name="BATTERY" type="BATTERYType" minOccurs="2" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MAINPOWER" type="MAINPOWERType">
+				<xs:annotation>
+					<xs:documentation/>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AUXPOWER" type="AUXPOWER_WithLineSupervisionType" minOccurs="2" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Name in GUI is POut</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="TITANUS_MICROSensorType">
+		<xs:annotation>
+			<xs:documentation source="2.1.0">Used for RAS_SENSOR_TMS of RAS_TMS and RAS_TMS_RB</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" type="portType">
+				<xs:annotation>
+					<xs:documentation source="2.1.0">Portnumbers are:
+if parent is RAS_TMS the RAS_SENSOR_TMS/port = 0
+if parent is RAS_TMS_RB the six RAS_SENSOR_TMS/port elements have the values 0 - 5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="siType" fixed="MP_SI_POINT">
+				<xs:annotation>
+					<xs:documentation>"MP_SI_POINT" only</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_POINT"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
+			<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
+			<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+			<xs:element name="av" type="yesnoType" default="ST_NO"/>
+			<xs:element name="avDelay" default="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="90"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+			<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+			<xs:element name="sensitivity1" type="microSensSensitivityType" default="CELLTYPE4_SENS1"/>
+			<xs:element name="sensitivity2" type="microSensSensitivityType" default="CELLTYPE5_SENS1"/>
+			<xs:element name="thresholdAirFlow" type="microSensThresholdAirFlowType" default="THRESHOLD_30"/>
+			<xs:element name="alarmDelay" type="microSensAlarmDelayType" default="ALARM_DELAY_10"/>
+			<xs:element name="airFlowFaultDelay" type="microSensAirFlowFaultDelayType" default="AIR_FLOW_FAULT_DELAY_100S"/>
+			<xs:element name="logicSens" type="onoffType" default="OOT_ON"/>
+			<xs:element name="fanVoltage" type="microSensFanVoltageType" default="FAN_VOLTAGE_9"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:complexType name="TITANUS_TOP_PROSensorType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">Type of detector is RAS Titanus TopSens and ProSens</xs:documentation>
+			<xs:documentation source="1.2.0">Sensor (detector) in RAS Titanus Systems, may appear one or two times</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="port" type="portType"/>
+			<xs:element name="siType" fixed="MP_SI_POINT">
+				<xs:annotation>
+					<xs:documentation>"MP_SI_POINT" only</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="MP_SI_POINT"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="siNumber" type="siNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 1 - 60000</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subNumber" type="siSubNumberType" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="label" type="labelTextType"/>
+			<xs:element name="usageType" type="usageTypeType" default="MP_UT_FIRE"/>
+			<xs:element name="andDetector" type="yesnoType" default="ST_NO"/>
+			<xs:element name="andZoneNr" type="xs:unsignedShort" default="0"/>
+			<xs:element name="andLatching" type="yesnoType" default="ST_NO"/>
+			<xs:element name="av" type="yesnoType" default="ST_NO"/>
+			<xs:element name="avDelay" default="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedByte">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="90"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="resetOutput" type="physAddrType" default="0.0.0.0"/>
+			<xs:element name="resetTime" type="xs:unsignedByte" default="0">
+				<xs:annotation>
+					<xs:appinfo>doc: range 0 - 255</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="bypassable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="blockable" type="yesnoType" default="ST_YES"/>
+			<xs:element name="dayNightMode" type="yesnoType" default="ST_NO"/>
+			<xs:element name="sensitivity1" type="topProSensitivityType"/>
+			<xs:element name="sensitivity2" type="topProSensitivityType"/>
+			<xs:element name="thresholdAirFlow" default="THRESHOLD_VERYLARGE">
+				<xs:annotation>
+					<xs:documentation source="1.3.0">Changed to VERYLARGE according new default HW-settings by Wagner</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="topProThresholdAirFlowType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="alarmDelay" type="topProAlarmDelayType" default="ALARM_DELAY_10"/>
+			<xs:element name="airFlowFaultDelay" type="topProAirFlowFaultDelayType" default="AIR_FLOW_FAULT_DELAY_2M"/>
+			<xs:element name="logicSens" type="onoffType" default="OOT_ON"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="generalAttributeGroup"/>
+	</xs:complexType>
+	<xs:element name="TM200" type="TM200Type">
+		<xs:annotation>
+			<xs:documentation>TM200</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TM200Type">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AutoDetBaseType">
+				<xs:sequence>
+					<xs:element name="LEDpresent" type="LEDpresentType" default="ST_NO"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="topProAirFlowFaultDelayType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens air flow fault delay</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_30S">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0 = 30 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_2M">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1 = 2 min</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_15M">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2 = 15 min</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AIR_FLOW_FAULT_DELAY_60M">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 3 = 60 min</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="topProAlarmDelayType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens alarm delay</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="ALARM_DELAY_0">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0 = 0 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALARM_DELAY_10">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1 = 10 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALARM_DELAY_30">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2 = 30 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ALARM_DELAY_60">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 3 = 60 s</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="topProSensitivityType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens sensitivity, there can be three types of cells mounted with different senstivities. The enumeration values always apply to a distinct celltype.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="CELLTYPE1_SENS1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE1 (name = Cell 0.05): level 1 = 0,05 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE1_SENS2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE1  (name = Cell 0.05): level 2 = 0,1 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE1_SENS3">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE1  (name = Cell 0.05): level 3 = 0,2 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE1_SENS4">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE1  (name = Cell 0.05): level 4 = 0,4 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE2_SENS1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25) : level 5 = 0,25 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE2_SENS2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25): level 6 = 0,5 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE2_SENS3">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25): level 7 = 1 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE2_SENS4">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE2 (name = Cell 0.25): level 8 = 2 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE3_SENS1">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE3 (name = Cell 0.8): level 9 = 0,8 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CELLTYPE3_SENS2">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">CELLTYPE3 (name = Cell 0.8): level 10 = 1,6 %/m</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="topProThresholdAirFlowType">
+		<xs:annotation>
+			<xs:documentation source="1.2.0">RAS Titanus TopSens and ProSens air flow threshold</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="THRESHOLD_SMALL">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 0 = 20%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="THRESHOLD_MEDIUM">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 1 = 30%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="THRESHOLD_LARGE">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 2 = 50%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="THRESHOLD_VERYLARGE">
+				<xs:annotation>
+					<xs:documentation source="1.2.0">level 3 = programmable</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="usTempDisSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="USTSEN_135F"/>
+			<xs:enumeration value="USTSEN_135FROR"/>
+			<xs:enumeration value="USTSEN_145F"/>
+			<xs:enumeration value="USTSEN_145FROR"/>
+			<xs:enumeration value="USTSEN_155F"/>
+			<xs:enumeration value="USTSEN_155FROR"/>
+			<xs:enumeration value="USTSEN_165F"/>
+			<xs:enumeration value="USTSEN_165FROR"/>
+			<xs:enumeration value="USTSEN_175F"/>
+			<xs:enumeration value="USTSEN_175FROR"/>
+			<xs:enumeration value="USTSEN_185F"/>
+			<xs:enumeration value="USTSEN_185FROR"/>
+			<xs:enumeration value="USTSEN_195F"/>
+			<xs:enumeration value="USTSEN_195FROR"/>
+			<xs:enumeration value="USTSEN_DISABLE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="usTempSensType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="USTSEN_135F"/>
+			<xs:enumeration value="USTSEN_135FROR"/>
+			<xs:enumeration value="USTSEN_145F"/>
+			<xs:enumeration value="USTSEN_145FROR"/>
+			<xs:enumeration value="USTSEN_155F"/>
+			<xs:enumeration value="USTSEN_155FROR"/>
+			<xs:enumeration value="USTSEN_165F"/>
+			<xs:enumeration value="USTSEN_165FROR"/>
+			<xs:enumeration value="USTSEN_175F"/>
+			<xs:enumeration value="USTSEN_175FROR"/>
+			<xs:enumeration value="USTSEN_185F"/>
+			<xs:enumeration value="USTSEN_185FROR"/>
+			<xs:enumeration value="USTSEN_195F"/>
+			<xs:enumeration value="USTSEN_195FROR"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
