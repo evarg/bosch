@@ -97,7 +97,7 @@ function element($xml){
     }
     if(isset($attributes['ref'])){
         print("element referencja do: " . $attributes['ref'] . "\n");
-        element($xml->)
+        element($xml->as);
     }
 
 }

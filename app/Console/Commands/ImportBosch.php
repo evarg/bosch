@@ -593,9 +593,6 @@ class ImportBosch extends Command
                 case "IO_S20_MODULE":
                     $this->IO_S20_MODULE($node, $owner);
                     break;
-                case "IO_S20_MODULE":
-                    $this->IO_S20_MODULE($node, $owner);
-                    break;
                 case "IO_SERIAL_MODULE":
                     $this->IO_SERIAL_MODULE($node, $owner);
                     break;
@@ -1852,7 +1849,7 @@ class ImportBosch extends Command
 
     public function DO410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\DO410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\DO410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1885,7 +1882,7 @@ class ImportBosch extends Command
 
     public function DOT410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\DOT410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\DOT410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType
@@ -1918,7 +1915,7 @@ class ImportBosch extends Command
 
     public function DOTC410I($mainNode, $owner)
     {
-        $model = new \App\Models\Import\BoschFPA5000\DOTC410I();
+        $model = new \App\Models\Import\BoschFPA5000\LSNI\DOTC410I();
         $model->rpsDisplayName = (string) ($mainNode->attributes()->rpsDisplayName ?? '');
 
         // LSNDeviceBaseType

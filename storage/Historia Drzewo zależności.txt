@@ -1,0 +1,263 @@
+<bs:module name="0000798E" comment="Release V3.0.0">
+      <bs:enumeration name="SITypeEnum" size="8">
+         <bs:value name="MP_SI_INVALID">0</bs:value>
+         <bs:value name="MP_SI_PANEL">1</bs:value>
+         <bs:value name="MP_SI_POINT">2</bs:value>
+         <bs:value name="MP_SI_MODULE">3</bs:value>
+         <bs:value name="MP_SI_COUPLER">4</bs:value>
+         <bs:value name="MP_SI_CONTROL">5</bs:value>
+         <bs:value name="MP_SI_INPUT">6</bs:value>
+         <bs:value name="MP_SI_CITYTIE">7</bs:value>
+         <bs:value name="MP_SI_FIREEXTINGUISHER">8</bs:value>
+         <bs:value name="MP_SI_SOUNDER">9</bs:value>
+         <bs:value name="MP_SI_STROBE">10</bs:value>
+         <bs:value name="MP_SI_NAC">11</bs:value>
+         <bs:value name="MP_SI_BUZZER">12</bs:value>
+         <bs:value name="MP_SI_AUXPOWER">13</bs:value>
+         <bs:value name="MP_SI_BATTERY">14</bs:value>
+         <bs:value name="MP_SI_MAINPOWER">15</bs:value>
+         <bs:value name="MP_SI_RAILPOWER">16</bs:value>
+         <bs:value name="MP_SI_GROUND">17</bs:value>
+         <bs:value name="MP_SI_MONITORING">18</bs:value>
+         <bs:value name="MP_SI_DOORHOLDER">19</bs:value>
+         <bs:value name="MP_SI_HVAC">20</bs:value>
+         <bs:value name="MP_SI_KEYDEPOT">21</bs:value>
+         <bs:value name="MP_SI_FBF">22</bs:value>
+         <bs:value name="MP_SI_DIALER">23</bs:value>
+         <bs:value name="MP_SI_STATUS">24</bs:value>
+         <bs:value name="MP_SI_PRINTER">25</bs:value>
+         <bs:value name="MP_SI_RAMV">26</bs:value>
+         <bs:value name="MP_SI_NETWORK">27</bs:value>
+         <bs:value name="MP_SI_TRANSFER">28</bs:value>
+         <bs:value name="MP_SI_DIAGNOSTICS">29</bs:value>
+         <bs:value name="MP_SI_HISTORY">30</bs:value>
+         <bs:value name="MP_SI_ADDRESSCARD">31</bs:value>
+         <bs:value name="MP_SI_ALARMCOUNTER">32</bs:value>
+         <bs:value name="MP_SI_FAT">33</bs:value>
+         <bs:value name="MP_SI_DAMPER">34</bs:value>
+         <bs:value name="MP_SI_LOOP">35</bs:value>
+         <bs:value name="MP_SI_CANBUS">36</bs:value>
+         <bs:value name="MP_SI_SET">37</bs:value>
+         <bs:value name="MP_SI_COUNTER">38</bs:value>
+         <bs:value name="MP_SI_TIMER">39</bs:value>
+         <bs:value name="MP_SI_ZONE">40</bs:value>
+         <bs:value name="MP_SI_LOOP_SET">41</bs:value>
+         <bs:value name="MP_SI_WT_GROUP">42</bs:value>
+         <bs:value name="MP_SI_CONV_ZONE">43</bs:value>
+         <bs:value name="MP_SI_BYPASS_GROUP">44</bs:value>
+         <bs:value name="MP_SI_BLOCK_GROUP">45</bs:value>
+         <bs:value name="MP_SI_INPUT_GROUP">46</bs:value>
+         <bs:value name="MP_SI_OUTPUT_GROUP">47</bs:value>
+         <bs:value name="MP_SI_USER">48</bs:value>
+         <bs:value name="MP_SI_DISPLAY">49</bs:value>
+         <bs:value name="MP_SI_TC_CHANNEL">50</bs:value>
+         <bs:value name="MP_SI_DOWNLOAD">51</bs:value>
+         <bs:value name="MP_SI_NETWORKNODE">52</bs:value>
+         <bs:value name="MP_SI_NETWORK_LINE">53</bs:value>
+         <bs:value name="MP_SI_TOPOLOGY">54</bs:value>
+         <bs:value name="MP_SI_NETADDRESS">55</bs:value>
+         <bs:value name="MP_SI_REDUNDANT_TRANSFER">56</bs:value>
+         <bs:value name="MP_SI_VAS">57</bs:value>
+         <bs:value name="MP_SI_VIRTUAL">58</bs:value>
+      </bs:enumeration>
+      <bs:enumeration name="HSTypeEnum" size="8">
+         <bs:value name="HS_TYPE_INVALID">0</bs:value>
+         <bs:value name="HS_EVENT">1</bs:value>
+         <bs:value name="HS_WT_EVENT">2</bs:value>
+         <bs:value name="HS_ADMIN">3</bs:value>
+         <bs:value name="HS_ACTIVATION">4</bs:value>
+         <bs:value name="HS_REPORT_ADM">5</bs:value>
+         <bs:value name="HS_CONFIG">6</bs:value>
+         <bs:value name="HS_DIAG_TEXT">7</bs:value>
+         <bs:value name="HS_DIAG_BIN">8</bs:value>
+         <bs:value name="HS_TIME_CHANGE">9</bs:value>
+         <bs:value name="HS_AC_LICENCE">10</bs:value>
+      </bs:enumeration>
+      <bs:enumeration name="ReportActionEnum" size="8">
+         <bs:value name="RA_INVALID">0</bs:value>
+         <bs:value name="RA_ACK">1</bs:value>
+         <bs:value name="RA_RESET">2</bs:value>
+         <bs:value name="RA_SYSTEM_RESET">3</bs:value>
+         <bs:value name="RA_EVENT_TYPE_RESET">4</bs:value>
+      </bs:enumeration>
+      <bs:enumeration name="AdminTypeEnum" size="8">
+         <bs:value name="MP_ADT_NORMAL">0</bs:value>
+         <bs:value name="MP_ADT_WALKTEST">1</bs:value>
+         <bs:value name="MP_ADT_BYPASS">2</bs:value>
+         <bs:value name="MP_ADT_ALTER_SENSITIVITY">3</bs:value>
+         <bs:value name="MP_ADT_DAYMODE">4</bs:value>
+         <bs:value name="MP_ADT_BLOCKED">5</bs:value>
+         <bs:value name="MP_ADT_MONITOR">6</bs:value>
+         <bs:value name="MP_ADT_SILENCE">7</bs:value>
+         <bs:value name="MP_ADT_MUTING">8</bs:value>
+         <bs:value name="MP_ADT_DRILL">9</bs:value>
+         <bs:value name="MP_ADT_WALKTEST_SIMULTANEOUS">10</bs:value>
+         <bs:value name="MP_ADT_NO_ADMIN">50</bs:value>
+         <bs:value name="MP_ADT_TIME_CHANGED">51</bs:value>
+         <bs:value name="MP_ADT_TIME_ZONE_CHANGED">52</bs:value>
+         <bs:value name="MP_ADT_DST_CHANGED">53</bs:value>
+         <bs:value name="MP_ADT_TC_TIME_CHANGED">54</bs:value>
+         <bs:value name="MP_ADT_AC_LICENCE">55</bs:value>
+         <bs:value name="MP_ADT_CONTROLLED_BY_BUTTON">56</bs:value>
+         <bs:value name="MP_ADT_LED_BLINKING">57</bs:value>
+      </bs:enumeration>
+      <bs:enumeration name="ActionTypeEnum" size="8">
+         <bs:value name="MP_ACT_INVALID">0</bs:value>
+         <bs:value name="MP_ACT_SWITCHON">1</bs:value>
+         <bs:value name="MP_ACT_SWITCHOFF">2</bs:value>
+         <bs:value name="MP_ACT_REQUEST">3</bs:value>
+         <bs:value name="MP_ACT_RESPOND">4</bs:value>
+         <bs:value name="MP_ACT_MUTED">5</bs:value>
+         <bs:value name="MP_ACT_AUTOMATIC">6</bs:value>
+         <bs:value name="MP_ACT_TEST">7</bs:value>
+         <bs:value name="MP_ACT_TROUBLE">8</bs:value>
+      </bs:enumeration>
+      <bs:enumeration name="LogicalStateCompoundStateTypeEnum" size="8">
+         <bs:value name="MP_ET_INVALID">0</bs:value>
+         <bs:value name="MP_ET_NORMAL">1</bs:value>
+         <bs:value name="MP_ET_TROUBLE">2</bs:value>
+         <bs:value name="MP_ET_FIRE">3</bs:value>
+         <bs:value name="MP_ET_FIRE_PRE">4</bs:value>
+         <bs:value name="MP_ET_VERIFY_FIRE">5</bs:value>
+         <bs:value name="MP_ET_HEAT">6</bs:value>
+         <bs:value name="MP_ET_SUPERVISORY">7</bs:value>
+         <bs:value name="MP_ET_SMOKE">8</bs:value>
+         <bs:value name="MP_ET_ACTIVATION">9</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_FAILED">10</bs:value>
+         <bs:value name="MP_ET_TAMPER">11</bs:value>
+         <bs:value name="MP_ET_COVER_OPEN">12</bs:value>
+         <bs:value name="MP_ET_PAPER_OUT">13</bs:value>
+         <bs:value name="MP_ET_WARNING">14</bs:value>
+         <bs:value name="MP_ET_TROUBLE_LIGHT">15</bs:value>
+         <bs:value name="MP_ET_WATCHDOGRESTART">16</bs:value>
+         <bs:value name="MP_ET_ON">17</bs:value>
+         <bs:value name="MP_ET_OFF">18</bs:value>
+         <bs:value name="MP_ET_POLLUTION">19</bs:value>
+         <bs:value name="MP_ET_POLLUTION_LIGHT">20</bs:value>
+         <bs:value name="MP_ET_MONITOR">21</bs:value>
+         <bs:value name="MP_ET_WATER">22</bs:value>
+         <bs:value name="MP_ET_POWERFAIL">23</bs:value>
+         <bs:value name="MP_ET_MANUAL_ALARM">24</bs:value>
+         <bs:value name="MP_ET_PAS_WAIT_FOR_ACK">25</bs:value>
+         <bs:value name="MP_ET_PAS_INVESTIGATE">26</bs:value>
+         <bs:value name="MP_ET_AC_CHANGED">27</bs:value>
+         <bs:value name="MP_ET_AC_COUNTDOWN_STARTED">28</bs:value>
+         <bs:value name="MP_ET_AC_TAMPER">29</bs:value>
+         <bs:value name="MP_ET_FIRE_INT">30</bs:value>
+         <bs:value name="MP_ET_ERROR">31</bs:value>
+         <bs:value name="MP_ET_UNKNOWN">32</bs:value>
+         <bs:value name="MP_ET_MATCHALL">33</bs:value>
+         <bs:value name="MP_ET_NET_CONFIG_MISMATCH">34</bs:value>
+         <bs:value name="MP_ET_UNKNOWN_ITEM">35</bs:value>
+         <bs:value name="MP_ET_MISSING_ITEM">36</bs:value>
+         <bs:value name="MP_ET_INCOMPATIBLE_SOFTWARE">37</bs:value>
+         <bs:value name="MP_ET_INCOMPATIBLE_NET_PROTOCOL">38</bs:value>
+         <bs:value name="MP_ET_INFO_ALARM">39</bs:value>
+         <bs:value name="MP_ET_CHEMICAL">40</bs:value>
+         <bs:value name="MP_ET_WARNING_HEAT">41</bs:value>
+         <bs:value name="MP_ET_WARNING_SMOKE">42</bs:value>
+         <bs:value name="MP_ET_WARNING_CHEMICAL">43</bs:value>
+         <bs:value name="MP_ET_REBOOT_READY">44</bs:value>
+         <bs:value name="MP_ET_LASTLOGICAL">45</bs:value>
+         <bs:value name="MP_ET_FIRSTCOMPOUND">46</bs:value>
+         <bs:value name="MP_ET_NORMAL_WALKTEST">47</bs:value>
+         <bs:value name="MP_ET_TROUBLE_WALKTEST">48</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_WALKTEST">49</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_FAILED_WALKTEST">50</bs:value>
+         <bs:value name="MP_ET_ON_WALKTEST">51</bs:value>
+         <bs:value name="MP_ET_OFF_WALKTEST">52</bs:value>
+         <bs:value name="MP_ET_SUPERVISORY_WALKTEST">53</bs:value>
+         <bs:value name="MP_ET_WATER_WALKTEST">54</bs:value>
+         <bs:value name="MP_ET_HEAT_WALKTEST">55</bs:value>
+         <bs:value name="MP_ET_SMOKE_WALKTEST">56</bs:value>
+         <bs:value name="MP_ET_CHEMICAL_WALKTEST">57</bs:value>
+         <bs:value name="MP_ET_FIRE_WALKTEST">58</bs:value>
+         <bs:value name="MP_ET_ALARM_WALKTEST">59</bs:value>
+         <bs:value name="MP_ET_NORMAL_BYPASS">60</bs:value>
+         <bs:value name="MP_ET_TROUBLE_BYPASS">61</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_BYPASS">62</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_FAILED_BYPASS">63</bs:value>
+         <bs:value name="MP_ET_ALARM_BYPASS">64</bs:value>
+         <bs:value name="MP_ET_NORMAL_BLOCKED">65</bs:value>
+         <bs:value name="MP_ET_TROUBLE_BLOCKED">66</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_BLOCKED">67</bs:value>
+         <bs:value name="MP_ET_ACTIVATION_FAILED_BLOCKED">68</bs:value>
+         <bs:value name="MP_ET_ALARM_BLOCKED">69</bs:value>
+         <bs:value name="MP_ET_NORMAL_DAY">70</bs:value>
+         <bs:value name="MP_ET_TROUBLE_DAY">71</bs:value>
+         <bs:value name="MP_ET_WATER_DAY">72</bs:value>
+         <bs:value name="MP_ET_HEAT_DAY">73</bs:value>
+         <bs:value name="MP_ET_SMOKE_DAY">74</bs:value>
+         <bs:value name="MP_ET_FIRE_DAY">75</bs:value>
+         <bs:value name="MP_ET_ALARM_DAY">76</bs:value>
+      </bs:enumeration>
+      <bs:sequence name="LogicalAddress">
+         <bs:element type="uint" name="netID" size="8"/>
+         <bs:element type="uint" name="panelID" size="8"/>
+         <bs:element type="SITypeEnum" name="siType" size="8"/>
+         <bs:element type="uint" name="siNumber" size="16"/>
+         <bs:element type="uint" name="siSubNumber" size="8"/>
+      </bs:sequence>
+      <bs:sequence name="PhysicalAddress">
+         <bs:element type="uint" name="moduleNumber" size="8"/>
+         <bs:element type="uint" name="loopNumber" size="8"/>
+         <bs:element type="uint" name="deviceNumber" size="8"/>
+         <bs:element type="uint" name="portNumber" size="8"/>
+      </bs:sequence>
+      <bs:sequence name="ISO-String">
+         <bs:element type="uint" name="codePage" size="8"/>
+         <bs:element type="uint" name="length" size="16"/>
+         <bs:element type="string" name="text" size="8" depends="length" codePage="codePage,28590"/>
+      </bs:sequence>
+      <bs:sequence name="EventData">
+         <bs:element type="uint" name="entryNumber" size="32"/>
+         <bs:element type="uint" name="time" size="32"/>
+         <bs:element type="LogicalAddress" name="logicalAddress"/>
+         <bs:element type="PhysicalAddress" name="physicalAddress"/>
+         <bs:element type="ISO-String" name="shortText"/>
+         <bs:element type="LogicalStateCompoundStateTypeEnum" name="eventType" size="16"/>
+      </bs:sequence>
+      <bs:sequence name="AdminData">
+         <bs:element type="uint" name="entryNumber" size="32"/>
+         <bs:element type="uint" name="time" size="32"/>
+         <bs:element type="AdminTypeEnum" name="adminType" size="8"/>
+         <bs:element type="LogicalAddress" name="logicalAddress"/>
+         <bs:element type="PhysicalAddress" name="physicalAddress"/>
+         <bs:element type="ISO-String" name="shortText"/>
+         <bs:element type="ActionTypeEnum" name="adminAction" size="8"/>
+         <bs:element type="uint" name="additionalInfo" size="32"/>
+         <bs:element type="uint" name="operatorID" size="16"/>
+      </bs:sequence>
+      <bs:sequence name="ReportAdminData">
+         <bs:element type="uint" name="entryNumber" size="32"/>
+         <bs:element type="uint" name="time" size="32"/>
+         <bs:element type="LogicalAddress" name="logicalAddress"/>
+         <bs:element type="PhysicalAddress" name="physicalAddress"/>
+         <bs:element type="ISO-String" name="shortText"/>
+         <bs:element type="ReportActionEnum" name="reportAction" size="8"/>
+         <bs:element type="LogicalStateCompoundStateTypeEnum" name="eventType" size="16"/>
+         <bs:element type="uint" name="operatorID" size="16"/>
+      </bs:sequence>
+      <bs:choice name="EntryData">
+         <bs:element type="EventData" name="eventData1" choiceTag="1"/>
+         <bs:element type="EventData" name="eventData2" choiceTag="2"/>
+         <bs:element type="AdminData" name="adminData1" choiceTag="3"/>
+         <bs:element type="AdminData" name="adminData2" choiceTag="4"/>
+         <bs:element type="AdminData" name="adminData3" choiceTag="9"/>
+         <bs:element type="AdminData" name="adminData4" choiceTag="10"/>
+         <bs:element type="ReportAdminData" name="reportAdminData" choiceTag="5"/>
+      </bs:choice>
+      <bs:sequence name="Entry">
+         <bs:element type="HSTypeEnum" name="typeOfEntry" size="16"/>
+         <bs:element type="uint" name="sizeOfEntry" size="16"/>
+         <bs:element type="EntryData" name="entryData" depends="typeOfEntry"/>
+      </bs:sequence>
+      <bs:sequence name="History">
+         <bs:element type="uint" name="id" size="32"/>
+         <bs:element type="uint" name="dataVersion" size="32"/>
+         <bs:element type="uint" name="language" size="8"/>
+         <bs:element type="uint" name="codePage" size="8"/>
+         <bs:element type="uint" name="numberOfEntries" size="32"/>
+         <bs:element type="Entry" name="entries" depends="numberOfEntries"/>
+      </bs:sequence>
+   </bs:module>

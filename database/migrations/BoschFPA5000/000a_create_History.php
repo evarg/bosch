@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->create('DUPA', function (Blueprint $table) {
+        Schema::connection('mysql_BoschFPA5000')->create('history', function (Blueprint $table) {
             $table->id();
 
-            //$table->string('yyyy')->nullable();
+            $table->string('language')->nullable();
+            $table->string('codePage')->nullable();
+            $table->string('numberOfEntries')->nullable();
 
-            //$table->foreignId('xxxx')->constrained('xxxx');
+            $table->string('desc')->nullable();
+            $table->string('file_name')->nullable();
 
-            $table->string('rpsDisplayName')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('mysql_BoschFPA5000')->dropIfExists('DUPA');
+        Schema::connection('mysql_BoschFPA5000')->dropIfExists('history');
     }
 };
