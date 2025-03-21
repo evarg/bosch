@@ -65,8 +65,8 @@ class ImportBoschHistory extends Command
 
         $model->entryType = 'EventData';
 
-        $model->entryNumber = (string) ($mainNode->entryNumber ?? '');
         $model->time = (string) ($mainNode->time ?? '');
+        $model->entryNumber = (string) ($mainNode->entryNumber ?? '');
 
         foreach ($mainNode->children() as $node) {
             switch ($node->getName()) {
