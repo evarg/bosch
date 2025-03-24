@@ -18,7 +18,7 @@ class RandomLogin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            $randomUser = User::inRandomOrder()->first();
+            $randomUser = User::first();
             if ($randomUser) {
                 Auth::login($randomUser, true);
             }

@@ -9,8 +9,8 @@ use App\Http\Controllers\BoschFPA5000\NODE_Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventsUploadController;
 use App\Http\Controllers\FileUploadController;
-use App\Http\Controllers\ImageMerge;
 use App\Http\Controllers\InstalationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchrackImportSecologController;
 
 Route::get('/import/config', [ImportController::class, 'config']);
@@ -29,3 +29,6 @@ Route::get('Bosch_FPA5000/NODE', [NODE_Controller::class, 'index'])->name('Bosch
 Route::get('Bosch_FPA5000/MODULE', [MODULE_Controller::class, 'index'])->name('BoschFPA5000.MODULE.index');
 
 Route::get('Secolog', [SchrackImportSecologController::class, 'index'])->name('Secolog.index');
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
