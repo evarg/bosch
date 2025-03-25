@@ -49,7 +49,15 @@ class User extends Authenticatable
         'email',
         'password',
         'nick',
-        'surname'
+        'surname',
+        'organization',
+        'phone',
+        'address',
+        'city',
+        'zip_code',
+        'country',
+        'language',
+        'time_zone'
     ];
 
     /**

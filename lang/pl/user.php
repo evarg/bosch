@@ -23,7 +23,7 @@ return [
     'organization' => 'Organizacja',
     'phone' => 'Telefon',
     'address' => 'Adres',
-    'state' => 'Miasto',
+    'city' => 'Miasto',
     'zip_code' => 'Kod pocztowy',
     'select_country' => 'Kraj',
     'language' => 'Język',

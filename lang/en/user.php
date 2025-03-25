@@ -10,6 +10,9 @@ return [
     'upload_new_photo' => 'New picture',
     'allowed' => 'Alloweg formats JPG, GIF or PNG. Max size 800K',
     'reset' => 'Reset',
+	
+	'error_validate' => 'Wystąpiły błędy przy walidacji',
+	'success_validate' => 'Poprawnie zapisano zmiany',
 
     'notifications' => 'Notifications',
     'account' => 'Account',
@@ -21,7 +24,7 @@ return [
     'organization' => 'Organization',
     'phone' => 'Phone',
     'address' => 'Address',
-    'state' => 'Citu',
+    'city' => 'City',
     'zip_code' => 'Zip code',
     'select_country' => 'Country',
     'language' => 'Language',
@@ -31,6 +34,7 @@ return [
     'text_delete_confirm_1' => 'Are you sure you want to delete your account?',
     'text_delete_confirm_2' => 'Once you delete your account, there is no going back. Please be certain.',
     'delete_confirm_checkbox' => 'I confirm my account deactivation',
+    'send_photo' => 'Prześlij',
 
 ];
 

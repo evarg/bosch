@@ -31,4 +31,5 @@ Route::get('Bosch_FPA5000/MODULE', [MODULE_Controller::class, 'index'])->name('B
 Route::get('Secolog', [SchrackImportSecologController::class, 'index'])->name('Secolog.index');
 
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::post('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
+Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+Route::put('/profile/upload_photo', [ProfileController::class, 'update'])->name('profile.upload_photo');
