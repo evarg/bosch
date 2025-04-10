@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventsUploadController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\InstalationController;
+use App\Http\Controllers\ProfileAvatarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SchrackImportSecologController;
 
@@ -32,4 +33,6 @@ Route::get('Secolog', [SchrackImportSecologController::class, 'index'])->name('S
 
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
-Route::put('/profile/upload_photo', [ProfileController::class, 'update'])->name('profile.upload_photo');
+
+Route::put('/profile/avatar', [ProfileAvatarController::class, 'update'])->name('profile_avatar.update');
+Route::delete('/profile/avatar', [ProfileAvatarController::class, 'destroy'])->name('profile_avatar.destroy');

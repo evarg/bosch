@@ -44,34 +44,36 @@
                 <h4 class="card-header">{{ __('user.profile_details') }}</h4>
 
                 <!-- FORM photo upload -->
-                <div class="card-body">
-                    <form action="{{ route('profile.upload_photo') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar"
-                                class="d-block w-px-120 h-px-120 rounded" id="uploadedAvatar" />
-                            <div class="button-wrapper">
-                                <label for="upload" class="btn btn-primary me-2 mb-3" tabindex="0">
-                                    <span class="d-none d-sm-block">{{ __('user.upload_new_photo') }}</span>
-                                    <i class="mdi mdi-tray-arrow-up d-block d-sm-none"></i>
-                                    <input type="file" id="upload" class="account-file-input" hidden
-                                        accept="image/png, image/jpeg" />
-                                </label>
-                                <button type="submit" class="btn btn-outline-danger account-image-reset mb-3">
-                                    <i class="mdi mdi-reload d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">{{ __('user.send_photo') }}</span>
-                                </button>
-                                <button type="button" class="btn btn-outline-danger account-image-reset mb-3">
-                                    <i class="mdi mdi-reload d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">{{ __('user.reset') }}</span>
-                                </button>
+                <!--
+                        <div class="card-body">
+                            <form action="{{ route('profile_avatar.update') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="user-avatar"
+                                        class="d-block w-px-120 h-px-120 rounded" id="uploadedAvatar" />
+                                    <div class="button-wrapper">
+                                        <label for="upload" class="btn btn-primary me-2 mb-3" tabindex="0">
+                                            <span class="d-none d-sm-block">{{ __('user.upload_new_photo') }}</span>
+                                            <i class="mdi mdi-tray-arrow-up d-block d-sm-none"></i>
+                                            <input type="file" id="upload" class="account-file-input" hidden
+                                                accept="image/png, image/jpeg" />
+                                        </label>
+                                        <button type="submit" class="btn btn-outline-danger account-image-reset mb-3">
+                                            <i class="mdi mdi-reload d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{{ __('user.send_photo') }}</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger account-image-reset mb-3">
+                                            <i class="mdi mdi-reload d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">{{ __('user.reset') }}</span>
+                                        </button>
 
-                                <div class="text-muted small">{{ __('user.allowed') }}</div>
-                            </div>
+                                        <div class="text-muted small">{{ __('user.allowed') }}</div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
+                    -->
 
                 <div class="card-body pt-2 mt-1">
                     <form id="formAccountSettings" method="POST" action="{{ route('profile.update', $user->id) }}">
@@ -233,25 +235,27 @@
                 </div>
                 <!-- /Account -->
             </div>
-            <div class="card">
-                <h5 class="card-header fw-normal">{{ __('user.delete_account') }}</h5>
-                <div class="card-body">
-                    <div class="mb-3 col-12 mb-0">
-                        <div class="alert alert-warning">
-                            <h6 class="alert-heading mb-1">{{ __('user.text_delete_confirm_1') }}</h6>
-                            <p class="mb-0">{{ __('user.text_delete_confirm_2') }}</p>
+            <!--
+                <div class="card">
+                    <h5 class="card-header fw-normal">{{ __('user.delete_account') }}</h5>
+                    <div class="card-body">
+                        <div class="mb-3 col-12 mb-0">
+                            <div class="alert alert-warning">
+                                <h6 class="alert-heading mb-1">{{ __('user.text_delete_confirm_1') }}</h6>
+                                <p class="mb-0">{{ __('user.text_delete_confirm_2') }}</p>
+                            </div>
                         </div>
+                        <form id="formAccountDeactivation" onsubmit="return false">
+                            <div class="form-check mb-3 ms-3">
+                                <input class="form-check-input" type="checkbox" name="accountActivation"
+                                    id="accountActivation" />
+                                <label class="form-check-label" for="accountActivation"></label>
+                            </div>
+                            <button type="submit" class="btn btn-danger">{{ __('user.delete_confirm_checkbox') }}</button>
+                        </form>
                     </div>
-                    <form id="formAccountDeactivation" onsubmit="return false">
-                        <div class="form-check mb-3 ms-3">
-                            <input class="form-check-input" type="checkbox" name="accountActivation"
-                                id="accountActivation" />
-                            <label class="form-check-label" for="accountActivation"></label>
-                        </div>
-                        <button type="submit" class="btn btn-danger">{{ __('user.delete_confirm_checkbox') }}</button>
-                    </form>
                 </div>
-            </div>
+            -->
         </div>
     </div>
 @endsection
